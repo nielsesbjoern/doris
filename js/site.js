@@ -37,18 +37,10 @@
     }
   });
 
-  window.matchMedia('(min-width: 1024px)').addEventListener('change', (e) => {
-    if (e.matches) closeSidebar();
-  });
-
   sidebarOverlay?.addEventListener('click', closeSidebar);
 
   sidebar?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      if (window.matchMedia('(max-width: 1023px)').matches) {
-        closeSidebar();
-      }
-    });
+    link.addEventListener('click', closeSidebar);
   });
 
   function closeLangMenu() {
