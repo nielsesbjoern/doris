@@ -11,6 +11,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from standorte_data import (
     CITIES,
     CITY_SLUGS,
+    EINSATZGEBIETE_COPY,
     HOME_STANDORTE,
     METRO_SLUGS,
     REACH_COPY,
@@ -23,8 +24,8 @@ from standorte_data import (
 from wrap_pages import META, build_page, nav_prefix
 
 HOME_STANDORTE_MARKER = "<!-- HOME_STANDORTE -->"
-HOME_REACH_PLACES_MARKER = "<!-- HOME_REACH_PLACES -->"
-HOME_MAP_MARKER = "<!-- HOME_MAP -->"
+EINSATZGEBIETE_MAP_MARKER = "<!-- EINSATZGEBIETE_MAP -->"
+EINSATZGEBIETE_PLACES_MARKER = "<!-- EINSATZGEBIETE_PLACES -->"
 
 
 def _list_items(items: list[str]) -> str:
@@ -315,7 +316,7 @@ def render_home_standorte(lang: str, asset: str = "") -> str:
         </details>"""
 
 
-def render_home_map(lang: str) -> str:
+def render_einsatzgebiete_map(lang: str) -> str:
     svg = (ROOT / "assets" / "map-dach.svg").read_text(encoding="utf-8")
     if lang == "en":
         svg = svg.replace(
@@ -328,21 +329,19 @@ def render_home_map(lang: str) -> str:
     indented = "\n".join(
         f"                {line}" if line.strip() else line for line in svg.splitlines()
     )
-    return f"""            <div class="map-card">
-              <div class="map-card-visual">
+    return f"""            <div class="map-standalone">
 {indented}
-              </div>
             </div>"""
 
 
-def patch_home_map(path: Path, lang: str):
+def patch_einsatzgebiete_map(path: Path, lang: str):
     html = path.read_text(encoding="utf-8")
-    block = render_home_map(lang)
-    if HOME_MAP_MARKER in html:
-        html = html.replace(HOME_MAP_MARKER, block)
+    block = render_einsatzgebiete_map(lang)
+    if EINSATZGEBIETE_MAP_MARKER in html:
+        html = html.replace(EINSATZGEBIETE_MAP_MARKER, block)
     else:
         html = re.sub(
-            r'<div class="reach-layout__map">.*?</div>\s*(?=<aside class="reach-places-panel")',
+            r'<div class="reach-layout__map">.*?</div>\s*(?=<aside class="reach-layout__places")',
             f'<div class="reach-layout__map">\n{block}\n          </div>\n          ',
             html,
             count=1,
@@ -351,39 +350,15 @@ def patch_home_map(path: Path, lang: str):
     path.write_text(html, encoding="utf-8")
 
 
-def patch_home_reach(path: Path, lang: str):
+def patch_einsatzgebiete_places(path: Path, lang: str, asset: str = ""):
     html = path.read_text(encoding="utf-8")
-    block = render_reach_places(lang, asset="")
-    if HOME_REACH_PLACES_MARKER in html:
-        html = html.replace(HOME_REACH_PLACES_MARKER, block)
+    block = render_reach_places(lang, asset=asset)
+    if EINSATZGEBIETE_PLACES_MARKER in html:
+        html = html.replace(EINSATZGEBIETE_PLACES_MARKER, block)
     else:
         html = re.sub(
             r'<p class="reach-places-kicker">.*?</details>\s*</aside>',
-            block + "\n        </aside>",
-            html,
-            count=1,
-            flags=re.DOTALL,
-        )
-    path.write_text(html, encoding="utf-8")
-
-
-def patch_home(path: Path, lang: str):
-    html = path.read_text(encoding="utf-8")
-    block = render_home_standorte(lang, asset="")
-    if HOME_STANDORTE_MARKER in html:
-        html = html.replace(HOME_STANDORTE_MARKER, block)
-    elif '<details class="home-standorte">' in html:
-        html = re.sub(
-            r'<details class="home-standorte">.*?</details>',
-            block,
-            html,
-            count=1,
-            flags=re.DOTALL,
-        )
-    else:
-        html = re.sub(
-            r"(</article>\s*)(</div>\s*</section>\s*</main>)",
-            rf"\1\n{block}\n      \2",
+            block + "\n        ",
             html,
             count=1,
             flags=re.DOTALL,
@@ -403,13 +378,11 @@ def main():
             main_html = build_main(slug, lang)
             build_page(lang, filename, main_html, out_dir / f"{slug}.html")
 
-    patch_home(ROOT / "index.html", "de")
-    patch_home(ROOT / "en" / "index.html", "en")
-    patch_home_map(ROOT / "index.html", "de")
-    patch_home_map(ROOT / "en" / "index.html", "en")
-    patch_home_reach(ROOT / "index.html", "de")
-    patch_home_reach(ROOT / "en" / "index.html", "en")
-    print("Built", len(CITY_SLUGS), "standorte pages (DE + EN) and patched index")
+    patch_einsatzgebiete_map(ROOT / "einsatzgebiete.html", "de")
+    patch_einsatzgebiete_map(ROOT / "en" / "einsatzgebiete.html", "en")
+    patch_einsatzgebiete_places(ROOT / "einsatzgebiete.html", "de")
+    patch_einsatzgebiete_places(ROOT / "en" / "einsatzgebiete.html", "en", asset="../")
+    print("Built", len(CITY_SLUGS), "standorte pages (DE + EN) and einsatzgebiete")
 
 
 if __name__ == "__main__":

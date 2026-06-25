@@ -189,14 +189,21 @@
   <aside class="site-sidebar" id="site-sidebar" aria-label="Navigation">
     <nav class="sidebar-nav">
                 <a href="index.html" class="sidebar-link">Home</a>
-      <div class="sidebar-group">
-        <p class="sidebar-group-label">Services</p>
-                  <a href="leistungen.html" class="sidebar-link sidebar-link--emphasis">Overview</a>
-                  <a href="coaching.html" class="sidebar-link sidebar-link--sub">Coaching</a>
-                  <a href="trainings.html" class="sidebar-link sidebar-link--sub">Training & Seminars</a>
-                  <a href="team.html" class="sidebar-link is-active sidebar-link--sub">Team & Process</a>
-                  <a href="diagnostik.html" class="sidebar-link sidebar-link--sub">Diagnostics</a>
-      </div>
+                <a href="einsatzgebiete.html" class="sidebar-link sidebar-link--emphasis">Service areas</a>
+      <details class="sidebar-dropdown sidebar-dropdown--active" open>
+        <summary class="sidebar-dropdown__summary">
+          <a href="leistungen.html" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link">Overview</a>
+          <span class="sidebar-dropdown__toggle" aria-hidden="true">
+            <svg class="sidebar-dropdown__chevron" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"></path></svg>
+          </span>
+        </summary>
+        <div class="sidebar-dropdown__panel">
+                    <a href="diagnostik.html" class="sidebar-link sidebar-link--sub">Diagnostics</a>
+                    <a href="team.html" class="sidebar-link is-active sidebar-link--sub">Team & Process</a>
+                    <a href="trainings.html" class="sidebar-link sidebar-link--sub">Training & Seminars</a>
+                    <a href="coaching.html" class="sidebar-link sidebar-link--sub">Coaching</a>
+        </div>
+      </details>
                 <a href="person.html" class="sidebar-link sidebar-link--emphasis">About</a>
                 <a href="psi-aktuell.html" class="sidebar-link sidebar-link--emphasis">PSI News</a>
                 <a href="referenzen.html" class="sidebar-link sidebar-link--emphasis">References</a>

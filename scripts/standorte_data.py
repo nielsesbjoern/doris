@@ -19,25 +19,44 @@ REACH_COPY = {
     },
 }
 
+EINSATZGEBIETE_COPY = {
+    "de": {
+        "eyebrow": "Einsatzgebiete",
+        "h1": "Von Osnabrück aus deutschlandweit im Einsatz",
+        "lead": "Beratung, Coaching und Trainings für Führungskräfte und Organisationen in ganz Deutschland.",
+        "body": "Vor Ort in Osnabrück, bundesweit beim Kunden und in vielen Formaten auch hybrid.",
+        "note": "Ausgewählte Einsatzorte und Mandate in Hamburg, Berlin, Hannover, Frankfurt, München und weiteren Regionen.",
+        "places_aria": "Ausgewählte Einsatzorte",
+    },
+    "en": {
+        "eyebrow": "Service areas",
+        "h1": "From Osnabrück, working across Germany",
+        "lead": "Consulting, coaching and training for leaders and organisations throughout Germany.",
+        "body": "On site in Osnabrück, at client locations nationwide, and in many formats also hybrid.",
+        "note": "Selected locations and engagements in Hamburg, Berlin, Hanover, Frankfurt, Munich and other regions.",
+        "places_aria": "Selected locations",
+    },
+}
+
 REACH_DESCRIPTIONS = {
     "osnabrueck": {
-        "de": "Hauptsitz und regionale Nähe",
+        "de": "Büro Newtonstraße 3 — Erstgespräche und Coachings vor Ort",
         "en": "Headquarters and regional proximity",
     },
     "hamburg": {
-        "de": "Führung in komplexen Organisationen",
+        "de": "Konzerne, Häfen, viele Schnittstellen und hohe Sichtbarkeit",
         "en": "Leadership in complex organisations",
     },
     "berlin": {
-        "de": "Verbände, Transformation, institutionelle Kontexte",
+        "de": "Verbände, Transformation, institutionelle und politische Nähe",
         "en": "Associations, transformation, institutional contexts",
     },
     "frankfurt": {
-        "de": "Hybride Begleitung bei hoher Entscheidungstaktung",
+        "de": "Finanzwirtschaft, Entscheidungsdruck, hybride Begleitung",
         "en": "Hybrid support under high decision pressure",
     },
     "muenchen": {
-        "de": "Coaching in leistungsorientierten Arbeitsumfeldern",
+        "de": "Industrie, Konzerne, leistungsorientierte Führungsteams",
         "en": "Coaching in performance-oriented work environments",
     },
 }

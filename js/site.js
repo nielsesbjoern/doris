@@ -2,7 +2,10 @@
   const sidebar = document.getElementById('site-sidebar');
   const sidebarToggle = document.querySelector('.sidebar-toggle');
   const sidebarOverlay = document.querySelector('.sidebar-overlay');
+  const headerControls = document.querySelector('.header-controls');
+  const kontaktBtn = headerControls?.querySelector('.btn-header');
   const langSwitcher = document.getElementById('lang-switcher');
+  const mobileControlsMq = window.matchMedia('(max-width: 1023px)');
   const langTrigger = document.getElementById('lang-switcher-trigger');
   const langCurrent = langSwitcher?.querySelector('.lang-switcher__current');
   const langOptions = langSwitcher?.querySelectorAll('.lang-switcher__option');
@@ -16,6 +19,37 @@
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
+
+  function ensureSidebarFooter() {
+    let footer = sidebar?.querySelector('.sidebar-footer');
+    if (!footer && sidebar) {
+      footer = document.createElement('div');
+      footer.className = 'sidebar-footer';
+      const legal = sidebar.querySelector('.sidebar-legal');
+      sidebar.insertBefore(footer, legal);
+    }
+    return footer;
+  }
+
+  function layoutHeaderControls() {
+    const footer = ensureSidebarFooter();
+    if (!footer || !headerControls || !kontaktBtn || !langSwitcher) return;
+
+    if (mobileControlsMq.matches) {
+      if (kontaktBtn.parentElement !== footer) {
+        footer.append(kontaktBtn, langSwitcher);
+      }
+      return;
+    }
+
+    if (kontaktBtn.parentElement !== headerControls) {
+      headerControls.insertBefore(kontaktBtn, themeToggle);
+      headerControls.insertBefore(langSwitcher, themeToggle);
+    }
+  }
+
+  layoutHeaderControls();
+  mobileControlsMq.addEventListener('change', layoutHeaderControls);
 
   function closeSidebar() {
     sidebar?.classList.remove('is-open');
@@ -39,8 +73,16 @@
 
   sidebarOverlay?.addEventListener('click', closeSidebar);
 
-  sidebar?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', closeSidebar);
+  sidebar?.addEventListener('click', (e) => {
+    if (e.target.closest('a')) {
+      closeSidebar();
+    }
+  });
+
+  sidebar?.querySelectorAll('.sidebar-dropdown__link').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
   });
 
   function closeLangMenu() {

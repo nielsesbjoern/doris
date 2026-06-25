@@ -38,6 +38,15 @@ META = {
         "desc_de": "Überblick über Coaching, Trainings, Teamentwicklung und Diagnostik für Führungskräfte und Organisationen — psychologisch fundiert und praxisnah.",
         "desc_en": "Overview of coaching, training, team development and diagnostics for leaders and organisations — psychologically grounded and practical.",
     },
+    "einsatzgebiete.html": {
+        "page": "einsatzgebiete",
+        "active": "einsatzgebiete",
+        "schema": "webpage",
+        "title_de": "Einsatzgebiete – Von Osnabrück deutschlandweit | Doris Gunsch",
+        "title_en": "Service Areas – From Osnabrück across Germany | Doris Gunsch",
+        "desc_de": "Coaching und Beratung in Osnabrück, bundesweit und hybrid — ausgewählte Einsatzorte in Hamburg, Berlin, Frankfurt, München und weiteren Regionen.",
+        "desc_en": "Coaching and consulting in Osnabrück, nationwide and hybrid — selected locations in Hamburg, Berlin, Frankfurt, Munich and other regions.",
+    },
     "coaching.html": {
         "page": "leistungen",
         "active": "coaching",
@@ -154,12 +163,15 @@ META = {
 
 META.update(STANDORTE_META)
 
-SIDEBAR_KEYS = ["home", "leistungen", "coaching", "trainings", "team", "diagnostik", "person", "psi", "referenzen", "links"]
+SERVICE_SUB_PAGES = ("diagnostik", "team", "trainings", "coaching")
+
+SIDEBAR_KEYS = ["home", "einsatzgebiete", "leistungen", "coaching", "trainings", "team", "diagnostik", "person", "psi", "referenzen", "links"]
 
 LABELS = {
     "de": {
         "nav": "Navigation",
         "home": "Start",
+        "einsatzgebiete": "Einsatzgebiete",
         "services": "Leistungen",
         "overview": "Übersicht",
         "coaching": "Coaching",
@@ -186,6 +198,7 @@ LABELS = {
     "en": {
         "nav": "Navigation",
         "home": "Home",
+        "einsatzgebiete": "Service areas",
         "services": "Services",
         "overview": "Overview",
         "coaching": "Coaching",
@@ -214,6 +227,7 @@ LABELS = {
 SERVICE_DETAIL_PAGES = {"coaching.html", "trainings.html", "team.html", "diagnostik.html"}
 
 PAGE_TRAILS = {
+    "einsatzgebiete.html": [("home", "index.html"), ("einsatzgebiete", None)],
     "leistungen.html": [("home", "index.html"), ("services", None)],
     "coaching.html": [("home", "index.html"), ("services", "leistungen.html"), ("coaching", None)],
     "trainings.html": [("home", "index.html"), ("services", "leistungen.html"), ("trainings", None)],
@@ -410,6 +424,7 @@ def sidebar(lang, active, prefix="", legal_page=None):
     p = prefix
     keys = {
         "home": f'{p}index.html',
+        "einsatzgebiete": f'{p}einsatzgebiete.html',
         "leistungen": f'{p}leistungen.html',
         "coaching": f'{p}coaching.html',
         "trainings": f'{p}trainings.html',
@@ -420,25 +435,36 @@ def sidebar(lang, active, prefix="", legal_page=None):
         "referenzen": f'{p}referenzen.html',
         "links": f'{p}links.html',
     }
-    emphasis_keys = {"leistungen", "person", "psi", "referenzen", "links"}
+    emphasis_keys = {"einsatzgebiete", "person", "psi", "referenzen", "links"}
 
     def a(k, label, extra=""):
         emph = " sidebar-link--emphasis" if k in emphasis_keys else ""
         return f'          <a href="{keys[k]}" class="sidebar-link{active_class(k, active)}{emph}{extra}">{label}</a>'
 
+    services_open = active == "leistungen" or active in SERVICE_SUB_PAGES
+    dropdown_state = " sidebar-dropdown--active" if services_open else ""
+    open_attr = " open" if services_open else ""
+    overview_active = active_class("leistungen", active)
     imp_cls = ' class="is-active"' if legal_page == "impressum" else ""
     ds_cls = ' class="is-active"' if legal_page == "datenschutz" else ""
     return f'''  <aside class="site-sidebar" id="site-sidebar" aria-label="{L["nav"]}">
     <nav class="sidebar-nav">
       {a("home", L["home"])}
-      <div class="sidebar-group">
-        <p class="sidebar-group-label">{L["services"]}</p>
-        {a("leistungen", L["overview"])}
-        {a("coaching", L["coaching"], " sidebar-link--sub")}
-        {a("trainings", L["trainings"], " sidebar-link--sub")}
-        {a("team", L["team"], " sidebar-link--sub")}
-        {a("diagnostik", L["diagnostik"], " sidebar-link--sub")}
-      </div>
+      {a("einsatzgebiete", L["einsatzgebiete"])}
+      <details class="sidebar-dropdown{dropdown_state}"{open_attr}>
+        <summary class="sidebar-dropdown__summary">
+          <a href="{keys["leistungen"]}" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link{overview_active}">{L["overview"]}</a>
+          <span class="sidebar-dropdown__toggle" aria-hidden="true">
+            <svg class="sidebar-dropdown__chevron" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"></path></svg>
+          </span>
+        </summary>
+        <div class="sidebar-dropdown__panel">
+          {a("diagnostik", L["diagnostik"], " sidebar-link--sub")}
+          {a("team", L["team"], " sidebar-link--sub")}
+          {a("trainings", L["trainings"], " sidebar-link--sub")}
+          {a("coaching", L["coaching"], " sidebar-link--sub")}
+        </div>
+      </details>
       {a("person", L["person"])}
       {a("psi", L["psi"])}
       {a("referenzen", L["referenzen"])}
