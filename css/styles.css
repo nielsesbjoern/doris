@@ -3138,24 +3138,33 @@ main > .page-back + .page-section--hero {
 
 @media (max-width: 1023px) {
   :root {
-    --logo-height: 8.625rem;
-    --header-logo-height: 8.625rem;
-    --header-padding-y: 1.125rem;
+    --logo-height: 6.25rem;
+    --header-logo-height: 6.25rem;
+    --header-padding-y: 0.75rem;
     --header-inner-gap: 0.875rem;
+    --header-control-height: 2.5rem;
+    --header-control-min-width: 2.5rem;
     --page-top-gap: clamp(1.5rem, 4.5vw, 2rem);
     --page-back-gap: clamp(1rem, 3vw, 1.5rem);
   }
 
+  .header-inner {
+    align-items: center;
+  }
+
   .logo {
     margin-left: 0;
+    align-items: center;
   }
 
   .header-right {
     gap: 0.625rem;
+    align-items: center;
   }
 
   .header-controls {
     gap: 0.45rem;
+    align-items: center;
   }
 
   .header-controls > .btn-header,
@@ -3170,13 +3179,32 @@ main > .page-back + .page-section--hero {
 
 @media (max-width: 640px) {
   :root {
-    --logo-height: 7.5rem;
-    --header-logo-height: 7.5rem;
-    --header-padding-y: 1.25rem;
+    --logo-height: 5.5rem;
+    --header-logo-height: 5.5rem;
+    --header-padding-y: 0.625rem;
     --header-inner-gap: 0.75rem;
+    --header-control-height: 2.375rem;
+    --header-control-min-width: 2.375rem;
     --page-top-gap: 1.5rem;
     --page-back-gap: 1.125rem;
     --site-gutter: clamp(1.125rem, 4.5vw, 1.5rem);
+  }
+
+  .theme-toggle svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .sidebar-toggle {
+    gap: 4px;
+  }
+
+  .sidebar-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(5.5px) rotate(45deg);
+  }
+
+  .sidebar-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-5.5px) rotate(-45deg);
   }
 
   .btn-back {
