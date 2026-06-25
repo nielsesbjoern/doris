@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      var saved = localStorage.getItem('dg-theme');
+      var theme = saved === 'dark' || saved === 'light'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <meta name="description" content="Privacy policy for doris-gunsch.eu — information on the processing of personal data.">
+  <title>Privacy Policy – Doris Gunsch</title>
+  <link rel="canonical" href="https://www.doris-gunsch.eu/en/datenschutz.html">
+  <link rel="alternate" hreflang="de" href="https://www.doris-gunsch.eu/datenschutz.html">
+  <link rel="alternate" hreflang="en" href="https://www.doris-gunsch.eu/en/datenschutz.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.doris-gunsch.eu/datenschutz.html">
+  <meta property="og:title" content="Privacy Policy – Doris Gunsch">
+  <meta property="og:description" content="Privacy policy for doris-gunsch.eu — information on the processing of personal data.">
+  <meta property="og:url" content="https://www.doris-gunsch.eu/en/datenschutz.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.doris-gunsch.eu/public/doris-web.jpg">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="de_DE">
+  <meta property="og:site_name" content="Doris Gunsch">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Privacy Policy – Doris Gunsch">
+  <meta name="twitter:description" content="Privacy policy for doris-gunsch.eu — information on the processing of personal data.">
+  <meta name="twitter:image" content="https://www.doris-gunsch.eu/public/doris-web.jpg">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Privacy Policy – Doris Gunsch",
+  "description": "Privacy policy for doris-gunsch.eu — information on the processing of personal data.",
+  "url": "https://www.doris-gunsch.eu/en/datenschutz.html",
+  "inLanguage": "en",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Doris Gunsch",
+    "url": "https://www.doris-gunsch.eu/en/"
+  }
+}
+  </script>
+  <link rel="icon" type="image/png" sizes="32x32" href="../public/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../public/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body data-page="legal">
+
+<div class="site-shell">
+  <div class="sidebar-overlay" aria-hidden="true"></div>
+  <aside class="site-sidebar" id="site-sidebar" aria-label="Navigation">
+    <nav class="sidebar-nav">
+                <a href="index.html" class="sidebar-link">Home</a>
+      <div class="sidebar-group">
+        <p class="sidebar-group-label">Services</p>
+                  <a href="leistungen.html" class="sidebar-link sidebar-link--emphasis">Overview</a>
+                  <a href="coaching.html" class="sidebar-link sidebar-link--sub">Coaching</a>
+                  <a href="trainings.html" class="sidebar-link sidebar-link--sub">Training & Seminars</a>
+                  <a href="team.html" class="sidebar-link sidebar-link--sub">Team & Process</a>
+                  <a href="diagnostik.html" class="sidebar-link sidebar-link--sub">Diagnostics</a>
+      </div>
+                <a href="person.html" class="sidebar-link sidebar-link--emphasis">About</a>
+                <a href="psi-aktuell.html" class="sidebar-link sidebar-link--emphasis">PSI News</a>
+                <a href="referenzen.html" class="sidebar-link sidebar-link--emphasis">References</a>
+                <a href="links.html" class="sidebar-link sidebar-link--emphasis">Links</a>
+    </nav>
+    <div class="sidebar-legal">
+      <a href="impressum.html">Legal Notice</a>
+      <a href="datenschutz.html" class="is-active">Privacy</a>
+    </div>
+  </aside>
+
+  <div class="site-content">
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a href="index.html" class="logo" aria-label="Doris Gunsch – Home">
+          <img src="../public/doris-logo-web.png" alt="Doris Gunsch" width="560" height="144">
+        </a>
+        <div class="header-right">
+          <div class="header-controls">
+            <a href="kontakt.html" class="btn btn-primary btn-header">Contact</a>
+            <div class="lang-switcher" id="lang-switcher">
+              <button type="button" class="lang-switcher__trigger" id="lang-switcher-trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="lang-switcher-menu" aria-label="Language">
+                <span class="lang-switcher__current">DE</span>
+                <svg class="lang-switcher__chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"></path></svg>
+              </button>
+              <ul class="lang-switcher__menu" id="lang-switcher-menu" role="listbox" aria-label="Language">
+                <li role="presentation">
+                  <button type="button" class="lang-switcher__option" role="option" data-lang="de">DE</button>
+                </li>
+                <li role="presentation">
+                  <button type="button" class="lang-switcher__option" role="option" data-lang="en">EN</button>
+                </li>
+              </ul>
+            </div>
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode">
+              <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+              <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 14.5A8.5 8.5 0 0 1 9.5 3 7 7 0 1 0 21 14.5z"></path></svg>
+            </button>
+          </div>
+          <button type="button" class="sidebar-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-sidebar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+
+    </header>
+
+    <main>
+      <div class="container page-back">
+        <a href="index.html" class="btn btn-secondary btn-back">← Back to home</a>
+      </div>
+<div class="container legal-page">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy policy</h1>
+
+      <p class="legal-intro">
+        Information on data processing regarding the website operated by us
+      </p>
+
+      <h2>Data protection</h2>
+      <p>
+        The operators of these pages take the protection of your personal data very seriously.
+        We treat your personal data confidentially and in accordance with
+        statutory data protection regulations and this privacy policy.
+      </p>
+      <p>
+        Use of our website is generally possible without providing personal data.
+        Where personal data (such as name, address, or email addresses) is collected on our pages,
+        this is always done on a voluntary basis wherever possible.
+        This data will not be passed on to third parties without your express consent.
+      </p>
+      <p>
+        Please note that data transmission over the Internet (e.g. when communicating by email)
+        may have security vulnerabilities. Complete protection of data against access by third parties
+        is not possible.
+      </p>
+
+      <h2>Server log files</h2>
+      <p>
+        The provider of the pages automatically collects and stores information in so-called
+        server log files that your browser automatically transmits to us. These are:
+      </p>
+      <ul class="legal-list">
+        <li>Browser type and version</li>
+        <li>Operating system used</li>
+        <li>Referrer URL</li>
+        <li>Hostname of the accessing computer</li>
+        <li>Time of the server request</li>
+      </ul>
+      <p>
+        This data cannot be attributed to specific individuals. A combination of this data
+        with other data sources is not carried out. We reserve the right to check this data
+        subsequently if we become aware of concrete indications of unlawful use.
+      </p>
+
+      <h2>Cookies</h2>
+      <p>
+        The website operator does not use cookies. Usage data is not collected by us.
+      </p>
+
+      <h2>External fonts (Google Fonts)</h2>
+      <p>
+        This website uses Google Fonts, provided by Google Ireland Limited, Gordon House, Barrow Street,
+        Dublin 4, Ireland, for consistent typography. When you open a page, your browser loads the
+        required fonts into its cache to display text correctly. To do this, your browser must connect
+        to Google&apos;s servers. Google may learn that this website was accessed via your IP address.
+        Google Fonts are used on the basis of Art. 6(1)(f) GDPR (legitimate interest in a uniform
+        presentation of our online offering). Further information is available at
+        <a href="https://developers.google.com/fonts/faq" target="_blank" rel="noopener noreferrer">developers.google.com/fonts/faq</a>
+        and in Google&apos;s privacy policy:
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>.
+      </p>
+
+      <h2>Right to information, deletion, blocking</h2>
+      <p>
+        You have the right at any time to free information about your stored
+        personal data, its origin and recipients, and the purpose of data processing,
+        as well as the right to correction, blocking, or deletion of this data. For this purpose
+        and for further questions on the subject of personal data, you can contact us at any time at the address given in the
+        <a href="impressum.html">legal notice</a>.
+      </p>
+
+      <h2>Information on data processing in the context of a commission</h2>
+
+      <h3>1. Name and contact details of the controller responsible for processing</h3>
+      <p>
+        This privacy information applies to data processing in the context of a
+        service commission by:
+      </p>
+      <address class="legal-address">
+        Controller: Dipl.-Psychologin, Psychologische Management Beraterin Doris Gunsch<br>
+        Newtonstraße 3, 49088 Osnabrück, Germany<br>
+        Email <a href="mailto:dg@doris-gunsch.eu">dg@doris-gunsch.eu</a><br>
+        Phone <a href="tel:+4954114496">+49 (0)541 14496</a><br>
+        Fax +49 (0)541 7609875
+      </address>
+      <p>Ms Gunsch is personally responsible for data protection.</p>
+
+      <h3>2. Collection, processing, and storage of personal data</h3>
+      <p class="legal-label">Type, purpose, and use</p>
+      <p>When you commission us, we collect the following information:</p>
+      <ul class="legal-list">
+        <li>Salutation, first name, surname</li>
+        <li>a valid email address</li>
+        <li>Address</li>
+        <li>Telephone number (landline and/or mobile)</li>
+        <li>Information necessary for the provision of the service</li>
+      </ul>
+      <p>This data is collected in order to</p>
+      <ul class="legal-list">
+        <li>identify you as our client</li>
+        <li>advise you appropriately and carry out the commissioned service</li>
+        <li>correspond with you</li>
+        <li>issue invoices</li>
+        <li>handle any liability claims and assert any claims against you</li>
+      </ul>
+      <p>
+        Data processing is carried out at your request and is required pursuant to Art. 6 (1) sentence 1 lit. b
+        GDPR for the stated purposes for the appropriate handling of the commission and for the
+        mutual fulfilment of obligations under the service contract.
+      </p>
+      <p>
+        Your data will generally only be stored for as long as required by the purpose of the respective
+        data processing. Extended storage may apply in particular
+        where this is still necessary for legal enforcement by us or from our other legitimate interests,
+        or where we are legally obliged to retain your data
+        (e.g. within statutory retention periods for tax purposes, which are generally 10 years).
+      </p>
+
+      <h3>3. Disclosure of data to third parties</h3>
+      <p>
+        Transmission of your personal data to third parties involved in the specific
+        service commission only takes place with your consent.
+      </p>
+
+      <h3>4. Rights of data subjects</h3>
+      <p>You have the right:</p>
+      <ul class="legal-list legal-list--rights">
+        <li>
+          pursuant to Art. 7 (3) GDPR to withdraw your consent given once at any time.
+          This has the consequence that we may no longer continue data processing based on this consent
+          for the future
+        </li>
+        <li>
+          pursuant to Art. 15 GDPR to request information about your personal data processed by us —
+          in particular concerning processing purposes, categories of data, recipients,
+          storage period, rights to correction, deletion and objection, right to lodge a complaint,
+          data origin, and automated decision-making including profiling
+        </li>
+        <li>
+          pursuant to Art. 16 GDPR to request without delay the correction of inaccurate or the completion
+          of your personal data stored by us
+        </li>
+        <li>
+          pursuant to Art. 17 GDPR to request deletion of your personal data stored by us,
+          insofar as processing is not required for exercising the right to freedom of expression
+          and information, for fulfilling a legal obligation, for reasons of public
+          interest, or for the assertion, exercise, or defence of legal claims
+        </li>
+        <li>
+          pursuant to Art. 18 GDPR to request restriction of processing of your personal data,
+          insofar as you contest the accuracy of the data, processing is unlawful,
+          but you refuse deletion and we no longer need the data,
+          but you require it for the assertion, exercise, or defence of legal claims,
+          or you have lodged an objection to processing pursuant to Art. 21 GDPR
+        </li>
+        <li>
+          pursuant to Art. 20 GDPR to receive your personal data that you have provided to us in
+          a structured, commonly used, and machine-readable format, or to request transmission
+          to another controller
+        </li>
+        <li>
+          pursuant to Art. 77 GDPR to lodge a complaint with a supervisory authority. As a rule, you can
+          contact the supervisory authority of your habitual residence or place of work
+          or our business address
+        </li>
+      </ul>
+
+      <h3>5. Right to object</h3>
+      <p>
+        Where your personal data is processed on the basis of legitimate interests pursuant to
+        Art. 6 (1) sentence 1 lit. f GDPR, you have the right pursuant to Art. 21
+        GDPR to object to the processing of your personal data, insofar as
+        grounds exist arising from your particular situation.
+      </p>
+      <p>
+        If you wish to exercise your right to object, an informal email to
+        <a href="mailto:dg@doris-gunsch.eu">dg@doris-gunsch.eu</a> is sufficient.
+      </p>
+    </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p class="footer-brand">Doris Gunsch</p>
+        <p class="footer-tagline">Psychological Management Consulting</p>
+        <nav aria-label="Footer navigation">
+          <ul>
+            <li><a href="kontakt.html">Contact</a></li>
+            <li><a href="leistungen.html">Services</a></li>
+            <li><a href="person.html">About</a></li>
+            <li><a href="impressum.html">Legal Notice</a></li>
+            <li><a href="datenschutz.html">Privacy</a></li>
+          </ul>
+        </nav>
+        <p class="footer-copy">&copy; <span id="year"></span> Doris Gunsch</p>
+      </div>
+    </footer>
+  </div>
+</div>
+
+  <script src="../js/site.js"></script>
+</body>
+</html>

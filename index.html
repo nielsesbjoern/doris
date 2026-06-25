@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      var saved = localStorage.getItem('dg-theme');
+      var theme = saved === 'dark' || saved === 'light'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <meta name="description" content="Coaching, Trainings und Prozessbegleitung für Führungskräfte in Veränderungs- und Konfliktsituationen. Büro in Osnabrück, deutschlandweit tätig.">
+  <title>Psychologische Managementberatung Osnabrück – Doris Gunsch</title>
+  <link rel="canonical" href="https://www.doris-gunsch.eu/">
+  <link rel="alternate" hreflang="de" href="https://www.doris-gunsch.eu/">
+  <link rel="alternate" hreflang="en" href="https://www.doris-gunsch.eu/en/">
+  <link rel="alternate" hreflang="x-default" href="https://www.doris-gunsch.eu/">
+  <meta property="og:title" content="Psychologische Managementberatung Osnabrück – Doris Gunsch">
+  <meta property="og:description" content="Coaching, Trainings und Prozessbegleitung für Führungskräfte in Veränderungs- und Konfliktsituationen. Büro in Osnabrück, deutschlandweit tätig.">
+  <meta property="og:url" content="https://www.doris-gunsch.eu/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.doris-gunsch.eu/public/doris-web.jpg">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta property="og:site_name" content="Doris Gunsch">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Psychologische Managementberatung Osnabrück – Doris Gunsch">
+  <meta name="twitter:description" content="Coaching, Trainings und Prozessbegleitung für Führungskräfte in Veränderungs- und Konfliktsituationen. Büro in Osnabrück, deutschlandweit tätig.">
+  <meta name="twitter:image" content="https://www.doris-gunsch.eu/public/doris-web.jpg">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://www.doris-gunsch.eu/#business",
+  "name": "Doris Gunsch – Psychologische Managementberatung",
+  "url": "https://www.doris-gunsch.eu",
+  "image": "https://www.doris-gunsch.eu/public/doris-web.jpg",
+  "telephone": "+49-541-14496",
+  "email": "dg@doris-gunsch.eu",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Newtonstraße 3",
+    "postalCode": "49088",
+    "addressLocality": "Osnabrück",
+    "addressCountry": "DE"
+  },
+  "areaServed": [
+    "Germany",
+    "Austria",
+    "Switzerland"
+  ],
+  "knowsAbout": [
+    "Executive coaching",
+    "Leadership development",
+    "Organizational psychology",
+    "Team development",
+    "Change management"
+  ]
+}
+  </script>
+  <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="public/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="home">
+
+<div class="site-shell">
+  <div class="sidebar-overlay" aria-hidden="true"></div>
+  <aside class="site-sidebar" id="site-sidebar" aria-label="Navigation">
+    <nav class="sidebar-nav">
+                <a href="index.html" class="sidebar-link is-active">Start</a>
+      <div class="sidebar-group">
+        <p class="sidebar-group-label">Leistungen</p>
+                  <a href="leistungen.html" class="sidebar-link sidebar-link--emphasis">Übersicht</a>
+                  <a href="coaching.html" class="sidebar-link sidebar-link--sub">Coaching</a>
+                  <a href="trainings.html" class="sidebar-link sidebar-link--sub">Trainings & Seminare</a>
+                  <a href="team.html" class="sidebar-link sidebar-link--sub">Team & Prozess</a>
+                  <a href="diagnostik.html" class="sidebar-link sidebar-link--sub">Diagnostik</a>
+      </div>
+                <a href="person.html" class="sidebar-link sidebar-link--emphasis">Zur Person</a>
+                <a href="psi-aktuell.html" class="sidebar-link sidebar-link--emphasis">PSI Aktuell</a>
+                <a href="referenzen.html" class="sidebar-link sidebar-link--emphasis">Referenzen</a>
+                <a href="links.html" class="sidebar-link sidebar-link--emphasis">Links</a>
+    </nav>
+    <div class="sidebar-legal">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+  </aside>
+
+  <div class="site-content">
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a href="index.html" class="logo" aria-label="Doris Gunsch – Startseite">
+          <img src="public/doris-logo-web.png" alt="Doris Gunsch" width="560" height="144">
+        </a>
+        <div class="header-right">
+          <div class="header-controls">
+            <a href="kontakt.html" class="btn btn-primary btn-header">Kontakt</a>
+            <div class="lang-switcher" id="lang-switcher">
+              <button type="button" class="lang-switcher__trigger" id="lang-switcher-trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="lang-switcher-menu" aria-label="Sprache">
+                <span class="lang-switcher__current">DE</span>
+                <svg class="lang-switcher__chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"></path></svg>
+              </button>
+              <ul class="lang-switcher__menu" id="lang-switcher-menu" role="listbox" aria-label="Sprache">
+                <li role="presentation">
+                  <button type="button" class="lang-switcher__option" role="option" data-lang="de">DE</button>
+                </li>
+                <li role="presentation">
+                  <button type="button" class="lang-switcher__option" role="option" data-lang="en">EN</button>
+                </li>
+              </ul>
+            </div>
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false" aria-label="Dunkelmodus aktivieren">
+              <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+              <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 14.5A8.5 8.5 0 0 1 9.5 3 7 7 0 1 0 21 14.5z"></path></svg>
+            </button>
+          </div>
+          <button type="button" class="sidebar-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="site-sidebar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+      <div class="header-scroll-progress" aria-hidden="true">
+        <span class="header-scroll-progress__fill"></span>
+      </div>
+    </header>
+
+    <main>
+<section class="hero section page-section page-section--hero">
+      <div class="container">
+        <p class="eyebrow">Psychologische Managementberatung</p>
+        <h1>Klar führen in Veränderungs- und Konfliktsituationen</h1>
+        <p class="hero-lead">
+          Ich begleite Führungskräfte der oberen und mittleren Ebene mit Coaching, Trainings
+          und Prozessbegleitung — psychologisch fundiert, organisationsnah und mit über
+          20 Jahren Erfahrung.
+        </p>
+        <div class="hero-actions">
+          <a href="kontakt.html" class="btn btn-primary">Kontakt aufnehmen</a>
+          <a href="leistungen.html" class="btn btn-secondary">Leistungen ansehen</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section page-section page-section--compact" id="einsatzgebiet">
+      <div class="container">
+        <div class="reach-layout">
+          <div class="reach-layout__text">
+            <p class="eyebrow">Einsatzgebiete</p>
+            <h2 class="reach-headline">Von Osnabrück aus deutschlandweit im Einsatz</h2>
+            <p class="reach-lead">Beratung, Coaching und Trainings für Führungskräfte und Organisationen in ganz Deutschland.</p>
+            <p class="reach-body">Vor Ort in Osnabrück, bundesweit beim Kunden und in vielen Formaten auch hybrid.</p>
+            <p class="reach-note">Ausgewählte Einsatzorte und Mandate in Hamburg, Berlin, Hannover, Frankfurt, München und weiteren Regionen.</p>
+          </div>
+          <aside class="reach-layout__places" aria-label="Ausgewählte Einsatzorte">
+                                                <p class="reach-places-kicker">Auszug der Einsatzorte</p>
+            <ul class="reach-places-list">
+              <li class="reach-places-item">
+                <a href="standorte/osnabrueck.html" class="reach-places-link">
+                  <span class="reach-places-city">Osnabrück</span>
+                  <span class="reach-places-desc">Hauptsitz und regionale Nähe</span>
+                </a>
+              </li>
+              <li class="reach-places-item">
+                <a href="standorte/hamburg.html" class="reach-places-link">
+                  <span class="reach-places-city">Hamburg</span>
+                  <span class="reach-places-desc">Führung in komplexen Organisationen</span>
+                </a>
+              </li>
+              <li class="reach-places-item">
+                <a href="standorte/berlin.html" class="reach-places-link">
+                  <span class="reach-places-city">Berlin</span>
+                  <span class="reach-places-desc">Verbände, Transformation, institutionelle Kontexte</span>
+                </a>
+              </li>
+              <li class="reach-places-item">
+                <a href="standorte/frankfurt.html" class="reach-places-link">
+                  <span class="reach-places-city">Frankfurt</span>
+                  <span class="reach-places-desc">Hybride Begleitung bei hoher Entscheidungstaktung</span>
+                </a>
+              </li>
+              <li class="reach-places-item">
+                <a href="standorte/muenchen.html" class="reach-places-link">
+                  <span class="reach-places-city">München</span>
+                  <span class="reach-places-desc">Coaching in leistungsorientierten Arbeitsumfeldern</span>
+                </a>
+              </li>
+            </ul>
+            <details class="reach-more">
+              <summary class="reach-more-summary">Weitere Standorte</summary>
+              <ul class="reach-more-list">
+              <li><a href="standorte/muenster.html">Münster — Verwaltung &amp; Institutionen</a></li>
+              <li><a href="standorte/oldenburg.html">Oldenburg — Gesundheit &amp; Soziales</a></li>
+              <li><a href="standorte/hannover.html">Hannover — große Organisationen</a></li>
+              <li><a href="standorte/bremen.html">Bremen — Wandel &amp; Verantwortung</a></li>
+              <li><a href="standorte/duesseldorf.html">Düsseldorf — Wirtschaft &amp; Führungsdynamik</a></li>
+              </ul>
+            </details>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt page-section page-section--roomy">
+      <div class="container">
+        <blockquote class="leistungen-quote home-quote">
+          Das Problem genau zu erfassen, ist der wichtigste Schritt zur Lösung.
+        </blockquote>
+        <div class="home-services">
+          <article class="card card--lead home-service-lead">
+            <span class="card-number">01</span>
+            <h3>Coaching</h3>
+            <p>Personal und Business Coaching bei komplexen Führungssituationen — von der Klärung bis zur konkreten Handlungsstrategie.</p>
+            <a href="coaching.html" class="card-link">Mehr erfahren</a>
+          </article>
+          <div class="home-services-row">
+            <article class="card">
+              <span class="card-number">02</span>
+              <h3>Trainings</h3>
+              <p>Seminare für Führung, Kommunikation und Gesundheit im Arbeitskontext.</p>
+              <a href="trainings.html" class="card-link">Mehr erfahren</a>
+            </article>
+            <article class="card">
+              <span class="card-number">03</span>
+              <h3>Team &amp; Prozess</h3>
+              <p>Begleitung bei Teamentwicklung und Veränderungsprozessen.</p>
+              <a href="team.html" class="card-link">Mehr erfahren</a>
+            </article>
+            <article class="card">
+              <span class="card-number">04</span>
+              <h3>Diagnostik</h3>
+              <p>Wissenschaftliche Potenzialanalysen und Profiling.</p>
+              <a href="diagnostik.html" class="card-link">Mehr erfahren</a>
+            </article>
+          </div>
+        </div>
+        <p class="home-more"><a href="leistungen.html">Alle Leistungen im Überblick →</a></p>
+      </div>
+    </section>
+
+    <section class="section page-section page-section--roomy">
+      <div class="container home-person">
+        <div class="profile-grid">
+          <div class="profile-image home-person-image">
+            <img src="public/doris-web.jpg" alt="Doris Gunsch" class="profile-photo" width="800" height="682" loading="lazy">
+          </div>
+          <div class="profile-content">
+            <p class="eyebrow">Zur Person</p>
+            <h2>Doris Gunsch</h2>
+            <p class="home-person-text">
+              Diplom-Psychologin und psychologische Managementberaterin mit über 20 Jahren
+              Erfahrung — für Führungskräfte, Teams und Organisationen in Osnabrück und darüber hinaus.
+            </p>
+            <a href="person.html" class="card-link">Profil lesen</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section page-section page-section--cta">
+      <div class="container">
+        <article class="card card--lead home-service-lead home-contact-band">
+          <p class="eyebrow">Kontakt</p>
+          <h2 class="home-contact-title">Erstgespräch vereinbaren</h2>
+          <p class="home-contact-lead">Für Fragen oder eine unverbindliche Bedarfsanalyse — ich freue mich auf Ihre Nachricht.</p>
+          <div class="hero-actions">
+            <a href="tel:+4954114496" class="btn btn-primary">Gerne anrufen</a>
+            <a href="mailto:dg@doris-gunsch.eu" class="btn btn-secondary">E-Mail schreiben</a>
+          </div>
+        </article>
+        <!-- HOME_STANDORTE -->
+</div>
+    </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p class="footer-brand">Doris Gunsch</p>
+        <p class="footer-tagline">Psychologische Managementberatung</p>
+        <nav aria-label="Fußnavigation">
+          <ul>
+            <li><a href="kontakt.html">Kontakt</a></li>
+            <li><a href="leistungen.html">Leistungen</a></li>
+            <li><a href="person.html">Zur Person</a></li>
+            <li><a href="impressum.html">Impressum</a></li>
+            <li><a href="datenschutz.html">Datenschutz</a></li>
+          </ul>
+        </nav>
+        <p class="footer-copy">&copy; <span id="year"></span> Doris Gunsch</p>
+      </div>
+    </footer>
+  </div>
+</div>
+
+  <script src="js/site.js"></script>
+</body>
+</html>

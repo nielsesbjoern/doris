@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      var saved = localStorage.getItem('dg-theme');
+      var theme = saved === 'dark' || saved === 'light'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <meta name="description" content="Personal and business coaching for leaders: gain clarity, resolve conflicts, navigate change — confidential and goal-oriented.">
+  <title>Executive Coaching – Personal &amp; Business</title>
+  <link rel="canonical" href="https://www.doris-gunsch.eu/en/coaching.html">
+  <link rel="alternate" hreflang="de" href="https://www.doris-gunsch.eu/coaching.html">
+  <link rel="alternate" hreflang="en" href="https://www.doris-gunsch.eu/en/coaching.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.doris-gunsch.eu/coaching.html">
+  <meta property="og:title" content="Executive Coaching – Personal &amp; Business">
+  <meta property="og:description" content="Personal and business coaching for leaders: gain clarity, resolve conflicts, navigate change — confidential and goal-oriented.">
+  <meta property="og:url" content="https://www.doris-gunsch.eu/en/coaching.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.doris-gunsch.eu/public/doris-web.jpg">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="de_DE">
+  <meta property="og:site_name" content="Doris Gunsch">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Executive Coaching – Personal &amp; Business">
+  <meta name="twitter:description" content="Personal and business coaching for leaders: gain clarity, resolve conflicts, navigate change — confidential and goal-oriented.">
+  <meta name="twitter:image" content="https://www.doris-gunsch.eu/public/doris-web.jpg">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Executive Coaching – Personal & Business",
+  "description": "Personal and business coaching for leaders: gain clarity, resolve conflicts, navigate change — confidential and goal-oriented.",
+  "url": "https://www.doris-gunsch.eu/en/coaching.html",
+  "inLanguage": "en",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Doris Gunsch",
+    "url": "https://www.doris-gunsch.eu/en/"
+  }
+}
+  </script>
+  <link rel="icon" type="image/png" sizes="32x32" href="../public/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../public/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body data-page="leistungen">
+
+<div class="site-shell">
+  <div class="sidebar-overlay" aria-hidden="true"></div>
+  <aside class="site-sidebar" id="site-sidebar" aria-label="Navigation">
+    <nav class="sidebar-nav">
+                <a href="index.html" class="sidebar-link">Home</a>
+      <div class="sidebar-group">
+        <p class="sidebar-group-label">Services</p>
+                  <a href="leistungen.html" class="sidebar-link sidebar-link--emphasis">Overview</a>
+                  <a href="coaching.html" class="sidebar-link is-active sidebar-link--sub">Coaching</a>
+                  <a href="trainings.html" class="sidebar-link sidebar-link--sub">Training & Seminars</a>
+                  <a href="team.html" class="sidebar-link sidebar-link--sub">Team & Process</a>
+                  <a href="diagnostik.html" class="sidebar-link sidebar-link--sub">Diagnostics</a>
+      </div>
+                <a href="person.html" class="sidebar-link sidebar-link--emphasis">About</a>
+                <a href="psi-aktuell.html" class="sidebar-link sidebar-link--emphasis">PSI News</a>
+                <a href="referenzen.html" class="sidebar-link sidebar-link--emphasis">References</a>
+                <a href="links.html" class="sidebar-link sidebar-link--emphasis">Links</a>
+    </nav>
+    <div class="sidebar-legal">
+      <a href="impressum.html">Legal Notice</a>
+      <a href="datenschutz.html">Privacy</a>
+    </div>
+  </aside>
+
+  <div class="site-content">
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a href="index.html" class="logo" aria-label="Doris Gunsch – Home">
+          <img src="../public/doris-logo-web.png" alt="Doris Gunsch" width="560" height="144">
+        </a>
+        <div class="header-right">
+          <div class="header-controls">
+            <a href="kontakt.html" class="btn btn-primary btn-header">Contact</a>
+            <div class="lang-switcher" id="lang-switcher">
+              <button type="button" class="lang-switcher__trigger" id="lang-switcher-trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="lang-switcher-menu" aria-label="Language">
+                <span class="lang-switcher__current">DE</span>
+                <svg class="lang-switcher__chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"></path></svg>
+              </button>
+              <ul class="lang-switcher__menu" id="lang-switcher-menu" role="listbox" aria-label="Language">
+                <li role="presentation">
+                  <button type="button" class="lang-switcher__option" role="option" data-lang="de">DE</button>
+                </li>
+                <li role="presentation">
+                  <button type="button" class="lang-switcher__option" role="option" data-lang="en">EN</button>
+                </li>
+              </ul>
+            </div>
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode">
+              <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+              <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 14.5A8.5 8.5 0 0 1 9.5 3 7 7 0 1 0 21 14.5z"></path></svg>
+            </button>
+          </div>
+          <button type="button" class="sidebar-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-sidebar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+
+    </header>
+
+    <main>
+      <div class="container page-back">
+        <a href="leistungen.html" class="btn btn-secondary btn-back">← Back to services</a>
+      </div>
+<div class="container sub-nav-wrap">
+      <nav class="sub-nav" aria-label="Service areas">
+        <a href="leistungen.html">Overview</a>
+        <a href="coaching.html" class="is-active">Coaching</a>
+        <a href="trainings.html">Training &amp; Seminars</a>
+        <a href="team.html">Team &amp; Process</a>
+        <a href="diagnostik.html">Diagnostics</a>
+      </nav>
+    </div>
+
+    <section class="section page-section">
+      <div class="container">
+<article class="leistung-detail" id="coaching">
+          <header class="leistung-detail-header">
+            <span class="card-number">01</span>
+            <h1>Personal and Business Coaching</h1>
+          </header>
+
+          <p class="leistung-lead">
+            In coaching, the initial focus is on clarifying complex situations.
+            Starting from a situational analysis, levels of objectives are defined, courses of action
+            are explored, and the appropriate direction for a solution is developed.
+          </p>
+
+          <div class="coaching-split">
+            <div>
+              <h4 class="detail-subtitle">Personal Coaching</h4>
+              <ul class="detail-tags">
+                <li>Personal development</li>
+                <li>Reflection</li>
+                <li>Conflict resolution</li>
+                <li>Professional role performance</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="detail-subtitle">Business Coaching</h4>
+              <ul class="detail-tags">
+                <li>Focus</li>
+                <li>Optimisation</li>
+                <li>Strategy</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="detail-block">
+            <h4 class="detail-subtitle">Personal Coaching — Formats</h4>
+            <p class="detail-intro">
+              Leaders rarely have the opportunity to attend regular appointments.
+              I address this with intensive settings and complementary measures such as smart coaching
+              or coaching on the job.
+            </p>
+            <div class="detail-grid">
+              <div class="detail-item">
+                <h5>Situational Coaching</h5>
+                <p>
+                  Support in clarifying complex professional and personal situations —
+                  including preparation for important conversations and negotiations.
+                </p>
+              </div>
+              <div class="detail-item">
+                <h5>Onboarding Coaching</h5>
+                <p>
+                  Preparation for taking on a new company or department —
+                  systematic exploration, avoiding unnecessary friction.
+                </p>
+              </div>
+              <div class="detail-item">
+                <h5>Positioning Coaching</h5>
+                <p>
+                  A structural overview of your situation within the organisation
+                  and the current requirements.
+                </p>
+              </div>
+              <div class="detail-item">
+                <h5>Task-Focused Coaching</h5>
+                <p>
+                  Practical tools for the specific task — with training elements
+                  on request.
+                </p>
+              </div>
+              <div class="detail-item">
+                <h5>Personality Coaching</h5>
+                <p>
+                  Fostering self-development that often takes a back seat to the leadership role.
+                  Reflection on your own person and external impact — supported by
+                  potential analyses to focus new objectives.
+                </p>
+              </div>
+              <div class="detail-item">
+                <h5>Therapeutic Coaching</h5>
+                <p>
+                  My licence as a therapist enables support even where
+                  a coach would otherwise need to refer on — for motivation difficulties,
+                  suspected burnout, loss of energy, or inner conflicts.
+                  With diagnostic root-cause analysis on request.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-block">
+            <h4 class="detail-subtitle">Business Coaching and Consulting</h4>
+            <p class="detail-intro">
+              Business development takes centre stage. For a change of direction,
+              even small interventions can be significant — integrated with
+              consulting methods for strategic leadership.
+            </p>
+            <p class="detail-label">Common questions</p>
+            <ul class="detail-list">
+              <li>How do I, as an entrepreneur, leader, or HR director, gain an overview of the current situation?</li>
+              <li>Which strategy matters right now — and how do I bring my employees on board?</li>
+              <li>Which measures will achieve the best effect at present?</li>
+              <li>Where do untapped potentials still lie?</li>
+            </ul>
+            <p class="detail-label">Consulting elements</p>
+            <ul class="detail-tags detail-tags--inline">
+              <li>Situational analysis</li>
+              <li>Structural contact or conflict analysis</li>
+              <li>Strategy development matrix</li>
+              <li>Action planning</li>
+              <li>Portfolio work</li>
+              <li>Strategic human resources development planning</li>
+            </ul>
+          </div>
+
+          <div class="detail-block">
+            <h4 class="detail-subtitle">Process Consulting</h4>
+            <p>
+              I understand consulting primarily as process consulting: drawing out existing knowledge,
+              systematising it, and preparing it conceptually for productive outcomes.
+              Subsequently, I am available as an external project facilitator.
+            </p>
+            <ul class="detail-list">
+              <li>Future workshops for developing vision and mission</li>
+              <li>Workshops for strategy development with implementation planning</li>
+              <li>Workshops for capturing impulses for change and optimisation</li>
+              <li>Conducting and evaluating employee surveys with recommendations for action</li>
+            </ul>
+          </div>
+
+          <div class="detail-block">
+            <h4 class="detail-subtitle">Psychological Consulting</h4>
+            <p>
+              When psychological questions play a role — for instance in conflict situations
+              or with difficult employee behaviour. Psychology is decisive for
+              the reception and processing of information, especially in
+              organisational communication.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+      <aside class="container page-next-step">
+        <div class="card card--lead page-next-step__card">
+          <p class="eyebrow">Next step</p>
+          <h2 class="page-next-step__title">Arrange a coaching conversation</h2>
+          <p class="page-next-step__text">Looking for clarity in a specific leadership situation? Get in touch — we will find a format that fits.</p>
+          <a href="kontakt.html" class="btn btn-primary">Contact</a>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p class="footer-brand">Doris Gunsch</p>
+        <p class="footer-tagline">Psychological Management Consulting</p>
+        <nav aria-label="Footer navigation">
+          <ul>
+            <li><a href="kontakt.html">Contact</a></li>
+            <li><a href="leistungen.html">Services</a></li>
+            <li><a href="person.html">About</a></li>
+            <li><a href="impressum.html">Legal Notice</a></li>
+            <li><a href="datenschutz.html">Privacy</a></li>
+          </ul>
+        </nav>
+        <p class="footer-copy">&copy; <span id="year"></span> Doris Gunsch</p>
+      </div>
+    </footer>
+  </div>
+</div>
+
+  <script src="../js/site.js"></script>
+</body>
+</html>

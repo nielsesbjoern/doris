@@ -1,0 +1,227 @@
+#!/usr/bin/env python3
+"""SEO helpers: URLs, meta tags, JSON-LD."""
+from __future__ import annotations
+
+import html
+import json
+from pathlib import Path
+from typing import Optional
+
+SITE_URL = "https://www.doris-gunsch.eu"
+BUSINESS_ID = f"{SITE_URL}/#business"
+OG_IMAGE = f"{SITE_URL}/public/doris-web.jpg"
+ORG_NAME_DE = "Doris Gunsch – Psychologische Managementberatung"
+ORG_NAME_EN = "Doris Gunsch – Psychological Management Consulting"
+
+
+def absolute_url(filename: str, lang: str) -> str:
+    if filename == "index.html":
+        return f"{SITE_URL}/en/" if lang == "en" else f"{SITE_URL}/"
+    if lang == "en":
+        return f"{SITE_URL}/en/{filename}"
+    return f"{SITE_URL}/{filename}"
+
+
+def canonical_hreflang(filename: str, lang: str, *, include_hreflang: bool = True) -> str:
+    canonical = absolute_url(filename, lang)
+    if not include_hreflang:
+        return f'  <link rel="canonical" href="{canonical}">'
+
+    de_url = absolute_url(filename, "de")
+    en_url = absolute_url(filename, "en")
+    return f"""  <link rel="canonical" href="{canonical}">
+  <link rel="alternate" hreflang="de" href="{de_url}">
+  <link rel="alternate" hreflang="en" href="{en_url}">
+  <link rel="alternate" hreflang="x-default" href="{de_url}">"""
+
+
+def open_graph(filename: str, lang: str, title: str, description: str) -> str:
+    url = absolute_url(filename, lang)
+    locale = "de_DE" if lang == "de" else "en_GB"
+    alt_locale = "en_GB" if lang == "de" else "de_DE"
+    t = html.escape(title, quote=True)
+    d = html.escape(description, quote=True)
+    return f"""  <meta property="og:title" content="{t}">
+  <meta property="og:description" content="{d}">
+  <meta property="og:url" content="{url}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{OG_IMAGE}">
+  <meta property="og:locale" content="{locale}">
+  <meta property="og:locale:alternate" content="{alt_locale}">
+  <meta property="og:site_name" content="Doris Gunsch">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{t}">
+  <meta name="twitter:description" content="{d}">
+  <meta name="twitter:image" content="{OG_IMAGE}">"""
+
+
+def _json_ld(data: dict) -> str:
+    payload = json.dumps(data, ensure_ascii=False, indent=2)
+    return f'  <script type="application/ld+json">\n{payload}\n  </script>'
+
+
+def business_schema(lang: str) -> str:
+    """Canonical organisation entity — only on the homepage."""
+    name = ORG_NAME_DE if lang == "de" else ORG_NAME_EN
+    data = {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": BUSINESS_ID,
+        "name": name,
+        "url": SITE_URL if lang == "de" else f"{SITE_URL}/en/",
+        "image": OG_IMAGE,
+        "telephone": "+49-541-14496",
+        "email": "dg@doris-gunsch.eu",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Newtonstraße 3",
+            "postalCode": "49088",
+            "addressLocality": "Osnabrück",
+            "addressCountry": "DE",
+        },
+        "areaServed": ["Germany", "Austria", "Switzerland"],
+        "knowsAbout": [
+            "Executive coaching",
+            "Leadership development",
+            "Organizational psychology",
+            "Team development",
+            "Change management",
+        ],
+    }
+    return _json_ld(data)
+
+
+def contact_page_schema(lang: str, filename: str) -> str:
+    data = {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Kontakt" if lang == "de" else "Contact",
+        "url": absolute_url(filename, lang),
+        "inLanguage": lang,
+        "mainEntity": {"@id": BUSINESS_ID},
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Doris Gunsch",
+            "url": SITE_URL if lang == "de" else f"{SITE_URL}/en/",
+        },
+    }
+    return _json_ld(data)
+
+
+def person_schema(lang: str) -> str:
+    data = {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Doris Gunsch",
+        "jobTitle": (
+            "Psychologische Managementberaterin"
+            if lang == "de"
+            else "Psychological Management Consultant"
+        ),
+        "url": absolute_url("person.html", lang),
+        "image": OG_IMAGE,
+        "email": "dg@doris-gunsch.eu",
+        "telephone": "+49-541-14496",
+        "worksFor": {"@id": BUSINESS_ID},
+        "knowsAbout": [
+            "Psychology",
+            "Executive coaching",
+            "Leadership",
+            "Organizational development",
+        ],
+        "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Universität Osnabrück",
+        },
+    }
+    return _json_ld(data)
+
+
+def web_page_schema(filename: str, lang: str, title: str, description: str) -> str:
+    data = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": title,
+        "description": description,
+        "url": absolute_url(filename, lang),
+        "inLanguage": lang,
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Doris Gunsch",
+            "url": SITE_URL if lang == "de" else f"{SITE_URL}/en/",
+        },
+    }
+    return _json_ld(data)
+
+
+def city_location_schema(
+    lang: str, city: str, filename: str, title: str, description: str
+) -> str:
+    """Location landing page — references canonical business, no duplicate entity."""
+    url = absolute_url(filename, lang)
+    service_name = (
+        f"Coaching und Prozessbegleitung in {city}"
+        if lang == "de"
+        else f"Coaching and facilitation in {city}"
+    )
+    data = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebPage",
+                "name": title,
+                "description": description,
+                "url": url,
+                "inLanguage": lang,
+                "about": {"@type": "City", "name": city},
+                "provider": {"@id": BUSINESS_ID},
+                "isPartOf": {
+                    "@type": "WebSite",
+                    "name": "Doris Gunsch",
+                    "url": SITE_URL if lang == "de" else f"{SITE_URL}/en/",
+                },
+            },
+            {
+                "@type": "Service",
+                "name": service_name,
+                "description": description,
+                "url": url,
+                "areaServed": {"@type": "City", "name": city},
+                "provider": {"@id": BUSINESS_ID},
+            },
+        ],
+    }
+    return _json_ld(data)
+
+
+def structured_data(
+    filename: str,
+    lang: str,
+    title: str,
+    description: str,
+    schema: str,
+    *,
+    city: Optional[str] = None,
+) -> str:
+    if schema == "business":
+        return business_schema(lang)
+    if schema == "contact":
+        return contact_page_schema(lang, filename)
+    if schema == "city_location" and city:
+        return city_location_schema(lang, city, filename, title, description)
+    if schema == "person":
+        return person_schema(lang)
+    if schema == "webpage":
+        return web_page_schema(filename, lang, title, description)
+    return ""
+
+
+def file_lastmod(path: Path) -> str:
+    if path.exists():
+        from datetime import datetime, timezone
+
+        mtime = path.stat().st_mtime
+        return datetime.fromtimestamp(mtime, tz=timezone.utc).strftime("%Y-%m-%d")
+    from datetime import date
+
+    return date.today().isoformat()

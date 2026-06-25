@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      var saved = localStorage.getItem('dg-theme');
+      var theme = saved === 'dark' || saved === 'light'
+        ? saved
+        : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <meta name="description" content="Practical training and seminars on leadership, communication and team development — tailored to your organisation.">
+  <title>Leadership Training &amp; Seminars – Doris Gunsch</title>
+  <link rel="canonical" href="https://www.doris-gunsch.eu/en/trainings.html">
+  <link rel="alternate" hreflang="de" href="https://www.doris-gunsch.eu/trainings.html">
+  <link rel="alternate" hreflang="en" href="https://www.doris-gunsch.eu/en/trainings.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.doris-gunsch.eu/trainings.html">
+  <meta property="og:title" content="Leadership Training &amp; Seminars – Doris Gunsch">
+  <meta property="og:description" content="Practical training and seminars on leadership, communication and team development — tailored to your organisation.">
+  <meta property="og:url" content="https://www.doris-gunsch.eu/en/trainings.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.doris-gunsch.eu/public/doris-web.jpg">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="de_DE">
+  <meta property="og:site_name" content="Doris Gunsch">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Leadership Training &amp; Seminars – Doris Gunsch">
+  <meta name="twitter:description" content="Practical training and seminars on leadership, communication and team development — tailored to your organisation.">
+  <meta name="twitter:image" content="https://www.doris-gunsch.eu/public/doris-web.jpg">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Leadership Training & Seminars – Doris Gunsch",
+  "description": "Practical training and seminars on leadership, communication and team development — tailored to your organisation.",
+  "url": "https://www.doris-gunsch.eu/en/trainings.html",
+  "inLanguage": "en",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Doris Gunsch",
+    "url": "https://www.doris-gunsch.eu/en/"
+  }
+}
+  </script>
+  <link rel="icon" type="image/png" sizes="32x32" href="../public/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../public/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body data-page="leistungen">
+
+<div class="site-shell">
+  <div class="sidebar-overlay" aria-hidden="true"></div>
+  <aside class="site-sidebar" id="site-sidebar" aria-label="Navigation">
+    <nav class="sidebar-nav">
+                <a href="index.html" class="sidebar-link">Home</a>
+      <div class="sidebar-group">
+        <p class="sidebar-group-label">Services</p>
+                  <a href="leistungen.html" class="sidebar-link sidebar-link--emphasis">Overview</a>
+                  <a href="coaching.html" class="sidebar-link sidebar-link--sub">Coaching</a>
+                  <a href="trainings.html" class="sidebar-link is-active sidebar-link--sub">Training & Seminars</a>
+                  <a href="team.html" class="sidebar-link sidebar-link--sub">Team & Process</a>
+                  <a href="diagnostik.html" class="sidebar-link sidebar-link--sub">Diagnostics</a>
+      </div>
+                <a href="person.html" class="sidebar-link sidebar-link--emphasis">About</a>
+                <a href="psi-aktuell.html" class="sidebar-link sidebar-link--emphasis">PSI News</a>
+                <a href="referenzen.html" class="sidebar-link sidebar-link--emphasis">References</a>
+                <a href="links.html" class="sidebar-link sidebar-link--emphasis">Links</a>
+    </nav>
+    <div class="sidebar-legal">
+      <a href="impressum.html">Legal Notice</a>
+      <a href="datenschutz.html">Privacy</a>
+    </div>
+  </aside>
+
+  <div class="site-content">
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a href="index.html" class="logo" aria-label="Doris Gunsch – Home">
+          <img src="../public/doris-logo-web.png" alt="Doris Gunsch" width="560" height="144">
+        </a>
+        <div class="header-right">
+          <div class="header-controls">
+            <a href="kontakt.html" class="btn btn-primary btn-header">Contact</a>
+            <div class="lang-switcher" id="lang-switcher">
+              <button type="button" class="lang-switcher__trigger" id="lang-switcher-trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="lang-switcher-menu" aria-label="Language">
+                <span class="lang-switcher__current">DE</span>
+                <svg class="lang-switcher__chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"></path></svg>
+              </button>
+              <ul class="lang-switcher__menu" id="lang-switcher-menu" role="listbox" aria-label="Language">
+                <li role="presentation">
+                  <button type="button" class="lang-switcher__option" role="option" data-lang="de">DE</button>
+                </li>
+                <li role="presentation">
+                  <button type="button" class="lang-switcher__option" role="option" data-lang="en">EN</button>
+                </li>
+              </ul>
+            </div>
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false" aria-label="Switch to dark mode">
+              <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+              <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 14.5A8.5 8.5 0 0 1 9.5 3 7 7 0 1 0 21 14.5z"></path></svg>
+            </button>
+          </div>
+          <button type="button" class="sidebar-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-sidebar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+
+    </header>
+
+    <main>
+      <div class="container page-back">
+        <a href="leistungen.html" class="btn btn-secondary btn-back">← Back to services</a>
+      </div>
+<div class="container sub-nav-wrap">
+      <nav class="sub-nav" aria-label="Service areas">
+        <a href="leistungen.html">Overview</a>
+        <a href="coaching.html">Coaching</a>
+        <a href="trainings.html" class="is-active">Training &amp; Seminars</a>
+        <a href="team.html">Team &amp; Process</a>
+        <a href="diagnostik.html">Diagnostics</a>
+      </nav>
+    </div>
+
+    <section class="section section-alt page-section">
+      <div class="container">
+<article class="leistung-detail" id="trainings">
+          <header class="leistung-detail-header">
+            <span class="card-number">02</span>
+            <h1>Training and Seminars</h1>
+          </header>
+
+          <p class="leistung-lead">
+            Practical, scientifically grounded seminar and training topics for developing
+            your leadership and sales strength, or for the wellbeing of your employees
+            within occupational health management (OHM). I deliver in-house —
+            all formats are aligned with your strategic objectives and individually composed.
+          </p>
+          <p class="detail-intro">
+            Given the seniority of many clients, I prefer small seminar groups — all topics
+            are also available as individual training or small-group training. All modules,
+            including within cascades, can be booked individually.
+          </p>
+
+          <div class="detail-block">
+            <h4 class="detail-subtitle">Leadership training</h4>
+            <div class="detail-grid">
+
+              <div class="detail-item detail-item--wide">
+                <h5>Leadership qualification „Across Seven Bridges to Leadership"</h5>
+                <p>Training cascade from developing leadership awareness to the methodical implementation of leadership tasks.</p>
+                <ul class="module-list">
+                  <li><strong>Leadership perspectives</strong> — Attitude, outlook, and responsibilities; developing leadership awareness</li>
+                  <li><strong>Leading through goals and with commitment</strong> — Leadership paradigm, implementation work, goal work</li>
+                  <li><strong>Leadership instruments</strong> — Types of conversation, methods, and steering techniques</li>
+                  <li><strong>Employee and team leadership</strong> — Techniques for leading, directing, and guiding</li>
+                  <li><strong>Leadership strategy</strong> — Assertion techniques, stratagems, positioning; making implicit leadership knowledge explicit</li>
+                  <li><strong>Leading in change processes</strong> — Change management, mood management, delicate situations</li>
+                  <li><strong>Leadership and work organisation</strong> — Time management and self-management strategies</li>
+                </ul>
+              </div>
+
+              <div class="detail-item">
+                <h5>Strategically Sensitive Negotiation Competence™</h5>
+                <p>
+                  Structured approach across negotiation phases, congruence and incongruence sensitivity,
+                  clear positioning, and rhetorical negotiation skill.
+                </p>
+              </div>
+
+              <div class="detail-item">
+                <h5>Communicative Competence</h5>
+                <p>Sustainable development of professional communication through progressive intensive training.</p>
+                <ul class="module-list module-list--compact">
+                  <li>Communication — Foundation Training</li>
+                  <li>Leadership Communication — Advanced Training</li>
+                  <li>Sensitive Conversation Leadership — Practical Training</li>
+                </ul>
+              </div>
+
+              <div class="detail-item">
+                <h5>Rhetorical Precision — „Getting to the Point!"</h5>
+                <p>
+                  Efficient, low-stress formulation for email and conversation —
+                  confident decision-making across different occasions.
+                </p>
+              </div>
+
+              <div class="detail-item">
+                <h5>Moderation and Presentation Competence</h5>
+                <ul class="module-list module-list--compact">
+                  <li>Moderation training module</li>
+                  <li>Presentation training module</li>
+                  <li>Module for activity-specific techniques</li>
+                </ul>
+              </div>
+
+              <div class="detail-item">
+                <h5>Conflict Resolution Competence</h5>
+                <ul class="module-list module-list--compact">
+                  <li>Conflict analysis at different levels</li>
+                  <li>Conflict management for different situations</li>
+                  <li>Conflict moderation in groups and teams</li>
+                </ul>
+              </div>
+
+              <div class="detail-item">
+                <h5>Solution-Oriented Employee Leadership</h5>
+                <p>
+                  Neuroscientific insights on conversational behaviour and word choice —
+                  solution-oriented questioning combined with genuine leadership attitude.
+                </p>
+              </div>
+
+              <div class="detail-item">
+                <h5>Team Development Competence</h5>
+                <ul class="module-list module-list--compact">
+                  <li>Developing and motivating teams — dynamics, phases, team phenomena</li>
+                  <li>Impulse coaching for teams — steering in development-sensitive phases</li>
+                  <li>Team leadership in change processes — change competence, mood management</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="detail-block">
+            <h4 class="detail-subtitle">Seminars</h4>
+            <div class="detail-grid">
+
+              <div class="detail-item">
+                <h5>Selfcare Training for Leaders</h5>
+                <p>
+                  Self-control or self-regulation type? Neuroscientific insights
+                  for self-protection within the leadership role.
+                </p>
+                <p class="detail-note">With individual feedback and individual coaching option</p>
+              </div>
+
+              <div class="detail-item">
+                <h5>Motive — Motivation — Motivating</h5>
+                <p>
+                  Motivation research combined with your own profile — understanding
+                  energy balance and willpower.
+                </p>
+                <p class="detail-note">With individual feedback and individual coaching option</p>
+              </div>
+
+              <div class="detail-item">
+                <h5>Self-Reflection and Helicopter View</h5>
+                <p>
+                  Sparring for leaders — alternating between leadership role and personal self,
+                  quasi-objective comparison with gender and age group.
+                </p>
+                <p class="detail-note">With individual feedback before the seminar and individual coaching option</p>
+              </div>
+
+              <div class="detail-item">
+                <h5>Mood Management in Organisations</h5>
+                <ul class="module-list module-list--compact">
+                  <li>Functional principles of human information processing</li>
+                  <li>Impact of moods on understanding and resistance</li>
+                  <li>Sequence effects in communication</li>
+                  <li>Organisational mood</li>
+                </ul>
+              </div>
+
+              <div class="detail-item">
+                <h5>Neuroscience-Based Sales Training</h5>
+                <ul class="module-list module-list--compact">
+                  <li>Neuromarketing in sales</li>
+                  <li>Protecting sales opportunities in conversation</li>
+                  <li>Authentic and goal-oriented communication</li>
+                  <li>Mood management in customer contact</li>
+                  <li>Argumentation technique and assertion strategies</li>
+                  <li>Relationship management / Structural contact analysis</li>
+                </ul>
+              </div>
+
+              <div class="detail-item detail-item--wide">
+                <h5>Occupational Health Management (OHM)</h5>
+                <ul class="module-list">
+                  <li>Establishing occupational health management through a health circle</li>
+                  <li>Seminar „Energy-Saving Communication"</li>
+                  <li>Seminar „Appreciation and Leadership"</li>
+                  <li>Seminar „Health-Promoting Leadership"</li>
+                  <li>Workshop „Human resources development planning to improve the working climate"</li>
+                  <li>Selfcare training and stress management training on request</li>
+                  <li>Seminar „Before it's too late — recognising burnout in employees and responding appropriately"</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+      <aside class="container page-next-step">
+        <div class="card card--lead page-next-step__card">
+          <p class="eyebrow">Next step</p>
+          <h2 class="page-next-step__title">Request training or a seminar</h2>
+          <p class="page-next-step__text">Whether a compact workshop or multi-day seminar — I will align content and format with your needs.</p>
+          <a href="kontakt.html" class="btn btn-primary">Contact</a>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p class="footer-brand">Doris Gunsch</p>
+        <p class="footer-tagline">Psychological Management Consulting</p>
+        <nav aria-label="Footer navigation">
+          <ul>
+            <li><a href="kontakt.html">Contact</a></li>
+            <li><a href="leistungen.html">Services</a></li>
+            <li><a href="person.html">About</a></li>
+            <li><a href="impressum.html">Legal Notice</a></li>
+            <li><a href="datenschutz.html">Privacy</a></li>
+          </ul>
+        </nav>
+        <p class="footer-copy">&copy; <span id="year"></span> Doris Gunsch</p>
+      </div>
+    </footer>
+  </div>
+</div>
+
+  <script src="../js/site.js"></script>
+</body>
+</html>
