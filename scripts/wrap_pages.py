@@ -10,11 +10,14 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from seo import (  # noqa: E402
+    ASSET_VERSION,
+    clean_internal_hrefs,
     canonical_hreflang,
     llms_head_link,
     favicon_head,
     logo_image,
     open_graph,
+    page_href,
     performance_head,
     structured_data,
 )
@@ -296,7 +299,7 @@ def content_asset(lang: str, filename: str) -> str:
 
 
 def home_href(filename: str) -> str:
-    return nav_prefix(filename) + "index.html"
+    return page_href("index.html", nav_prefix(filename))
 
 
 def strip_wrapped_artifacts(content: str) -> str:
@@ -351,7 +354,7 @@ def breadcrumbs(lang: str, filename: str, asset: str, meta: Optional[dict] = Non
         if href:
             items.append(
                 f'        <li class="breadcrumbs__item">'
-                f'<a href="{nav_prefix(filename)}{href}">{label}</a></li>'
+                f'<a href="{page_href(href, nav_prefix(filename))}">{label}</a></li>'
             )
         else:
             items.append(
@@ -370,7 +373,7 @@ def page_back(lang: str, filename: str, _asset: str) -> str:
     L = LABELS[lang]
     nav = nav_prefix(filename)
     if filename in SERVICE_DETAIL_PAGES:
-        href = f"{nav}leistungen.html"
+        href = page_href("leistungen.html", nav)
         label = L["back_services"]
     else:
         href = home_href(filename)
@@ -393,7 +396,7 @@ def next_step_block(lang: str, filename: str, _asset: str = "") -> str:
           <p class="eyebrow">{L["next_step"]}</p>
           <h2 class="page-next-step__title">{step["title"]}</h2>
           <p class="page-next-step__text">{step["text"]}</p>
-          <a href="{nav}kontakt.html" class="btn btn-primary">{L["contact"]}</a>
+          <a href="{page_href("kontakt.html", nav)}" class="btn btn-primary">{L["contact"]}</a>
         </div>
       </aside>
 """
@@ -424,17 +427,17 @@ def sidebar(lang, active, prefix="", legal_page=None):
     L = LABELS[lang]
     p = prefix
     keys = {
-        "home": f'{p}index.html',
-        "einsatzgebiete": f'{p}einsatzgebiete.html',
-        "leistungen": f'{p}leistungen.html',
-        "coaching": f'{p}coaching.html',
-        "trainings": f'{p}trainings.html',
-        "team": f'{p}team.html',
-        "diagnostik": f'{p}diagnostik.html',
-        "person": f'{p}person.html',
-        "psi": f'{p}psi-aktuell.html',
-        "referenzen": f'{p}referenzen.html',
-        "links": f'{p}links.html',
+        "home": page_href("index.html", p),
+        "einsatzgebiete": page_href("einsatzgebiete.html", p),
+        "leistungen": page_href("leistungen.html", p),
+        "coaching": page_href("coaching.html", p),
+        "trainings": page_href("trainings.html", p),
+        "team": page_href("team.html", p),
+        "diagnostik": page_href("diagnostik.html", p),
+        "person": page_href("person.html", p),
+        "psi": page_href("psi-aktuell.html", p),
+        "referenzen": page_href("referenzen.html", p),
+        "links": page_href("links.html", p),
     }
     emphasis_keys = {"einsatzgebiete", "person", "psi", "referenzen", "links"}
 
@@ -473,15 +476,15 @@ def sidebar(lang, active, prefix="", legal_page=None):
       {a("links", L["links"])}
     </nav>
     <div class="sidebar-footer">
-      <a href="{p}kontakt.html" class="btn btn-primary btn-header{kontakt_active}">{L["contact"]}</a>
+      <a href="{page_href("kontakt.html", p)}" class="btn btn-primary btn-header{kontakt_active}">{L["contact"]}</a>
       <div class="sidebar-lang" role="group" aria-label="{L["lang"]}">
         <button type="button" class="sidebar-lang__btn" data-lang="de" aria-pressed="false">DE</button>
         <button type="button" class="sidebar-lang__btn" data-lang="en" aria-pressed="false">EN</button>
       </div>
     </div>
     <div class="sidebar-legal">
-      <a href="{p}impressum.html"{imp_cls}>{L["impressum"]}</a>
-      <a href="{p}datenschutz.html"{ds_cls}>{L["datenschutz"]}</a>
+      <a href="{page_href("impressum.html", p)}"{imp_cls}>{L["impressum"]}</a>
+      <a href="{page_href("datenschutz.html", p)}"{ds_cls}>{L["datenschutz"]}</a>
     </div>
   </aside>'''
 
@@ -532,6 +535,7 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
         page_footer = next_step_block(lang, filename, asset)
 
     logo_label = L["logo"]
+    logo_priority = "high" if filename in ("index.html", "404.html") else "auto"
     page_html = f'''<!DOCTYPE html>
 <html lang="{lang}">
 <head>
@@ -548,7 +552,7 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
   </script>
 {robots_meta}  <title>{title}</title>
   <meta name="description" content="{description}">
-{performance_head(asset)}
+{performance_head(asset, filename)}
 {favicon_head(asset)}
 {seo_head}
 </head>
@@ -561,11 +565,11 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
     <header class="site-header" id="top">
       <div class="container header-inner">
         <a href="{home_link}" class="logo" aria-label="{logo_label}">
-{logo_image(asset, label="Doris Gunsch")}
+{logo_image(asset, label="Doris Gunsch", fetchpriority=logo_priority)}
         </a>
         <div class="header-right">
           <div class="header-controls">
-            <a href="{nav}kontakt.html" class="btn btn-primary btn-header{active_kontakt}">{L["contact"]}</a>
+            <a href="{page_href("kontakt.html", nav)}" class="btn btn-primary btn-header{active_kontakt}">{L["contact"]}</a>
 {lang_switcher_html(L)}
             <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false" aria-label="{L["theme_to_dark"]}">
               <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
@@ -592,11 +596,11 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
         <p class="footer-tagline">{"Psychologische Managementberatung" if lang == "de" else "Psychological Management Consulting"}</p>
         <nav aria-label="{L["footer_nav"]}">
           <ul>
-            <li><a href="{nav}kontakt.html">{L["contact"]}</a></li>
-            <li><a href="{nav}leistungen.html">{"Leistungen" if lang == "de" else "Services"}</a></li>
-            <li><a href="{nav}person.html">{"Zur Person" if lang == "de" else "About"}</a></li>
-            <li><a href="{nav}impressum.html">{L["impressum"]}</a></li>
-            <li><a href="{nav}datenschutz.html">{L["datenschutz"]}</a></li>
+            <li><a href="{page_href("kontakt.html", nav)}">{L["contact"]}</a></li>
+            <li><a href="{page_href("leistungen.html", nav)}">{"Leistungen" if lang == "de" else "Services"}</a></li>
+            <li><a href="{page_href("person.html", nav)}">{"Zur Person" if lang == "de" else "About"}</a></li>
+            <li><a href="{page_href("impressum.html", nav)}">{L["impressum"]}</a></li>
+            <li><a href="{page_href("datenschutz.html", nav)}">{L["datenschutz"]}</a></li>
           </ul>
         </nav>
         <p class="footer-copy">&copy; <span id="year"></span> Doris Gunsch</p>
@@ -606,7 +610,7 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
 {sidebar(lang, active, nav, meta.get("legal_page"))}
 </div>
 
-  <script src="{asset}js/site.js"></script>
+  <script src="{asset}js/site.js?v={ASSET_VERSION}"></script>
 </body>
 </html>
 '''
@@ -620,7 +624,9 @@ def main():
     for filename in META:
         de_src = ROOT / filename
         if de_src.exists():
-            content = strip_wrapped_artifacts(extract_main(de_src.read_text(encoding="utf-8")))
+            content = clean_internal_hrefs(
+                strip_wrapped_artifacts(extract_main(de_src.read_text(encoding="utf-8")))
+            )
             build_page("de", filename, content, de_src)
 
         if filename == "404.html":
@@ -628,7 +634,9 @@ def main():
 
         en_fragment = en_dir / filename
         if en_fragment.exists():
-            content = strip_wrapped_artifacts(extract_main(en_fragment.read_text(encoding="utf-8")))
+            content = clean_internal_hrefs(
+                strip_wrapped_artifacts(extract_main(en_fragment.read_text(encoding="utf-8")))
+            )
             if filename in ("impressum.html", "datenschutz.html") and "legal-page" not in content:
                 content = f'    <div class="container legal-page">\n{content}\n    </div>'
             build_page("en", filename, content, en_fragment)

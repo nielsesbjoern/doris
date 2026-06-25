@@ -66,20 +66,19 @@
   });
 
   function relativePagePath() {
-    const path = window.location.pathname;
-    if (path.includes('/en/')) {
-      return path.split('/en/').pop() || 'index.html';
+    const path = window.location.pathname.replace(/\/$/, '') || '/';
+    if (path === '/en' || path.startsWith('/en/')) {
+      return path === '/en' ? '' : path.slice(4);
     }
-    const trimmed = path.replace(/^\//, '');
-    return trimmed || 'index.html';
+    return path === '/' ? '' : path.slice(1);
   }
 
   function langUrl(targetLang) {
     const rel = relativePagePath();
     if (targetLang === 'en') {
-      return isEn ? null : `en/${rel}`;
+      return isEn ? null : (rel ? `en/${rel}` : 'en/');
     }
-    const enDepth = (relativePagePath().match(/\//g) || []).length + 1;
+    const enDepth = (rel.match(/\//g) || []).length + 1;
     return isEn ? `${'../'.repeat(enDepth)}${rel}` : null;
   }
 

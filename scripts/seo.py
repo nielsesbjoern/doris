@@ -4,17 +4,76 @@ from __future__ import annotations
 
 import html
 import json
+import re
 from pathlib import Path
 from typing import Optional
 
 SITE_URL = "https://www.doris-gunsch.eu"
 BUSINESS_ID = f"{SITE_URL}/#business"
+WEBSITE_ID = f"{SITE_URL}/#website"
 LLMS_TXT_URL = f"{SITE_URL}/llms.txt"
 LLMS_FULL_URL = f"{SITE_URL}/llms-full.txt"
 OG_IMAGE = f"{SITE_URL}/public/doris-web.jpg"
+OG_IMAGE_WIDTH = 800
+OG_IMAGE_HEIGHT = 682
 ORG_NAME_DE = "Doris Gunsch – Psychologische Managementberatung"
 ORG_NAME_EN = "Doris Gunsch – Psychological Management Consulting"
 FAVICON_VERSION = 3
+ASSET_VERSION = 1
+
+# Newtonstraße 3, 49088 Osnabrück
+GEO_LATITUDE = 52.2726
+GEO_LONGITUDE = 8.0472
+
+LOGO_PRELOAD_PAGES = frozenset({"index.html", "404.html"})
+PROFILE_PRELOAD_PAGES = frozenset({"person.html"})
+
+
+def clean_path(filename: str) -> str:
+    """URL path segment without .html (empty string for index)."""
+    if filename == "index.html":
+        return ""
+    if filename.endswith(".html"):
+        return filename[:-5]
+    return filename
+
+
+def page_href(filename: str, prefix: str = "") -> str:
+    """Relative href for internal navigation (matches Vercel cleanUrls)."""
+    path = clean_path(filename)
+    if not path:
+        return prefix if prefix else "./"
+    return f"{prefix}{path}"
+
+
+def clean_internal_hrefs(content: str) -> str:
+    """Rewrite relative .html links in page body to clean URLs."""
+    def repl(match: re.Match[str]) -> str:
+        href = match.group(1)
+        if re.match(r"^(https?:|mailto:|tel:|#|/)", href):
+            return match.group(0)
+        m = re.match(r"^((?:\.\./)*)?(.*)$", href)
+        if not m:
+            return match.group(0)
+        path_prefix, rest = m.group(1) or "", m.group(2)
+        if not rest.endswith(".html"):
+            return match.group(0)
+        cleaned = clean_path(rest)
+        if not cleaned:
+            new_href = path_prefix or "./"
+        else:
+            new_href = f"{path_prefix}{cleaned}"
+        return f'href="{new_href}"'
+
+    return re.sub(r'href="([^"]+)"', repl, content)
+
+
+def absolute_url(filename: str, lang: str) -> str:
+    path = clean_path(filename)
+    if lang == "en":
+        base = f"{SITE_URL}/en"
+        return f"{base}/" if not path else f"{base}/{path}"
+    return f"{SITE_URL}/" if not path else f"{SITE_URL}/{path}"
 
 
 def favicon_head(asset: str) -> str:
@@ -24,14 +83,6 @@ def favicon_head(asset: str) -> str:
   <link rel="icon" type="image/png" sizes="32x32" href="{asset}public/favicon-32.png{query}">
   <link rel="icon" type="image/png" sizes="16x16" href="{asset}public/favicon-16.png{query}">
   <link rel="apple-touch-icon" sizes="180x180" href="{asset}public/apple-touch-icon.png{query}">"""
-
-
-def absolute_url(filename: str, lang: str) -> str:
-    if filename == "index.html":
-        return f"{SITE_URL}/en/" if lang == "en" else f"{SITE_URL}/"
-    if lang == "en":
-        return f"{SITE_URL}/en/{filename}"
-    return f"{SITE_URL}/{filename}"
 
 
 def canonical_hreflang(filename: str, lang: str, *, include_hreflang: bool = True) -> str:
@@ -53,18 +104,43 @@ def llms_head_link() -> str:
   <link rel="alternate" type="text/plain" href="{LLMS_FULL_URL}" title="LLM-readable full site content">"""
 
 
-def performance_head(asset: str) -> str:
+def performance_head(asset: str, filename: str = "index.html") -> str:
     """Preload LCP assets and self-hosted fonts — avoids render-blocking Google Fonts."""
-    return f"""  <link rel="preload" href="{asset}public/doris-logo-400.webp" as="image" type="image/webp" fetchpriority="high">
-  <link rel="preload" href="{asset}public/fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="{asset}public/fonts/cormorant-garamond-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="{asset}css/styles.css" as="style">
-  <link rel="stylesheet" href="{asset}css/fonts.css">
-  <link rel="stylesheet" href="{asset}css/styles.css">"""
+    v = ASSET_VERSION
+    parts: list[str] = []
+
+    if filename in LOGO_PRELOAD_PAGES:
+        parts.append(
+            f'  <link rel="preload" href="{asset}public/doris-logo-400.webp" '
+            f'as="image" type="image/webp" fetchpriority="high">'
+        )
+    if filename in PROFILE_PRELOAD_PAGES:
+        parts.append(
+            f'  <link rel="preload" href="{asset}public/doris-web-600.webp" '
+            f'as="image" type="image/webp">'
+        )
+
+    parts.extend(
+        [
+            f'  <link rel="preload" href="{asset}public/fonts/inter-latin-400.woff2" '
+            f'as="font" type="font/woff2" crossorigin>',
+            f'  <link rel="preload" href="{asset}public/fonts/cormorant-garamond-latin-400.woff2" '
+            f'as="font" type="font/woff2" crossorigin>',
+            f'  <link rel="preload" href="{asset}css/styles.css?v={v}" as="style">',
+            f'  <link rel="stylesheet" href="{asset}css/fonts.css?v={v}">',
+            f'  <link rel="stylesheet" href="{asset}css/styles.css?v={v}">',
+        ]
+    )
+    return "\n".join(parts)
 
 
-def logo_image(asset: str, *, label: str) -> str:
+def logo_image(asset: str, *, label: str, fetchpriority: str = "auto") -> str:
     alt = html.escape(label, quote=True)
+    priority_attr = (
+        f'\n              fetchpriority="{fetchpriority}"'
+        if fetchpriority in ("high", "low", "auto")
+        else ""
+    )
     return f"""          <picture>
             <source
               srcset="{asset}public/doris-logo-280.webp 280w, {asset}public/doris-logo-400.webp 400w"
@@ -77,8 +153,7 @@ def logo_image(asset: str, *, label: str) -> str:
               alt="{alt}"
               width="400"
               height="223"
-              decoding="async"
-              fetchpriority="high">
+              decoding="async"{priority_attr}>
           </picture>"""
 
 
@@ -108,6 +183,9 @@ def open_graph(filename: str, lang: str, title: str, description: str) -> str:
   <meta property="og:url" content="{url}">
   <meta property="og:type" content="website">
   <meta property="og:image" content="{OG_IMAGE}">
+  <meta property="og:image:width" content="{OG_IMAGE_WIDTH}">
+  <meta property="og:image:height" content="{OG_IMAGE_HEIGHT}">
+  <meta property="og:image:alt" content="Doris Gunsch">
   <meta property="og:locale" content="{locale}">
   <meta property="og:locale:alternate" content="{alt_locale}">
   <meta property="og:site_name" content="Doris Gunsch">
@@ -122,11 +200,9 @@ def _json_ld(data: dict) -> str:
     return f'  <script type="application/ld+json">\n{payload}\n  </script>'
 
 
-def business_schema(lang: str) -> str:
-    """Canonical organisation entity — only on the homepage."""
+def _business_entity(lang: str) -> dict:
     name = ORG_NAME_DE if lang == "de" else ORG_NAME_EN
-    data = {
-        "@context": "https://schema.org",
+    return {
         "@type": "ProfessionalService",
         "@id": BUSINESS_ID,
         "name": name,
@@ -141,6 +217,11 @@ def business_schema(lang: str) -> str:
             "addressLocality": "Osnabrück",
             "addressCountry": "DE",
         },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": GEO_LATITUDE,
+            "longitude": GEO_LONGITUDE,
+        },
         "areaServed": ["Germany", "Austria", "Switzerland"],
         "knowsAbout": [
             "Executive coaching",
@@ -149,6 +230,22 @@ def business_schema(lang: str) -> str:
             "Team development",
             "Change management",
         ],
+    }
+
+
+def business_schema(lang: str) -> str:
+    """Canonical organisation entity and WebSite — homepage only."""
+    website = {
+        "@type": "WebSite",
+        "@id": WEBSITE_ID,
+        "name": "Doris Gunsch",
+        "url": SITE_URL if lang == "de" else f"{SITE_URL}/en/",
+        "inLanguage": ["de", "en"],
+        "publisher": {"@id": BUSINESS_ID},
+    }
+    data = {
+        "@context": "https://schema.org",
+        "@graph": [_business_entity(lang), website],
     }
     return _json_ld(data)
 
@@ -163,8 +260,7 @@ def contact_page_schema(lang: str, filename: str) -> str:
         "mainEntity": {"@id": BUSINESS_ID},
         "isPartOf": {
             "@type": "WebSite",
-            "name": "Doris Gunsch",
-            "url": SITE_URL if lang == "de" else f"{SITE_URL}/en/",
+            "@id": WEBSITE_ID,
         },
     }
     return _json_ld(data)
@@ -209,8 +305,7 @@ def web_page_schema(filename: str, lang: str, title: str, description: str) -> s
         "inLanguage": lang,
         "isPartOf": {
             "@type": "WebSite",
-            "name": "Doris Gunsch",
-            "url": SITE_URL if lang == "de" else f"{SITE_URL}/en/",
+            "@id": WEBSITE_ID,
         },
     }
     return _json_ld(data)
@@ -254,8 +349,7 @@ def city_location_schema(
             "provider": {"@id": BUSINESS_ID},
             "isPartOf": {
                 "@type": "WebSite",
-                "name": "Doris Gunsch",
-                "url": SITE_URL if lang == "de" else f"{SITE_URL}/en/",
+                "@id": WEBSITE_ID,
             },
         },
         {

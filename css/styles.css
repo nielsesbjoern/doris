@@ -39,8 +39,8 @@
   --prose-width: 720px;
   --section-padding: clamp(4rem, 8vw, 7rem);
   --radius: 14px;
-  --logo-height: 7rem;
-  --header-logo-height: 7rem;
+  --logo-height: 10.5rem;
+  --header-logo-height: 10.5rem;
   --header-padding-y: 1.25rem;
   --header-inner-gap: 1rem;
   --header-height: calc(var(--logo-height) + var(--header-padding-y) * 2);

@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run SEO helper tests
+        run: python3 scripts/test_seo.py
+
+      - name: Run full build
+        run: python3 scripts/build.py
+
+      - name: Verify generated output is committed
+        run: |
+          git diff --exit-code || (
+            echo "::error::Build produced uncommitted changes. Run 'python3 scripts/build.py' locally and commit."
+            git diff --stat
+            exit 1
+          )

@@ -17,9 +17,9 @@
   <link rel="preload" href="public/doris-logo-400.webp" as="image" type="image/webp" fetchpriority="high">
   <link rel="preload" href="public/fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="public/fonts/cormorant-garamond-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="css/styles.css" as="style">
-  <link rel="stylesheet" href="css/fonts.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preload" href="css/styles.css?v=1" as="style">
+  <link rel="stylesheet" href="css/fonts.css?v=1">
+  <link rel="stylesheet" href="css/styles.css?v=1">
   <link rel="icon" href="public/favicon.ico?v=3" sizes="any">
   <link rel="icon" type="image/png" sizes="48x48" href="public/favicon-48.png?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32.png?v=3">
@@ -36,6 +36,9 @@
   <meta property="og:url" content="https://www.doris-gunsch.eu/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://www.doris-gunsch.eu/public/doris-web.jpg">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="682">
+  <meta property="og:image:alt" content="Doris Gunsch">
   <meta property="og:locale" content="de_DE">
   <meta property="og:locale:alternate" content="en_GB">
   <meta property="og:site_name" content="Doris Gunsch">
@@ -46,31 +49,53 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "@id": "https://www.doris-gunsch.eu/#business",
-  "name": "Doris Gunsch – Psychologische Managementberatung",
-  "url": "https://www.doris-gunsch.eu",
-  "image": "https://www.doris-gunsch.eu/public/doris-web.jpg",
-  "telephone": "+49-541-14496",
-  "email": "dg@doris-gunsch.eu",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Newtonstraße 3",
-    "postalCode": "49088",
-    "addressLocality": "Osnabrück",
-    "addressCountry": "DE"
-  },
-  "areaServed": [
-    "Germany",
-    "Austria",
-    "Switzerland"
-  ],
-  "knowsAbout": [
-    "Executive coaching",
-    "Leadership development",
-    "Organizational psychology",
-    "Team development",
-    "Change management"
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://www.doris-gunsch.eu/#business",
+      "name": "Doris Gunsch – Psychologische Managementberatung",
+      "url": "https://www.doris-gunsch.eu",
+      "image": "https://www.doris-gunsch.eu/public/doris-web.jpg",
+      "telephone": "+49-541-14496",
+      "email": "dg@doris-gunsch.eu",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Newtonstraße 3",
+        "postalCode": "49088",
+        "addressLocality": "Osnabrück",
+        "addressCountry": "DE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 52.2726,
+        "longitude": 8.0472
+      },
+      "areaServed": [
+        "Germany",
+        "Austria",
+        "Switzerland"
+      ],
+      "knowsAbout": [
+        "Executive coaching",
+        "Leadership development",
+        "Organizational psychology",
+        "Team development",
+        "Change management"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.doris-gunsch.eu/#website",
+      "name": "Doris Gunsch",
+      "url": "https://www.doris-gunsch.eu",
+      "inLanguage": [
+        "de",
+        "en"
+      ],
+      "publisher": {
+        "@id": "https://www.doris-gunsch.eu/#business"
+      }
+    }
   ]
 }
   </script>
@@ -83,7 +108,7 @@
   <div class="site-content">
     <header class="site-header" id="top">
       <div class="container header-inner">
-        <a href="index.html" class="logo" aria-label="Doris Gunsch – Startseite">
+        <a href="./" class="logo" aria-label="Doris Gunsch – Startseite">
           <picture>
             <source
               srcset="public/doris-logo-280.webp 280w, public/doris-logo-400.webp 400w"
@@ -102,7 +127,7 @@
         </a>
         <div class="header-right">
           <div class="header-controls">
-            <a href="kontakt.html" class="btn btn-primary btn-header">Kontakt</a>
+            <a href="kontakt" class="btn btn-primary btn-header">Kontakt</a>
             <div class="lang-switcher" id="lang-switcher">
               <button type="button" class="lang-switcher__trigger" id="lang-switcher-trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="lang-switcher-menu" aria-label="Sprache">
                 <span class="lang-switcher__current">DE</span>
@@ -147,8 +172,8 @@
             Mandatserfahrung und Büro in der Newtonstraße.
           </p>
           <div class="hero-actions">
-            <a href="kontakt.html" class="btn btn-primary">Kontakt aufnehmen</a>
-            <a href="leistungen.html" class="btn-text">Leistungen ansehen →</a>
+            <a href="kontakt" class="btn btn-primary">Kontakt aufnehmen</a>
+            <a href="leistungen" class="btn-text">Leistungen ansehen →</a>
           </div>
         </div>
       </div>
@@ -164,32 +189,32 @@
           <article class="card card--lead home-service-lead">
             <h3>Coaching</h3>
             <p>Personal und Business Coaching bei komplexen Führungssituationen — von der Klärung bis zur konkreten Handlungsstrategie, auch als Smart-Coaching oder Coaching-on-the-job.</p>
-            <a href="coaching.html" class="card-link">Mehr erfahren</a>
+            <a href="coaching" class="card-link">Mehr erfahren</a>
           </article>
           <div class="home-services-row">
             <article class="card">
               <h3>Trainings</h3>
               <p>Seminare für Führung, Kommunikation und Gesundheit im Arbeitskontext.</p>
-              <a href="trainings.html" class="card-link">Mehr erfahren</a>
+              <a href="trainings" class="card-link">Mehr erfahren</a>
             </article>
             <article class="card">
               <h3>Team &amp; Prozess</h3>
               <p>Begleitung bei Teamentwicklung, Konflikten und Veränderungsprozessen.</p>
-              <a href="team.html" class="card-link">Mehr erfahren</a>
+              <a href="team" class="card-link">Mehr erfahren</a>
             </article>
             <article class="card">
               <h3>Diagnostik &amp; PSI</h3>
               <p>Wissenschaftliche Potenzialanalysen nach der PSI-Theorie — für Führungskräfte und Teams.</p>
-              <a href="diagnostik.html" class="card-link">Mehr erfahren</a>
+              <a href="diagnostik" class="card-link">Mehr erfahren</a>
             </article>
           </div>
         </div>
         <p class="home-references">
           Vertrauen von Organisationen wie <strong>Telekom</strong>, <strong>BARMER</strong> und
           <strong>Lindt &amp; Sprüngli</strong> — sowie Kliniken, Verbänden und Mittelstandsunternehmen
-          in ganz Deutschland. <a href="referenzen.html">Alle Referenzen →</a>
+          in ganz Deutschland. <a href="referenzen">Alle Referenzen →</a>
         </p>
-        <p class="home-more"><a href="leistungen.html">Alle Leistungen im Überblick →</a></p>
+        <p class="home-more"><a href="leistungen">Alle Leistungen im Überblick →</a></p>
 
       </div>
     </section>
@@ -211,7 +236,7 @@
               mit Consulting-Erfahrung aus dem Management, Lehrtätigkeit an der Universität
               Osnabrück und Zugehörigkeit zum Team von Prof. Julius Kuhl.
             </p>
-            <a href="person.html" class="card-link home-person-link">Profil lesen</a>
+            <a href="person" class="card-link home-person-link">Profil lesen</a>
           </div>
         </div>
       </div>
@@ -237,11 +262,11 @@
         <p class="footer-tagline">Psychologische Managementberatung</p>
         <nav aria-label="Fußnavigation">
           <ul>
-            <li><a href="kontakt.html">Kontakt</a></li>
-            <li><a href="leistungen.html">Leistungen</a></li>
-            <li><a href="person.html">Zur Person</a></li>
-            <li><a href="impressum.html">Impressum</a></li>
-            <li><a href="datenschutz.html">Datenschutz</a></li>
+            <li><a href="kontakt">Kontakt</a></li>
+            <li><a href="leistungen">Leistungen</a></li>
+            <li><a href="person">Zur Person</a></li>
+            <li><a href="impressum">Impressum</a></li>
+            <li><a href="datenschutz">Datenschutz</a></li>
           </ul>
         </nav>
         <p class="footer-copy">&copy; <span id="year"></span> Doris Gunsch</p>
@@ -250,41 +275,41 @@
   </div>
   <aside class="site-sidebar" id="site-sidebar" aria-label="Navigation">
     <nav class="sidebar-nav">
-                <a href="index.html" class="sidebar-link is-active">Start</a>
-                <a href="einsatzgebiete.html" class="sidebar-link sidebar-link--emphasis">Einsatzgebiete</a>
+                <a href="./" class="sidebar-link is-active">Start</a>
+                <a href="einsatzgebiete" class="sidebar-link sidebar-link--emphasis">Einsatzgebiete</a>
       <details class="sidebar-dropdown">
         <summary class="sidebar-dropdown__summary">
-          <a href="leistungen.html" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link">Übersicht</a>
+          <a href="leistungen" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link">Übersicht</a>
           <span class="sidebar-dropdown__toggle" aria-hidden="true">
             <svg class="sidebar-dropdown__chevron" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"></path></svg>
           </span>
         </summary>
         <div class="sidebar-dropdown__panel">
-                    <a href="diagnostik.html" class="sidebar-link sidebar-link--sub">Diagnostik</a>
-                    <a href="team.html" class="sidebar-link sidebar-link--sub">Team & Prozess</a>
-                    <a href="trainings.html" class="sidebar-link sidebar-link--sub">Trainings & Seminare</a>
-                    <a href="coaching.html" class="sidebar-link sidebar-link--sub">Coaching</a>
+                    <a href="diagnostik" class="sidebar-link sidebar-link--sub">Diagnostik</a>
+                    <a href="team" class="sidebar-link sidebar-link--sub">Team & Prozess</a>
+                    <a href="trainings" class="sidebar-link sidebar-link--sub">Trainings & Seminare</a>
+                    <a href="coaching" class="sidebar-link sidebar-link--sub">Coaching</a>
         </div>
       </details>
-                <a href="person.html" class="sidebar-link sidebar-link--emphasis">Zur Person</a>
-                <a href="psi-aktuell.html" class="sidebar-link sidebar-link--emphasis">PSI Aktuell</a>
-                <a href="referenzen.html" class="sidebar-link sidebar-link--emphasis">Referenzen</a>
-                <a href="links.html" class="sidebar-link sidebar-link--emphasis">Links</a>
+                <a href="person" class="sidebar-link sidebar-link--emphasis">Zur Person</a>
+                <a href="psi-aktuell" class="sidebar-link sidebar-link--emphasis">PSI Aktuell</a>
+                <a href="referenzen" class="sidebar-link sidebar-link--emphasis">Referenzen</a>
+                <a href="links" class="sidebar-link sidebar-link--emphasis">Links</a>
     </nav>
     <div class="sidebar-footer">
-      <a href="kontakt.html" class="btn btn-primary btn-header">Kontakt</a>
+      <a href="kontakt" class="btn btn-primary btn-header">Kontakt</a>
       <div class="sidebar-lang" role="group" aria-label="Sprache">
         <button type="button" class="sidebar-lang__btn" data-lang="de" aria-pressed="false">DE</button>
         <button type="button" class="sidebar-lang__btn" data-lang="en" aria-pressed="false">EN</button>
       </div>
     </div>
     <div class="sidebar-legal">
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
+      <a href="impressum">Impressum</a>
+      <a href="datenschutz">Datenschutz</a>
     </div>
   </aside>
 </div>
 
-  <script src="js/site.js"></script>
+  <script src="js/site.js?v=1"></script>
 </body>
 </html>

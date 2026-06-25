@@ -22,6 +22,7 @@ from standorte_data import (
     STANDORTE_META,
 )
 from wrap_pages import META, build_page, nav_prefix
+from seo import page_href
 
 HOME_STANDORTE_MARKER = "<!-- HOME_STANDORTE -->"
 EINSATZGEBIETE_MAP_MARKER = "<!-- EINSATZGEBIETE_MAP -->"
@@ -59,7 +60,7 @@ def _faq(items: list[tuple[str, str]]) -> str:
 def _services(lang: str, asset: str) -> str:
     links = SERVICE_LINKS[lang]
     items = "\n".join(
-        f'              <li><a href="{asset}{href}" class="card-link">{label}</a></li>'
+        f'              <li><a href="{page_href(href, asset)}" class="card-link">{label}</a></li>'
         for href, label in links
     )
     overview_label = (
@@ -69,9 +70,9 @@ def _services(lang: str, asset: str) -> str:
     )
     return f"""          <ul class="standort-services-list">
 {items}
-              <li><a href="{asset}referenzen.html" class="card-link">{"Referenzen" if lang == "de" else "References"}</a></li>
+              <li><a href="{page_href("referenzen.html", asset)}" class="card-link">{"Referenzen" if lang == "de" else "References"}</a></li>
           </ul>
-          <p class="standort-note"><a href="{asset}leistungen.html" class="card-link">{overview_label}</a></p>"""
+          <p class="standort-note"><a href="{page_href("leistungen.html", asset)}" class="card-link">{overview_label}</a></p>"""
 
 
 MODULE_RENDERERS = {}
@@ -152,7 +153,7 @@ def mod_references(_city, lang, t, _asset):
         <ul class="standort-refs">
 {_list_items(t["references"])}
         </ul>
-        <p class="standort-note"><a href="{_asset}referenzen.html" class="card-link">{"Alle Referenzen →" if lang == "de" else "All references →"}</a></p>
+        <p class="standort-note"><a href="{page_href("referenzen.html", _asset)}" class="card-link">{"Alle Referenzen →" if lang == "de" else "All references →"}</a></p>
       </div>
     </section>"""
 
@@ -236,7 +237,7 @@ def mod_cta(_city, lang, t, _asset):
           <h2>{t["cta_title"]}</h2>
           <p>{t["cta_text"]}</p>
           <div class="hero-actions">
-            <a href="{_asset}kontakt.html" class="btn btn-primary">{t["cta_btn"]}</a>
+            <a href="{page_href("kontakt.html", _asset)}" class="btn btn-primary">{t["cta_btn"]}</a>
             <a href="tel:+4954114496" class="btn btn-secondary">{"+49 (0)541 14496" if lang == "de" else "Call"}</a>
           </div>
         </article>
@@ -266,7 +267,7 @@ def render_reach_places(lang: str, asset: str = "") -> str:
         desc = REACH_DESCRIPTIONS[slug][lang]
         featured_items.append(
             f"""              <li class="reach-places-item">
-                <a href="{asset}standorte/{slug}.html" class="reach-places-link">
+                <a href="{page_href(f"standorte/{slug}.html", asset)}" class="reach-places-link">
                   <span class="reach-places-city">{name}</span>
                   <span class="reach-places-desc">{desc}</span>
                 </a>
@@ -274,7 +275,7 @@ def render_reach_places(lang: str, asset: str = "") -> str:
         )
     more_slugs = [slug for slug in CITY_SLUGS if slug not in REACH_FEATURED_SLUGS]
     more_items = "\n".join(
-        f'              <li><a href="{asset}standorte/{slug}.html">'
+        f'              <li><a href="{page_href(f"standorte/{slug}.html", asset)}">'
         f'{html.escape(CITIES[slug][lang]["home_label"])}</a></li>'
         for slug in more_slugs
     )
@@ -292,7 +293,7 @@ def render_reach_places(lang: str, asset: str = "") -> str:
 
 def _standorte_links(slugs: list[str], lang: str, asset: str) -> str:
     return "\n".join(
-        f'            <li><a href="{asset}standorte/{slug}.html">'
+        f'            <li><a href="{page_href(f"standorte/{slug}.html", asset)}">'
         f'{html.escape(CITIES[slug][lang]["home_label"])}</a></li>'
         for slug in slugs
     )
