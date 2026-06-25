@@ -1414,6 +1414,22 @@ main > .page-back + .page-section--hero {
   align-items: start;
 }
 
+.reach-layout--with-map {
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.reach-layout__map .map-card {
+  margin: 0;
+}
+
+.reach-places-panel {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--color-border);
+}
+
 .reach-layout__text {
   max-width: 34rem;
 }
@@ -2788,6 +2804,10 @@ main > .page-back + .page-section--hero {
     max-width: 44ch;
   }
 
+  .reach-layout--with-map {
+    gap: clamp(1.75rem, 3vw, 2.5rem);
+  }
+
   .reach-layout {
     gap: clamp(2rem, 4vw, 3.5rem);
   }
@@ -2891,12 +2911,18 @@ main > .page-back + .page-section--hero {
     grid-template-columns: 1fr;
   }
 
+  .reach-layout--with-map {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
   .reach-layout {
     grid-template-columns: 1fr;
     gap: 2.25rem;
   }
 
-  .reach-layout__places {
+  .reach-layout__places,
+  .reach-places-panel .reach-places-list {
     padding-left: 0;
   }
 

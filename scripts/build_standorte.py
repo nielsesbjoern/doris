@@ -24,6 +24,7 @@ from wrap_pages import META, build_page, nav_prefix
 
 HOME_STANDORTE_MARKER = "<!-- HOME_STANDORTE -->"
 HOME_REACH_PLACES_MARKER = "<!-- HOME_REACH_PLACES -->"
+HOME_MAP_MARKER = "<!-- HOME_MAP -->"
 
 
 def _list_items(items: list[str]) -> str:
@@ -314,6 +315,42 @@ def render_home_standorte(lang: str, asset: str = "") -> str:
         </details>"""
 
 
+def render_home_map(lang: str) -> str:
+    svg = (ROOT / "assets" / "map-dach.svg").read_text(encoding="utf-8")
+    if lang == "en":
+        svg = svg.replace(
+            'aria-label="Karte DACH-Raum mit Einsatzorten"',
+            'aria-label="Map of Germany with selected service locations"',
+        ).replace(
+            "<title>Einsatzgebiet Doris Gunsch</title>",
+            "<title>Service area Doris Gunsch</title>",
+        )
+    indented = "\n".join(
+        f"                {line}" if line.strip() else line for line in svg.splitlines()
+    )
+    return f"""            <div class="map-card">
+              <div class="map-card-visual">
+{indented}
+              </div>
+            </div>"""
+
+
+def patch_home_map(path: Path, lang: str):
+    html = path.read_text(encoding="utf-8")
+    block = render_home_map(lang)
+    if HOME_MAP_MARKER in html:
+        html = html.replace(HOME_MAP_MARKER, block)
+    else:
+        html = re.sub(
+            r'<div class="reach-layout__map">.*?</div>\s*(?=<aside class="reach-places-panel")',
+            f'<div class="reach-layout__map">\n{block}\n          </div>\n          ',
+            html,
+            count=1,
+            flags=re.DOTALL,
+        )
+    path.write_text(html, encoding="utf-8")
+
+
 def patch_home_reach(path: Path, lang: str):
     html = path.read_text(encoding="utf-8")
     block = render_reach_places(lang, asset="")
@@ -322,7 +359,7 @@ def patch_home_reach(path: Path, lang: str):
     else:
         html = re.sub(
             r'<p class="reach-places-kicker">.*?</details>\s*</aside>',
-            block + "\n          </aside>",
+            block + "\n        </aside>",
             html,
             count=1,
             flags=re.DOTALL,
@@ -368,6 +405,8 @@ def main():
 
     patch_home(ROOT / "index.html", "de")
     patch_home(ROOT / "en" / "index.html", "en")
+    patch_home_map(ROOT / "index.html", "de")
+    patch_home_map(ROOT / "en" / "index.html", "en")
     patch_home_reach(ROOT / "index.html", "de")
     patch_home_reach(ROOT / "en" / "index.html", "en")
     print("Built", len(CITY_SLUGS), "standorte pages (DE + EN) and patched index")
