@@ -47,7 +47,7 @@ def performance_head(asset: str) -> str:
     """Preload LCP assets and self-hosted fonts — avoids render-blocking Google Fonts."""
     return f"""  <link rel="preload" href="{asset}public/doris-logo-400.webp" as="image" type="image/webp" fetchpriority="high">
   <link rel="preload" href="{asset}public/fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="{asset}public/fonts/cormorant-garamond-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{asset}public/fonts/cormorant-garamond-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="{asset}css/styles.css" as="style">
   <link rel="stylesheet" href="{asset}css/fonts.css">
   <link rel="stylesheet" href="{asset}css/styles.css">"""
