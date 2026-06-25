@@ -505,7 +505,9 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
 {robots_meta}  <meta name="description" content="{description}">
   <title>{title}</title>
 {seo_head}
+  <link rel="icon" href="{asset}public/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="{asset}public/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="{asset}public/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="{asset}public/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -516,7 +518,6 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
 
 <div class="site-shell">
   <div class="sidebar-overlay" aria-hidden="true"></div>
-{sidebar(lang, active, nav, meta.get("legal_page"))}
 
   <div class="site-content">
     <header class="site-header" id="top">
@@ -540,6 +541,7 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
           </button>
         </div>
       </div>
+{sidebar(lang, active, nav, meta.get("legal_page"))}
 {scroll_progress}
     </header>
 

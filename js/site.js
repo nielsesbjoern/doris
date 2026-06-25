@@ -2,10 +2,6 @@
   const sidebar = document.getElementById('site-sidebar');
   const sidebarToggle = document.querySelector('.sidebar-toggle');
   const sidebarOverlay = document.querySelector('.sidebar-overlay');
-  const headerRight = document.querySelector('.header-right');
-  const siteShell = document.querySelector('.site-shell');
-  const siteContent = document.querySelector('.site-content');
-  const mobileNavMq = window.matchMedia('(max-width: 1023px)');
   const langSwitcher = document.getElementById('lang-switcher');
   const langTrigger = document.getElementById('lang-switcher-trigger');
   const langCurrent = langSwitcher?.querySelector('.lang-switcher__current');
@@ -33,31 +29,16 @@
     document.body.classList.add('sidebar-open');
   }
 
-  function placeSidebarForViewport() {
-    if (!sidebar || !headerRight || !siteShell || !sidebarToggle) return;
-
-    if (mobileNavMq.matches) {
-      if (sidebar.parentElement !== siteShell) {
-        siteShell.insertBefore(sidebar, siteContent);
-      }
-      return;
-    }
-
-    closeSidebar();
-    if (sidebar.parentElement !== headerRight) {
-      headerRight.insertBefore(sidebar, sidebarToggle);
-    }
-  }
-
-  placeSidebarForViewport();
-  mobileNavMq.addEventListener('change', placeSidebarForViewport);
-
   sidebarToggle?.addEventListener('click', () => {
     if (sidebar?.classList.contains('is-open')) {
       closeSidebar();
     } else {
       openSidebar();
     }
+  });
+
+  window.matchMedia('(min-width: 1024px)').addEventListener('change', (e) => {
+    if (e.matches) closeSidebar();
   });
 
   sidebarOverlay?.addEventListener('click', closeSidebar);
