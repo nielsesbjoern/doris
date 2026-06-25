@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# AI assistants & LLM crawlers — machine-readable site summary
+# https://llmstxt.org/
+# LLMs-Txt: https://www.doris-gunsch.eu/llms.txt
+
 Sitemap: https://www.doris-gunsch.eu/sitemap.xml

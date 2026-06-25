@@ -5,10 +5,13 @@ Statische Website für [Doris Gunsch – Psychologische Managementberatung](http
 ## Build
 
 ```bash
+python3 scripts/build_fonts.py
+python3 scripts/build_images.py
 python3 scripts/wrap_pages.py
 python3 scripts/build_referenzen.py
 python3 scripts/build_standorte.py
 python3 scripts/build_sitemap.py
+python3 scripts/build_llms.py
 ```
 
 ## Struktur

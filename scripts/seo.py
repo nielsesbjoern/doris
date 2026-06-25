@@ -43,6 +43,50 @@ def llms_head_link() -> str:
   <link rel="alternate" type="text/plain" href="{LLMS_FULL_URL}" title="LLM-readable full site content">"""
 
 
+def performance_head(asset: str) -> str:
+    """Preload LCP assets and self-hosted fonts — avoids render-blocking Google Fonts."""
+    return f"""  <link rel="preload" href="{asset}public/doris-logo-400.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="{asset}public/fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{asset}public/fonts/cormorant-garamond-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{asset}css/styles.css" as="style">
+  <link rel="stylesheet" href="{asset}css/fonts.css">
+  <link rel="stylesheet" href="{asset}css/styles.css">"""
+
+
+def logo_image(asset: str, *, label: str) -> str:
+    alt = html.escape(label, quote=True)
+    return f"""          <picture>
+            <source
+              srcset="{asset}public/doris-logo-280.webp 280w, {asset}public/doris-logo-400.webp 400w"
+              sizes="(max-width: 640px) 200px, 280px"
+              type="image/webp">
+            <img
+              src="{asset}public/doris-logo-400.png"
+              srcset="{asset}public/doris-logo-280.png 280w, {asset}public/doris-logo-400.png 400w"
+              sizes="(max-width: 640px) 200px, 280px"
+              alt="{alt}"
+              width="400"
+              height="223"
+              decoding="async"
+              fetchpriority="high">
+          </picture>"""
+
+
+def profile_image(asset: str, alt: str, *, lazy: bool = True) -> str:
+    loading = ' loading="lazy"' if lazy else ""
+    alt_esc = html.escape(alt, quote=True)
+    return f"""            <picture>
+              <source srcset="{asset}public/doris-web-600.webp" type="image/webp">
+              <img
+                src="{asset}public/doris-web-600.jpg"
+                alt="{alt_esc}"
+                class="profile-photo"
+                width="600"
+                height="511"
+                decoding="async"{loading}>
+            </picture>"""
+
+
 def open_graph(filename: str, lang: str, title: str, description: str) -> str:
     url = absolute_url(filename, lang)
     locale = "de_DE" if lang == "de" else "en_GB"

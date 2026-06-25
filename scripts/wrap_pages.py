@@ -9,7 +9,14 @@ from typing import Optional
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from seo import canonical_hreflang, llms_head_link, open_graph, structured_data  # noqa: E402
+from seo import (  # noqa: E402
+    canonical_hreflang,
+    llms_head_link,
+    logo_image,
+    open_graph,
+    performance_head,
+    structured_data,
+)
 from standorte_data import STANDORTE_META  # noqa: E402
 
 META = {
@@ -489,6 +496,7 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
         page_nav = page_back(lang, filename, asset)
         page_footer = next_step_block(lang, filename, asset)
 
+    logo_label = L["logo"]
     page_html = f'''<!DOCTYPE html>
 <html lang="{lang}">
 <head>
@@ -503,29 +511,25 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
       document.documentElement.setAttribute('data-theme', theme);
     }})();
   </script>
-{robots_meta}  <meta name="description" content="{description}">
-  <title>{title}</title>
-{seo_head}
+{robots_meta}  <title>{title}</title>
+  <meta name="description" content="{description}">
+{performance_head(asset)}
   <link rel="icon" href="{asset}public/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="{asset}public/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="{asset}public/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="{asset}public/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{asset}css/styles.css">
+{seo_head}
 </head>
 <body data-page="{meta["page"]}">
 
 <div class="site-shell">
   <div class="sidebar-overlay" aria-hidden="true"></div>
-{sidebar(lang, active, nav, meta.get("legal_page"))}
 
   <div class="site-content">
     <header class="site-header" id="top">
       <div class="container header-inner">
-        <a href="{home_link}" class="logo" aria-label="{L["logo"]}">
-          <img src="{asset}public/doris-logo-web.png" alt="Doris Gunsch" width="560" height="144">
+        <a href="{home_link}" class="logo" aria-label="{logo_label}">
+{logo_image(asset, label="Doris Gunsch")}
         </a>
         <div class="header-right">
           <div class="header-controls">
@@ -567,6 +571,7 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
       </div>
     </footer>
   </div>
+{sidebar(lang, active, nav, meta.get("legal_page"))}
 </div>
 
   <script src="{asset}js/site.js"></script>
