@@ -470,9 +470,7 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
     asset = content_asset(lang, filename)
     home_link = home_href(filename)
     active_kontakt = ' is-active' if active == "kontakt" else ""
-    scroll_progress = ""
-    if meta["page"] == "home":
-        scroll_progress = """      <div class="header-scroll-progress" aria-hidden="true">
+    scroll_progress = """      <div class="header-scroll-progress" aria-hidden="true">
         <span class="header-scroll-progress__fill"></span>
       </div>"""
     raw_title = meta["title_" + lang]

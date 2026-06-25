@@ -195,7 +195,6 @@
   });
 
   function initScrollProgress() {
-    if (document.body.dataset.page !== 'home') return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     let ticking = false;

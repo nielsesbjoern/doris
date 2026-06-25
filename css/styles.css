@@ -557,7 +557,6 @@ main > .container.legal-page {
 }
 
 .header-scroll-progress {
-  display: none;
   position: absolute;
   left: 0;
   right: 0;
@@ -566,10 +565,6 @@ main > .container.legal-page {
   background-color: var(--color-border);
   pointer-events: none;
   overflow: hidden;
-}
-
-body[data-page="home"] .header-scroll-progress {
-  display: block;
 }
 
 .header-scroll-progress__fill {
@@ -581,7 +576,7 @@ body[data-page="home"] .header-scroll-progress {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body[data-page="home"] .header-scroll-progress {
+  .header-scroll-progress {
     display: none;
   }
 
