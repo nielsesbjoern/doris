@@ -9,7 +9,7 @@ from typing import Optional
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from seo import canonical_hreflang, open_graph, structured_data  # noqa: E402
+from seo import canonical_hreflang, llms_head_link, open_graph, structured_data  # noqa: E402
 from standorte_data import STANDORTE_META  # noqa: E402
 
 META = {
@@ -479,6 +479,7 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
     title = html.escape(raw_title, quote=True)
     description = html.escape(raw_desc, quote=True)
     seo_head = f"""{canonical_hreflang(filename, lang, include_hreflang=not meta.get("no_hreflang"))}
+{llms_head_link()}
 {open_graph(filename, lang, raw_title, raw_desc)}
 {structured_data(filename, lang, raw_title, raw_desc, meta.get("schema", "webpage"), city=city)}"""
     robots_meta = '  <meta name="robots" content="noindex, follow">\n' if meta.get("noindex") else ""
@@ -518,6 +519,7 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
 
 <div class="site-shell">
   <div class="sidebar-overlay" aria-hidden="true"></div>
+{sidebar(lang, active, nav, meta.get("legal_page"))}
 
   <div class="site-content">
     <header class="site-header" id="top">
@@ -541,7 +543,6 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
           </button>
         </div>
       </div>
-{sidebar(lang, active, nav, meta.get("legal_page"))}
 {scroll_progress}
     </header>
 

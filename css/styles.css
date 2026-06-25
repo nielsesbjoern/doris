@@ -43,7 +43,7 @@
   --header-height: calc(var(--logo-height) + var(--header-padding-y) * 2);
   --page-top-gap: clamp(1.35rem, 3.5vw, 2rem);
   --page-back-gap: clamp(1rem, 2.5vw, 1.75rem);
-  --sidebar-width: 15.5rem;
+  --sidebar-width: 16.5rem;
   --header-control-height: 2.75rem;
   --header-control-min-width: 5rem;
 
@@ -540,8 +540,6 @@ main > .container.legal-page {
   position: sticky;
   top: 0;
   z-index: 100;
-  display: flex;
-  flex-direction: column;
   background-color: var(--color-header-bg);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--color-border);
@@ -2805,10 +2803,40 @@ main > .page-back + .page-section--hero {
     padding: 1.75rem;
   }
 
-  .site-header .sidebar-nav {
-    justify-content: space-between;
-    gap: 0.35rem 0.75rem;
-    padding: 0.55rem var(--site-gutter);
+  .site-shell {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .site-sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: auto;
+    flex-shrink: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    max-height: 100vh;
+    transform: none;
+    visibility: visible;
+    pointer-events: auto;
+    border-left: none;
+    border-right: 1px solid var(--color-border);
+    padding: 1.5rem 1rem 1.25rem;
+    overflow-y: auto;
+    z-index: 50;
+  }
+
+  .site-sidebar .sidebar-link.is-active {
+    box-shadow: inset 3px 0 0 var(--color-primary);
+  }
+
+  .sidebar-toggle {
+    display: none;
+  }
+
+  body.sidebar-open .sidebar-overlay {
+    display: none;
   }
 
   .site-footer {
@@ -2939,96 +2967,35 @@ main > .page-back + .page-section--hero {
   }
 }
 
-@media (min-width: 1024px) {
-  .site-header .site-sidebar {
-    position: static;
-    transform: none;
-    width: 100%;
-    height: auto;
-    flex-direction: column;
-    gap: 0;
-    padding: 0;
-    margin: 0;
-    background: transparent;
-    border: none;
-    border-top: 1px solid var(--color-border);
-    overflow: visible;
-  }
-
-  .site-header .sidebar-nav {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.35rem 0.75rem;
-    flex: 0 0 auto;
-    width: 100%;
-    max-width: var(--max-width);
-    margin-inline: auto;
-    padding: 0.55rem var(--site-gutter);
-    overflow-x: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-border) transparent;
-  }
-
-  .site-header .sidebar-group {
-    display: contents;
-  }
-
-  .site-header .sidebar-group-label {
-    display: none;
-  }
-
-  .site-header .sidebar-link {
-    padding: 0.4rem 0.55rem;
-    font-size: 0.8125rem;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .site-header .sidebar-link--sub {
-    padding-left: 0.55rem;
-    font-size: 0.8125rem;
-  }
-
-  .site-header .sidebar-link.is-active {
-    box-shadow: inset 0 -2px 0 var(--color-primary);
-    background-color: transparent;
-  }
-
-  .site-header .sidebar-legal {
-    display: none;
-  }
-
-  .sidebar-toggle {
-    display: none;
-  }
-
-  body.sidebar-open .sidebar-overlay {
-    display: none;
-  }
-}
-
 @media (max-width: 1023px) {
   .sidebar-overlay {
     background-color: var(--color-overlay);
   }
 
-  .site-header .site-sidebar {
+  .site-shell > .site-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: auto;
     visibility: hidden;
     pointer-events: none;
     background-color: var(--color-bg);
     height: 100dvh;
+    border-right: none;
+    border-left: 1px solid var(--color-border);
   }
 
-  .site-header .site-sidebar.is-open {
+  .site-shell > .site-sidebar.is-open {
     visibility: visible;
     pointer-events: auto;
   }
 
   .site-sidebar.is-open {
     transform: translateX(0);
+  }
+
+  .site-sidebar .sidebar-link.is-active {
+    box-shadow: inset -3px 0 0 var(--color-primary);
   }
 
   .sidebar-nav {

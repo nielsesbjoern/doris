@@ -9,6 +9,8 @@ from typing import Optional
 
 SITE_URL = "https://www.doris-gunsch.eu"
 BUSINESS_ID = f"{SITE_URL}/#business"
+LLMS_TXT_URL = f"{SITE_URL}/llms.txt"
+LLMS_FULL_URL = f"{SITE_URL}/llms-full.txt"
 OG_IMAGE = f"{SITE_URL}/public/doris-web.jpg"
 ORG_NAME_DE = "Doris Gunsch – Psychologische Managementberatung"
 ORG_NAME_EN = "Doris Gunsch – Psychological Management Consulting"
@@ -33,6 +35,12 @@ def canonical_hreflang(filename: str, lang: str, *, include_hreflang: bool = Tru
   <link rel="alternate" hreflang="de" href="{de_url}">
   <link rel="alternate" hreflang="en" href="{en_url}">
   <link rel="alternate" hreflang="x-default" href="{de_url}">"""
+
+
+def llms_head_link() -> str:
+    """Machine-readable site summary for LLM crawlers and AI assistants."""
+    return f"""  <link rel="alternate" type="text/plain" href="{LLMS_TXT_URL}" title="LLM-readable site summary">
+  <link rel="alternate" type="text/plain" href="{LLMS_FULL_URL}" title="LLM-readable full site content">"""
 
 
 def open_graph(filename: str, lang: str, title: str, description: str) -> str:
@@ -154,8 +162,25 @@ def web_page_schema(filename: str, lang: str, title: str, description: str) -> s
     return _json_ld(data)
 
 
+def _faq_entities(faq: list[tuple[str, str]]) -> list[dict]:
+    return [
+        {
+            "@type": "Question",
+            "name": question,
+            "acceptedAnswer": {"@type": "Answer", "text": answer},
+        }
+        for question, answer in faq
+    ]
+
+
 def city_location_schema(
-    lang: str, city: str, filename: str, title: str, description: str
+    lang: str,
+    city: str,
+    filename: str,
+    title: str,
+    description: str,
+    *,
+    faq: Optional[list[tuple[str, str]]] = None,
 ) -> str:
     """Location landing page — references canonical business, no duplicate entity."""
     url = absolute_url(filename, lang)
@@ -164,34 +189,47 @@ def city_location_schema(
         if lang == "de"
         else f"Coaching and facilitation in {city}"
     )
-    data = {
-        "@context": "https://schema.org",
-        "@graph": [
+    graph: list[dict] = [
+        {
+            "@type": "WebPage",
+            "name": title,
+            "description": description,
+            "url": url,
+            "inLanguage": lang,
+            "about": {"@type": "City", "name": city},
+            "provider": {"@id": BUSINESS_ID},
+            "isPartOf": {
+                "@type": "WebSite",
+                "name": "Doris Gunsch",
+                "url": SITE_URL if lang == "de" else f"{SITE_URL}/en/",
+            },
+        },
+        {
+            "@type": "Service",
+            "name": service_name,
+            "description": description,
+            "url": url,
+            "areaServed": {"@type": "City", "name": city},
+            "provider": {"@id": BUSINESS_ID},
+        },
+    ]
+    if faq:
+        graph.append(
             {
-                "@type": "WebPage",
-                "name": title,
-                "description": description,
+                "@type": "FAQPage",
                 "url": url,
                 "inLanguage": lang,
-                "about": {"@type": "City", "name": city},
-                "provider": {"@id": BUSINESS_ID},
-                "isPartOf": {
-                    "@type": "WebSite",
-                    "name": "Doris Gunsch",
-                    "url": SITE_URL if lang == "de" else f"{SITE_URL}/en/",
-                },
-            },
-            {
-                "@type": "Service",
-                "name": service_name,
-                "description": description,
-                "url": url,
-                "areaServed": {"@type": "City", "name": city},
-                "provider": {"@id": BUSINESS_ID},
-            },
-        ],
-    }
+                "mainEntity": _faq_entities(faq),
+            }
+        )
+    data = {"@context": "https://schema.org", "@graph": graph}
     return _json_ld(data)
+
+
+def _standort_slug(filename: str) -> Optional[str]:
+    if filename.startswith("standorte/") and filename.endswith(".html"):
+        return filename[len("standorte/") : -len(".html")]
+    return None
 
 
 def structured_data(
@@ -208,7 +246,13 @@ def structured_data(
     if schema == "contact":
         return contact_page_schema(lang, filename)
     if schema == "city_location" and city:
-        return city_location_schema(lang, city, filename, title, description)
+        from standorte_data import CITIES
+
+        slug = _standort_slug(filename)
+        faq = CITIES[slug][lang].get("faq") if slug and slug in CITIES else None
+        return city_location_schema(
+            lang, city, filename, title, description, faq=faq
+        )
     if schema == "person":
         return person_schema(lang)
     if schema == "webpage":

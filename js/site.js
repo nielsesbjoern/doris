@@ -44,7 +44,11 @@
   sidebarOverlay?.addEventListener('click', closeSidebar);
 
   sidebar?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', closeSidebar);
+    link.addEventListener('click', () => {
+      if (window.matchMedia('(max-width: 1023px)').matches) {
+        closeSidebar();
+      }
+    });
   });
 
   function closeLangMenu() {
