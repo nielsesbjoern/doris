@@ -2,13 +2,11 @@
   const sidebar = document.getElementById('site-sidebar');
   const sidebarToggle = document.querySelector('.sidebar-toggle');
   const sidebarOverlay = document.querySelector('.sidebar-overlay');
-  const headerControls = document.querySelector('.header-controls');
-  const kontaktBtn = headerControls?.querySelector('.btn-header');
   const langSwitcher = document.getElementById('lang-switcher');
-  const mobileControlsMq = window.matchMedia('(max-width: 1023px)');
   const langTrigger = document.getElementById('lang-switcher-trigger');
   const langCurrent = langSwitcher?.querySelector('.lang-switcher__current');
   const langOptions = langSwitcher?.querySelectorAll('.lang-switcher__option');
+  const sidebarLangButtons = document.querySelectorAll('.sidebar-lang__btn');
   const themeToggle = document.getElementById('theme-toggle');
   const yearEl = document.getElementById('year');
   const isEn = document.documentElement.lang === 'en' || window.location.pathname.includes('/en/');
@@ -19,37 +17,6 @@
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
-
-  function ensureSidebarFooter() {
-    let footer = sidebar?.querySelector('.sidebar-footer');
-    if (!footer && sidebar) {
-      footer = document.createElement('div');
-      footer.className = 'sidebar-footer';
-      const legal = sidebar.querySelector('.sidebar-legal');
-      sidebar.insertBefore(footer, legal);
-    }
-    return footer;
-  }
-
-  function layoutHeaderControls() {
-    const footer = ensureSidebarFooter();
-    if (!footer || !headerControls || !kontaktBtn || !langSwitcher) return;
-
-    if (mobileControlsMq.matches) {
-      if (kontaktBtn.parentElement !== footer) {
-        footer.append(kontaktBtn, langSwitcher);
-      }
-      return;
-    }
-
-    if (kontaktBtn.parentElement !== headerControls) {
-      headerControls.insertBefore(kontaktBtn, themeToggle);
-      headerControls.insertBefore(langSwitcher, themeToggle);
-    }
-  }
-
-  layoutHeaderControls();
-  mobileControlsMq.addEventListener('change', layoutHeaderControls);
 
   function closeSidebar() {
     sidebar?.classList.remove('is-open');
@@ -125,6 +92,11 @@
       option.classList.toggle('is-active', active);
       option.setAttribute('aria-selected', active ? 'true' : 'false');
     });
+    sidebarLangButtons.forEach((button) => {
+      const active = button.dataset.lang === lang;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
   }
 
   function navigateLang(target) {
@@ -173,6 +145,19 @@
         closeLangMenu();
       }
     });
+  }
+
+  sidebarLangButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const target = button.dataset.lang;
+      if (target && target !== currentLang) {
+        navigateLang(target);
+      }
+    });
+  });
+
+  if (sidebarLangButtons.length) {
+    setLangUI(currentLang);
   }
 
   const savedLang = localStorage.getItem('dg-lang');

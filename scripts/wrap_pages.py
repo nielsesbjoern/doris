@@ -447,6 +447,7 @@ def sidebar(lang, active, prefix="", legal_page=None):
     overview_active = active_class("leistungen", active)
     imp_cls = ' class="is-active"' if legal_page == "impressum" else ""
     ds_cls = ' class="is-active"' if legal_page == "datenschutz" else ""
+    kontakt_active = ' is-active' if active == "kontakt" else ""
     return f'''  <aside class="site-sidebar" id="site-sidebar" aria-label="{L["nav"]}">
     <nav class="sidebar-nav">
       {a("home", L["home"])}
@@ -470,6 +471,13 @@ def sidebar(lang, active, prefix="", legal_page=None):
       {a("referenzen", L["referenzen"])}
       {a("links", L["links"])}
     </nav>
+    <div class="sidebar-footer">
+      <a href="{p}kontakt.html" class="btn btn-primary btn-header{kontakt_active}">{L["contact"]}</a>
+      <div class="sidebar-lang" role="group" aria-label="{L["lang"]}">
+        <button type="button" class="sidebar-lang__btn" data-lang="de" aria-pressed="false">DE</button>
+        <button type="button" class="sidebar-lang__btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
     <div class="sidebar-legal">
       <a href="{p}impressum.html"{imp_cls}>{L["impressum"]}</a>
       <a href="{p}datenschutz.html"{ds_cls}>{L["datenschutz"]}</a>
