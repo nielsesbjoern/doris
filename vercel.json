@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
   "installCommand": "",
-  "buildCommand": "python3 scripts/build_fonts.py && python3 scripts/build_images.py && python3 scripts/build_favicons.py && python3 scripts/wrap_pages.py && python3 scripts/build_referenzen.py && python3 scripts/build_standorte.py && python3 scripts/build_sitemap.py && python3 scripts/build_llms.py",
+  "buildCommand": "python3 scripts/build.py",
   "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": false,
