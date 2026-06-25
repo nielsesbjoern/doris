@@ -14,6 +14,16 @@ LLMS_FULL_URL = f"{SITE_URL}/llms-full.txt"
 OG_IMAGE = f"{SITE_URL}/public/doris-web.jpg"
 ORG_NAME_DE = "Doris Gunsch – Psychologische Managementberatung"
 ORG_NAME_EN = "Doris Gunsch – Psychological Management Consulting"
+FAVICON_VERSION = 3
+
+
+def favicon_head(asset: str) -> str:
+    query = f"?v={FAVICON_VERSION}"
+    return f"""  <link rel="icon" href="{asset}public/favicon.ico{query}" sizes="any">
+  <link rel="icon" type="image/png" sizes="48x48" href="{asset}public/favicon-48.png{query}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{asset}public/favicon-32.png{query}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{asset}public/favicon-16.png{query}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{asset}public/apple-touch-icon.png{query}">"""
 
 
 def absolute_url(filename: str, lang: str) -> str:

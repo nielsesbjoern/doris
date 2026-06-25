@@ -12,6 +12,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from seo import (  # noqa: E402
     canonical_hreflang,
     llms_head_link,
+    favicon_head,
     logo_image,
     open_graph,
     performance_head,
@@ -548,10 +549,7 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
 {robots_meta}  <title>{title}</title>
   <meta name="description" content="{description}">
 {performance_head(asset)}
-  <link rel="icon" href="{asset}public/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="{asset}public/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="{asset}public/favicon-16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="{asset}public/apple-touch-icon.png">
+{favicon_head(asset)}
 {seo_head}
 </head>
 <body data-page="{meta["page"]}">
