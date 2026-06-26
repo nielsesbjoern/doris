@@ -22,6 +22,7 @@ from seo import (  # noqa: E402
     structured_data,
 )
 from standorte_data import STANDORTE_META  # noqa: E402
+from psi_bridge_data import TEXT as PSI_TEXT  # noqa: E402
 
 META = {
     "index.html": {
@@ -167,9 +168,23 @@ META = {
 
 META.update(STANDORTE_META)
 
-SERVICE_SUB_PAGES = ("diagnostik", "team", "trainings", "coaching")
+SIDEBAR_KEYS = ["home", "leistungen", "coaching", "trainings", "team", "diagnostik", "person", "einsatzgebiete", "psi", "referenzen", "links"]
 
-SIDEBAR_KEYS = ["home", "einsatzgebiete", "leistungen", "coaching", "trainings", "team", "diagnostik", "person", "psi", "referenzen", "links"]
+SERVICE_SUB_PAGES = ("coaching", "trainings", "team", "diagnostik")
+
+SIDEBAR_LABEL_KEYS = {
+    "home": "home",
+    "einsatzgebiete": "einsatzgebiete",
+    "leistungen": "services",
+    "coaching": "coaching",
+    "trainings": "trainings",
+    "team": "team",
+    "diagnostik": "diagnostik",
+    "person": "person",
+    "psi": "psi",
+    "referenzen": "referenzen",
+    "links": "links",
+}
 
 LABELS = {
     "de": {
@@ -177,7 +192,6 @@ LABELS = {
         "home": "Start",
         "einsatzgebiete": "Einsatzgebiete",
         "services": "Leistungen",
-        "overview": "Übersicht",
         "coaching": "Coaching",
         "trainings": "Trainings & Seminare",
         "team": "Team & Prozess",
@@ -204,7 +218,6 @@ LABELS = {
         "home": "Home",
         "einsatzgebiete": "Service areas",
         "services": "Services",
-        "overview": "Overview",
         "coaching": "Coaching",
         "trainings": "Training & Seminars",
         "team": "Team & Process",
@@ -439,7 +452,7 @@ def sidebar(lang, active, prefix="", legal_page=None):
         "referenzen": page_href("referenzen.html", p),
         "links": page_href("links.html", p),
     }
-    emphasis_keys = {"einsatzgebiete", "person", "psi", "referenzen", "links"}
+    emphasis_keys = {"einsatzgebiete", "person", "psi", "referenzen", "links", "leistungen"}
 
     def a(k, label, extra=""):
         emph = " sidebar-link--emphasis" if k in emphasis_keys else ""
@@ -448,29 +461,29 @@ def sidebar(lang, active, prefix="", legal_page=None):
     services_open = active == "leistungen" or active in SERVICE_SUB_PAGES
     dropdown_state = " sidebar-dropdown--active" if services_open else ""
     open_attr = " open" if services_open else ""
-    overview_active = active_class("leistungen", active)
+    leistungen_active = active_class("leistungen", active)
+    sub_links = "\n".join(
+        a(k, L[SIDEBAR_LABEL_KEYS[k]], " sidebar-link--sub") for k in SERVICE_SUB_PAGES
+    )
     imp_cls = ' class="is-active"' if legal_page == "impressum" else ""
     ds_cls = ' class="is-active"' if legal_page == "datenschutz" else ""
     kontakt_active = ' is-active' if active == "kontakt" else ""
     return f'''  <aside class="site-sidebar" id="site-sidebar" aria-label="{L["nav"]}">
     <nav class="sidebar-nav">
       {a("home", L["home"])}
-      {a("einsatzgebiete", L["einsatzgebiete"])}
       <details class="sidebar-dropdown{dropdown_state}"{open_attr}>
         <summary class="sidebar-dropdown__summary">
-          <a href="{keys["leistungen"]}" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link{overview_active}">{L["overview"]}</a>
+          <a href="{keys["leistungen"]}" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link{leistungen_active}">{L["services"]}</a>
           <span class="sidebar-dropdown__toggle" aria-hidden="true">
             <svg class="sidebar-dropdown__chevron" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"></path></svg>
           </span>
         </summary>
         <div class="sidebar-dropdown__panel">
-          {a("diagnostik", L["diagnostik"], " sidebar-link--sub")}
-          {a("team", L["team"], " sidebar-link--sub")}
-          {a("trainings", L["trainings"], " sidebar-link--sub")}
-          {a("coaching", L["coaching"], " sidebar-link--sub")}
+{sub_links}
         </div>
       </details>
       {a("person", L["person"])}
+      {a("einsatzgebiete", L["einsatzgebiete"])}
       {a("psi", L["psi"])}
       {a("referenzen", L["referenzen"])}
       {a("links", L["links"])}
@@ -534,6 +547,12 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
         page_nav = page_back(lang, filename, asset)
         page_footer = next_step_block(lang, filename, asset)
 
+    extra_scripts = ""
+    if filename == "referenzen.html":
+        extra_scripts = f'\n  <script src="{asset}js/referenzen.js?v={ASSET_VERSION}" defer></script>'
+    elif filename == "coaching.html":
+        extra_scripts = f'\n  <script src="{asset}js/coaching-formats.js?v={ASSET_VERSION}" defer></script>'
+
     logo_label = L["logo"]
     logo_priority = "high" if filename in ("index.html", "404.html") else "auto"
     page_html = f'''<!DOCTYPE html>
@@ -594,6 +613,7 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
       <div class="container footer-inner">
         <p class="footer-brand">Doris Gunsch</p>
         <p class="footer-tagline">{"Psychologische Managementberatung" if lang == "de" else "Psychological Management Consulting"}</p>
+        <p class="footer-science">{PSI_TEXT[lang]["footer_science"]} · <a href="{page_href("person.html", nav)}">{PSI_TEXT[lang]["footer_science_link"]}</a></p>
         <nav aria-label="{L["footer_nav"]}">
           <ul>
             <li><a href="{page_href("kontakt.html", nav)}">{L["contact"]}</a></li>
@@ -610,7 +630,7 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
 {sidebar(lang, active, nav, meta.get("legal_page"))}
 </div>
 
-  <script src="{asset}js/site.js?v={ASSET_VERSION}"></script>
+  <script src="{asset}js/site.js?v={ASSET_VERSION}"></script>{extra_scripts}
 </body>
 </html>
 '''

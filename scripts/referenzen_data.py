@@ -6,6 +6,25 @@ FEATURED = [
     "Lindt &amp; Sprüngli GmbH, Aachen",
 ]
 
+FEATURED_SECTORS = [
+    "it-telekom-energie",
+    "gesundheit-soziales",
+    "konsumgueter-handel",
+]
+
+SECTOR_SLUGS = [
+    "gesundheit-soziales",
+    "industrie-technik",
+    "it-telekom-energie",
+    "automotive-maschinenbau",
+    "konsumgueter-handel",
+    "finanzen-versicherung",
+    "personal-beratung",
+    "oeffentlicher-sektor",
+    "bildung-kultur-wissenschaft",
+    "weitere-unternehmen",
+]
+
 SECTORS_DE = [
     ("Gesundheit &amp; Soziales", [
         "BBraun Melsungen AG",
@@ -153,6 +172,14 @@ TEXT = {
             "Bitte haben Sie Verständnis dafür, dass Coaching-Kunden und einige "
             "Unternehmen vertraulich behandelt werden."
         ),
+        "filter_label": "Nach Branche filtern",
+        "filter_all": "Alle Branchen",
+        "search_label": "Unternehmen suchen",
+        "search_placeholder": "Unternehmen suchen …",
+        "filter_results_one": "{n} Unternehmen in {sector}",
+        "filter_results_many": "{n} Unternehmen in {count} Branchen",
+        "filter_empty": "Keine Treffer — Filter zurücksetzen",
+        "filter_reset": "Filter zurücksetzen",
     },
     "en": {
         "comment": "References",
@@ -170,5 +197,13 @@ TEXT = {
             "Please understand that coaching clients and some "
             "companies are treated confidentially."
         ),
+        "filter_label": "Filter by sector",
+        "filter_all": "All sectors",
+        "search_label": "Search companies",
+        "search_placeholder": "Search companies …",
+        "filter_results_one": "{n} companies in {sector}",
+        "filter_results_many": "{n} companies in {count} sectors",
+        "filter_empty": "No results — reset filters",
+        "filter_reset": "Reset filters",
     },
 }

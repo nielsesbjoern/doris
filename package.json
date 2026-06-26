@@ -1,0 +1,7 @@
+{
+  "name": "doris-gunsch",
+  "private": true,
+  "scripts": {
+    "dev": "python3 scripts/dev_server.py"
+  }
+}

@@ -16,9 +16,9 @@
   <meta name="description" content="Personal- und Business-Coaching für Führungskräfte: Klarheit gewinnen, Konflikte lösen, Veränderungen gestalten — vertraulich und zielorientiert.">
   <link rel="preload" href="public/fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="public/fonts/cormorant-garamond-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="css/styles.css?v=1" as="style">
-  <link rel="stylesheet" href="css/fonts.css?v=1">
-  <link rel="stylesheet" href="css/styles.css?v=1">
+  <link rel="preload" href="css/styles.css?v=2" as="style">
+  <link rel="stylesheet" href="css/fonts.css?v=2">
+  <link rel="stylesheet" href="css/styles.css?v=2">
   <link rel="icon" href="public/favicon.ico?v=3" sizes="any">
   <link rel="icon" type="image/png" sizes="48x48" href="public/favicon-48.png?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32.png?v=3">
@@ -123,6 +123,24 @@
       <div class="container page-back">
         <a href="leistungen" class="btn btn-secondary btn-back">← Zurück zu Leistungen</a>
       </div>
+<div class="container page-back">
+        <a href="leistungen" class="btn btn-secondary btn-back">← Zurück zu Leistungen</a>
+      </div>
+<div class="container page-back">
+        <a href="leistungen" class="btn btn-secondary btn-back">← Zurück zu Leistungen</a>
+      </div>
+<div class="container page-back">
+        <a href="leistungen" class="btn btn-secondary btn-back">← Zurück zu Leistungen</a>
+      </div>
+<div class="container page-back">
+        <a href="leistungen" class="btn btn-secondary btn-back">← Zurück zu Leistungen</a>
+      </div>
+<div class="container page-back">
+        <a href="leistungen" class="btn btn-secondary btn-back">← Zurück zu Leistungen</a>
+      </div>
+<div class="container page-back">
+        <a href="leistungen" class="btn btn-secondary btn-back">← Zurück zu Leistungen</a>
+      </div>
 <div class="container sub-nav-wrap">
       <nav class="sub-nav" aria-label="Leistungsbereiche">
         <a href="leistungen">Übersicht</a>
@@ -146,6 +164,30 @@
             Ausgehend von einer Situationsanalyse werden Zielebenen geklärt, Handlungsmöglichkeiten
             ausgelotet und die situativ passende Lösungsrichtung entwickelt.
           </p>
+
+          <!-- PSI_COACHING_FOUNDATION -->
+          <section class="coaching-foundation" aria-label="Woran sich meine Arbeit orientiert">
+            <h2 class="coaching-foundation__title">Woran sich meine Arbeit orientiert</h2>
+            <ul class="coaching-foundation__list">
+              <li class="coaching-foundation__item">
+                <strong>Klärung vor Lösung</strong>
+                <span>Zuerst die Situation präzise verstehen — dann passende Schritte entwickeln.</span>
+              </li>
+              <li class="coaching-foundation__item">
+                <strong>Psychologische Fundierung</strong>
+                <span>Diplom-Psychologin mit Approbation — keine reine Business-Beratung ohne psychologische Tiefe.</span>
+              </li>
+              <li class="coaching-foundation__item">
+                <strong>Diagnostik, wenn sie Mehrwert bringt</strong>
+                <span>Objektive Potenzialanalysen ergänzen das Gespräch, wo Selbstbild und Außenwirkung auseinanderlaufen.</span>
+              </li>
+            </ul>
+            <p class="coaching-foundation__links">
+              <a href="diagnostik" class="card-link">Diagnostik & Profiling</a>
+              <a href="person" class="card-link">Profil & Qualifikation</a>
+            </p>
+          </section>
+          <!-- /PSI_COACHING_FOUNDATION -->
 
           <div class="coaching-split">
             <div>
@@ -173,6 +215,7 @@
               Führungskräfte haben selten die Möglichkeit, regelmäßige Termine wahrzunehmen.
               Darauf bin ich mit intensiven Settings und begleitenden Maßnahmen wie Smart-Coaching
               oder Coaching-on-the-job eingestellt.
+              <a href="#formate-vergleich" class="format-compare__jump">Formate vergleichen</a>
             </p>
             <div class="detail-grid">
               <div class="detail-item">
@@ -222,6 +265,322 @@
               </div>
             </div>
           </div>
+
+          <!-- FORMAT_COMPARE -->
+          <div class="detail-block format-compare" id="formate-vergleich">
+            <h4 class="detail-subtitle">Formate im Vergleich</h4>
+            <p class="detail-intro">
+              Welches Format passt zu Ihrer Situation? Die Übersicht ordnet Anlässe und Durchführungsformen ein — inklusive ehrlicher Abgrenzung.
+            </p>
+
+            <div class="format-compare__groups" role="tablist" aria-label="Formate im Vergleich">
+              <button type="button" class="format-compare__group is-active" role="tab" data-group="anlass" aria-selected="true" id="format-tab-anlass" aria-controls="format-panel">
+                Anlässe & Themen
+              </button>
+              <button type="button" class="format-compare__group" role="tab" data-group="durchfuehrung" aria-selected="false" id="format-tab-durchfuehrung" aria-controls="format-panel">
+                Durchführung
+              </button>
+            </div>
+
+            <div class="format-compare__toolbar">
+              <div class="format-compare__filter" data-chip-group="anlass" role="group" aria-label="Format filtern">
+          <button type="button" class="format-compare__chip is-active" data-format="all" data-group="anlass" aria-pressed="true">
+            Alle anzeigen
+          </button>
+          <button type="button" class="format-compare__chip" data-format="situativ" data-group="anlass" aria-pressed="false">
+            Situatives Coaching
+          </button>
+          <button type="button" class="format-compare__chip" data-format="onboarding" data-group="anlass" aria-pressed="false">
+            Onboarding-Coaching
+          </button>
+          <button type="button" class="format-compare__chip" data-format="positionierung" data-group="anlass" aria-pressed="false">
+            Positionierungs-Coaching
+          </button>
+          <button type="button" class="format-compare__chip" data-format="aufgaben" data-group="anlass" aria-pressed="false">
+            Aufgabenbezogenes Coaching
+          </button>
+          <button type="button" class="format-compare__chip" data-format="persoenlichkeit" data-group="anlass" aria-pressed="false">
+            Persönlichkeitscoaching
+          </button>
+          <button type="button" class="format-compare__chip" data-format="therapeutisch" data-group="anlass" aria-pressed="false">
+            Therapeutisches Coaching
+          </button>
+              </div>
+              <div class="format-compare__filter" data-chip-group="durchfuehrung" role="group" aria-label="Format filtern" hidden>
+          <button type="button" class="format-compare__chip is-active" data-format="all" data-group="durchfuehrung" aria-pressed="true">
+            Alle anzeigen
+          </button>
+          <button type="button" class="format-compare__chip" data-format="intensiv" data-group="durchfuehrung" aria-pressed="false">
+            Intensiv-Settings
+          </button>
+          <button type="button" class="format-compare__chip" data-format="smart" data-group="durchfuehrung" aria-pressed="false">
+            Smart-Coaching
+          </button>
+          <button type="button" class="format-compare__chip" data-format="cotj" data-group="durchfuehrung" aria-pressed="false">
+            Coaching-on-the-job
+          </button>
+              </div>
+              <p class="format-compare__status" id="format-compare-status" aria-live="polite" aria-atomic="true"></p>
+            </div>
+
+            <div class="format-compare__list" id="format-panel" role="tabpanel" aria-labelledby="format-tab-anlass">
+            <article class="format-compare__card" id="format-situativ" data-format="situativ" data-group="anlass">
+              <header class="format-compare__card-head">
+                <span class="format-compare__badge">Anlass</span>
+                <h5>Situatives Coaching</h5>
+              </header>
+              <dl class="format-compare__meta">
+              <div class="format-compare__row">
+                <dt>Dauer / Setting</dt>
+                <dd>1–3 Termine à 2–3 Stunden</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Typischer Anlass</dt>
+                <dd>Konkrete Führungssituation, wichtiges Gespräch oder Entscheidung</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Ergebnis</dt>
+                <dd>Klarheit, Handlungsoptionen, Gesprächsvorbereitung</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Gut geeignet für</dt>
+                <dd>Führungskräfte mit akutem Klärungsbedarf</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Weniger geeignet für</dt>
+                <dd>Langfristige Entwicklungsthemen ohne zeitlichen Druck</dd>
+              </div>
+              </dl>
+            </article>
+            <article class="format-compare__card" id="format-onboarding" data-format="onboarding" data-group="anlass">
+              <header class="format-compare__card-head">
+                <span class="format-compare__badge">Anlass</span>
+                <h5>Onboarding-Coaching</h5>
+              </header>
+              <dl class="format-compare__meta">
+              <div class="format-compare__row">
+                <dt>Dauer / Setting</dt>
+                <dd>3–6 Termine über mehrere Wochen</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Typischer Anlass</dt>
+                <dd>Übernahme eines neuen Unternehmens, Bereichs oder einer Führungsrolle</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Ergebnis</dt>
+                <dd>Systematischer Einstieg, Rollenklärung, Vermeidung früher Fehltritte</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Gut geeignet für</dt>
+                <dd>Neue Geschäftsführer, Bereichsleiter, Führungskräfte nach Wechsel</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Weniger geeignet für</dt>
+                <dd>Etablierte Führungskräfte ohne Rollenwechsel</dd>
+              </div>
+              </dl>
+            </article>
+            <article class="format-compare__card" id="format-positionierung" data-format="positionierung" data-group="anlass">
+              <header class="format-compare__card-head">
+                <span class="format-compare__badge">Anlass</span>
+                <h5>Positionierungs-Coaching</h5>
+              </header>
+              <dl class="format-compare__meta">
+              <div class="format-compare__row">
+                <dt>Dauer / Setting</dt>
+                <dd>2–4 Termine</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Typischer Anlass</dt>
+                <dd>Unklare Rolle im Unternehmen, Veränderungen in der Organisationsstruktur</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Ergebnis</dt>
+                <dd>Struktureller Überblick, klare Positionierung im Gefüge</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Gut geeignet für</dt>
+                <dd>Führungskräfte nach Reorganisation oder bei Rollenunsicherheit</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Weniger geeignet für</dt>
+                <dd>Rein fachliche Aufgaben ohne organisationale Dimension</dd>
+              </div>
+              </dl>
+            </article>
+            <article class="format-compare__card" id="format-aufgaben" data-format="aufgaben" data-group="anlass">
+              <header class="format-compare__card-head">
+                <span class="format-compare__badge">Anlass</span>
+                <h5>Aufgabenbezogenes Coaching</h5>
+              </header>
+              <dl class="format-compare__meta">
+              <div class="format-compare__row">
+                <dt>Dauer / Setting</dt>
+                <dd>2–5 Termine, ggf. mit Trainingselementen</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Typischer Anlass</dt>
+                <dd>Konkrete Führungsaufgabe (Feedback, Delegation, schwieriges Gespräch)</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Ergebnis</dt>
+                <dd>Praxisnahe Werkzeuge und Umsetzung für die konkrete Aufgabe</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Gut geeignet für</dt>
+                <dd>Führungskräfte mit klar umrissener Aufgabenstellung</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Weniger geeignet für</dt>
+                <dd>Grundsätzliche Orientierungs- oder Identitätsfragen</dd>
+              </div>
+              </dl>
+            </article>
+            <article class="format-compare__card" id="format-persoenlichkeit" data-format="persoenlichkeit" data-group="anlass">
+              <header class="format-compare__card-head">
+                <span class="format-compare__badge">Anlass</span>
+                <h5>Persönlichkeitscoaching</h5>
+              </header>
+              <dl class="format-compare__meta">
+              <div class="format-compare__row">
+                <dt>Dauer / Setting</dt>
+                <dd>4–8 Termine über mehrere Monate</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Typischer Anlass</dt>
+                <dd>Selbstentwicklung, Reflexion der eigenen Wirkung, Potenzialanalyse</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Ergebnis</dt>
+                <dd>Vertiefte Selbsterkenntnis, neue Zielsetzungen, nachhaltige Entwicklung</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Gut geeignet für</dt>
+                <dd>Führungskräfte mit Raum für langfristige persönliche Entwicklung</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Weniger geeignet für</dt>
+                <dd>Akute Krisen oder unmittelbar anstehende Entscheidungen</dd>
+              </div>
+              </dl>
+            </article>
+            <article class="format-compare__card" id="format-therapeutisch" data-format="therapeutisch" data-group="anlass">
+              <header class="format-compare__card-head">
+                <span class="format-compare__badge">Anlass</span>
+                <h5>Therapeutisches Coaching</h5>
+              </header>
+              <dl class="format-compare__meta">
+              <div class="format-compare__row">
+                <dt>Dauer / Setting</dt>
+                <dd>Individuell, oft längerfristig</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Typischer Anlass</dt>
+                <dd>Motivationsschwierigkeiten, Burnout-Verdacht, Energieverlust, innere Konflikte</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Ergebnis</dt>
+                <dd>Ursachenklärung, Stabilisierung, Abgrenzung von rein fachlichen Themen</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Gut geeignet für</dt>
+                <dd>Situationen an der Grenze von Coaching und Therapie — mit Approbation abgedeckt</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Weniger geeignet für</dt>
+                <dd>Reine Business- oder Strategiefragen ohne persönliche Belastung</dd>
+              </div>
+              </dl>
+            </article>
+            <article class="format-compare__card" id="format-intensiv" data-format="intensiv" data-group="durchfuehrung">
+              <header class="format-compare__card-head">
+                <span class="format-compare__badge">Durchführung</span>
+                <h5>Intensiv-Settings</h5>
+              </header>
+              <dl class="format-compare__meta">
+              <div class="format-compare__row">
+                <dt>Dauer / Setting</dt>
+                <dd>1–2 intensive Termine à 3–4 Stunden</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Typischer Anlass</dt>
+                <dd>Wenig Zeit, hoher Klärungsbedarf — voller Kalender</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Ergebnis</dt>
+                <dd>Komprimierte Arbeit an einer Kernfrage mit nachhaltiger Wirkung</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Gut geeignet für</dt>
+                <dd>Führungskräfte, die selten regelmäßige Termine wahrnehmen können</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Weniger geeignet für</dt>
+                <dd>Themen, die Kontinuität und längere Begleitung erfordern</dd>
+              </div>
+              </dl>
+            </article>
+            <article class="format-compare__card" id="format-smart" data-format="smart" data-group="durchfuehrung">
+              <header class="format-compare__card-head">
+                <span class="format-compare__badge">Durchführung</span>
+                <h5>Smart-Coaching</h5>
+              </header>
+              <dl class="format-compare__meta">
+              <div class="format-compare__row">
+                <dt>Dauer / Setting</dt>
+                <dd>Kurze Impulse (30–45 Min.) per Telefon oder Video</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Typischer Anlass</dt>
+                <dd>Zwischen den Terminen, vor wichtigen Situationen, schnelle Reflexion</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Ergebnis</dt>
+                <dd>Orientierung und Klarheit ohne großen Zeitaufwand</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Gut geeignet für</dt>
+                <dd>Führungskräfte mit wenig Zeit zwischen den Hauptterminen</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Weniger geeignet für</dt>
+                <dd>Tiefgehende Klärung komplexer Situationen</dd>
+              </div>
+              </dl>
+            </article>
+            <article class="format-compare__card" id="format-cotj" data-format="cotj" data-group="durchfuehrung">
+              <header class="format-compare__card-head">
+                <span class="format-compare__badge">Durchführung</span>
+                <h5>Coaching-on-the-job</h5>
+              </header>
+              <dl class="format-compare__meta">
+              <div class="format-compare__row">
+                <dt>Dauer / Setting</dt>
+                <dd>Begleitung im Arbeitsalltag, Termine vor Ort beim Kunden</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Typischer Anlass</dt>
+                <dd>Umsetzung im direkten Führungskontakt, Beobachtung und Reflexion im Einsatz</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Ergebnis</dt>
+                <dd>Direkter Transfer in die Praxis, Feedback zur Außenwirkung</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Gut geeignet für</dt>
+                <dd>Führungskräfte, die Lernen direkt in der Situation wollen</dd>
+              </div>
+              <div class="format-compare__row">
+                <dt>Weniger geeignet für</dt>
+                <dd>Themen, die vertraulichen Rückzug und Ruhe erfordern</dd>
+              </div>
+              </dl>
+            </article>
+            </div>
+
+            <p class="format-compare__note">Im Erstgespräch klären wir gemeinsam, welches Format zur Situation passt — der Vergleich dient der Orientierung, nicht der Selbstdiagnose.</p>
+          </div>
+          <!-- /FORMAT_COMPARE -->
 
           <div class="detail-block">
             <h4 class="detail-subtitle">Business Coaching und Beratung</h4>
@@ -283,12 +642,61 @@
           <a href="kontakt" class="btn btn-primary">Kontakt</a>
         </div>
       </aside>
+      <aside class="container page-next-step">
+        <div class="card card--lead page-next-step__card">
+          <p class="eyebrow">Nächster Schritt</p>
+          <h2 class="page-next-step__title">Coaching-Gespräch vereinbaren</h2>
+          <p class="page-next-step__text">Sie möchten Klarheit in einer konkreten Führungssituation? Schreiben Sie mir — wir finden einen passenden Rahmen.</p>
+          <a href="kontakt" class="btn btn-primary">Kontakt</a>
+        </div>
+      </aside>
+      <aside class="container page-next-step">
+        <div class="card card--lead page-next-step__card">
+          <p class="eyebrow">Nächster Schritt</p>
+          <h2 class="page-next-step__title">Coaching-Gespräch vereinbaren</h2>
+          <p class="page-next-step__text">Sie möchten Klarheit in einer konkreten Führungssituation? Schreiben Sie mir — wir finden einen passenden Rahmen.</p>
+          <a href="kontakt" class="btn btn-primary">Kontakt</a>
+        </div>
+      </aside>
+      <aside class="container page-next-step">
+        <div class="card card--lead page-next-step__card">
+          <p class="eyebrow">Nächster Schritt</p>
+          <h2 class="page-next-step__title">Coaching-Gespräch vereinbaren</h2>
+          <p class="page-next-step__text">Sie möchten Klarheit in einer konkreten Führungssituation? Schreiben Sie mir — wir finden einen passenden Rahmen.</p>
+          <a href="kontakt" class="btn btn-primary">Kontakt</a>
+        </div>
+      </aside>
+      <aside class="container page-next-step">
+        <div class="card card--lead page-next-step__card">
+          <p class="eyebrow">Nächster Schritt</p>
+          <h2 class="page-next-step__title">Coaching-Gespräch vereinbaren</h2>
+          <p class="page-next-step__text">Sie möchten Klarheit in einer konkreten Führungssituation? Schreiben Sie mir — wir finden einen passenden Rahmen.</p>
+          <a href="kontakt" class="btn btn-primary">Kontakt</a>
+        </div>
+      </aside>
+      <aside class="container page-next-step">
+        <div class="card card--lead page-next-step__card">
+          <p class="eyebrow">Nächster Schritt</p>
+          <h2 class="page-next-step__title">Coaching-Gespräch vereinbaren</h2>
+          <p class="page-next-step__text">Sie möchten Klarheit in einer konkreten Führungssituation? Schreiben Sie mir — wir finden einen passenden Rahmen.</p>
+          <a href="kontakt" class="btn btn-primary">Kontakt</a>
+        </div>
+      </aside>
+      <aside class="container page-next-step">
+        <div class="card card--lead page-next-step__card">
+          <p class="eyebrow">Nächster Schritt</p>
+          <h2 class="page-next-step__title">Coaching-Gespräch vereinbaren</h2>
+          <p class="page-next-step__text">Sie möchten Klarheit in einer konkreten Führungssituation? Schreiben Sie mir — wir finden einen passenden Rahmen.</p>
+          <a href="kontakt" class="btn btn-primary">Kontakt</a>
+        </div>
+      </aside>
     </main>
 
     <footer class="site-footer">
       <div class="container footer-inner">
         <p class="footer-brand">Doris Gunsch</p>
         <p class="footer-tagline">Psychologische Managementberatung</p>
+        <p class="footer-science">Diplom-Psychologin (PPT) · Wissenschaftlicher Hintergrund (PSI-Theorie) · <a href="person">Profil & Qualifikation</a></p>
         <nav aria-label="Fußnavigation">
           <ul>
             <li><a href="kontakt">Kontakt</a></li>
@@ -305,22 +713,22 @@
   <aside class="site-sidebar" id="site-sidebar" aria-label="Navigation">
     <nav class="sidebar-nav">
                 <a href="./" class="sidebar-link">Start</a>
-                <a href="einsatzgebiete" class="sidebar-link sidebar-link--emphasis">Einsatzgebiete</a>
       <details class="sidebar-dropdown sidebar-dropdown--active" open>
         <summary class="sidebar-dropdown__summary">
-          <a href="leistungen" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link">Übersicht</a>
+          <a href="leistungen" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link">Leistungen</a>
           <span class="sidebar-dropdown__toggle" aria-hidden="true">
             <svg class="sidebar-dropdown__chevron" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"></path></svg>
           </span>
         </summary>
         <div class="sidebar-dropdown__panel">
-                    <a href="diagnostik" class="sidebar-link sidebar-link--sub">Diagnostik</a>
-                    <a href="team" class="sidebar-link sidebar-link--sub">Team & Prozess</a>
-                    <a href="trainings" class="sidebar-link sidebar-link--sub">Trainings & Seminare</a>
-                    <a href="coaching" class="sidebar-link is-active sidebar-link--sub">Coaching</a>
+          <a href="coaching" class="sidebar-link is-active sidebar-link--sub">Coaching</a>
+          <a href="trainings" class="sidebar-link sidebar-link--sub">Trainings & Seminare</a>
+          <a href="team" class="sidebar-link sidebar-link--sub">Team & Prozess</a>
+          <a href="diagnostik" class="sidebar-link sidebar-link--sub">Diagnostik</a>
         </div>
       </details>
                 <a href="person" class="sidebar-link sidebar-link--emphasis">Zur Person</a>
+                <a href="einsatzgebiete" class="sidebar-link sidebar-link--emphasis">Einsatzgebiete</a>
                 <a href="psi-aktuell" class="sidebar-link sidebar-link--emphasis">PSI Aktuell</a>
                 <a href="referenzen" class="sidebar-link sidebar-link--emphasis">Referenzen</a>
                 <a href="links" class="sidebar-link sidebar-link--emphasis">Links</a>
@@ -339,6 +747,7 @@
   </aside>
 </div>
 
-  <script src="js/site.js?v=1"></script>
+  <script src="js/site.js?v=2"></script>
+  <script src="js/coaching-formats.js?v=2" defer></script>
 </body>
 </html>

@@ -34,6 +34,8 @@ def test_page_href() -> None:
     assert page_href("index.html") == "./"
     assert page_href("kontakt.html", "../") == "../kontakt"
     assert page_href("standorte/berlin.html", "../../") == "../../standorte/berlin"
+    # EN einsatzgebiete and EN standorte are siblings under en/
+    assert page_href("standorte/berlin.html", "") == "standorte/berlin"
 
 
 def test_clean_internal_hrefs() -> None:

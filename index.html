@@ -17,9 +17,9 @@
   <link rel="preload" href="public/doris-logo-400.webp" as="image" type="image/webp" fetchpriority="high">
   <link rel="preload" href="public/fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="public/fonts/cormorant-garamond-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="css/styles.css?v=1" as="style">
-  <link rel="stylesheet" href="css/fonts.css?v=1">
-  <link rel="stylesheet" href="css/styles.css?v=1">
+  <link rel="preload" href="css/styles.css?v=2" as="style">
+  <link rel="stylesheet" href="css/fonts.css?v=2">
+  <link rel="stylesheet" href="css/styles.css?v=2">
   <link rel="icon" href="public/favicon.ico?v=3" sizes="any">
   <link rel="icon" type="image/png" sizes="48x48" href="public/favicon-48.png?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32.png?v=3">
@@ -166,11 +166,11 @@
           <p class="hero-kicker">Osnabrück · Psychologische Managementberatung</p>
           <h1>Ihr Potenzial nutzen — persönlich, im Team, im Unternehmen</h1>
           <span class="brand-line brand-line--after-title" aria-hidden="true"></span>
+          <!-- HOME_HERO_LEAD -->
           <p class="hero-lead">
-            Coaching, PSI-Diagnostik und Prozessbegleitung für Führungskräfte in Mittelstand,
-            Gesundheitswesen und Verwaltung — wissenschaftlich fundiert, mit über 20 Jahren
-            Mandatserfahrung und Büro in der Newtonstraße.
+            Coaching und Prozessbegleitung für Führungskräfte in Mittelstand, Gesundheitswesen und Verwaltung — mit über 20 Jahren Erfahrung, Büro in der Newtonstraße, Osnabrück.
           </p>
+          <!-- /HOME_HERO_LEAD -->
           <div class="hero-actions">
             <a href="kontakt" class="btn btn-primary">Kontakt aufnehmen</a>
             <a href="leistungen" class="btn-text">Leistungen ansehen →</a>
@@ -209,48 +209,70 @@
             </article>
           </div>
         </div>
+        <!-- PSI_HOME_BRIDGE -->
+        <p class="home-science-note">
+          <strong>Mehr als Gesprächscoaching.</strong> Beratung auf Basis von Persönlichkeitspsychologie und validierter Diagnostik — kein Typen-Test, sondern ein präziser Blick auf Verhalten unter Druck.
+          <a href="diagnostik" class="card-link">Mehr zur Diagnostik</a>
+        </p>
+          <!-- /PSI_HOME_BRIDGE -->
         <p class="home-references">
           Vertrauen von Organisationen wie <strong>Telekom</strong>, <strong>BARMER</strong> und
           <strong>Lindt &amp; Sprüngli</strong> — sowie Kliniken, Verbänden und Mittelstandsunternehmen
-          in ganz Deutschland. <a href="referenzen">Alle Referenzen →</a>
+          in ganz Deutschland. <a href="referenzen" class="home-references-link">Alle Referenzen</a>
         </p>
-        <p class="home-more"><a href="leistungen">Alle Leistungen im Überblick →</a></p>
-
+                <details class="home-standorte">
+          <summary>Beratung in Ihrer Region</summary>
+          <p class="home-standorte-intro">Coaching und Prozessbegleitung für Führungskräfte — Büro in Osnabrück, Mandate im Nordwesten und deutschlandweit.</p>
+          <p class="home-standorte-group-label">Nordwesten</p>
+          <ul class="home-standorte-list">
+            <li><a href="standorte/osnabrueck">Osnabrück — Hauptsitz</a></li>
+            <li><a href="standorte/muenster">Münster — Verwaltung &amp; Institutionen</a></li>
+            <li><a href="standorte/oldenburg">Oldenburg — Gesundheit &amp; Soziales</a></li>
+            <li><a href="standorte/hannover">Hannover — große Organisationen</a></li>
+            <li><a href="standorte/bremen">Bremen — Wandel &amp; Verantwortung</a></li>
+          </ul>
+          <p class="home-standorte-group-label">Weitere Städte</p>
+          <ul class="home-standorte-list">
+            <li><a href="standorte/hamburg">Hamburg — Metropole &amp; Kommunikation</a></li>
+            <li><a href="standorte/berlin">Berlin — Verbände &amp; Transformation</a></li>
+            <li><a href="standorte/frankfurt">Frankfurt — Entscheidungsdruck &amp; Verantwortung</a></li>
+            <li><a href="standorte/muenchen">München — Leistung &amp; internationale Teams</a></li>
+            <li><a href="standorte/duesseldorf">Düsseldorf — Wirtschaft &amp; Führungsdynamik</a></li>
+          </ul>
+          <p class="home-standorte-more"><a href="einsatzgebiete" class="card-link">Alle Einsatzgebiete auf der Karte</a></p>
+        </details>
       </div>
     </section>
 
-    <section class="section page-section page-section--roomy">
-      <div class="container home-person">
-        <div class="profile-grid">
-          <div class="profile-image home-person-image">
-            <picture>
-              <source srcset="public/doris-web-600.webp" type="image/webp">
-              <img src="public/doris-web-600.jpg" alt="Doris Gunsch" class="profile-photo" width="600" height="511" loading="lazy" decoding="async">
-            </picture>
-          </div>
-          <div class="profile-content">
-            <h2 class="home-person-name">Doris Gunsch</h2>
-            <p class="home-person-text">
-              Seit über 20 Jahren unterstütze ich Menschen, Teams und Unternehmen darin,
-              ihre Potenziale zu nutzen und handlungsorientierte Strategien umzusetzen —
-              mit Consulting-Erfahrung aus dem Management, Lehrtätigkeit an der Universität
-              Osnabrück und Zugehörigkeit zum Team von Prof. Julius Kuhl.
-            </p>
-            <a href="person" class="card-link home-person-link">Profil lesen</a>
-          </div>
-        </div>
-      </div>
-    </section>
-<section class="section page-section page-section--cta">
+    <section class="section section-alt page-section page-section--compact home-closing-section">
       <div class="container">
-        <div class="home-contact-band">
-          <span class="brand-line" aria-hidden="true"></span>
-          <h2 class="home-contact-title">Passt das — kurz sprechen?</h2>
-          <p class="home-contact-lead">Rufen Sie an oder schreiben Sie mir — wir klären in einem ersten Gespräch, ob und wie ich Sie begleiten kann.</p>
-          <div class="hero-actions">
-            <a href="tel:+4954114496" class="btn btn-primary">Gerne anrufen</a>
-            <a href="mailto:dg@doris-gunsch.eu" class="btn-text">E-Mail schreiben →</a>
+        <div class="home-closing">
+          <div class="home-closing__person">
+            <div class="profile-image home-person-image">
+              <picture>
+                <source srcset="public/doris-web-600.webp" type="image/webp">
+                <img src="public/doris-web-600.jpg" alt="" class="profile-photo" width="600" height="511" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <div class="profile-content">
+              <h2 class="home-person-name">Doris Gunsch</h2>
+              <!-- HOME_PERSON_TEXT -->
+            <p class="home-person-text">
+              Seit über 20 Jahren begleite ich Führungskräfte, Teams und Organisationen in Veränderungs- und Konfliktsituationen — vertraulich, strukturiert und mit Blick auf das, was wirklich trägt.
+            </p>
+          <!-- /HOME_PERSON_TEXT -->
+              <a href="person" class="card-link home-person-link">Profil lesen</a>
+            </div>
           </div>
+          <aside class="home-contact-band home-closing__cta" aria-label="Kontakt">
+            <span class="brand-line" aria-hidden="true"></span>
+            <h2 class="home-contact-title">Passt das — kurz sprechen?</h2>
+            <p class="home-contact-lead">Rufen Sie an oder schreiben Sie mir — wir klären in einem ersten Gespräch, ob und wie ich Sie begleiten kann.</p>
+            <div class="hero-actions">
+              <a href="tel:+4954114496" class="btn btn-primary">Anrufen</a>
+              <a href="mailto:dg@doris-gunsch.eu" class="btn btn-secondary">E-Mail schreiben</a>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
@@ -260,6 +282,7 @@
       <div class="container footer-inner">
         <p class="footer-brand">Doris Gunsch</p>
         <p class="footer-tagline">Psychologische Managementberatung</p>
+        <p class="footer-science">Diplom-Psychologin (PPT) · Wissenschaftlicher Hintergrund (PSI-Theorie) · <a href="person">Profil & Qualifikation</a></p>
         <nav aria-label="Fußnavigation">
           <ul>
             <li><a href="kontakt">Kontakt</a></li>
@@ -276,22 +299,22 @@
   <aside class="site-sidebar" id="site-sidebar" aria-label="Navigation">
     <nav class="sidebar-nav">
                 <a href="./" class="sidebar-link is-active">Start</a>
-                <a href="einsatzgebiete" class="sidebar-link sidebar-link--emphasis">Einsatzgebiete</a>
       <details class="sidebar-dropdown">
         <summary class="sidebar-dropdown__summary">
-          <a href="leistungen" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link">Übersicht</a>
+          <a href="leistungen" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link">Leistungen</a>
           <span class="sidebar-dropdown__toggle" aria-hidden="true">
             <svg class="sidebar-dropdown__chevron" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"></path></svg>
           </span>
         </summary>
         <div class="sidebar-dropdown__panel">
-                    <a href="diagnostik" class="sidebar-link sidebar-link--sub">Diagnostik</a>
-                    <a href="team" class="sidebar-link sidebar-link--sub">Team & Prozess</a>
-                    <a href="trainings" class="sidebar-link sidebar-link--sub">Trainings & Seminare</a>
-                    <a href="coaching" class="sidebar-link sidebar-link--sub">Coaching</a>
+          <a href="coaching" class="sidebar-link sidebar-link--sub">Coaching</a>
+          <a href="trainings" class="sidebar-link sidebar-link--sub">Trainings & Seminare</a>
+          <a href="team" class="sidebar-link sidebar-link--sub">Team & Prozess</a>
+          <a href="diagnostik" class="sidebar-link sidebar-link--sub">Diagnostik</a>
         </div>
       </details>
                 <a href="person" class="sidebar-link sidebar-link--emphasis">Zur Person</a>
+                <a href="einsatzgebiete" class="sidebar-link sidebar-link--emphasis">Einsatzgebiete</a>
                 <a href="psi-aktuell" class="sidebar-link sidebar-link--emphasis">PSI Aktuell</a>
                 <a href="referenzen" class="sidebar-link sidebar-link--emphasis">Referenzen</a>
                 <a href="links" class="sidebar-link sidebar-link--emphasis">Links</a>
@@ -310,6 +333,6 @@
   </aside>
 </div>
 
-  <script src="js/site.js?v=1"></script>
+  <script src="js/site.js?v=2"></script>
 </body>
 </html>

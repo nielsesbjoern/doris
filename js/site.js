@@ -222,4 +222,90 @@
   }
 
   initScrollProgress();
+
+  function initMapSync() {
+    const mapRoot = document.querySelector('.map-standalone--interactive');
+    if (!mapRoot) return;
+
+    const mapCities = mapRoot.querySelectorAll('.map-city[data-slug]');
+    const hitTargets = mapRoot.querySelectorAll('.map-city-hit');
+    const listItems = document.querySelectorAll('[data-slug]');
+    const listBySlug = new Map();
+
+    listItems.forEach((item) => {
+      const slug = item.dataset.slug;
+      if (!slug || item.closest('.map-standalone--interactive')) return;
+      if (!listBySlug.has(slug)) {
+        listBySlug.set(slug, []);
+      }
+      listBySlug.get(slug).push(item);
+    });
+
+    function clearActive() {
+      mapCities.forEach((city) => city.classList.remove('is-active'));
+      listBySlug.forEach((items) => {
+        items.forEach((item) => item.classList.remove('is-highlighted'));
+      });
+    }
+
+    function setActive(slug) {
+      if (!slug) return;
+      clearActive();
+      mapRoot.querySelectorAll(`.map-city[data-slug="${slug}"]`).forEach((city) => {
+        city.classList.add('is-active');
+      });
+      (listBySlug.get(slug) || []).forEach((item) => {
+        item.classList.add('is-highlighted');
+      });
+    }
+
+    function staysOnMapCity(related) {
+      return related && mapRoot.contains(related) && related.closest('.map-city-hit');
+    }
+
+    hitTargets.forEach((hit) => {
+      const city = hit.closest('.map-city');
+      const slug = city?.dataset.slug;
+      if (!slug) return;
+
+      hit.addEventListener('mouseenter', () => setActive(slug));
+      hit.addEventListener('mouseleave', (e) => {
+        if (!staysOnMapCity(e.relatedTarget)) {
+          clearActive();
+        }
+      });
+    });
+
+    mapCities.forEach((city) => {
+      const slug = city.dataset.slug;
+      if (!slug || !city.classList.contains('map-city--link')) return;
+
+      city.addEventListener('focusin', () => setActive(slug));
+      city.addEventListener('focusout', (e) => {
+        if (!staysOnMapCity(e.relatedTarget) && !mapRoot.contains(e.relatedTarget)) {
+          clearActive();
+        }
+      });
+    });
+
+    listBySlug.forEach((items, slug) => {
+      items.forEach((item) => {
+        item.addEventListener('mouseenter', () => setActive(slug));
+        item.addEventListener('mouseleave', clearActive);
+        item.addEventListener('focusin', () => setActive(slug));
+        item.addEventListener('focusout', (e) => {
+          const related = e.relatedTarget;
+          const staysInPair = related && (
+            related.closest(`[data-slug="${slug}"]`) ||
+            mapRoot.querySelector(`.map-city[data-slug="${slug}"]`)?.contains(related)
+          );
+          if (!staysInPair) {
+            clearActive();
+          }
+        });
+      });
+    });
+  }
+
+  initMapSync();
 })();

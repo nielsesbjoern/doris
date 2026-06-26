@@ -16,9 +16,9 @@
   <meta name="description" content="Selected references from business, healthcare and the public sector — trust built through long-term collaboration.">
   <link rel="preload" href="../public/fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../public/fonts/cormorant-garamond-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../css/styles.css?v=1" as="style">
-  <link rel="stylesheet" href="../css/fonts.css?v=1">
-  <link rel="stylesheet" href="../css/styles.css?v=1">
+  <link rel="preload" href="../css/styles.css?v=2" as="style">
+  <link rel="stylesheet" href="../css/fonts.css?v=2">
+  <link rel="stylesheet" href="../css/styles.css?v=2">
   <link rel="icon" href="../public/favicon.ico?v=3" sizes="any">
   <link rel="icon" type="image/png" sizes="48x48" href="../public/favicon-48.png?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="../public/favicon-32.png?v=3">
@@ -134,197 +134,251 @@
           </p>
         </header>
 
-        <div class="referenzen-featured">
+        <div class="referenzen-featured" id="referenzen-featured">
           <h2 class="referenzen-featured-title">Selected references</h2>
           <ul class="referenzen-featured-list">
-          <li class="referenzen-featured-item">Telekom AG</li>
-          <li class="referenzen-featured-item"><span class="referenzen-featured-name">BARMER</span> <span class="ref-tag ref-tag--stacked">Collaboration</span></li>
-          <li class="referenzen-featured-item">Lindt &amp; Sprüngli GmbH, Aachen</li>
+          <li class="referenzen-featured-item" data-sector="it-telekom-energie" data-name="telekom ag">Telekom AG</li>
+          <li class="referenzen-featured-item" data-sector="gesundheit-soziales" data-name="barmer collaboration"><span class="referenzen-featured-name">BARMER</span> <span class="ref-tag ref-tag--stacked">Collaboration</span></li>
+          <li class="referenzen-featured-item" data-sector="konsumgueter-handel" data-name="lindt &amp; sprüngli gmbh, aachen">Lindt &amp; Sprüngli GmbH, Aachen</li>
           </ul>
         </div>
 
-        <div class="referenzen-sectors">
-        <details class="referenzen-sector">
+        <div class="referenzen-toolbar" role="search">
+          <div class="referenzen-filter" role="group" aria-label="Filter by sector">
+          <button type="button" class="referenzen-filter__chip is-active" data-sector="all" aria-pressed="true">
+            All sectors
+          </button>
+          <button type="button" class="referenzen-filter__chip" data-sector="gesundheit-soziales" aria-pressed="false">
+            Healthcare &amp; social services
+          </button>
+          <button type="button" class="referenzen-filter__chip" data-sector="industrie-technik" aria-pressed="false">
+            Industry &amp; engineering
+          </button>
+          <button type="button" class="referenzen-filter__chip" data-sector="it-telekom-energie" aria-pressed="false">
+            IT, telecommunications &amp; energy
+          </button>
+          <button type="button" class="referenzen-filter__chip" data-sector="automotive-maschinenbau" aria-pressed="false">
+            Automotive &amp; mechanical engineering
+          </button>
+          <button type="button" class="referenzen-filter__chip" data-sector="konsumgueter-handel" aria-pressed="false">
+            Consumer goods &amp; retail
+          </button>
+          <button type="button" class="referenzen-filter__chip" data-sector="finanzen-versicherung" aria-pressed="false">
+            Finance &amp; insurance
+          </button>
+          <button type="button" class="referenzen-filter__chip" data-sector="personal-beratung" aria-pressed="false">
+            HR &amp; consulting
+          </button>
+          <button type="button" class="referenzen-filter__chip" data-sector="oeffentlicher-sektor" aria-pressed="false">
+            Public sector
+          </button>
+          <button type="button" class="referenzen-filter__chip" data-sector="bildung-kultur-wissenschaft" aria-pressed="false">
+            Education, culture &amp; science
+          </button>
+          <button type="button" class="referenzen-filter__chip" data-sector="weitere-unternehmen" aria-pressed="false">
+            Other companies
+          </button>
+          </div>
+          <label class="referenzen-search">
+            <span class="visually-hidden">Search companies</span>
+            <input
+              type="search"
+              id="referenzen-search"
+              class="referenzen-search__input"
+              placeholder="Search companies …"
+              autocomplete="off"
+              enterkeyhint="search">
+          </label>
+          <p class="referenzen-filter-status" id="referenzen-filter-status" aria-live="polite" aria-atomic="true"></p>
+        </div>
+
+        <p class="referenzen-empty" id="referenzen-empty" hidden>
+          No results — reset filters
+          <button type="button" class="referenzen-empty__reset" id="referenzen-reset">Reset filters</button>
+        </p>
+
+        <div class="referenzen-sectors" id="referenzen-sectors">
+        <details class="referenzen-sector" id="sector-gesundheit-soziales" data-sector="gesundheit-soziales">
           <summary class="referenzen-sector-title">
             <span class="referenzen-sector-name">Healthcare &amp; social services</span>
             <span class="referenzen-sector-meta">26 companies</span>
           </summary>
           <ul class="referenzen-list">
-            <li>BBraun Melsungen AG</li>
-            <li>BBraun Travacare GmbH</li>
-            <li>Bildungsinstitut Gesundheit am Klinikum Leer</li>
-            <li>Caritas Pflegezentrum Georgsmarienhütte GmbH</li>
-            <li>Deutsche Leberhilfe e.V.</li>
-            <li>Die Akademie am Klinikum Osnabrück</li>
-            <li>Elisabeth-Kinderkrankenhaus im Klinikum Oldenburg</li>
-            <li>Euregioklinik Nordhorn</li>
-            <li>Evangelisches Krankenhaus Oldenburg</li>
-            <li>FERRING Arzneimittel GmbH</li>
-            <li>Kinderklinik Siegen</li>
-            <li>Klinikum Oldenburg</li>
-            <li>Klinikum Osnabrück</li>
-            <li>Krankenhaus Agatharied GmbH</li>
-            <li>Landesbildungszentrum für Hörgeschädigte Osnabrück</li>
-            <li>Lebenshilfe Nordhorn gGmbH</li>
-            <li>Malteser Hilfsdienst e.V.</li>
-            <li>Marienhospital Hamm</li>
-            <li>Medizinische Hochschule Hannover</li>
-            <li>MedoClin Hedon Klinik Lingen</li>
-            <li>MVZ Dentologicum GbR Hamburg</li>
-            <li>Nephrologisches Zentrum Emsland</li>
-            <li>Sozialstation der Diakonie, Oldenburg</li>
-            <li>St.-Vinzenz-Hospital Haselünne GmbH</li>
-            <li>Stiftung Neuerkerode</li>
-            <li>Villa Savelsberg Pflegedienst</li>
+            <li data-name="bbraun melsungen ag">BBraun Melsungen AG</li>
+            <li data-name="bbraun travacare gmbh">BBraun Travacare GmbH</li>
+            <li data-name="bildungsinstitut gesundheit am klinikum leer">Bildungsinstitut Gesundheit am Klinikum Leer</li>
+            <li data-name="caritas pflegezentrum georgsmarienhütte gmbh">Caritas Pflegezentrum Georgsmarienhütte GmbH</li>
+            <li data-name="deutsche leberhilfe e.v.">Deutsche Leberhilfe e.V.</li>
+            <li data-name="die akademie am klinikum osnabrück">Die Akademie am Klinikum Osnabrück</li>
+            <li data-name="elisabeth-kinderkrankenhaus im klinikum oldenburg">Elisabeth-Kinderkrankenhaus im Klinikum Oldenburg</li>
+            <li data-name="euregioklinik nordhorn">Euregioklinik Nordhorn</li>
+            <li data-name="evangelisches krankenhaus oldenburg">Evangelisches Krankenhaus Oldenburg</li>
+            <li data-name="ferring arzneimittel gmbh">FERRING Arzneimittel GmbH</li>
+            <li data-name="kinderklinik siegen">Kinderklinik Siegen</li>
+            <li data-name="klinikum oldenburg">Klinikum Oldenburg</li>
+            <li data-name="klinikum osnabrück">Klinikum Osnabrück</li>
+            <li data-name="krankenhaus agatharied gmbh">Krankenhaus Agatharied GmbH</li>
+            <li data-name="landesbildungszentrum für hörgeschädigte osnabrück">Landesbildungszentrum für Hörgeschädigte Osnabrück</li>
+            <li data-name="lebenshilfe nordhorn ggmbh">Lebenshilfe Nordhorn gGmbH</li>
+            <li data-name="malteser hilfsdienst e.v.">Malteser Hilfsdienst e.V.</li>
+            <li data-name="marienhospital hamm">Marienhospital Hamm</li>
+            <li data-name="medizinische hochschule hannover">Medizinische Hochschule Hannover</li>
+            <li data-name="medoclin hedon klinik lingen">MedoClin Hedon Klinik Lingen</li>
+            <li data-name="mvz dentologicum gbr hamburg">MVZ Dentologicum GbR Hamburg</li>
+            <li data-name="nephrologisches zentrum emsland">Nephrologisches Zentrum Emsland</li>
+            <li data-name="sozialstation der diakonie, oldenburg">Sozialstation der Diakonie, Oldenburg</li>
+            <li data-name="st.-vinzenz-hospital haselünne gmbh">St.-Vinzenz-Hospital Haselünne GmbH</li>
+            <li data-name="stiftung neuerkerode">Stiftung Neuerkerode</li>
+            <li data-name="villa savelsberg pflegedienst">Villa Savelsberg Pflegedienst</li>
           </ul>
         </details>
 
-        <details class="referenzen-sector">
+        <details class="referenzen-sector" id="sector-industrie-technik" data-sector="industrie-technik">
           <summary class="referenzen-sector-title">
             <span class="referenzen-sector-name">Industry &amp; engineering</span>
             <span class="referenzen-sector-meta">15 companies</span>
           </summary>
           <ul class="referenzen-list">
-            <li>CKS Systeme GmbH</li>
-            <li>Eichsfelder Energie- und Wasserversorgungs GmbH</li>
-            <li>EWEX Engineering GmbH + Co. KG, Boxberg</li>
-            <li>Eylarduswerk, Bad Bentheim</li>
-            <li>Hartford Steam Boiler International GmbH</li>
-            <li>Holzner Druckbehälter GmbH</li>
-            <li>Ingenieurgemeinschaft igk Krabbe GmbH &amp; Co. KG</li>
-            <li>Liebherr-Werk Biberach GmbH</li>
-            <li>Lüning Ladenbau GmbH</li>
-            <li>Ruhr-Steinkohle AG</li>
-            <li>Salzgitter Mannesmann Line Pipe GmbH</li>
-            <li>Sedai Druck GmbH &amp; Co. KG</li>
-            <li>Sedus Systems GmbH</li>
-            <li>Vanderlande Industries GmbH</li>
-            <li>Wilo SE Werk Minden GmbH</li>
+            <li data-name="cks systeme gmbh">CKS Systeme GmbH</li>
+            <li data-name="eichsfelder energie- und wasserversorgungs gmbh">Eichsfelder Energie- und Wasserversorgungs GmbH</li>
+            <li data-name="ewex engineering gmbh + co. kg, boxberg">EWEX Engineering GmbH + Co. KG, Boxberg</li>
+            <li data-name="eylarduswerk, bad bentheim">Eylarduswerk, Bad Bentheim</li>
+            <li data-name="hartford steam boiler international gmbh">Hartford Steam Boiler International GmbH</li>
+            <li data-name="holzner druckbehälter gmbh">Holzner Druckbehälter GmbH</li>
+            <li data-name="ingenieurgemeinschaft igk krabbe gmbh &amp; co. kg">Ingenieurgemeinschaft igk Krabbe GmbH &amp; Co. KG</li>
+            <li data-name="liebherr-werk biberach gmbh">Liebherr-Werk Biberach GmbH</li>
+            <li data-name="lüning ladenbau gmbh">Lüning Ladenbau GmbH</li>
+            <li data-name="ruhr-steinkohle ag">Ruhr-Steinkohle AG</li>
+            <li data-name="salzgitter mannesmann line pipe gmbh">Salzgitter Mannesmann Line Pipe GmbH</li>
+            <li data-name="sedai druck gmbh &amp; co. kg">Sedai Druck GmbH &amp; Co. KG</li>
+            <li data-name="sedus systems gmbh">Sedus Systems GmbH</li>
+            <li data-name="vanderlande industries gmbh">Vanderlande Industries GmbH</li>
+            <li data-name="wilo se werk minden gmbh">Wilo SE Werk Minden GmbH</li>
           </ul>
         </details>
 
-        <details class="referenzen-sector">
+        <details class="referenzen-sector" id="sector-it-telekom-energie" data-sector="it-telekom-energie">
           <summary class="referenzen-sector-title">
             <span class="referenzen-sector-name">IT, telecommunications &amp; energy</span>
             <span class="referenzen-sector-meta">3 companies</span>
           </summary>
           <ul class="referenzen-list">
-            <li>Condor Flugdienst GmbH</li>
-            <li>T-Systems International GmbH</li>
-            <li>Vattenfall Deutschland</li>
+            <li data-name="condor flugdienst gmbh">Condor Flugdienst GmbH</li>
+            <li data-name="t-systems international gmbh">T-Systems International GmbH</li>
+            <li data-name="vattenfall deutschland">Vattenfall Deutschland</li>
           </ul>
         </details>
 
-        <details class="referenzen-sector">
+        <details class="referenzen-sector" id="sector-automotive-maschinenbau" data-sector="automotive-maschinenbau">
           <summary class="referenzen-sector-title">
             <span class="referenzen-sector-name">Automotive &amp; mechanical engineering</span>
             <span class="referenzen-sector-meta">2 companies</span>
           </summary>
           <ul class="referenzen-list">
-            <li>Jopp Automotive GmbH</li>
-            <li>Putzmeister Concrete Pumps GmbH, Aichtal</li>
+            <li data-name="jopp automotive gmbh">Jopp Automotive GmbH</li>
+            <li data-name="putzmeister concrete pumps gmbh, aichtal">Putzmeister Concrete Pumps GmbH, Aichtal</li>
           </ul>
         </details>
 
-        <details class="referenzen-sector">
+        <details class="referenzen-sector" id="sector-konsumgueter-handel" data-sector="konsumgueter-handel">
           <summary class="referenzen-sector-title">
             <span class="referenzen-sector-name">Consumer goods &amp; retail</span>
             <span class="referenzen-sector-meta">1 companies</span>
           </summary>
           <ul class="referenzen-list">
-            <li>Feet Control GmbH</li>
+            <li data-name="feet control gmbh">Feet Control GmbH</li>
           </ul>
         </details>
 
-        <details class="referenzen-sector">
+        <details class="referenzen-sector" id="sector-finanzen-versicherung" data-sector="finanzen-versicherung">
           <summary class="referenzen-sector-title">
             <span class="referenzen-sector-name">Finance &amp; insurance</span>
             <span class="referenzen-sector-meta">4 companies</span>
           </summary>
           <ul class="referenzen-list">
-            <li>Oldenburgische Landesbank</li>
-            <li>Operational Services GmbH &amp; Co KG</li>
-            <li>Sparkasse Ostprignitz-Ruppin</li>
-            <li>Stadtsparkasse Schmallenberg</li>
+            <li data-name="oldenburgische landesbank">Oldenburgische Landesbank</li>
+            <li data-name="operational services gmbh &amp; co kg">Operational Services GmbH &amp; Co KG</li>
+            <li data-name="sparkasse ostprignitz-ruppin">Sparkasse Ostprignitz-Ruppin</li>
+            <li data-name="stadtsparkasse schmallenberg">Stadtsparkasse Schmallenberg</li>
           </ul>
         </details>
 
-        <details class="referenzen-sector">
+        <details class="referenzen-sector" id="sector-personal-beratung" data-sector="personal-beratung">
           <summary class="referenzen-sector-title">
             <span class="referenzen-sector-name">HR &amp; consulting</span>
             <span class="referenzen-sector-meta">14 companies</span>
           </summary>
           <ul class="referenzen-list">
-            <li>c-p-o gmbH, CH <span class="ref-tag">Collaboration</span></li>
-            <li>CMC Personal GmbH</li>
-            <li>Empalis GmbH</li>
-            <li>Emprise AG, Düsseldorf</li>
-            <li>Emprise Human Value GmbH</li>
-            <li>Footpower Service GmbH, Gummersbach <span class="ref-tag">Collaboration</span></li>
-            <li>IMPART GmbH, Osnabrück</li>
-            <li>milch &amp; zucker Talent Acquisition &amp; Talent Management Company AG</li>
-            <li>OBIC Voss &amp; Partner GmbH</li>
-            <li>Palaimon Consulting Hamburg</li>
-            <li>SCAN-UP AG, Hamburg</li>
-            <li>Successnet AG München</li>
-            <li>Topalis AG, Stuttgart</li>
-            <li>wilob AG, Weiterbildungsinstitut für lösungsorientierte Therapie und Beratung, CH <span class="ref-tag">Collaboration</span></li>
+            <li data-name="c-p-o gmbh, ch collaboration">c-p-o gmbH, CH <span class="ref-tag">Collaboration</span></li>
+            <li data-name="cmc personal gmbh">CMC Personal GmbH</li>
+            <li data-name="empalis gmbh">Empalis GmbH</li>
+            <li data-name="emprise ag, düsseldorf">Emprise AG, Düsseldorf</li>
+            <li data-name="emprise human value gmbh">Emprise Human Value GmbH</li>
+            <li data-name="footpower service gmbh, gummersbach collaboration">Footpower Service GmbH, Gummersbach <span class="ref-tag">Collaboration</span></li>
+            <li data-name="impart gmbh, osnabrück">IMPART GmbH, Osnabrück</li>
+            <li data-name="milch &amp; zucker talent acquisition &amp; talent management company ag">milch &amp; zucker Talent Acquisition &amp; Talent Management Company AG</li>
+            <li data-name="obic voss &amp; partner gmbh">OBIC Voss &amp; Partner GmbH</li>
+            <li data-name="palaimon consulting hamburg">Palaimon Consulting Hamburg</li>
+            <li data-name="scan-up ag, hamburg">SCAN-UP AG, Hamburg</li>
+            <li data-name="successnet ag münchen">Successnet AG München</li>
+            <li data-name="topalis ag, stuttgart">Topalis AG, Stuttgart</li>
+            <li data-name="wilob ag, weiterbildungsinstitut für lösungsorientierte therapie und beratung, ch collaboration">wilob AG, Weiterbildungsinstitut für lösungsorientierte Therapie und Beratung, CH <span class="ref-tag">Collaboration</span></li>
           </ul>
         </details>
 
-        <details class="referenzen-sector">
+        <details class="referenzen-sector" id="sector-oeffentlicher-sektor" data-sector="oeffentlicher-sektor">
           <summary class="referenzen-sector-title">
             <span class="referenzen-sector-name">Public sector</span>
             <span class="referenzen-sector-meta">13 companies</span>
           </summary>
           <ul class="referenzen-list">
-            <li>BVMW Servicegesellschaft, Berlin</li>
-            <li>Gemeinde Lengede</li>
-            <li>Gemeinde Ritterhude</li>
-            <li>Kreis Pinneberg</li>
-            <li>Landkreis Ammerland</li>
-            <li>Stadt Baden-Baden</li>
-            <li>Stadt Cottbus</li>
-            <li>Stadt Haren</li>
-            <li>Stadt Helmstedt</li>
-            <li>Stadt Leverkusen</li>
-            <li>Stadt Osnabrück</li>
-            <li>Stadt Schwarzenbek</li>
-            <li>Stadt Zehdenick, Brandenburg</li>
+            <li data-name="bvmw servicegesellschaft, berlin">BVMW Servicegesellschaft, Berlin</li>
+            <li data-name="gemeinde lengede">Gemeinde Lengede</li>
+            <li data-name="gemeinde ritterhude">Gemeinde Ritterhude</li>
+            <li data-name="kreis pinneberg">Kreis Pinneberg</li>
+            <li data-name="landkreis ammerland">Landkreis Ammerland</li>
+            <li data-name="stadt baden-baden">Stadt Baden-Baden</li>
+            <li data-name="stadt cottbus">Stadt Cottbus</li>
+            <li data-name="stadt haren">Stadt Haren</li>
+            <li data-name="stadt helmstedt">Stadt Helmstedt</li>
+            <li data-name="stadt leverkusen">Stadt Leverkusen</li>
+            <li data-name="stadt osnabrück">Stadt Osnabrück</li>
+            <li data-name="stadt schwarzenbek">Stadt Schwarzenbek</li>
+            <li data-name="stadt zehdenick, brandenburg">Stadt Zehdenick, Brandenburg</li>
           </ul>
         </details>
 
-        <details class="referenzen-sector">
+        <details class="referenzen-sector" id="sector-bildung-kultur-wissenschaft" data-sector="bildung-kultur-wissenschaft">
           <summary class="referenzen-sector-title">
             <span class="referenzen-sector-name">Education, culture &amp; science</span>
             <span class="referenzen-sector-meta">10 companies</span>
           </summary>
           <ul class="referenzen-list">
-            <li>Akademie Waldschlösschen, Göttingen</li>
-            <li>Berufsbildungswerk Nürnberg</li>
-            <li>Hochschule für Management Technik und Kultur, Osnabrück</li>
-            <li>K.I.T.A. gGmbH</li>
-            <li>Kulturfabrik Kampnagel, Hamburg</li>
-            <li>Rondo Seminarhaus Lembruch</li>
-            <li>Staatliche Hochschule für Musik Trossingen</li>
-            <li>Tanzschule Knaul</li>
-            <li>Theaterpädagogische Werkstatt Osnabrück</li>
-            <li>Universität Osnabrück, FB Persönlichkeitspsychologie</li>
+            <li data-name="akademie waldschlösschen, göttingen">Akademie Waldschlösschen, Göttingen</li>
+            <li data-name="berufsbildungswerk nürnberg">Berufsbildungswerk Nürnberg</li>
+            <li data-name="hochschule für management technik und kultur, osnabrück">Hochschule für Management Technik und Kultur, Osnabrück</li>
+            <li data-name="k.i.t.a. ggmbh">K.I.T.A. gGmbH</li>
+            <li data-name="kulturfabrik kampnagel, hamburg">Kulturfabrik Kampnagel, Hamburg</li>
+            <li data-name="rondo seminarhaus lembruch">Rondo Seminarhaus Lembruch</li>
+            <li data-name="staatliche hochschule für musik trossingen">Staatliche Hochschule für Musik Trossingen</li>
+            <li data-name="tanzschule knaul">Tanzschule Knaul</li>
+            <li data-name="theaterpädagogische werkstatt osnabrück">Theaterpädagogische Werkstatt Osnabrück</li>
+            <li data-name="universität osnabrück, fb persönlichkeitspsychologie">Universität Osnabrück, FB Persönlichkeitspsychologie</li>
           </ul>
         </details>
 
-        <details class="referenzen-sector">
+        <details class="referenzen-sector" id="sector-weitere-unternehmen" data-sector="weitere-unternehmen">
           <summary class="referenzen-sector-title">
             <span class="referenzen-sector-name">Other companies</span>
             <span class="referenzen-sector-meta">6 companies</span>
           </summary>
           <ul class="referenzen-list">
-            <li>Arithnea GmbH</li>
-            <li>Baugenossenschaft Wiederaufbau eG, Braunschweig</li>
-            <li>Knutzen Wohnen GmbH</li>
-            <li>MeDiTa GmbH</li>
-            <li>Stadtsportbund Osnabrück</li>
-            <li>VNB Göttingen</li>
+            <li data-name="arithnea gmbh">Arithnea GmbH</li>
+            <li data-name="baugenossenschaft wiederaufbau eg, braunschweig">Baugenossenschaft Wiederaufbau eG, Braunschweig</li>
+            <li data-name="knutzen wohnen gmbh">Knutzen Wohnen GmbH</li>
+            <li data-name="medita gmbh">MeDiTa GmbH</li>
+            <li data-name="stadtsportbund osnabrück">Stadtsportbund Osnabrück</li>
+            <li data-name="vnb göttingen">VNB Göttingen</li>
           </ul>
         </details>
         </div>
@@ -343,6 +397,7 @@
       <div class="container footer-inner">
         <p class="footer-brand">Doris Gunsch</p>
         <p class="footer-tagline">Psychological Management Consulting</p>
+        <p class="footer-science">Graduate Psychologist (PPT) · Scientific background (PSI theory) · <a href="person">Profile & qualifications</a></p>
         <nav aria-label="Footer navigation">
           <ul>
             <li><a href="kontakt">Contact</a></li>
@@ -359,22 +414,22 @@
   <aside class="site-sidebar" id="site-sidebar" aria-label="Navigation">
     <nav class="sidebar-nav">
                 <a href="./" class="sidebar-link">Home</a>
-                <a href="einsatzgebiete" class="sidebar-link sidebar-link--emphasis">Service areas</a>
       <details class="sidebar-dropdown">
         <summary class="sidebar-dropdown__summary">
-          <a href="leistungen" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link">Overview</a>
+          <a href="leistungen" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link">Services</a>
           <span class="sidebar-dropdown__toggle" aria-hidden="true">
             <svg class="sidebar-dropdown__chevron" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"></path></svg>
           </span>
         </summary>
         <div class="sidebar-dropdown__panel">
-                    <a href="diagnostik" class="sidebar-link sidebar-link--sub">Diagnostics</a>
-                    <a href="team" class="sidebar-link sidebar-link--sub">Team & Process</a>
-                    <a href="trainings" class="sidebar-link sidebar-link--sub">Training & Seminars</a>
-                    <a href="coaching" class="sidebar-link sidebar-link--sub">Coaching</a>
+          <a href="coaching" class="sidebar-link sidebar-link--sub">Coaching</a>
+          <a href="trainings" class="sidebar-link sidebar-link--sub">Training & Seminars</a>
+          <a href="team" class="sidebar-link sidebar-link--sub">Team & Process</a>
+          <a href="diagnostik" class="sidebar-link sidebar-link--sub">Diagnostics</a>
         </div>
       </details>
                 <a href="person" class="sidebar-link sidebar-link--emphasis">About</a>
+                <a href="einsatzgebiete" class="sidebar-link sidebar-link--emphasis">Service areas</a>
                 <a href="psi-aktuell" class="sidebar-link sidebar-link--emphasis">PSI News</a>
                 <a href="referenzen" class="sidebar-link is-active sidebar-link--emphasis">References</a>
                 <a href="links" class="sidebar-link sidebar-link--emphasis">Links</a>
@@ -393,6 +448,7 @@
   </aside>
 </div>
 
-  <script src="../js/site.js?v=1"></script>
+  <script src="../js/site.js?v=2"></script>
+  <script src="../js/referenzen.js?v=2" defer></script>
 </body>
 </html>
