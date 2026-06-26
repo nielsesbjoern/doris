@@ -63,8 +63,6 @@ TEXT = {
             "PSI ist wissenschaftliche Persönlichkeitspsychologie — keine Esoterik "
             "und kein simpler Online-Persönlichkeitstest."
         ),
-        "psi_coaches": "Für Coaches und Multiplikatoren:",
-        "psi_coaches_link": "PSI Weiterbildungen",
         "depth_summary": "Instrumente und wissenschaftliche Grundlagen",
         "footer_science": "Diplom-Psychologin (PPT) · Wissenschaftlicher Hintergrund (PSI-Theorie)",
         "footer_science_link": "Profil & Qualifikation",
@@ -146,8 +144,6 @@ TEXT = {
             "PSI is scientific personality psychology — not esotericism "
             "and not a simple online personality test."
         ),
-        "psi_coaches": "For coaches and multipliers:",
-        "psi_coaches_link": "PSI continuing education",
         "depth_summary": "Instruments and scientific foundations",
         "footer_science": "Graduate Psychologist (PPT) · Scientific background (PSI theory)",
         "footer_science_link": "Profile & qualifications",

@@ -190,7 +190,7 @@ TEXT = {
         "label_suitable": "Gut geeignet für",
         "label_less_suitable": "Weniger geeignet für",
         "note": (
-            "Im Erstgespräch klären wir gemeinsam, welches Format zur Situation passt — "
+            "Gemeinsam klären wir, welches Format zur Situation passt — "
             "der Vergleich dient der Orientierung, nicht der Selbstdiagnose."
         ),
     },
@@ -213,7 +213,7 @@ TEXT = {
         "label_suitable": "Well suited for",
         "label_less_suitable": "Less suited for",
         "note": (
-            "In an initial conversation we clarify together which format fits your situation — "
+            "Together we clarify which format fits your situation — "
             "this comparison is for orientation, not self-diagnosis."
         ),
     },

@@ -11,7 +11,7 @@
     <path class="map-country" d="M168.08,76.61L161.84,76.54L165.49,74.13Z"/>
   </g>
   <g class="map-cities" role="list">
-    <a class="map-city map-city--link" data-slug="osnabrueck" href="standorte/osnabrueck" role="listitem" aria-label="Osnabrück — Büro Newtonstraße 3 — Erstgespräche und Coachings vor Ort">
+    <a class="map-city map-city--link" data-slug="osnabrueck" href="standorte/osnabrueck" role="listitem" aria-label="Osnabrück — Büro Newtonstraße 3 — Coachings und Beratung vor Ort">
     <circle class="map-ring map-ring--home" cx="150.09" cy="203.41" r="10"/>
     <circle class="map-ring map-ring--soft" cx="150.09" cy="203.41" r="16"/>
     <circle class="map-dot map-dot--home" cx="150.09" cy="203.41" r="4.5"/>
@@ -40,6 +40,11 @@
     <text class="map-label" x="165.2" y="161.75" text-anchor="end">Bremen</text>
     <circle class="map-city-hit" cx="175.2" cy="161.75" r="15"/>
     </a>
+    <a class="map-city map-city--link" data-slug="oldenburg" href="standorte/oldenburg" role="listitem" aria-label="Oldenburg — Gesundheitswesen, Sozialwirtschaft und regionale Träger">
+    <circle class="map-dot" cx="155.66" cy="158.4" r="3.5"/>
+    <text class="map-label" x="145.66" y="150.4" text-anchor="end">Oldenburg</text>
+    <circle class="map-city-hit" cx="155.66" cy="158.4" r="12"/>
+    </a>
     <a class="map-city map-city--link" data-slug="duesseldorf" href="standorte/duesseldorf" role="listitem" aria-label="Düsseldorf">
     <circle class="map-dot" cx="107.71" cy="258.25" r="3.5"/>
     <text class="map-label" x="117.71" y="258.25" text-anchor="start">Düsseldorf</text>
@@ -57,20 +62,10 @@
     <text class="map-label" x="257.72" y="419.44" text-anchor="end">München</text>
     <circle class="map-city-hit" cx="267.72" cy="419.44" r="14"/>
     </a>
-    <g class="map-city map-city--nolink" data-slug="koeln" role="listitem">
-    <circle class="map-dot" cx="113.92" cy="273.38" r="3.5"/>
-    <text class="map-label" x="123.92" y="273.38" text-anchor="start">Köln</text>
-    <circle class="map-city-hit" cx="113.92" cy="273.38" r="13"/>
-    </g>
-    <g class="map-city map-city--nolink" data-slug="stuttgart" role="listitem">
-    <circle class="map-dot" cx="187.88" cy="386.05" r="3.5"/>
-    <text class="map-label" x="197.88" y="386.05" text-anchor="start">Stuttgart</text>
-    <circle class="map-city-hit" cx="187.88" cy="386.05" r="13"/>
-    </g>
-    <g class="map-city map-city--nolink" data-slug="zuerich" role="listitem">
+    <a class="map-city map-city--link" data-slug="zuerich" href="standorte/zuerich" role="listitem" aria-label="Zürich — Internationaler Führungskontext">
     <circle class="map-dot" cx="166.55" cy="458.96" r="3.5"/>
     <text class="map-label" x="166.55" y="472.96" text-anchor="middle">Zürich</text>
     <circle class="map-city-hit" cx="166.55" cy="458.96" r="13"/>
-    </g>
+    </a>
   </g>
 </svg>

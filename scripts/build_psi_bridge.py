@@ -137,10 +137,6 @@ def render_diagnostik_top(lang: str, asset: str = "") -> str:
 {benefits}
               </ul>
               <p>{t["psi_note"]}</p>
-              <p>
-                {t["psi_coaches"]}
-                <a href="{page_href("psi-aktuell.html", asset)}" class="card-link">{t["psi_coaches_link"]}</a>
-              </p>
             </div>
           </details>"""
 

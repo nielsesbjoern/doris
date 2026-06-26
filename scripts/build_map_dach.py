@@ -35,11 +35,11 @@ def project(lon, lat):
     return round(x, 2), round(y, 2)
 
 
-def ring_to_path(coords, step=1):
+def ring_to_path(coords, step=1, project_fn=project):
     coords = coords[::step]
     parts = []
     for index, (lon, lat) in enumerate(coords):
-        x, y = project(lon, lat)
+        x, y = project_fn(lon, lat)
         parts.append(("M" if index == 0 else "L") + f"{x:.2f},{y:.2f}")
     return "".join(parts) + "Z"
 
@@ -69,8 +69,8 @@ def hit_radius(city: dict) -> int:
     return DEFAULT_HIT_R
 
 
-def render_city_group(city: dict) -> list[str]:
-    x, y = project(city["lon"], city["lat"])
+def render_city_group(city: dict, project_fn=project) -> list[str]:
+    x, y = project_fn(city["lon"], city["lat"])
     name = city["name_de"]
     slug = city.get("slug")
     data_slug = slug or ""

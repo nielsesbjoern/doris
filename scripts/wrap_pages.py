@@ -31,8 +31,8 @@ META = {
         "schema": "business",
         "title_de": "Psychologische Managementberatung Osnabrück – Doris Gunsch",
         "title_en": "Psychological Management Consulting Osnabrück – Doris Gunsch",
-        "desc_de": "Coaching, Trainings und Prozessbegleitung für Führungskräfte in Veränderungs- und Konfliktsituationen. Büro in Osnabrück, deutschlandweit tätig.",
-        "desc_en": "Coaching, training and process facilitation for leaders in change and conflict situations. Based in Osnabrück, working across Germany.",
+        "desc_de": "Coaching, Trainings und Prozessbegleitung für Führungskräfte in Veränderungs- und Konfliktsituationen. Büro in Osnabrück, im gesamten DACH-Raum tätig.",
+        "desc_en": "Coaching, training and process facilitation for leaders in change and conflict situations. Based in Osnabrück, working across the DACH region.",
     },
     "leistungen.html": {
         "page": "leistungen",
@@ -47,10 +47,10 @@ META = {
         "page": "einsatzgebiete",
         "active": "einsatzgebiete",
         "schema": "webpage",
-        "title_de": "Einsatzgebiete – Von Osnabrück deutschlandweit | Doris Gunsch",
-        "title_en": "Service Areas – From Osnabrück across Germany | Doris Gunsch",
-        "desc_de": "Coaching und Beratung in Osnabrück, bundesweit und hybrid — ausgewählte Einsatzorte in Hamburg, Berlin, Frankfurt, München und weiteren Regionen.",
-        "desc_en": "Coaching and consulting in Osnabrück, nationwide and hybrid — selected locations in Hamburg, Berlin, Frankfurt, Munich and other regions.",
+        "title_de": "Einsatzgebiete – Von Osnabrück im DACH-Raum | Doris Gunsch",
+        "title_en": "Service Areas – From Osnabrück across the DACH region | Doris Gunsch",
+        "desc_de": "Coaching und Beratung in Osnabrück, im DACH-Raum und hybrid — ausgewählte Einsatzorte in Hamburg, Berlin, Frankfurt, München, Zürich und weiteren Regionen.",
+        "desc_en": "Coaching and consulting in Osnabrück, across the DACH region and hybrid — selected locations in Hamburg, Berlin, Frankfurt, Munich, Zurich and other regions.",
     },
     "coaching.html": {
         "page": "leistungen",
@@ -97,15 +97,6 @@ META = {
         "desc_de": "Profil, Qualifikation und Berufserfahrung: Doris Gunsch, Psychologin und Managementberaterin mit über 20 Jahren Erfahrung.",
         "desc_en": "Profile, qualifications and experience: Doris Gunsch, psychologist and management consultant with over 20 years of experience.",
     },
-    "psi-aktuell.html": {
-        "page": "psi",
-        "active": "psi",
-        "schema": "webpage",
-        "title_de": "PSI Weiterbildungen – Doris Gunsch",
-        "title_en": "PSI Continuing Education – Doris Gunsch",
-        "desc_de": "Aktuelle PSI-Theorie-Seminare und Weiterbildungen — Termine und Informationen von Doris Gunsch.",
-        "desc_en": "Current PSI theory seminars and continuing education — dates and information from Doris Gunsch.",
-    },
     "referenzen.html": {
         "page": "referenzen",
         "active": "referenzen",
@@ -128,8 +119,8 @@ META = {
         "page": "kontakt",
         "active": "kontakt",
         "schema": "contact",
-        "title_de": "Kontakt & Erstgespräch – Doris Gunsch",
-        "title_en": "Contact & Initial Meeting – Doris Gunsch",
+        "title_de": "Kontakt – Doris Gunsch",
+        "title_en": "Contact – Doris Gunsch",
         "desc_de": "Kontaktieren Sie Doris Gunsch in Osnabrück: Newtonstraße 3, Telefon +49 (0)541 14496, E-Mail dg@doris-gunsch.eu.",
         "desc_en": "Contact Doris Gunsch in Osnabrück: Newtonstraße 3, phone +49 (0)541 14496, email dg@doris-gunsch.eu.",
     },
@@ -168,7 +159,7 @@ META = {
 
 META.update(STANDORTE_META)
 
-SIDEBAR_KEYS = ["home", "leistungen", "coaching", "trainings", "team", "diagnostik", "person", "einsatzgebiete", "psi", "referenzen", "links"]
+SIDEBAR_KEYS = ["home", "leistungen", "coaching", "trainings", "team", "diagnostik", "person", "einsatzgebiete", "referenzen", "links"]
 
 SERVICE_SUB_PAGES = ("coaching", "trainings", "team", "diagnostik")
 
@@ -181,7 +172,6 @@ SIDEBAR_LABEL_KEYS = {
     "team": "team",
     "diagnostik": "diagnostik",
     "person": "person",
-    "psi": "psi",
     "referenzen": "referenzen",
     "links": "links",
 }
@@ -197,9 +187,8 @@ LABELS = {
         "team": "Team & Prozess",
         "diagnostik": "Diagnostik",
         "person": "Zur Person",
-        "psi": "PSI Aktuell",
         "referenzen": "Referenzen",
-        "links": "Links",
+        "links": "Empfehlungen",
         "impressum": "Impressum",
         "datenschutz": "Datenschutz",
         "contact": "Kontakt",
@@ -210,6 +199,7 @@ LABELS = {
         "footer_nav": "Fußnavigation",
         "back_home": "← Zurück zur Startseite",
         "back_services": "← Zurück zu Leistungen",
+        "back_einsatzgebiete": "← Zurück zu Einsatzgebieten",
         "breadcrumb_aria": "Brotkrumen-Navigation",
         "next_step": "Nächster Schritt",
     },
@@ -223,9 +213,8 @@ LABELS = {
         "team": "Team & Process",
         "diagnostik": "Diagnostics",
         "person": "About",
-        "psi": "PSI News",
         "referenzen": "References",
-        "links": "Links",
+        "links": "Recommendations",
         "impressum": "Legal Notice",
         "datenschutz": "Privacy",
         "contact": "Contact",
@@ -236,6 +225,7 @@ LABELS = {
         "footer_nav": "Footer navigation",
         "back_home": "← Back to home",
         "back_services": "← Back to services",
+        "back_einsatzgebiete": "← Back to service areas",
         "breadcrumb_aria": "Breadcrumb navigation",
         "next_step": "Next step",
     },
@@ -251,7 +241,6 @@ PAGE_TRAILS = {
     "team.html": [("home", "index.html"), ("services", "leistungen.html"), ("team", None)],
     "diagnostik.html": [("home", "index.html"), ("services", "leistungen.html"), ("diagnostik", None)],
     "person.html": [("home", "index.html"), ("person", None)],
-    "psi-aktuell.html": [("home", "index.html"), ("psi", None)],
     "referenzen.html": [("home", "index.html"), ("referenzen", None)],
     "links.html": [("home", "index.html"), ("links", None)],
     "kontakt.html": [("home", "index.html"), ("contact", None)],
@@ -342,11 +331,25 @@ def strip_wrapped_artifacts(content: str) -> str:
     return content
 
 
+def is_standort_page(filename: str) -> bool:
+    return filename.startswith("standorte/")
+
+
 def breadcrumbs(lang: str, filename: str, asset: str, meta: Optional[dict] = None) -> str:
     meta = meta or META.get(filename, {})
     custom_label = meta.get("breadcrumb_" + lang)
     if custom_label:
         L = LABELS[lang]
+        nav = nav_prefix(filename)
+        if is_standort_page(filename):
+            return f"""      <nav class="breadcrumbs-wrap container" aria-label="{L["breadcrumb_aria"]}">
+        <ol class="breadcrumbs">
+        <li class="breadcrumbs__item"><a href="{home_href(filename)}">{L["home"]}</a></li>
+        <li class="breadcrumbs__item"><a href="{page_href("einsatzgebiete.html", nav)}">{L["einsatzgebiete"]}</a></li>
+        <li class="breadcrumbs__item" aria-current="page">{custom_label}</li>
+        </ol>
+      </nav>
+"""
         return f"""      <nav class="breadcrumbs-wrap container" aria-label="{L["breadcrumb_aria"]}">
         <ol class="breadcrumbs">
         <li class="breadcrumbs__item"><a href="{home_href(filename)}">{L["home"]}</a></li>
@@ -387,6 +390,9 @@ def page_back(lang: str, filename: str, _asset: str) -> str:
     if filename in SERVICE_DETAIL_PAGES:
         href = page_href("leistungen.html", nav)
         label = L["back_services"]
+    elif is_standort_page(filename):
+        href = page_href("einsatzgebiete.html", nav)
+        label = L["back_einsatzgebiete"]
     else:
         href = home_href(filename)
         label = L["back_home"]
@@ -412,6 +418,27 @@ def next_step_block(lang: str, filename: str, _asset: str = "") -> str:
         </div>
       </aside>
 """
+
+
+CONTACT_WIZARD_MARKER = "<!-- CONTACT_WIZARD -->"
+CONTACT_WIZARD_SECTION = re.compile(
+    r'<section class="section page-section section-contact-wizard" id="kontakt-anfrage">.*?</section>',
+    re.DOTALL,
+)
+
+
+def contact_wizard_partial(lang: str) -> str:
+    path = ROOT / "partials" / f"contact-wizard.{lang}.html"
+    return path.read_text(encoding="utf-8").strip()
+
+
+def sync_contact_wizard(html: str, lang: str) -> str:
+    partial = contact_wizard_partial(lang)
+    if CONTACT_WIZARD_MARKER in html:
+        return html.replace(CONTACT_WIZARD_MARKER, partial)
+    if 'id="kontakt-anfrage"' in html:
+        return CONTACT_WIZARD_SECTION.sub(partial, html, count=1)
+    return html
 
 
 def extract_main(html: str) -> str:
@@ -447,11 +474,10 @@ def sidebar(lang, active, prefix="", legal_page=None):
         "team": page_href("team.html", p),
         "diagnostik": page_href("diagnostik.html", p),
         "person": page_href("person.html", p),
-        "psi": page_href("psi-aktuell.html", p),
         "referenzen": page_href("referenzen.html", p),
         "links": page_href("links.html", p),
     }
-    emphasis_keys = {"einsatzgebiete", "person", "psi", "referenzen", "links", "leistungen"}
+    emphasis_keys = {"einsatzgebiete", "person", "referenzen", "links", "leistungen"}
 
     def a(k, label, extra=""):
         emph = " sidebar-link--emphasis" if k in emphasis_keys else ""
@@ -483,7 +509,6 @@ def sidebar(lang, active, prefix="", legal_page=None):
       </details>
       {a("person", L["person"])}
       {a("einsatzgebiete", L["einsatzgebiete"])}
-      {a("psi", L["psi"])}
       {a("referenzen", L["referenzen"])}
       {a("links", L["links"])}
     </nav>
@@ -551,6 +576,8 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
         extra_scripts = f'\n  <script src="{asset}js/referenzen.js?v={ASSET_VERSION}" defer></script>'
     elif filename == "coaching.html":
         extra_scripts = f'\n  <script src="{asset}js/coaching-formats.js?v={ASSET_VERSION}" defer></script>'
+    elif filename in ("kontakt.html", "index.html"):
+        extra_scripts = f'\n  <script src="{asset}js/kontakt-wizard.js?v={ASSET_VERSION}" defer></script>'
 
     logo_label = L["logo"]
     logo_priority = "high" if filename in ("index.html", "404.html") else "auto"
@@ -635,8 +662,9 @@ def main():
     for filename in META:
         de_src = ROOT / filename
         if de_src.exists():
+            raw = de_src.read_text(encoding="utf-8")
             content = clean_internal_hrefs(
-                strip_wrapped_artifacts(extract_main(de_src.read_text(encoding="utf-8")))
+                strip_wrapped_artifacts(extract_main(sync_contact_wizard(raw, "de")))
             )
             build_page("de", filename, content, de_src)
 
@@ -645,8 +673,9 @@ def main():
 
         en_fragment = en_dir / filename
         if en_fragment.exists():
+            raw = en_fragment.read_text(encoding="utf-8")
             content = clean_internal_hrefs(
-                strip_wrapped_artifacts(extract_main(en_fragment.read_text(encoding="utf-8")))
+                strip_wrapped_artifacts(extract_main(sync_contact_wizard(raw, "en")))
             )
             if filename in ("impressum.html", "datenschutz.html") and "legal-page" not in content:
                 content = f'    <div class="container legal-page">\n{content}\n    </div>'

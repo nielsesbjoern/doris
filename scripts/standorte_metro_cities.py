@@ -67,7 +67,7 @@ METRO_CITIES = {
             "audience": "Führungskräfte in professionellen Dienstleistungen, Kultur, Gesundheit und wachsenden Mittelstandsunternehmen.",
             "cta_title": "Coaching und Prozessbegleitung in Hamburg",
             "cta_text": "Sie führen in Hamburg und suchen eine erfahrene, vertrauliche Begleitung? Ich freue mich auf Ihre Nachricht.",
-            "cta_btn": "Vertrauliches Erstgespräch",
+            "cta_btn": "Vertraulich anfragen",
         },
         "en": {
             "seo_title": "Coaching Hamburg – Communication & Facilitation | Doris Gunsch",
@@ -128,7 +128,7 @@ METRO_CITIES = {
             "audience": "Leaders in professional services, culture, healthcare and growing mid-sized companies.",
             "cta_title": "Coaching and facilitation in Hamburg",
             "cta_text": "Leading in Hamburg and looking for experienced, confidential support? I look forward to hearing from you.",
-            "cta_btn": "Confidential initial meeting",
+            "cta_btn": "Get in touch confidentially",
         },
     },
     "berlin": {
@@ -265,7 +265,7 @@ METRO_CITIES = {
         ],
         "de": {
             "seo_title": "Executive Coaching Frankfurt am Main | Doris Gunsch",
-            "seo_desc": "Coaching in Frankfurt für Führungskräfte unter hohem Entscheidungsdruck — vor Ort, hybrid oder deutschlandweit. Vertrauliche psychologische Begleitung.",
+            "seo_desc": "Coaching in Frankfurt für Führungskräfte unter hohem Entscheidungsdruck — vor Ort, hybrid oder im DACH-Raum. Vertrauliche psychologische Begleitung.",
             "home_label": "Frankfurt — Entscheidungsdruck & Verantwortung",
             "hero_kicker": "Frankfurt",
             "h1": "Executive Coaching — Frankfurt am Main",
@@ -275,12 +275,12 @@ METRO_CITIES = {
                 "In Frankfurt begleite ich Führungskräfte in Situationen mit hoher Verantwortung, "
                 "enger Taktung und sensiblem Entscheidungsdruck — vor Ort oder hybrid. "
                 "Mein Büro liegt in Osnabrück; Mandate in Frankfurt entstehen oft über Empfehlungen "
-                "und langjährige Zusammenarbeit deutschlandweit. Wichtig ist nicht die Postleitzahl, "
+                "und langjährige Zusammenarbeit im DACH-Raum. Wichtig ist nicht die Postleitzahl, "
                 "sondern ein vertraulicher Rahmen und passende Formate."
             ),
             "collaboration_title": "Zusammenarbeit in Frankfurt",
             "collaboration": (
-                "Begleitung in Frankfurt nach Bedarf vor Ort — für Erstgespräche, Coachings und "
+                "Begleitung in Frankfurt nach Bedarf vor Ort — für Coachings, Workshops und "
                 "Workshops. Häufig kombiniere ich Präsenztermine mit Online-Phasen, wenn Kalender "
                 "eng getaktet sind. So bleibt die Begleitung kontinuierlich, ohne unnötigen Reiseaufwand."
             ),
@@ -312,7 +312,7 @@ METRO_CITIES = {
                     "Nein — mein Büro ist in Osnabrück. Begleitung in Frankfurt erfolgt bei Ihnen, in neutralen Räumen oder hybrid.",
                 ),
                 (
-                    "Wie verläuft ein Erstgespräch?",
+                    "Wie verläuft der Einstieg?",
                     "Vertraulich per Telefon oder Videokonferenz — wir klären Anlass, Rahmen und passendes Format.",
                 ),
             ],
@@ -323,13 +323,13 @@ METRO_CITIES = {
             "services_title": "Passende Leistungen",
             "audience_title": "Geeignet für",
             "audience": "Geschäftsführungen, Bereichsleitungen und Führungskräfte mit hoher Verantwortungsdichte.",
-            "cta_title": "Vertrauliches Erstgespräch für Führungskräfte in Frankfurt",
+            "cta_title": "Vertrauliche Anfrage für Führungskräfte in Frankfurt",
             "cta_text": "Hohe Verantwortung in Frankfurt — ich begleite Sie diskret und auf Augenhöhe.",
             "cta_btn": "Kontakt aufnehmen",
         },
         "en": {
             "seo_title": "Executive Coaching Frankfurt am Main | Doris Gunsch",
-            "seo_desc": "Coaching in Frankfurt for leaders under high decision pressure — on site, hybrid or nationwide. Confidential psychological support.",
+            "seo_desc": "Coaching in Frankfurt for leaders under high decision pressure — on site, hybrid or across the DACH region. Confidential psychological support.",
             "home_label": "Frankfurt — decision pressure & responsibility",
             "hero_kicker": "Frankfurt",
             "h1": "Executive coaching — Frankfurt am Main",
@@ -339,12 +339,12 @@ METRO_CITIES = {
                 "In Frankfurt I support leaders in situations of high responsibility, "
                 "tight pace and sensitive decision pressure — on site or hybrid. "
                 "My office is in Osnabrück; Frankfurt mandates often arise through referrals "
-                "and long-standing collaboration across Germany. What matters is a confidential "
+                "and long-standing collaboration across the DACH region. What matters is a confidential "
                 "framework and suitable formats — not the postcode."
             ),
             "collaboration_title": "Working together in Frankfurt",
             "collaboration": (
-                "Support in Frankfurt on site as needed — for initial meetings, coaching and workshops. "
+                "Support in Frankfurt on site as needed — for coaching, workshops and consulting on site. "
                 "I often combine in-person sessions with online phases when calendars are tightly scheduled."
             ),
             "mandates_title": "Typical situations",
@@ -375,7 +375,7 @@ METRO_CITIES = {
                     "No — my office is in Osnabrück. Support in Frankfurt takes place at your premises, in neutral rooms or hybrid.",
                 ),
                 (
-                    "How does an initial meeting work?",
+                    "How do we get started?",
                     "Confidentially by phone or video — we clarify your situation, framework and suitable format.",
                 ),
             ],
@@ -386,7 +386,7 @@ METRO_CITIES = {
             "services_title": "Relevant services",
             "audience_title": "Suitable for",
             "audience": "Managing directors, department heads and leaders with high responsibility density.",
-            "cta_title": "Confidential initial meeting for leaders in Frankfurt",
+            "cta_title": "Confidential enquiry for leaders in Frankfurt",
             "cta_text": "High responsibility in Frankfurt — I support you discreetly and as an equal partner.",
             "cta_btn": "Get in touch",
         },
@@ -458,7 +458,7 @@ METRO_CITIES = {
             "audience": "Oberes und mittleres Management in spezialisierten, oft internationalen Organisationen.",
             "cta_title": "Executive Coaching in München",
             "cta_text": "Anspruchsvolle Führung in München — ich begleite Sie vertraulich und auf hohem fachlichen Niveau.",
-            "cta_btn": "Erstgespräch vereinbaren",
+            "cta_btn": "Kontakt aufnehmen",
         },
         "en": {
             "seo_title": "Executive Coaching Munich | Doris Gunsch",
@@ -521,7 +521,7 @@ METRO_CITIES = {
             "audience": "Senior and middle management in specialised, often international organisations.",
             "cta_title": "Executive coaching in Munich",
             "cta_text": "Demanding leadership in Munich — I support you confidentially at a high professional level.",
-            "cta_btn": "Arrange initial meeting",
+            "cta_btn": "Get in touch",
         },
     },
     "duesseldorf": {
@@ -582,7 +582,7 @@ METRO_CITIES = {
                 ),
                 (
                     "Wie schnell kann eine Begleitung starten?",
-                    "Nach einem Erstgespräch oft innerhalb von zwei bis drei Wochen.",
+                    "Nach Ihrer Anfrage oft innerhalb von zwei bis drei Wochen.",
                 ),
                 (
                     "Arbeiten Sie auch mit HR oder Geschäftsführung zusammen?",
@@ -647,7 +647,7 @@ METRO_CITIES = {
                 ),
                 (
                     "How quickly can support start?",
-                    "Often within two to three weeks after an initial meeting.",
+                    "Often within two to three weeks after your enquiry.",
                 ),
                 (
                     "Do you also work with HR or managing directors?",

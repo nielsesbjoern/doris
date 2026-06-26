@@ -47,7 +47,7 @@ def build_llms_txt() -> str:
         "# Doris Gunsch – Psychologische Managementberatung",
         "",
         "> Coaching, Trainings und Prozessbegleitung für Führungskräfte in "
-        "Veränderungs- und Konfliktsituationen. Büro in Osnabrück, deutschlandweit tätig.",
+        "Veränderungs- und Konfliktsituationen. Büro in Osnabrück, im gesamten DACH-Raum tätig.",
         "",
         "Doris Gunsch ist Psychologin und Managementberaterin mit über 20 Jahren Erfahrung. "
         "Sie begleitet Führungskräfte in Mittelstand, Gesundheitswesen, öffentlicher Verwaltung "
@@ -81,7 +81,7 @@ def build_llms_txt() -> str:
         "",
         "## Standorte",
         "",
-        "Büro in Osnabrück; Mandate im Nordwesten und deutschlandweit:",
+        "Büro in Osnabrück; Mandate im Nordwesten und im gesamten DACH-Raum:",
         "",
     ]
     for url, title, desc in _standort_links("de"):
@@ -96,8 +96,6 @@ def build_llms_txt() -> str:
             "Profil, Qualifikation und Berufserfahrung",
             f"- [Referenzen]({absolute_url('referenzen.html', 'de')}): "
             "Ausgewählte Mandate aus Wirtschaft, Gesundheitswesen und öffentlichem Sektor",
-            f"- [PSI Weiterbildungen]({absolute_url('psi-aktuell.html', 'de')}): "
-            "Aktuelle PSI-Theorie-Seminare",
             f"- [Links]({absolute_url('links.html', 'de')}): "
             "Empfohlene Partner und Ressourcen",
             "",

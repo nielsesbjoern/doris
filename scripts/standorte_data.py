@@ -1,12 +1,39 @@
 """Content and SEO metadata for city landing pages (DE + EN)."""
 
 from standorte_metro_cities import METRO_CITIES
+from standorte_zurich import ZUERICH
 
-REGION_SLUGS = ["osnabrueck", "muenster", "oldenburg", "hannover", "bremen"]
-METRO_SLUGS = ["hamburg", "berlin", "frankfurt", "muenchen", "duesseldorf"]
-CITY_SLUGS = REGION_SLUGS + METRO_SLUGS
+REGION_SLUGS = ["osnabrueck", "oldenburg", "hannover", "bremen"]
+METRO_SLUGS = ["hamburg", "berlin", "frankfurt", "muenchen", "duesseldorf", "zuerich"]
+# Subpage without map marker or homepage list entry
+ORPHAN_SLUGS = ["muenster"]
+CITY_SLUGS = REGION_SLUGS + METRO_SLUGS + ORPHAN_SLUGS
 
-REACH_FEATURED_SLUGS = ["osnabrueck", "hamburg", "berlin", "frankfurt", "muenchen"]
+REACH_FEATURED_SLUGS = [
+    "osnabrueck",
+    "hamburg",
+    "berlin",
+    "frankfurt",
+    "muenchen",
+    "zuerich",
+]
+
+HOME_GROUPS = {
+    "de": [
+        ("Nordwesten", ["osnabrueck", "oldenburg", "hannover", "bremen"]),
+        (
+            "Weitere Städte",
+            ["hamburg", "berlin", "frankfurt", "muenchen", "duesseldorf", "zuerich"],
+        ),
+    ],
+    "en": [
+        ("North-west Germany", ["osnabrueck", "oldenburg", "hannover", "bremen"]),
+        (
+            "Further cities",
+            ["hamburg", "berlin", "frankfurt", "muenchen", "duesseldorf", "zuerich"],
+        ),
+    ],
+}
 
 REACH_COPY = {
     "de": {
@@ -22,26 +49,26 @@ REACH_COPY = {
 EINSATZGEBIETE_COPY = {
     "de": {
         "eyebrow": "Einsatzgebiete",
-        "h1": "Von Osnabrück aus deutschlandweit im Einsatz",
-        "lead": "Beratung, Coaching und Trainings für Führungskräfte und Organisationen in ganz Deutschland.",
-        "body": "Vor Ort in Osnabrück, bundesweit beim Kunden und in vielen Formaten auch hybrid.",
-        "note": "Ausgewählte Einsatzorte und Mandate in Hamburg, Berlin, Hannover, Frankfurt, München und weiteren Regionen.",
+        "h1": "Von Osnabrück aus im gesamten DACH-Raum im Einsatz",
+        "lead": "Beratung, Coaching und Trainings für Führungskräfte und Organisationen in Deutschland, Österreich und der Schweiz.",
+        "body": "Vor Ort in Osnabrück, in vielen Regionen des DACH-Raums beim Kunden und in zahlreichen Formaten auch hybrid.",
+        "note": "Ausgewählte Einsatzorte in Hamburg, Berlin, Hannover, Frankfurt, München, Zürich und weiteren Regionen.",
         "places_aria": "Ausgewählte Einsatzorte",
     },
     "en": {
         "eyebrow": "Service areas",
-        "h1": "From Osnabrück, working across Germany",
-        "lead": "Consulting, coaching and training for leaders and organisations throughout Germany.",
-        "body": "On site in Osnabrück, at client locations nationwide, and in many formats also hybrid.",
-        "note": "Selected locations and engagements in Hamburg, Berlin, Hanover, Frankfurt, Munich and other regions.",
+        "h1": "From Osnabrück, working across the DACH region",
+        "lead": "Consulting, coaching and training for leaders and organisations in Germany, Austria and Switzerland.",
+        "body": "On site in Osnabrück, at client locations across the DACH region, and in many formats also hybrid.",
+        "note": "Selected locations in Hamburg, Berlin, Hanover, Frankfurt, Munich, Zurich and other regions.",
         "places_aria": "Selected locations",
     },
 }
 
 REACH_DESCRIPTIONS = {
     "osnabrueck": {
-        "de": "Büro Newtonstraße 3 — Erstgespräche und Coachings vor Ort",
-        "en": "Headquarters and regional proximity",
+        "de": "Büro Newtonstraße 3 — Coachings und Beratung vor Ort",
+        "en": "Office on Newtonstraße — coaching and consulting on site",
     },
     "hamburg": {
         "de": "Konzerne, Häfen, viele Schnittstellen und hohe Sichtbarkeit",
@@ -58,6 +85,18 @@ REACH_DESCRIPTIONS = {
     "muenchen": {
         "de": "Industrie, Konzerne, leistungsorientierte Führungsteams",
         "en": "Coaching in performance-oriented work environments",
+    },
+    "muenster": {
+        "de": "Verwaltung, Bildung und institutionelle Kontexte",
+        "en": "Administration, education and institutional contexts",
+    },
+    "oldenburg": {
+        "de": "Gesundheitswesen, Sozialwirtschaft und regionale Träger",
+        "en": "Healthcare, social sector and regional institutions",
+    },
+    "zuerich": {
+        "de": "Internationaler Führungskontext",
+        "en": "International leadership context",
     },
 }
 
@@ -130,6 +169,20 @@ MAP_CITIES = [
         "label_dy": 0,
     },
     {
+        "slug": "oldenburg",
+        "name_de": "Oldenburg",
+        "name_en": "Oldenburg",
+        "lon": 8.2146,
+        "lat": 53.1435,
+        "home": False,
+        "ring": False,
+        "link": True,
+        "label_side": -1,
+        "label_dx": -10,
+        "label_dy": -8,
+        "hit_r": 12,
+    },
+    {
         "slug": "duesseldorf",
         "name_de": "Düsseldorf",
         "name_en": "Düsseldorf",
@@ -142,20 +195,6 @@ MAP_CITIES = [
         "label_dx": 10,
         "label_dy": 0,
         "hit_r": 10,
-    },
-    {
-        "slug": None,
-        "name_de": "Köln",
-        "name_en": "Cologne",
-        "lon": 6.9603,
-        "lat": 50.9375,
-        "home": False,
-        "ring": False,
-        "link": False,
-        "label_side": 1,
-        "label_dx": 10,
-        "label_dy": 0,
-        "hit_r": 13,
     },
     {
         "slug": "frankfurt",
@@ -172,20 +211,6 @@ MAP_CITIES = [
         "hit_r": 14,
     },
     {
-        "slug": None,
-        "name_de": "Stuttgart",
-        "name_en": "Stuttgart",
-        "lon": 9.1829,
-        "lat": 48.7758,
-        "home": False,
-        "ring": False,
-        "link": False,
-        "label_side": 1,
-        "label_dx": 10,
-        "label_dy": 0,
-        "hit_r": 13,
-    },
-    {
         "slug": "muenchen",
         "name_de": "München",
         "name_en": "Munich",
@@ -200,14 +225,14 @@ MAP_CITIES = [
         "hit_r": 14,
     },
     {
-        "slug": None,
+        "slug": "zuerich",
         "name_de": "Zürich",
         "name_en": "Zurich",
         "lon": 8.5417,
         "lat": 47.3769,
         "home": False,
         "ring": False,
-        "link": False,
+        "link": True,
         "label_side": 0,
         "label_dx": 0,
         "label_dy": 14,
@@ -215,18 +240,18 @@ MAP_CITIES = [
     },
 ]
 
+MAP_SUBMAP_CITIES = []
+
+MAP_SLUGS = [city["slug"] for city in MAP_CITIES if city.get("slug")]
+
 HOME_STANDORTE = {
     "de": {
         "summary": "Beratung in Ihrer Region",
-        "intro": "Coaching und Prozessbegleitung für Führungskräfte — Büro in Osnabrück, Mandate im Nordwesten und deutschlandweit.",
-        "region_label": "Nordwesten",
-        "metro_label": "Weitere Städte",
+        "intro": "Coaching und Prozessbegleitung für Führungskräfte — Büro in Osnabrück, Mandate im Nordwesten und im gesamten DACH-Raum.",
     },
     "en": {
         "summary": "Consulting in your region",
-        "intro": "Coaching and process facilitation for leaders — based in Osnabrück, with mandates across north-west Germany and nationwide.",
-        "region_label": "North-west Germany",
-        "metro_label": "Further cities",
+        "intro": "Coaching and process facilitation for leaders — based in Osnabrück, with mandates across north-west Germany and the DACH region.",
     },
 }
 
@@ -248,7 +273,7 @@ CITIES = {
         ],
         "de": {
             "seo_title": "Coaching & Beratung vor Ort in Osnabrück – Büro Newtonstraße | Doris Gunsch",
-            "seo_desc": "Persönliche Beratung in Osnabrück: Erstgespräche und Coachings in der Newtonstraße 3, Mandate im Mittelstand, Gesundheitswesen und öffentlicher Verwaltung der Region.",
+            "seo_desc": "Persönliche Beratung in Osnabrück: Coachings und Beratung in der Newtonstraße 3, Mandate im Mittelstand, Gesundheitswesen und öffentlicher Verwaltung der Region.",
             "home_label": "Osnabrück — Hauptsitz",
             "hero_kicker": "Osnabrück",
             "h1": "Beratung vor Ort — Büro in der Newtonstraße",
@@ -262,7 +287,7 @@ CITIES = {
             ),
             "collaboration_title": "Zusammenarbeit in Osnabrück",
             "collaboration": (
-                "Erstgespräche und Einzelcoachings finden in der Regel in meinen Räumen in der Newtonstraße statt. "
+                "Einzelcoachings und Beratung finden in der Regel in meinen Räumen in der Newtonstraße statt. "
                 "Für Teams und längere Formate komme ich zu Ihnen — in Unternehmen, Verwaltung oder Klinikverbünden "
                 "in Osnabrück und der direkten Umgebung. Kurze Wege, vertrauliche Settings, klare Absprachen."
             ),
@@ -294,14 +319,14 @@ CITIES = {
                 ),
                 (
                     "Arbeiten Sie nur in Osnabrück?",
-                    "Mein Büro liegt in Osnabrück; ich begleite Führungskräfte auch deutschlandweit — viele Mandate beginnen jedoch in der Region.",
+                    "Mein Büro liegt in Osnabrück; ich begleite Führungskräfte auch im gesamten DACH-Raum — viele Mandate beginnen jedoch in der Region.",
                 ),
                 (
                     "Für welche Branchen in Osnabrück?",
                     "Schwerpunkte sind Mittelstand, Gesundheitswesen, öffentliche Verwaltung und soziale Träger — passend zur Wirtschaftsstruktur der Region.",
                 ),
                 (
-                    "Wie vereinbare ich ein Erstgespräch?",
+                    "Wie nehme ich Kontakt auf?",
                     "Telefonisch unter +49 (0)541 14496 oder per E-Mail an dg@doris-gunsch.eu — wir klären Anlass und passendes Format.",
                 ),
             ],
@@ -310,13 +335,13 @@ CITIES = {
             "audience": "Geschäftsführung, Bereichsleitungen und Projektleitungen in Osnabrück und dem Osnabrücker Land.",
             "nearby_title": "Auch im Umfeld",
             "nearby": "Georgsmarienhütte, Melle, Bramsche, Bersenbrück — kurze Anfahrt vom Büro in Osnabrück.",
-            "cta_title": "Erstgespräch in Osnabrück",
+            "cta_title": "Kontakt in Osnabrück",
             "cta_text": "Sie führen in Osnabrück und suchen eine vertrauliche, erfahrene Begleitung? Ich freue mich auf Ihre Nachricht.",
             "cta_btn": "Kontakt aufnehmen",
         },
         "en": {
             "seo_title": "On-site Consulting in Osnabrück – Newtonstraße Office | Doris Gunsch",
-            "seo_desc": "Personal consulting in Osnabrück: initial meetings and coaching at Newtonstraße 3, mandates in regional mid-market, healthcare and public administration.",
+            "seo_desc": "Personal consulting in Osnabrück: coaching and consulting at Newtonstraße 3, mandates in regional mid-market, healthcare and public administration.",
             "home_label": "Osnabrück — headquarters",
             "hero_kicker": "Osnabrück",
             "h1": "On-site consulting — office on Newtonstraße",
@@ -330,7 +355,7 @@ CITIES = {
             ),
             "collaboration_title": "Working together in Osnabrück",
             "collaboration": (
-                "Initial meetings and individual coaching usually take place at my Newtonstraße office. "
+                "Individual coaching and consulting usually take place at my Newtonstraße office. "
                 "For teams and longer formats I come to you — in companies, administration or hospital "
                 "networks in Osnabrück and the immediate area."
             ),
@@ -362,14 +387,14 @@ CITIES = {
                 ),
                 (
                     "Do you only work in Osnabrück?",
-                    "My office is in Osnabrück; I also work with leaders across Germany — but many mandates start in the region.",
+                    "My office is in Osnabrück; I also work with leaders across the DACH region — but many mandates start in the region.",
                 ),
                 (
                     "Which sectors in Osnabrück?",
                     "Focus areas include mid-sized business, healthcare, public administration and social-sector organisations.",
                 ),
                 (
-                    "How do I arrange an initial meeting?",
+                    "How do I get in touch?",
                     "By phone on +49 (0)541 14496 or email at dg@doris-gunsch.eu — we clarify your situation and a suitable format.",
                 ),
             ],
@@ -378,7 +403,7 @@ CITIES = {
             "audience": "Managing directors, department heads and project leads in Osnabrück and Osnabrück district.",
             "nearby_title": "Also in the surrounding area",
             "nearby": "Georgsmarienhütte, Melle, Bramsche, Bersenbrück — a short drive from the Osnabrück office.",
-            "cta_title": "Initial meeting in Osnabrück",
+            "cta_title": "Contact in Osnabrück",
             "cta_text": "Leading in Osnabrück and looking for confidential, experienced support? I look forward to hearing from you.",
             "cta_btn": "Get in touch",
         },
@@ -441,7 +466,7 @@ CITIES = {
                     "Obere und mittlere Führung, Bereichsleitungen, Projektleitungen und Geschäftsführungen in mittelgroßen Organisationen.",
                 ),
                 (
-                    "Wie läuft ein Erstgespräch ab?",
+                    "Wie starten wir die Zusammenarbeit?",
                     "In einem vertraulichen Gespräch klären wir Anlass, Rahmen und ob Coaching, Training oder Prozessbegleitung passt.",
                 ),
             ],
@@ -464,7 +489,7 @@ CITIES = {
             "audience": "Führungskräfte in Verwaltung, Bildung und sozialen Trägern im Münsterland.",
             "cta_title": "Kontakt für Coaching und Prozessbegleitung in Münster",
             "cta_text": "Sie tragen Verantwortung in einer komplexen Organisation in Münster? Sprechen Sie mich an.",
-            "cta_btn": "Vertrauliches Erstgespräch",
+            "cta_btn": "Vertraulich anfragen",
         },
         "en": {
             "seo_title": "Executive Coaching in Münster | Doris Gunsch",
@@ -509,7 +534,7 @@ CITIES = {
                     "Senior and middle management, department heads, project leads and managing directors in medium-sized organisations.",
                 ),
                 (
-                    "How does an initial meeting work?",
+                    "How do we start working together?",
                     "In a confidential conversation we clarify your situation, framework and whether coaching, training or facilitation fits.",
                 ),
             ],
@@ -532,7 +557,7 @@ CITIES = {
             "audience": "Leaders in administration, education and social-sector organisations in the Münsterland.",
             "cta_title": "Contact for coaching and facilitation in Münster",
             "cta_text": "Carrying responsibility in a complex organisation in Münster? Get in touch.",
-            "cta_btn": "Confidential initial meeting",
+            "cta_btn": "Get in touch confidentially",
         },
     },
     "oldenburg": {
@@ -603,17 +628,17 @@ CITIES = {
                 ),
                 (
                     "Wie schnell ist ein Termin möglich?",
-                    "Nach einem Erstgespräch stimmen wir Rhythmus und Format ab — oft innerhalb weniger Wochen.",
+                    "Nach Ihrer Anfrage stimmen wir Rhythmus und Format ab — oft innerhalb weniger Wochen.",
                 ),
                 (
                     "Was kostet eine Begleitung?",
-                    "Das hängt von Format und Dauer ab — im Erstgespräch klären wir Rahmen und Honorar transparent.",
+                    "Das hängt von Format und Dauer ab — bei der Anfrage klären wir Rahmen und Honorar transparent.",
                 ),
             ],
             "services_title": "Passende Leistungen",
             "audience_title": "Geeignet für",
             "audience": "Klinikdirektionen, Pflegedienstleitungen, Verwaltungsleitungen und Geschäftsführungen sozialer Träger.",
-            "cta_title": "Erstgespräch für Führungskräfte in Oldenburg",
+            "cta_title": "Kontakt für Führungskräfte in Oldenburg",
             "cta_text": "Sie gestalten Veränderung in Oldenburg und suchen professionelle Begleitung? Melden Sie sich.",
             "cta_btn": "Kontakt aufnehmen",
         },
@@ -671,17 +696,17 @@ CITIES = {
                 ),
                 (
                     "How soon can we start?",
-                    "After an initial meeting we agree rhythm and format — often within a few weeks.",
+                    "After your enquiry we agree rhythm and format — often within a few weeks.",
                 ),
                 (
                     "What does support cost?",
-                    "That depends on format and duration — we clarify framework and fees transparently in the first conversation.",
+                    "That depends on format and duration — we clarify framework and fees transparently when you get in touch.",
                 ),
             ],
             "services_title": "Relevant services",
             "audience_title": "Suitable for",
             "audience": "Hospital directors, nursing service leads, administrative heads and managing directors of social-sector bodies.",
-            "cta_title": "Initial meeting for leaders in Oldenburg",
+            "cta_title": "Contact for leaders in Oldenburg",
             "cta_text": "Shaping change in Oldenburg and looking for professional support? Get in touch.",
             "cta_btn": "Get in touch",
         },
@@ -747,7 +772,7 @@ CITIES = {
                 ),
                 (
                     "Was ist der erste Schritt?",
-                    "Ein vertrauliches Erstgespräch — telefonisch oder per Videokonferenz — um Anlass und Ziel zu klären.",
+                    "Per Telefon oder Videokonferenz klären wir vertraulich Anlass und Ziel.",
                 ),
                 (
                     "Bieten Sie auch Teamentwicklung an?",
@@ -761,7 +786,7 @@ CITIES = {
                 "„In großen Organisationen geht es selten um schnelle Antworten — "
                 "sondern um tragfähige nächste Schritte, die alle Beteiligten mittragen können.“"
             ),
-            "cta_title": "Vertrauliches Erstgespräch für Führungskräfte in Hannover",
+            "cta_title": "Vertrauliche Anfrage für Führungskräfte in Hannover",
             "cta_text": "Sie tragen Verantwortung in Hannover und suchen eine erfahrene Begleitung? Ich freue mich auf Ihre Nachricht.",
             "cta_btn": "Kontakt aufnehmen",
         },
@@ -812,7 +837,7 @@ CITIES = {
                 ),
                 (
                     "What is the first step?",
-                    "A confidential initial conversation — by phone or video — to clarify situation and goals.",
+                    "By phone or video we clarify your situation and goals confidentially.",
                 ),
                 (
                     "Do you offer team development?",
@@ -826,7 +851,7 @@ CITIES = {
                 "“In large organisations it is rarely about quick answers — "
                 "but about viable next steps that all parties can support.”"
             ),
-            "cta_title": "Confidential initial meeting for leaders in Hannover",
+            "cta_title": "Confidential enquiry for leaders in Hannover",
             "cta_text": "Carrying responsibility in Hannover and looking for experienced support? I look forward to hearing from you.",
             "cta_btn": "Get in touch",
         },
@@ -875,7 +900,7 @@ CITIES = {
                 ),
                 (
                     "Wie schnell kann Begleitung starten?",
-                    "Nach einem Erstgespräch — oft innerhalb von zwei bis drei Wochen, je nach Dringlichkeit und Format.",
+                    "Nach Ihrer Anfrage — oft innerhalb von zwei bis drei Wochen, je nach Dringlichkeit und Format.",
                 ),
                 (
                     "Moderieren Sie auch Konflikte im Team?",
@@ -910,7 +935,7 @@ CITIES = {
             "services_title": "Passende Leistungen",
             "audience_title": "Geeignet für",
             "audience": "Werksleitungen, Bereichsleitungen und Geschäftsführungen mittelständischer Unternehmen in Bremen.",
-            "cta_title": "Erstgespräch für Führungskräfte in Bremen",
+            "cta_title": "Kontakt für Führungskräfte in Bremen",
             "cta_text": "Veränderung und Verantwortung in Bremen — ich begleite Sie vertraulich und praxisnah.",
             "cta_btn": "Kontakt aufnehmen",
         },
@@ -944,7 +969,7 @@ CITIES = {
                 ),
                 (
                     "How quickly can support start?",
-                    "After an initial meeting — often within two to three weeks, depending on urgency and format.",
+                    "After your enquiry — often within two to three weeks, depending on urgency and format.",
                 ),
                 (
                     "Do you facilitate team conflicts?",
@@ -979,7 +1004,7 @@ CITIES = {
             "services_title": "Relevant services",
             "audience_title": "Suitable for",
             "audience": "Plant managers, department heads and managing directors of mid-sized companies in Bremen.",
-            "cta_title": "Initial meeting for leaders in Bremen",
+            "cta_title": "Contact for leaders in Bremen",
             "cta_text": "Change and responsibility in Bremen — I support you confidentially and practically.",
             "cta_btn": "Get in touch",
         },
@@ -987,6 +1012,7 @@ CITIES = {
 }
 
 CITIES.update(METRO_CITIES)
+CITIES["zuerich"] = ZUERICH
 
 SERVICE_LINKS = {
     "de": [

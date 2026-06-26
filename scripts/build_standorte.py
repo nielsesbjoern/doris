@@ -12,13 +12,15 @@ from standorte_data import (
     CITIES,
     CITY_SLUGS,
     EINSATZGEBIETE_COPY,
+    HOME_GROUPS,
     HOME_STANDORTE,
     MAP_CITIES,
-    METRO_SLUGS,
+    MAP_SLUGS,
+    MAP_SUBMAP_CITIES,
+    ORPHAN_SLUGS,
     REACH_COPY,
     REACH_DESCRIPTIONS,
     REACH_FEATURED_SLUGS,
-    REGION_SLUGS,
     SERVICE_LINKS,
     STANDORTE_META,
 )
@@ -259,13 +261,22 @@ def build_main(slug: str, lang: str) -> str:
 """
 
 
+def city_list_desc(slug: str, lang: str) -> str:
+    if slug in REACH_DESCRIPTIONS:
+        return REACH_DESCRIPTIONS[slug][lang]
+    label = CITIES[slug][lang]["home_label"]
+    if " — " in label:
+        return label.split(" — ", 1)[1]
+    return label
+
+
 def render_reach_places(lang: str, asset: str = "") -> str:
     copy = REACH_COPY[lang]
     featured_items = []
     for slug in REACH_FEATURED_SLUGS:
         city = CITIES[slug]
         name = city["name_de"] if lang == "de" else city["name_en"]
-        desc = REACH_DESCRIPTIONS[slug][lang]
+        desc = city_list_desc(slug, lang)
         featured_items.append(
             f"""              <li class="reach-places-item" data-slug="{slug}">
                 <a href="{page_href(f"standorte/{slug}.html", asset)}" class="reach-places-link">
@@ -274,7 +285,8 @@ def render_reach_places(lang: str, asset: str = "") -> str:
                 </a>
               </li>"""
         )
-    more_slugs = [slug for slug in CITY_SLUGS if slug not in REACH_FEATURED_SLUGS]
+    map_more = [slug for slug in MAP_SLUGS if slug not in REACH_FEATURED_SLUGS]
+    more_slugs = map_more + [slug for slug in ORPHAN_SLUGS if slug in CITIES]
     more_items = "\n".join(
         f'              <li data-slug="{slug}"><a href="{page_href(f"standorte/{slug}.html", asset)}">'
         f'{html.escape(CITIES[slug][lang]["home_label"])}</a></li>'
@@ -302,20 +314,21 @@ def _standorte_links(slugs: list[str], lang: str, asset: str) -> str:
 
 def render_home_standorte(lang: str, asset: str = "") -> str:
     h = HOME_STANDORTE[lang]
-    region_links = _standorte_links(REGION_SLUGS, lang, asset)
-    metro_links = _standorte_links(METRO_SLUGS, lang, asset)
+    groups = HOME_GROUPS[lang]
+    group_blocks = []
+    for label, slugs in groups:
+        links = _standorte_links(slugs, lang, asset)
+        group_blocks.append(
+            f"""          <p class="home-standorte-group-label">{label}</p>
+          <ul class="home-standorte-list">
+{links}
+          </ul>"""
+        )
     einsatz_label = "Alle Einsatzgebiete auf der Karte" if lang == "de" else "All service areas on the map"
     return f"""        <details class="home-standorte">
           <summary>{h["summary"]}</summary>
           <p class="home-standorte-intro">{h["intro"]}</p>
-          <p class="home-standorte-group-label">{h["region_label"]}</p>
-          <ul class="home-standorte-list">
-{region_links}
-          </ul>
-          <p class="home-standorte-group-label">{h["metro_label"]}</p>
-          <ul class="home-standorte-list">
-{metro_links}
-          </ul>
+{chr(10).join(group_blocks)}
           <p class="home-standorte-more"><a href="{page_href("einsatzgebiete.html", asset)}" class="card-link">{einsatz_label}</a></p>
         </details>"""
 
@@ -326,7 +339,13 @@ def patch_home_standorte(path: Path, lang: str, asset: str = ""):
     if HOME_STANDORTE_MARKER in page_html:
         page_html = page_html.replace(HOME_STANDORTE_MARKER, block)
     else:
-        raise SystemExit(f"Missing {HOME_STANDORTE_MARKER} in {path}")
+        page_html = re.sub(
+            r'<details class="home-standorte">.*?</details>\s*',
+            block + "\n",
+            page_html,
+            count=1,
+            flags=re.DOTALL,
+        )
     path.write_text(page_html, encoding="utf-8")
 
 
@@ -335,12 +354,12 @@ def localize_map_svg(svg: str, lang: str) -> str:
         return svg
     svg = svg.replace(
         'aria-label="Karte DACH-Raum mit Einsatzorten"',
-        'aria-label="Map of Germany with selected service locations"',
+        'aria-label="Map of the DACH region with selected service locations"',
     ).replace(
         "<title>Einsatzgebiet Doris Gunsch</title>",
         "<title>Service area Doris Gunsch</title>",
     )
-    for city in MAP_CITIES:
+    for city in MAP_CITIES + MAP_SUBMAP_CITIES:
         name_de = city["name_de"]
         name_en = city["name_en"]
         if name_de != name_en:
@@ -351,6 +370,30 @@ def localize_map_svg(svg: str, lang: str) -> str:
             en_aria = html.escape(f"{name_en} — {REACH_DESCRIPTIONS[slug]['en']}", quote=True)
             svg = svg.replace(f'aria-label="{de_aria}"', f'aria-label="{en_aria}"')
     return svg
+
+
+def render_einsatzgebiete_hero(lang: str) -> str:
+    c = EINSATZGEBIETE_COPY[lang]
+    return f"""        <header class="section-header section-header--wide">
+          <p class="eyebrow">{c["eyebrow"]}</p>
+          <h1>{c["h1"]}</h1>
+          <p class="reach-lead">{c["lead"]}</p>
+          <p class="reach-body">{c["body"]}</p>
+          <p class="reach-note">{c["note"]}</p>
+        </header>"""
+
+
+def patch_einsatzgebiete_hero(path: Path, lang: str):
+    page_html = path.read_text(encoding="utf-8")
+    block = render_einsatzgebiete_hero(lang)
+    page_html = re.sub(
+        r'<header class="section-header section-header--wide">.*?</header>',
+        block,
+        page_html,
+        count=1,
+        flags=re.DOTALL,
+    )
+    path.write_text(page_html, encoding="utf-8")
 
 
 def render_einsatzgebiete_map(lang: str) -> str:
@@ -393,7 +436,7 @@ def patch_einsatzgebiete_places(path: Path, lang: str, asset: str = ""):
         page_html = page_html.replace(EINSATZGEBIETE_PLACES_MARKER, aside_block)
     else:
         page_html = re.sub(
-            r'<aside class="reach-layout__places"[^>]*>.*?</details>\s*',
+            r'<aside class="reach-layout__places"[^>]*>.*?(?:</aside>\s*)+',
             aside_block,
             page_html,
             count=1,
@@ -418,6 +461,8 @@ def main():
             main_html = build_main(slug, lang)
             build_page(lang, filename, main_html, out_dir / f"{slug}.html")
 
+    patch_einsatzgebiete_hero(ROOT / "einsatzgebiete.html", "de")
+    patch_einsatzgebiete_hero(ROOT / "en" / "einsatzgebiete.html", "en")
     patch_einsatzgebiete_map(ROOT / "einsatzgebiete.html", "de")
     patch_einsatzgebiete_map(ROOT / "en" / "einsatzgebiete.html", "en")
     patch_einsatzgebiete_places(ROOT / "einsatzgebiete.html", "de")

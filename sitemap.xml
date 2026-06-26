@@ -113,20 +113,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.doris-gunsch.eu/person" />
   </url>
   <url>
-    <loc>https://www.doris-gunsch.eu/psi-aktuell</loc>
-    <lastmod>2026-06-26</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://www.doris-gunsch.eu/psi-aktuell" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.doris-gunsch.eu/en/psi-aktuell" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.doris-gunsch.eu/psi-aktuell" />
-  </url>
-  <url>
-    <loc>https://www.doris-gunsch.eu/en/psi-aktuell</loc>
-    <lastmod>2026-06-26</lastmod>
-    <xhtml:link rel="alternate" hreflang="de" href="https://www.doris-gunsch.eu/psi-aktuell" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.doris-gunsch.eu/en/psi-aktuell" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.doris-gunsch.eu/psi-aktuell" />
-  </url>
-  <url>
     <loc>https://www.doris-gunsch.eu/referenzen</loc>
     <lastmod>2026-06-26</lastmod>
     <xhtml:link rel="alternate" hreflang="de" href="https://www.doris-gunsch.eu/referenzen" />
@@ -335,5 +321,19 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://www.doris-gunsch.eu/standorte/duesseldorf" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.doris-gunsch.eu/en/standorte/duesseldorf" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.doris-gunsch.eu/standorte/duesseldorf" />
+  </url>
+  <url>
+    <loc>https://www.doris-gunsch.eu/standorte/zuerich</loc>
+    <lastmod>2026-06-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.doris-gunsch.eu/standorte/zuerich" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.doris-gunsch.eu/en/standorte/zuerich" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.doris-gunsch.eu/standorte/zuerich" />
+  </url>
+  <url>
+    <loc>https://www.doris-gunsch.eu/en/standorte/zuerich</loc>
+    <lastmod>2026-06-26</lastmod>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.doris-gunsch.eu/standorte/zuerich" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.doris-gunsch.eu/en/standorte/zuerich" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.doris-gunsch.eu/standorte/zuerich" />
   </url>
 </urlset>
