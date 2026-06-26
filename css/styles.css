@@ -1547,6 +1547,7 @@ main > .page-back + .page-section--hero {
   color: var(--color-dark-gray);
   line-height: 1.7;
   margin-bottom: 1.25rem;
+  max-width: 42ch;
 }
 
 .home-closing-section {
@@ -1556,34 +1557,37 @@ main > .page-back + .page-section--hero {
 .home-closing {
   display: flex;
   flex-direction: column;
-  gap: clamp(1.25rem, 3vw, 1.75rem);
-  max-width: min(46rem, 100%);
-  margin-inline: auto;
+  gap: clamp(1.5rem, 3vw, 2rem);
 }
 
 .home-closing__person {
-  display: grid;
-  grid-template-columns: minmax(0, 180px) minmax(0, 1fr);
-  gap: clamp(1.25rem, 3vw, 2rem);
   align-items: center;
-  padding: clamp(1.75rem, 3.5vw, 2.5rem);
-  background-color: var(--color-surface);
-  border: 1px solid color-mix(in srgb, var(--color-primary) 14%, var(--color-border));
-  border-radius: var(--radius);
 }
 
-.home-closing__person .profile-content h2,
-.home-closing__person .profile-content .home-person-name {
-  max-width: none;
+.home-closing__person .profile-content .brand-line {
+  margin-bottom: 1rem;
+}
+
+.home-person-kicker {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-mid-gray);
   margin-bottom: 0.5rem;
 }
 
+.home-closing__person .profile-content .home-person-name {
+  max-width: none;
+  margin-bottom: 0.75rem;
+}
+
 .home-person-link {
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
 }
 
 .home-person-image {
-  max-width: 180px;
+  max-width: min(100%, 280px);
 }
 
 .home-contact-band {
@@ -3752,16 +3756,50 @@ main > .page-back + .page-section--hero {
   }
 
   .home-person-image {
-    max-width: 200px;
+    max-width: min(100%, 360px);
   }
 
   .home-closing {
-    max-width: min(46rem, 100%);
+    gap: clamp(2.5rem, 5vw, 3.5rem);
   }
 
-  .home-closing__person {
-    grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
-    padding: clamp(2rem, 3.5vw, 2.75rem);
+  .home-closing__person.profile-grid {
+    grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+    gap: clamp(3rem, 5vw, 5rem);
+  }
+
+  .home-person-text {
+    font-size: var(--text-base);
+    max-width: 46ch;
+  }
+
+  .home-closing .home-contact-band {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: clamp(2rem, 4vw, 3rem);
+    row-gap: 0.75rem;
+    align-items: center;
+  }
+
+  .home-closing .home-contact-band .brand-line {
+    grid-column: 1 / -1;
+  }
+
+  .home-closing .home-contact-band .home-contact-title,
+  .home-closing .home-contact-band .home-contact-lead {
+    grid-column: 1;
+  }
+
+  .home-closing .home-contact-band .home-contact-lead {
+    max-width: 40ch;
+  }
+
+  .home-closing .home-contact-band .hero-actions {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+    margin-top: 0;
+    align-self: center;
+    flex-shrink: 0;
   }
 
   .home-service-lead {
@@ -3991,12 +4029,24 @@ main > .page-back + .page-section--hero {
     padding-block: clamp(2.5rem, 5vw, 3.5rem);
   }
 
+  .home-closing {
+    max-width: min(40rem, 100%);
+    margin-inline: auto;
+  }
+
   .home-closing__person {
     grid-template-columns: 1fr;
     gap: 1.25rem;
     text-align: center;
     justify-items: center;
     padding: clamp(1.5rem, 4vw, 2rem);
+    background-color: var(--color-surface);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 14%, var(--color-border));
+    border-radius: var(--radius);
+  }
+
+  .home-closing__person .profile-content .brand-line {
+    margin-inline: auto;
   }
 
   .home-closing__person .profile-image {
@@ -4009,18 +4059,12 @@ main > .page-back + .page-section--hero {
     border-top: none;
   }
 
+  .home-person-text {
+    max-width: none;
+  }
+
   .home-closing .hero-actions {
     justify-content: center;
-  }
-
-  .home-person-text {
-    font-size: var(--text-base);
-    margin-top: 0.75rem;
-  }
-
-  .home-person-link {
-    display: inline-block;
-    margin-top: 1.25rem;
   }
 }
 
