@@ -78,6 +78,18 @@ TEXT = {
             "in Veränderungs- und Konfliktsituationen — vertraulich, strukturiert und "
             "mit Blick auf das, was wirklich trägt."
         ),
+        "profile_image_alt": "Porträt von Doris Gunsch",
+        "home_services_title": "Leistungen im Überblick",
+        "home_services_intro": (
+            "Als Diplom-Psychologin und psychologische Managementberaterin begleite ich "
+            "Führungskräfte und Organisationen in anspruchsvollen Phasen — von Rollenklärung "
+            "und Konfliktlösung bis zu nachhaltiger Teamentwicklung. Mein Schwerpunkt liegt "
+            "auf mittelständischen Unternehmen, dem Gesundheitswesen und der öffentlichen "
+            "Verwaltung. Coaching, Trainings und Prozessbegleitung ergänze ich bei Bedarf "
+            "durch validierte Potenzialanalysen nach der PSI-Theorie. Die Arbeit ist fundiert "
+            "an der {uni_link} und im PSI-Forschungsteam von Prof. Julius Kuhl — Büro in "
+            "Osnabrück, Mandate in Nordwestdeutschland und deutschlandweit."
+        ),
     },
     "en": {
         "home_title": "More than conversation coaching",
@@ -154,6 +166,18 @@ TEXT = {
             "For more than 20 years I have supported leaders, teams and organisations "
             "in change and conflict situations — confidentially, with clear structure, "
             "and focus on what truly matters."
+        ),
+        "profile_image_alt": "Portrait of Doris Gunsch",
+        "home_services_title": "Services overview",
+        "home_services_intro": (
+            "As a graduate psychologist and management consultant I support leaders and "
+            "organisations through demanding phases — from role clarification and conflict "
+            "resolution to sustainable team development. My focus is mid-sized business, "
+            "healthcare and public administration. I complement coaching, training and "
+            "process facilitation with validated potential analyses based on PSI theory where "
+            "appropriate. My work is grounded at the {uni_link} and in the PSI research team "
+            "of Prof. Julius Kuhl — based in Osnabrück, with mandates across north-west "
+            "Germany and nationwide."
         ),
     },
 }

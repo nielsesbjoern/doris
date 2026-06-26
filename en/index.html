@@ -3,23 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>
-    (function () {
-      var saved = localStorage.getItem('dg-theme');
-      var theme = saved === 'dark' || saved === 'light'
-        ? saved
-        : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme', theme);
-    })();
-  </script>
+  <script src="../js/theme-init.js?v=3"></script>
   <title>Psychological Management Consulting Osnabrück – Doris Gunsch</title>
   <meta name="description" content="Coaching, training and process facilitation for leaders in change and conflict situations. Based in Osnabrück, working across Germany.">
   <link rel="preload" href="../public/doris-logo-400.webp" as="image" type="image/webp" fetchpriority="high">
   <link rel="preload" href="../public/fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../public/fonts/cormorant-garamond-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../css/styles.css?v=2" as="style">
-  <link rel="stylesheet" href="../css/fonts.css?v=2">
-  <link rel="stylesheet" href="../css/styles.css?v=2">
+  <link rel="preload" href="../css/styles.css?v=3" as="style">
+  <link rel="stylesheet" href="../css/fonts.css?v=3">
+  <link rel="stylesheet" href="../css/styles.css?v=3">
   <link rel="icon" href="../public/favicon.ico?v=3" sizes="any">
   <link rel="icon" type="image/png" sizes="48x48" href="../public/favicon-48.png?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="../public/favicon-32.png?v=3">
@@ -185,7 +177,12 @@
           Understanding the problem precisely is the most important step toward the solution.
           <cite>— Doris Gunsch</cite>
         </blockquote>
-        <h2 class="visually-hidden">Services</h2>
+        <!-- HOME_SERVICES_HEAD -->
+        <header class="home-services-header">
+          <h2 class="home-services-title">Services overview</h2>
+          <p class="home-services-intro">As a graduate psychologist and management consultant I support leaders and organisations through demanding phases — from role clarification and conflict resolution to sustainable team development. My focus is mid-sized business, healthcare and public administration. I complement coaching, training and process facilitation with validated potential analyses based on PSI theory where appropriate. My work is grounded at the <a href="https://www.uni-osnabrueck.de/" class="text-link" rel="noopener noreferrer">University of Osnabrück</a> and in the PSI research team of Prof. Julius Kuhl — based in Osnabrück, with mandates across north-west Germany and nationwide.</p>
+        </header>
+          <!-- /HOME_SERVICES_HEAD -->
         <div class="home-services">
           <article class="card card--lead home-service-lead">
             <h3>Coaching</h3>
@@ -221,8 +218,28 @@
           <strong>Lindt &amp; Sprüngli</strong> — as well as hospitals, associations and mid-sized
           companies across Germany. <a href="referenzen" class="home-references-link">All references</a>
         </p>
-        <!-- HOME_STANDORTE -->
-</div>
+                <details class="home-standorte">
+          <summary>Consulting in your region</summary>
+          <p class="home-standorte-intro">Coaching and process facilitation for leaders — based in Osnabrück, with mandates across north-west Germany and nationwide.</p>
+          <p class="home-standorte-group-label">North-west Germany</p>
+          <ul class="home-standorte-list">
+            <li><a href="../standorte/osnabrueck">Osnabrück — headquarters</a></li>
+            <li><a href="../standorte/muenster">Münster — administration &amp; institutions</a></li>
+            <li><a href="../standorte/oldenburg">Oldenburg — healthcare &amp; social sector</a></li>
+            <li><a href="../standorte/hannover">Hannover — larger organisations</a></li>
+            <li><a href="../standorte/bremen">Bremen — change &amp; responsibility</a></li>
+          </ul>
+          <p class="home-standorte-group-label">Further cities</p>
+          <ul class="home-standorte-list">
+            <li><a href="../standorte/hamburg">Hamburg — metropolis &amp; communication</a></li>
+            <li><a href="../standorte/berlin">Berlin — associations &amp; transformation</a></li>
+            <li><a href="../standorte/frankfurt">Frankfurt — decision pressure &amp; responsibility</a></li>
+            <li><a href="../standorte/muenchen">Munich — performance &amp; international teams</a></li>
+            <li><a href="../standorte/duesseldorf">Düsseldorf — business &amp; leadership dynamics</a></li>
+          </ul>
+          <p class="home-standorte-more"><a href="../einsatzgebiete" class="card-link">All service areas on the map</a></p>
+        </details>
+      </div>
     </section>
 
     <section class="section section-alt page-section page-section--compact home-closing-section">
@@ -232,7 +249,7 @@
             <div class="profile-image home-person-image">
               <picture>
                 <source srcset="../public/doris-web-600.webp" type="image/webp">
-                <img src="../public/doris-web-600.jpg" alt="" class="profile-photo" width="600" height="511" loading="lazy" decoding="async">
+                <img src="../public/doris-web-600.jpg" alt="Portrait of Doris Gunsch" class="profile-photo" width="600" height="511" loading="lazy" decoding="async">
               </picture>
             </div>
             <div class="profile-content">
@@ -316,6 +333,6 @@
   </aside>
 </div>
 
-  <script src="../js/site.js?v=2"></script>
+  <script src="../js/site.js?v=3"></script>
 </body>
 </html>

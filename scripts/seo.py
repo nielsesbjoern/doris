@@ -16,10 +16,11 @@ LLMS_FULL_URL = f"{SITE_URL}/llms-full.txt"
 OG_IMAGE = f"{SITE_URL}/public/doris-web.jpg"
 OG_IMAGE_WIDTH = 800
 OG_IMAGE_HEIGHT = 682
+TWITTER_SITE = ""  # e.g. "@handle" — set when a verified X/Twitter account exists
 ORG_NAME_DE = "Doris Gunsch – Psychologische Managementberatung"
 ORG_NAME_EN = "Doris Gunsch – Psychological Management Consulting"
 FAVICON_VERSION = 3
-ASSET_VERSION = 2
+ASSET_VERSION = 3
 
 # Newtonstraße 3, 49088 Osnabrück
 GEO_LATITUDE = 52.2726
@@ -178,6 +179,11 @@ def open_graph(filename: str, lang: str, title: str, description: str) -> str:
     alt_locale = "en_GB" if lang == "de" else "de_DE"
     t = html.escape(title, quote=True)
     d = html.escape(description, quote=True)
+    twitter_site = (
+        f'  <meta name="twitter:site" content="{html.escape(TWITTER_SITE, quote=True)}">\n'
+        if TWITTER_SITE
+        else ""
+    )
     return f"""  <meta property="og:title" content="{t}">
   <meta property="og:description" content="{d}">
   <meta property="og:url" content="{url}">
@@ -190,7 +196,7 @@ def open_graph(filename: str, lang: str, title: str, description: str) -> str:
   <meta property="og:locale:alternate" content="{alt_locale}">
   <meta property="og:site_name" content="Doris Gunsch">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{t}">
+{twitter_site}  <meta name="twitter:title" content="{t}">
   <meta name="twitter:description" content="{d}">
   <meta name="twitter:image" content="{OG_IMAGE}">"""
 

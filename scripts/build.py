@@ -26,14 +26,18 @@ STEPS = (
     "build_standorte.py",
     "build_sitemap.py",
     "build_llms.py",
+    "build_minify.py",
 )
 
 
 def build_steps() -> tuple[str, ...]:
+    steps = STEPS
     if os.environ.get("VERCEL"):
         # Fonts, images and favicons are committed; Vercel has no Pillow by default.
-        return tuple(step for step in STEPS if step not in ASSET_STEPS)
-    return STEPS
+        steps = tuple(step for step in STEPS if step not in ASSET_STEPS)
+    if not os.environ.get("MINIFY_ASSETS", "1" if os.environ.get("VERCEL") else ""):
+        steps = tuple(step for step in steps if step != "build_minify.py")
+    return steps
 
 
 def main() -> None:

@@ -17,6 +17,7 @@ from wrap_pages import build_page, extract_main  # noqa: E402
 MARKERS = {
     "home": ("<!-- PSI_HOME_BRIDGE -->", "<!-- /PSI_HOME_BRIDGE -->"),
     "home_hero": ("<!-- HOME_HERO_LEAD -->", "<!-- /HOME_HERO_LEAD -->"),
+    "home_services": ("<!-- HOME_SERVICES_HEAD -->", "<!-- /HOME_SERVICES_HEAD -->"),
     "home_person": ("<!-- HOME_PERSON_TEXT -->", "<!-- /HOME_PERSON_TEXT -->"),
     "leistungen": ("<!-- PSI_LEISTUNGEN_BRIDGE -->", "<!-- /PSI_LEISTUNGEN_BRIDGE -->"),
     "coaching": ("<!-- PSI_COACHING_FOUNDATION -->", "<!-- /PSI_COACHING_FOUNDATION -->"),
@@ -48,6 +49,26 @@ def render_home_hero(lang: str) -> str:
     return f"""          <p class="hero-lead">
             {TEXT[lang]["hero_lead"]}
           </p>"""
+
+
+UNI_OSNABRUECK_URL = "https://www.uni-osnabrueck.de/"
+
+
+def _uni_link(lang: str) -> str:
+    label = "Universität Osnabrück" if lang == "de" else "University of Osnabrück"
+    return (
+        f'<a href="{UNI_OSNABRUECK_URL}" class="text-link" rel="noopener noreferrer">'
+        f"{html.escape(label)}</a>"
+    )
+
+
+def render_home_services_head(lang: str) -> str:
+    t = TEXT[lang]
+    intro = t["home_services_intro"].format(uni_link=_uni_link(lang))
+    return f"""        <header class="home-services-header">
+          <h2 class="home-services-title">{t["home_services_title"]}</h2>
+          <p class="home-services-intro">{intro}</p>
+        </header>"""
 
 
 def render_home_person(lang: str) -> str:
@@ -149,6 +170,16 @@ def wrap_diagnostik_depth(main: str, lang: str) -> str:
     return pattern.sub(replacer, main, count=1)
 
 
+def patch_profile_alt(main: str, lang: str) -> str:
+    alt = html.escape(TEXT[lang]["profile_image_alt"], quote=True)
+    return re.sub(
+        r'(<img src="(?:\.\./)?public/doris-web-600\.jpg" alt=")[^"]*(")',
+        rf"\1{alt}\2",
+        main,
+        count=1,
+    )
+
+
 def patch_main(
     main: str,
     lang: str,
@@ -161,8 +192,10 @@ def patch_main(
 ) -> str:
     if home:
         main = inject_block(main, "home_hero", render_home_hero(lang))
+        main = inject_block(main, "home_services", render_home_services_head(lang))
         main = inject_block(main, "home", render_home_bridge(lang, asset))
         main = inject_block(main, "home_person", render_home_person(lang))
+        main = patch_profile_alt(main, lang)
     if leistungen:
         main = inject_block(main, "leistungen", render_leistungen_bridge(lang, asset))
     if coaching:

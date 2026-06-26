@@ -559,15 +559,7 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>
-    (function () {{
-      var saved = localStorage.getItem('dg-theme');
-      var theme = saved === 'dark' || saved === 'light'
-        ? saved
-        : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme', theme);
-    }})();
-  </script>
+  <script src="{asset}js/theme-init.js?v={ASSET_VERSION}"></script>
 {robots_meta}  <title>{title}</title>
   <meta name="description" content="{description}">
 {performance_head(asset, filename)}

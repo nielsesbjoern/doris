@@ -1236,6 +1236,35 @@ main > .page-back + .page-section--hero {
   color: var(--color-mid-gray);
 }
 
+.home-services-header {
+  margin-bottom: clamp(1.75rem, 3.5vw, 2.5rem);
+  max-width: min(52rem, 100%);
+}
+
+.home-services-title {
+  margin-bottom: 0.75rem;
+}
+
+.home-services-intro {
+  margin-top: 0;
+  max-width: 52ch;
+  color: var(--color-dark-gray);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
+.text-link {
+  color: var(--color-primary);
+  border-bottom: 1px solid var(--color-primary);
+  padding-bottom: 1px;
+  font-weight: 500;
+}
+
+.text-link:hover {
+  color: var(--color-dark-gray);
+  border-bottom-color: var(--color-dark-gray);
+}
+
 .home-references {
   margin-top: clamp(1.75rem, 3vw, 2.5rem);
   padding-top: clamp(1.5rem, 3vw, 2rem);
@@ -3711,7 +3740,12 @@ main > .page-back + .page-section--hero {
 /* Responsive
    -------------------------------------------------------------------------- */
 
-@media (min-width: 1024px) {
+  @media (min-width: 1024px) {
+  .home-services-intro {
+    font-size: var(--text-base);
+    max-width: 58ch;
+  }
+
   :root {
     --max-width: min(1520px, calc(100vw - 2rem));
     --site-gutter: 1.25rem;
