@@ -20,7 +20,7 @@ TWITTER_SITE = ""  # e.g. "@handle" — set when a verified X/Twitter account ex
 ORG_NAME_DE = "Doris Gunsch – Psychologische Managementberatung"
 ORG_NAME_EN = "Doris Gunsch – Psychological Management Consulting"
 FAVICON_VERSION = 3
-ASSET_VERSION = 3
+ASSET_VERSION = 4
 
 # Newtonstraße 3, 49088 Osnabrück
 GEO_LATITUDE = 52.2726

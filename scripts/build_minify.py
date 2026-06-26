@@ -11,10 +11,6 @@ CSS_FILES = (
     ROOT / "css" / "fonts.css",
     ROOT / "css" / "styles.css",
 )
-JS_FILES = (
-    ROOT / "js" / "theme-init.js",
-    ROOT / "js" / "site.js",
-)
 
 
 def minify_css(text: str) -> str:
@@ -44,10 +40,7 @@ def minify_file(path: Path, *, kind: str) -> None:
 def main() -> None:
     for css_path in CSS_FILES:
         minify_file(css_path, kind="css")
-    for js_path in JS_FILES:
-        if js_path.exists():
-            minify_file(js_path, kind="js")
-    print("Asset minification complete")
+    print("CSS minification complete (JS skipped — regex-safe)")
 
 
 if __name__ == "__main__":
