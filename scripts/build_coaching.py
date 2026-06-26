@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from coaching_formats_data import FORMATS, TEXT  # noqa: E402
-from wrap_pages import build_page, extract_main  # noqa: E402
+from wrap_pages import build_page, extract_main, strip_wrapped_artifacts  # noqa: E402
 
 MARKER_START = "<!-- FORMAT_COMPARE -->"
 MARKER_END = "<!-- /FORMAT_COMPARE -->"
@@ -43,7 +43,7 @@ def render_card(fmt: dict, lang: str, t: dict) -> str:
     return f"""            <article class="format-compare__card" id="format-{fmt["id"]}" data-format="{fmt["id"]}" data-group="{fmt["group"]}">
               <header class="format-compare__card-head">
                 <span class="format-compare__badge">{badge}</span>
-                <h5>{title}</h5>
+                <h4>{title}</h4>
               </header>
               <dl class="format-compare__meta">
 {chr(10).join(dl_rows)}
@@ -80,7 +80,7 @@ def render_compare(lang: str) -> str:
     cards = "\n".join(render_card(fmt, lang, t) for fmt in FORMATS)
 
     return f"""          <div class="detail-block format-compare" id="formate-vergleich">
-            <h4 class="detail-subtitle">{t["title"]}</h4>
+            <h3 class="detail-subtitle">{t["title"]}</h3>
             <p class="detail-intro">
               {t["intro"]}
             </p>
@@ -126,7 +126,7 @@ def inject_compare(main: str, lang: str) -> str:
 
 def patch_file(path: Path, lang: str) -> str:
     raw = path.read_text(encoding="utf-8")
-    main = extract_main(raw)
+    main = strip_wrapped_artifacts(extract_main(raw))
     if not main:
         raise SystemExit(f"Could not extract <main> from {path}")
     return inject_compare(main, lang)

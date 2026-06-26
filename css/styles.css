@@ -2770,7 +2770,8 @@ main > .page-back + .page-section--hero {
   background-color: var(--color-bg);
 }
 
-.detail-item h5 {
+.detail-item h3,
+.detail-item h4 {
   font-family: var(--font-sans);
   font-size: var(--text-sm);
   font-weight: 600;
@@ -3305,7 +3306,7 @@ main > .page-back + .page-section--hero {
   border-radius: 999px;
 }
 
-.format-compare__card h5 {
+.format-compare__card h4 {
   font-family: var(--font-sans);
   font-size: var(--text-sm);
   font-weight: 600;

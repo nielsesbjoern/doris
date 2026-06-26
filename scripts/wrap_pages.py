@@ -327,12 +327,11 @@ def strip_wrapped_artifacts(content: str) -> str:
             prev = content
             content = re.sub(pattern, "", content, count=1, flags=re.DOTALL)
 
-    content = re.sub(
-        r'\s*<aside class="container page-next-step">\s*.*?\s*</aside>\s*$',
-        "",
-        content,
-        flags=re.DOTALL,
-    )
+    pattern_next_step = r'\s*<aside class="container page-next-step">\s*.*?\s*</aside>\s*$'
+    prev = None
+    while prev != content:
+        prev = content
+        content = re.sub(pattern_next_step, "", content, count=1, flags=re.DOTALL)
     content = re.sub(
         r'\s*<details class="home-standorte">.*?</details>\s*',
         "\n        <!-- HOME_STANDORTE -->\n",
