@@ -116,6 +116,7 @@
   </script>
 </head>
 <body data-page="standort">
+  <a href="#main-content" class="skip-link">Zum Inhalt springen</a>
 
 <div class="site-shell">
   <div class="sidebar-overlay" aria-hidden="true"></div>
@@ -174,7 +175,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main-content">
       <div class="container page-back">
         <a href="../einsatzgebiete" class="btn btn-secondary btn-back">← Zurück zu Einsatzgebieten</a>
       </div>
@@ -210,15 +211,15 @@
         <h2>Formate für Hannover</h2>
         <div class="standort-formats">
             <div class="standort-format">
-              <h3 class="standort-format__title">Prozessbegleitung</h3>
+              <p class="standort-format__title">Prozessbegleitung</p>
               <p>Moderation in mehrstufigen Veränderungs- und Entwicklungsprozessen.</p>
             </div>
             <div class="standort-format">
-              <h3 class="standort-format__title">Coaching</h3>
+              <p class="standort-format__title">Coaching</p>
               <p>Einzelbegleitung für Führungskräfte unter hoher Verantwortung.</p>
             </div>
             <div class="standort-format">
-              <h3 class="standort-format__title">Trainings</h3>
+              <p class="standort-format__title">Trainings</p>
               <p>Seminare zu Führung, Kommunikation und Konfliktmanagement.</p>
             </div>
         </div>
@@ -262,7 +263,7 @@
     <section class="page-section page-section--compact standort-block standort-block--alt">
       <div class="container">
         <h2>Passende Leistungen</h2>
-        <h3 class="standort-subhead">Geeignet für</h3>
+        <p class="standort-subhead">Geeignet für</p>
         <p class="standort-muted">Bereichsleitungen, Klinikdirektionen, Verwaltungsleitungen und Projektverantwortliche in Hannover.</p>
 
           <ul class="standort-services-list">
@@ -292,6 +293,7 @@
         </article>
       </div>
     </section>
+
     </main>
 
     <footer class="site-footer">
@@ -317,12 +319,13 @@
                 <a href="../" class="sidebar-link">Start</a>
       <details class="sidebar-dropdown">
         <summary class="sidebar-dropdown__summary">
-          <a href="../leistungen" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link">Leistungen</a>
+          <span class="sidebar-link sidebar-link--emphasis">Leistungen</span>
           <span class="sidebar-dropdown__toggle" aria-hidden="true">
             <svg class="sidebar-dropdown__chevron" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"></path></svg>
           </span>
         </summary>
         <div class="sidebar-dropdown__panel">
+          <a href="../leistungen" class="sidebar-link sidebar-link--sub">Übersicht</a>
           <a href="../coaching" class="sidebar-link sidebar-link--sub">Coaching</a>
           <a href="../trainings" class="sidebar-link sidebar-link--sub">Trainings & Seminare</a>
           <a href="../team" class="sidebar-link sidebar-link--sub">Team & Prozess</a>

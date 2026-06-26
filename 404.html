@@ -52,6 +52,7 @@
   </script>
 </head>
 <body data-page="error">
+  <a href="#main-content" class="skip-link">Zum Inhalt springen</a>
 
 <div class="site-shell">
   <div class="sidebar-overlay" aria-hidden="true"></div>
@@ -110,7 +111,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main-content">
 <section class="page-section page-section--hero">
         <div class="container">
           <h1>Seite nicht gefunden</h1>
@@ -143,12 +144,13 @@
                 <a href="./" class="sidebar-link">Start</a>
       <details class="sidebar-dropdown">
         <summary class="sidebar-dropdown__summary">
-          <a href="leistungen" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link">Leistungen</a>
+          <span class="sidebar-link sidebar-link--emphasis">Leistungen</span>
           <span class="sidebar-dropdown__toggle" aria-hidden="true">
             <svg class="sidebar-dropdown__chevron" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"></path></svg>
           </span>
         </summary>
         <div class="sidebar-dropdown__panel">
+          <a href="leistungen" class="sidebar-link sidebar-link--sub">Übersicht</a>
           <a href="coaching" class="sidebar-link sidebar-link--sub">Coaching</a>
           <a href="trainings" class="sidebar-link sidebar-link--sub">Trainings & Seminare</a>
           <a href="team" class="sidebar-link sidebar-link--sub">Team & Prozess</a>

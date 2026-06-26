@@ -46,12 +46,6 @@
     }
   });
 
-  sidebar?.querySelectorAll('.sidebar-dropdown__link').forEach((link) => {
-    link.addEventListener('click', (e) => {
-      e.stopPropagation();
-    });
-  });
-
   function closeLangMenu() {
     if (!langSwitcher) return;
     langSwitcher.classList.remove('is-open');

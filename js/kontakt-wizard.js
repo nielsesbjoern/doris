@@ -11,6 +11,7 @@
   const steps = root.querySelectorAll('[data-wizard-step]');
   const progressFill = root.querySelector('.contact-wizard__progress-fill');
   const progressLabel = root.querySelector('.contact-wizard__progress-label');
+  const stepTitleEl = root.querySelector('#wizard-step-title');
   const btnBack = root.querySelector('[data-wizard-back]');
   const btnNext = root.querySelector('[data-wizard-next]');
   const btnMail = root.querySelector('[data-wizard-mail]');
@@ -355,6 +356,11 @@
     }
     if (progressLabel) {
       progressLabel.textContent = i18n.step(step);
+    }
+
+    const activePanel = root.querySelector(`[data-wizard-step="${step}"]`);
+    if (stepTitleEl && activePanel?.dataset.stepTitle) {
+      stepTitleEl.textContent = activePanel.dataset.stepTitle;
     }
 
     if (btnBack) btnBack.hidden = step === 1;

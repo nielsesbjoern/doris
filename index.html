@@ -93,6 +93,7 @@
   </script>
 </head>
 <body data-page="home">
+  <a href="#main-content" class="skip-link">Zum Inhalt springen</a>
 
 <div class="site-shell">
   <div class="sidebar-overlay" aria-hidden="true"></div>
@@ -151,7 +152,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main-content">
 <section class="hero section page-section page-section--hero">
       <div class="container hero-grid">
         <div class="hero-content">
@@ -185,23 +186,23 @@
           <!-- /HOME_SERVICES_HEAD -->
         <div class="home-services">
           <article class="card card--lead home-service-lead">
-            <h3>Coaching</h3>
+            <p class="card__title">Coaching</p>
             <p>Personal und Business Coaching bei komplexen Führungssituationen — von der Klärung bis zur konkreten Handlungsstrategie, auch als Smart-Coaching oder Coaching-on-the-job.</p>
             <a href="coaching" class="card-link">Mehr zum Coaching</a>
           </article>
           <div class="home-services-row">
             <article class="card">
-              <h3>Trainings</h3>
+              <p class="card__title">Trainings</p>
               <p>Seminare für Führung, Kommunikation und Gesundheit im Arbeitskontext.</p>
               <a href="trainings" class="card-link">Mehr zu Trainings</a>
             </article>
             <article class="card">
-              <h3>Team &amp; Prozess</h3>
+              <p class="card__title">Team &amp; Prozess</p>
               <p>Begleitung bei Teamentwicklung, Konflikten und Veränderungsprozessen.</p>
               <a href="team" class="card-link">Mehr zu Team &amp; Prozess</a>
             </article>
             <article class="card">
-              <h3>Diagnostik &amp; PSI</h3>
+              <p class="card__title">Diagnostik &amp; PSI</p>
               <p>Wissenschaftliche Potenzialanalysen nach der PSI-Theorie — für Führungskräfte und Teams.</p>
               <a href="diagnostik" class="card-link">Mehr zur Diagnostik</a>
             </article>
@@ -218,7 +219,27 @@
           <strong>Lindt &amp; Sprüngli</strong> — sowie Kliniken, Verbänden und Mittelstandsunternehmen
           im gesamten DACH-Raum. <a href="referenzen" class="home-references-link">Alle Referenzen</a>
         </p>
-        <!-- HOME_STANDORTE -->
+                <details class="home-standorte">
+          <summary>Beratung in Ihrer Region</summary>
+          <p class="home-standorte-intro">Coaching und Prozessbegleitung für Führungskräfte — Büro in Osnabrück, Mandate im Nordwesten und im gesamten DACH-Raum.</p>
+          <p class="home-standorte-group-label">Nordwesten</p>
+          <ul class="home-standorte-list">
+            <li><a href="standorte/osnabrueck">Osnabrück — Hauptsitz</a></li>
+            <li><a href="standorte/oldenburg">Oldenburg — Gesundheit &amp; Soziales</a></li>
+            <li><a href="standorte/hannover">Hannover — große Organisationen</a></li>
+            <li><a href="standorte/bremen">Bremen — Wandel &amp; Verantwortung</a></li>
+          </ul>
+          <p class="home-standorte-group-label">Weitere Städte</p>
+          <ul class="home-standorte-list">
+            <li><a href="standorte/hamburg">Hamburg — Metropole &amp; Kommunikation</a></li>
+            <li><a href="standorte/berlin">Berlin — Verbände &amp; Transformation</a></li>
+            <li><a href="standorte/frankfurt">Frankfurt — Entscheidungsdruck &amp; Verantwortung</a></li>
+            <li><a href="standorte/muenchen">München — Leistung &amp; internationale Teams</a></li>
+            <li><a href="standorte/duesseldorf">Düsseldorf — Wirtschaft &amp; Führungsdynamik</a></li>
+            <li><a href="standorte/zuerich">Zürich — Internationaler Führungskontext</a></li>
+          </ul>
+          <p class="home-standorte-more"><a href="einsatzgebiete" class="card-link">Alle Einsatzgebiete auf der Karte</a></p>
+        </details>
 </div>
     </section>
 
@@ -235,7 +256,7 @@
             <div class="profile-content">
               <span class="brand-line" aria-hidden="true"></span>
               <p class="home-person-kicker">Zur Person</p>
-              <h2 class="home-person-name">Doris Gunsch</h2>
+              <p class="home-person-name">Doris Gunsch</p>
               <!-- HOME_PERSON_TEXT -->
             <p class="home-person-text">
               Seit über 20 Jahren begleite ich Führungskräfte, Teams und Organisationen in Veränderungs- und Konfliktsituationen — vertraulich, strukturiert und mit Blick auf das, was wirklich trägt.
@@ -267,8 +288,9 @@
             <p class="contact-wizard__progress-label"></p>
           </div>
 
-          <div class="contact-wizard__panel is-active" data-wizard-step="1">
-            <h3 class="contact-wizard__step-title">Leistungsbereich</h3>
+          <h3 id="wizard-step-title" class="contact-wizard__step-title" aria-live="polite">Leistungsbereich</h3>
+
+          <div class="contact-wizard__panel is-active" data-wizard-step="1" data-step-title="Leistungsbereich">
             <p class="contact-wizard__step-hint">Wobei kann ich Sie unterstützen?</p>
             <div class="contact-wizard__chips" role="group" aria-label="Leistungsbereich">
               <button type="button" class="contact-wizard__chip" data-field="leistung" data-value="coaching" aria-pressed="false">Coaching</button>
@@ -279,8 +301,7 @@
             </div>
           </div>
 
-          <div class="contact-wizard__panel" data-wizard-step="2" hidden>
-            <h3 class="contact-wizard__step-title">Anlass</h3>
+          <div class="contact-wizard__panel" data-wizard-step="2" data-step-title="Anlass" hidden>
             <p class="contact-wizard__step-hint">Was ist der Hintergrund Ihrer Anfrage?</p>
             <div class="contact-wizard__chips" role="group" aria-label="Anlass">
               <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="coaching" data-value="fuehrungswechsel" aria-pressed="false">Führungswechsel / Onboarding</button>
@@ -302,8 +323,7 @@
             </div>
           </div>
 
-          <div class="contact-wizard__panel" data-wizard-step="3" hidden>
-            <h3 class="contact-wizard__step-title">Rahmendaten</h3>
+          <div class="contact-wizard__panel" data-wizard-step="3" data-step-title="Rahmendaten" hidden>
             <p class="contact-wizard__step-hint">Ein paar Eckdaten zu Ihrem Vorhaben.</p>
 
             <div class="contact-wizard__group">
@@ -351,8 +371,7 @@
             </div>
           </div>
 
-          <div class="contact-wizard__panel" data-wizard-step="4" hidden>
-            <h3 class="contact-wizard__step-title">Ihre Angaben</h3>
+          <div class="contact-wizard__panel" data-wizard-step="4" data-step-title="Ihre Angaben" hidden>
             <p class="contact-wizard__step-hint">Damit Anrede und Signatur in der E-Mail vollständig sind.</p>
             <div class="contact-wizard__fields">
               <div class="contact-wizard__field">
@@ -374,8 +393,7 @@
             </div>
           </div>
 
-          <div class="contact-wizard__panel" data-wizard-step="5" hidden>
-            <h3 class="contact-wizard__step-title">Ergänzung</h3>
+          <div class="contact-wizard__panel" data-wizard-step="5" data-step-title="Ergänzung" hidden>
             <p class="contact-wizard__step-hint">Optional — was soll ich noch wissen?</p>
             <div class="contact-wizard__field">
               <label class="contact-wizard__label" for="wizard-freitext">Ihr Anliegen in eigenen Worten</label>
@@ -383,8 +401,7 @@
             </div>
           </div>
 
-          <div class="contact-wizard__panel" data-wizard-step="6" hidden>
-            <h3 class="contact-wizard__step-title">Vorschau &amp; E-Mail öffnen</h3>
+          <div class="contact-wizard__panel" data-wizard-step="6" data-step-title="Vorschau &amp; E-Mail öffnen" hidden>
             <p class="contact-wizard__step-hint">So sieht Ihre Anfrage in der E-Mail aus.</p>
             <div class="contact-wizard__preview-toolbar">
               <button type="button" class="btn btn-secondary contact-wizard__copy" data-wizard-copy hidden>Text kopieren</button>
@@ -448,12 +465,13 @@
                 <a href="./" class="sidebar-link is-active">Start</a>
       <details class="sidebar-dropdown">
         <summary class="sidebar-dropdown__summary">
-          <a href="leistungen" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link">Leistungen</a>
+          <span class="sidebar-link sidebar-link--emphasis">Leistungen</span>
           <span class="sidebar-dropdown__toggle" aria-hidden="true">
             <svg class="sidebar-dropdown__chevron" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"></path></svg>
           </span>
         </summary>
         <div class="sidebar-dropdown__panel">
+          <a href="leistungen" class="sidebar-link sidebar-link--sub">Übersicht</a>
           <a href="coaching" class="sidebar-link sidebar-link--sub">Coaching</a>
           <a href="trainings" class="sidebar-link sidebar-link--sub">Trainings & Seminare</a>
           <a href="team" class="sidebar-link sidebar-link--sub">Team & Prozess</a>

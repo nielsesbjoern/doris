@@ -17,8 +17,9 @@
             <p class="contact-wizard__progress-label"></p>
           </div>
 
-          <div class="contact-wizard__panel is-active" data-wizard-step="1">
-            <h3 class="contact-wizard__step-title">Service area</h3>
+          <h3 id="wizard-step-title" class="contact-wizard__step-title" aria-live="polite">Service area</h3>
+
+          <div class="contact-wizard__panel is-active" data-wizard-step="1" data-step-title="Service area">
             <p class="contact-wizard__step-hint">How can I support you?</p>
             <div class="contact-wizard__chips" role="group" aria-label="Service area">
               <button type="button" class="contact-wizard__chip" data-field="leistung" data-value="coaching" aria-pressed="false">Coaching</button>
@@ -29,8 +30,7 @@
             </div>
           </div>
 
-          <div class="contact-wizard__panel" data-wizard-step="2" hidden>
-            <h3 class="contact-wizard__step-title">Context</h3>
+          <div class="contact-wizard__panel" data-wizard-step="2" data-step-title="Context" hidden>
             <p class="contact-wizard__step-hint">What is the background of your enquiry?</p>
             <div class="contact-wizard__chips" role="group" aria-label="Context">
               <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="coaching" data-value="fuehrungswechsel" aria-pressed="false">Leadership transition / onboarding</button>
@@ -52,8 +52,7 @@
             </div>
           </div>
 
-          <div class="contact-wizard__panel" data-wizard-step="3" hidden>
-            <h3 class="contact-wizard__step-title">Framework</h3>
+          <div class="contact-wizard__panel" data-wizard-step="3" data-step-title="Framework" hidden>
             <p class="contact-wizard__step-hint">A few key details about your project.</p>
 
             <div class="contact-wizard__group">
@@ -101,8 +100,7 @@
             </div>
           </div>
 
-          <div class="contact-wizard__panel" data-wizard-step="4" hidden>
-            <h3 class="contact-wizard__step-title">Your details</h3>
+          <div class="contact-wizard__panel" data-wizard-step="4" data-step-title="Your details" hidden>
             <p class="contact-wizard__step-hint">So salutation and signature in the email are complete.</p>
             <div class="contact-wizard__fields">
               <div class="contact-wizard__field">
@@ -124,8 +122,7 @@
             </div>
           </div>
 
-          <div class="contact-wizard__panel" data-wizard-step="5" hidden>
-            <h3 class="contact-wizard__step-title">Additional notes</h3>
+          <div class="contact-wizard__panel" data-wizard-step="5" data-step-title="Additional notes" hidden>
             <p class="contact-wizard__step-hint">Optional — what else should I know?</p>
             <div class="contact-wizard__field">
               <label class="contact-wizard__label" for="wizard-freitext">Your enquiry in your own words</label>
@@ -133,8 +130,7 @@
             </div>
           </div>
 
-          <div class="contact-wizard__panel" data-wizard-step="6" hidden>
-            <h3 class="contact-wizard__step-title">Preview &amp; open email</h3>
+          <div class="contact-wizard__panel" data-wizard-step="6" data-step-title="Preview &amp; open email" hidden>
             <p class="contact-wizard__step-hint">This is how your enquiry will appear in the email.</p>
             <div class="contact-wizard__preview-toolbar">
               <button type="button" class="btn btn-secondary contact-wizard__copy" data-wizard-copy hidden>Copy text</button>

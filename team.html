@@ -53,6 +53,7 @@
   </script>
 </head>
 <body data-page="leistungen">
+  <a href="#main-content" class="skip-link">Zum Inhalt springen</a>
 
 <div class="site-shell">
   <div class="sidebar-overlay" aria-hidden="true"></div>
@@ -111,7 +112,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main-content">
       <div class="container page-back">
         <a href="leistungen" class="btn btn-secondary btn-back">← Zurück zu Leistungen</a>
       </div>
@@ -156,7 +157,7 @@
       <aside class="container page-next-step">
         <div class="card card--lead page-next-step__card">
           <p class="eyebrow">Nächster Schritt</p>
-          <h2 class="page-next-step__title">Prozessbegleitung anfragen</h2>
+          <p class="page-next-step__title">Prozessbegleitung anfragen</p>
           <p class="page-next-step__text">Steht Ihr Team vor einer Veränderung oder einem Konflikt? Lassen Sie uns besprechen, wie ich Sie begleiten kann.</p>
           <a href="kontakt" class="btn btn-primary">Kontakt</a>
         </div>
@@ -186,12 +187,13 @@
                 <a href="./" class="sidebar-link">Start</a>
       <details class="sidebar-dropdown sidebar-dropdown--active" open>
         <summary class="sidebar-dropdown__summary">
-          <a href="leistungen" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link">Leistungen</a>
+          <span class="sidebar-link sidebar-link--emphasis">Leistungen</span>
           <span class="sidebar-dropdown__toggle" aria-hidden="true">
             <svg class="sidebar-dropdown__chevron" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"></path></svg>
           </span>
         </summary>
         <div class="sidebar-dropdown__panel">
+          <a href="leistungen" class="sidebar-link sidebar-link--sub">Übersicht</a>
           <a href="coaching" class="sidebar-link sidebar-link--sub">Coaching</a>
           <a href="trainings" class="sidebar-link sidebar-link--sub">Trainings & Seminare</a>
           <a href="team" class="sidebar-link is-active sidebar-link--sub">Team & Prozess</a>

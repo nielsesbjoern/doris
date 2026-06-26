@@ -43,7 +43,7 @@ def render_card(fmt: dict, lang: str, t: dict) -> str:
     return f"""            <article class="format-compare__card" id="format-{fmt["id"]}" data-format="{fmt["id"]}" data-group="{fmt["group"]}">
               <header class="format-compare__card-head">
                 <span class="format-compare__badge">{badge}</span>
-                <h4>{title}</h4>
+                <p class="detail-item__title">{title}</p>
               </header>
               <dl class="format-compare__meta">
 {chr(10).join(dl_rows)}

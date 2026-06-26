@@ -53,6 +53,7 @@
   </script>
 </head>
 <body data-page="leistungen">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <div class="site-shell">
   <div class="sidebar-overlay" aria-hidden="true"></div>
@@ -111,7 +112,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main-content">
       <div class="container page-back">
         <a href="leistungen" class="btn btn-secondary btn-back">← Back to services</a>
       </div>
@@ -156,7 +157,7 @@
       <aside class="container page-next-step">
         <div class="card card--lead page-next-step__card">
           <p class="eyebrow">Next step</p>
-          <h2 class="page-next-step__title">Request process facilitation</h2>
+          <p class="page-next-step__title">Request process facilitation</p>
           <p class="page-next-step__text">Is your team facing change or conflict? Let us discuss how I can support you.</p>
           <a href="kontakt" class="btn btn-primary">Contact</a>
         </div>
@@ -186,12 +187,13 @@
                 <a href="./" class="sidebar-link">Home</a>
       <details class="sidebar-dropdown sidebar-dropdown--active" open>
         <summary class="sidebar-dropdown__summary">
-          <a href="leistungen" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link">Services</a>
+          <span class="sidebar-link sidebar-link--emphasis">Services</span>
           <span class="sidebar-dropdown__toggle" aria-hidden="true">
             <svg class="sidebar-dropdown__chevron" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"></path></svg>
           </span>
         </summary>
         <div class="sidebar-dropdown__panel">
+          <a href="leistungen" class="sidebar-link sidebar-link--sub">Overview</a>
           <a href="coaching" class="sidebar-link sidebar-link--sub">Coaching</a>
           <a href="trainings" class="sidebar-link sidebar-link--sub">Training & Seminars</a>
           <a href="team" class="sidebar-link is-active sidebar-link--sub">Team & Process</a>

@@ -41,7 +41,7 @@ def _formats(items: list[tuple[str, str]]) -> str:
     for title, text in items:
         blocks.append(
             f"""            <div class="standort-format">
-              <h3 class="standort-format__title">{title}</h3>
+              <p class="standort-format__title">{title}</p>
               <p>{text}</p>
             </div>"""
         )
@@ -220,7 +220,7 @@ def mod_faq(_city, lang, t, _asset):
 def mod_services(_city, lang, t, _asset):
     audience = ""
     if t.get("audience_title") and t.get("audience"):
-        audience = f"""        <h3 class="standort-subhead">{t["audience_title"]}</h3>
+        audience = f"""        <p class="standort-subhead">{t["audience_title"]}</p>
         <p class="standort-muted">{t["audience"]}</p>
 """
     return f"""    <section class="page-section page-section--compact standort-block standort-block--alt">

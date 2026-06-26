@@ -202,6 +202,8 @@ LABELS = {
         "back_einsatzgebiete": "← Zurück zu Einsatzgebieten",
         "breadcrumb_aria": "Brotkrumen-Navigation",
         "next_step": "Nächster Schritt",
+        "skip_link": "Zum Inhalt springen",
+        "services_overview": "Übersicht",
     },
     "en": {
         "nav": "Navigation",
@@ -228,6 +230,8 @@ LABELS = {
         "back_einsatzgebiete": "← Back to service areas",
         "breadcrumb_aria": "Breadcrumb navigation",
         "next_step": "Next step",
+        "skip_link": "Skip to main content",
+        "services_overview": "Overview",
     },
 }
 
@@ -412,7 +416,7 @@ def next_step_block(lang: str, filename: str, _asset: str = "") -> str:
     return f"""      <aside class="container page-next-step">
         <div class="card card--lead page-next-step__card">
           <p class="eyebrow">{L["next_step"]}</p>
-          <h2 class="page-next-step__title">{step["title"]}</h2>
+          <p class="page-next-step__title">{step["title"]}</p>
           <p class="page-next-step__text">{step["text"]}</p>
           <a href="{page_href("kontakt.html", nav)}" class="btn btn-primary">{L["contact"]}</a>
         </div>
@@ -498,12 +502,13 @@ def sidebar(lang, active, prefix="", legal_page=None):
       {a("home", L["home"])}
       <details class="sidebar-dropdown{dropdown_state}"{open_attr}>
         <summary class="sidebar-dropdown__summary">
-          <a href="{keys["leistungen"]}" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link{leistungen_active}">{L["services"]}</a>
+          <span class="sidebar-link sidebar-link--emphasis{leistungen_active}">{L["services"]}</span>
           <span class="sidebar-dropdown__toggle" aria-hidden="true">
             <svg class="sidebar-dropdown__chevron" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"></path></svg>
           </span>
         </summary>
         <div class="sidebar-dropdown__panel">
+          <a href="{keys["leistungen"]}" class="sidebar-link sidebar-link--sub{leistungen_active}">{L["services_overview"]}</a>
 {sub_links}
         </div>
       </details>
@@ -594,6 +599,7 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
 {seo_head}
 </head>
 <body data-page="{meta["page"]}">
+  <a href="#main-content" class="skip-link">{L["skip_link"]}</a>
 
 <div class="site-shell">
   <div class="sidebar-overlay" aria-hidden="true"></div>
@@ -623,7 +629,7 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
 {scroll_progress}
     </header>
 
-    <main>
+    <main id="main-content">
 {page_nav}{main_content}
 {page_footer}    </main>
 

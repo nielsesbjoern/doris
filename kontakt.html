@@ -55,6 +55,7 @@
   </script>
 </head>
 <body data-page="kontakt">
+  <a href="#main-content" class="skip-link">Zum Inhalt springen</a>
 
 <div class="site-shell">
   <div class="sidebar-overlay" aria-hidden="true"></div>
@@ -113,7 +114,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main-content">
       <div class="container page-back">
         <a href="./" class="btn btn-secondary btn-back">← Zurück zur Startseite</a>
       </div>
@@ -170,8 +171,9 @@
             <p class="contact-wizard__progress-label"></p>
           </div>
 
-          <div class="contact-wizard__panel is-active" data-wizard-step="1">
-            <h3 class="contact-wizard__step-title">Leistungsbereich</h3>
+          <h3 id="wizard-step-title" class="contact-wizard__step-title" aria-live="polite">Leistungsbereich</h3>
+
+          <div class="contact-wizard__panel is-active" data-wizard-step="1" data-step-title="Leistungsbereich">
             <p class="contact-wizard__step-hint">Wobei kann ich Sie unterstützen?</p>
             <div class="contact-wizard__chips" role="group" aria-label="Leistungsbereich">
               <button type="button" class="contact-wizard__chip" data-field="leistung" data-value="coaching" aria-pressed="false">Coaching</button>
@@ -182,8 +184,7 @@
             </div>
           </div>
 
-          <div class="contact-wizard__panel" data-wizard-step="2" hidden>
-            <h3 class="contact-wizard__step-title">Anlass</h3>
+          <div class="contact-wizard__panel" data-wizard-step="2" data-step-title="Anlass" hidden>
             <p class="contact-wizard__step-hint">Was ist der Hintergrund Ihrer Anfrage?</p>
             <div class="contact-wizard__chips" role="group" aria-label="Anlass">
               <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="coaching" data-value="fuehrungswechsel" aria-pressed="false">Führungswechsel / Onboarding</button>
@@ -205,8 +206,7 @@
             </div>
           </div>
 
-          <div class="contact-wizard__panel" data-wizard-step="3" hidden>
-            <h3 class="contact-wizard__step-title">Rahmendaten</h3>
+          <div class="contact-wizard__panel" data-wizard-step="3" data-step-title="Rahmendaten" hidden>
             <p class="contact-wizard__step-hint">Ein paar Eckdaten zu Ihrem Vorhaben.</p>
 
             <div class="contact-wizard__group">
@@ -254,8 +254,7 @@
             </div>
           </div>
 
-          <div class="contact-wizard__panel" data-wizard-step="4" hidden>
-            <h3 class="contact-wizard__step-title">Ihre Angaben</h3>
+          <div class="contact-wizard__panel" data-wizard-step="4" data-step-title="Ihre Angaben" hidden>
             <p class="contact-wizard__step-hint">Damit Anrede und Signatur in der E-Mail vollständig sind.</p>
             <div class="contact-wizard__fields">
               <div class="contact-wizard__field">
@@ -277,8 +276,7 @@
             </div>
           </div>
 
-          <div class="contact-wizard__panel" data-wizard-step="5" hidden>
-            <h3 class="contact-wizard__step-title">Ergänzung</h3>
+          <div class="contact-wizard__panel" data-wizard-step="5" data-step-title="Ergänzung" hidden>
             <p class="contact-wizard__step-hint">Optional — was soll ich noch wissen?</p>
             <div class="contact-wizard__field">
               <label class="contact-wizard__label" for="wizard-freitext">Ihr Anliegen in eigenen Worten</label>
@@ -286,8 +284,7 @@
             </div>
           </div>
 
-          <div class="contact-wizard__panel" data-wizard-step="6" hidden>
-            <h3 class="contact-wizard__step-title">Vorschau &amp; E-Mail öffnen</h3>
+          <div class="contact-wizard__panel" data-wizard-step="6" data-step-title="Vorschau &amp; E-Mail öffnen" hidden>
             <p class="contact-wizard__step-hint">So sieht Ihre Anfrage in der E-Mail aus.</p>
             <div class="contact-wizard__preview-toolbar">
               <button type="button" class="btn btn-secondary contact-wizard__copy" data-wizard-copy hidden>Text kopieren</button>
@@ -346,12 +343,13 @@
                 <a href="./" class="sidebar-link">Start</a>
       <details class="sidebar-dropdown">
         <summary class="sidebar-dropdown__summary">
-          <a href="leistungen" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link">Leistungen</a>
+          <span class="sidebar-link sidebar-link--emphasis">Leistungen</span>
           <span class="sidebar-dropdown__toggle" aria-hidden="true">
             <svg class="sidebar-dropdown__chevron" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"></path></svg>
           </span>
         </summary>
         <div class="sidebar-dropdown__panel">
+          <a href="leistungen" class="sidebar-link sidebar-link--sub">Übersicht</a>
           <a href="coaching" class="sidebar-link sidebar-link--sub">Coaching</a>
           <a href="trainings" class="sidebar-link sidebar-link--sub">Trainings & Seminare</a>
           <a href="team" class="sidebar-link sidebar-link--sub">Team & Prozess</a>

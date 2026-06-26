@@ -116,6 +116,7 @@
   </script>
 </head>
 <body data-page="standort">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <div class="site-shell">
   <div class="sidebar-overlay" aria-hidden="true"></div>
@@ -174,7 +175,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main-content">
       <div class="container page-back">
         <a href="../einsatzgebiete" class="btn btn-secondary btn-back">← Back to service areas</a>
       </div>
@@ -210,15 +211,15 @@
         <h2>Formats for Hannover</h2>
         <div class="standort-formats">
             <div class="standort-format">
-              <h3 class="standort-format__title">Process facilitation</h3>
+              <p class="standort-format__title">Process facilitation</p>
               <p>Moderation in multi-stage change and development processes.</p>
             </div>
             <div class="standort-format">
-              <h3 class="standort-format__title">Coaching</h3>
+              <p class="standort-format__title">Coaching</p>
               <p>Individual support for leaders under high responsibility.</p>
             </div>
             <div class="standort-format">
-              <h3 class="standort-format__title">Training</h3>
+              <p class="standort-format__title">Training</p>
               <p>Seminars on leadership, communication and conflict management.</p>
             </div>
         </div>
@@ -262,7 +263,7 @@
     <section class="page-section page-section--compact standort-block standort-block--alt">
       <div class="container">
         <h2>Relevant services</h2>
-        <h3 class="standort-subhead">Suitable for</h3>
+        <p class="standort-subhead">Suitable for</p>
         <p class="standort-muted">Department heads, hospital directors, administrative leads and project owners in Hannover.</p>
 
           <ul class="standort-services-list">
@@ -292,6 +293,7 @@
         </article>
       </div>
     </section>
+
     </main>
 
     <footer class="site-footer">
@@ -317,12 +319,13 @@
                 <a href="../" class="sidebar-link">Home</a>
       <details class="sidebar-dropdown">
         <summary class="sidebar-dropdown__summary">
-          <a href="../leistungen" class="sidebar-link sidebar-link--emphasis sidebar-dropdown__link">Services</a>
+          <span class="sidebar-link sidebar-link--emphasis">Services</span>
           <span class="sidebar-dropdown__toggle" aria-hidden="true">
             <svg class="sidebar-dropdown__chevron" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"></path></svg>
           </span>
         </summary>
         <div class="sidebar-dropdown__panel">
+          <a href="../leistungen" class="sidebar-link sidebar-link--sub">Overview</a>
           <a href="../coaching" class="sidebar-link sidebar-link--sub">Coaching</a>
           <a href="../trainings" class="sidebar-link sidebar-link--sub">Training & Seminars</a>
           <a href="../team" class="sidebar-link sidebar-link--sub">Team & Process</a>
