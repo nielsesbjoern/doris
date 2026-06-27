@@ -7,7 +7,6 @@
   const NL = '\r\n';
   const MAX_MAILTO_LENGTH = 1800;
   const AUTO_ADVANCE_MS = 220;
-  const AUTO_ADVANCE_KEY = 'dg-wizard-auto-advance';
   const FORMAT_INQUIRY_KEY = 'doris-format-inquiry';
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -26,7 +25,6 @@
   const mailHintEl = root.querySelector('[data-wizard-mail-hint]');
   const cityField = root.querySelector('[data-wizard-city-field]');
   const cityInput = root.querySelector('[data-wizard-city]');
-  const autoAdvanceToggle = root.querySelector('[data-wizard-auto-advance]');
 
   let currentStep = 1;
   let advanceTimer = null;
@@ -460,20 +458,7 @@
   }
 
   function isAutoAdvanceEnabled() {
-    try {
-      const saved = localStorage.getItem(AUTO_ADVANCE_KEY);
-      if (saved === '0' || saved === 'false') return false;
-      if (saved === '1' || saved === 'true') return true;
-    } catch {
-      /* localStorage unavailable */
-    }
     return !prefersReducedMotion.matches;
-  }
-
-  function syncAutoAdvanceToggle() {
-    if (autoAdvanceToggle) {
-      autoAdvanceToggle.checked = isAutoAdvanceEnabled();
-    }
   }
 
   function scheduleAutoAdvance() {
@@ -571,17 +556,6 @@
   btnMailFallback?.addEventListener('click', openMailFallback);
   btnCopy?.addEventListener('click', handleCopyClick);
 
-  autoAdvanceToggle?.addEventListener('change', () => {
-    try {
-      localStorage.setItem(AUTO_ADVANCE_KEY, autoAdvanceToggle.checked ? '1' : '0');
-    } catch {
-      /* ignore */
-    }
-    if (!autoAdvanceToggle.checked) {
-      clearTimeout(advanceTimer);
-    }
-  });
-
   root.querySelectorAll('[data-wizard-input]').forEach((input) => {
     input.addEventListener('input', () => {
       if (currentStep === totalSteps) {
@@ -675,7 +649,6 @@
     }, 50);
   }
 
-  syncAutoAdvanceToggle();
   filterAnlassOptions();
   updateCityVisibility();
 
