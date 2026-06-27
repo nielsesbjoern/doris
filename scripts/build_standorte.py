@@ -228,7 +228,7 @@ def mod_format_teaser(_city, lang, t, asset, _slug):
           <h2>{ui["format_teaser_title"]}</h2>
           <p>{ui["format_teaser_text"]}</p>
           <p class="hero-actions">
-            <a href="{page_href("coaching-formate.html", asset)}" class="btn btn-secondary">{ui["format_teaser_btn"]}</a>
+            <a href="{page_href("coaching-formate.html", asset)}" class="btn btn-format-finder">{ui["format_teaser_btn"]}</a>
           </p>
         </article>
       </div>

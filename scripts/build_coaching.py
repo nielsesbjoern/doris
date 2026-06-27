@@ -159,7 +159,7 @@ def render_teaser(lang: str, link_prefix: str) -> str:
             <p class="format-teaser__kicker">{t["teaser_kicker"]}</p>
             <h3 class="format-teaser__title">{t["teaser_title"]}</h3>
             <p class="format-teaser__text">{t["teaser_text"]}</p>
-            <a href="{href}" class="btn btn-primary">{t["teaser_btn"]}</a>
+            <a href="{href}" class="btn btn-format-finder">{t["teaser_btn"]}</a>
           </aside>"""
 
 
