@@ -14,6 +14,11 @@
   --color-overlay:rgba(0,0,0,0.15);
   --color-sidebar-hover:rgba(139,174,209,0.12);
   --color-bg-warm:#F4F1EC;
+  --format-finder-bg:#1a1a1a;
+  --format-finder-border:#1a1a1a;
+  --format-finder-fg:#ffffff;
+  --format-finder-bg-hover:#333333;
+  --format-finder-border-hover:#333333;
   --brand-line-width:3rem;
   --btn-radius:8px;
   --font-serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
@@ -58,6 +63,11 @@
   --color-overlay:rgba(0,0,0,0.35);
   --color-sidebar-hover:rgba(155,189,224,0.14);
   --color-bg-warm:#252320;
+  --format-finder-bg:var(--color-surface);
+  --format-finder-border:var(--color-primary);
+  --format-finder-fg:var(--color-text);
+  --format-finder-bg-hover:var(--color-accent-light);
+  --format-finder-border-hover:var(--color-primary-hover);
   color-scheme:dark;
 }
 
@@ -4104,8 +4114,8 @@ a:focus-visible,.btn:focus-visible,.sidebar-link:focus-visible,.sidebar-toggle:f
 .format-teaser__title{margin:0;font-family:var(--font-serif);font-size:clamp(1.35rem,2.5vw,1.75rem);font-weight:500;color:var(--color-text)}
 .format-teaser__text{margin:0;max-width:46ch;color:var(--color-dark-gray);line-height:1.65}
 
-.btn-format-finder{display:inline-flex;align-items:center;justify-content:center;padding:0.65rem 1.1rem;font-family:var(--font-sans);font-size:var(--text-xs);font-weight:600;color:var(--color-on-primary);background-color:#1a1a1a;border:1px solid #1a1a1a;border-radius:var(--btn-radius);text-decoration:none;transition:background-color var(--ease),border-color var(--ease)}
-.btn-format-finder:hover{color:var(--color-on-primary);background-color:#333;border-color:#333}
+.btn-format-finder{display:inline-flex;align-items:center;justify-content:center;padding:0.65rem 1.1rem;font-family:var(--font-sans);font-size:var(--text-xs);font-weight:600;color:var(--format-finder-fg);background-color:var(--format-finder-bg);border:1px solid var(--format-finder-border);border-radius:var(--btn-radius);text-decoration:none;transition:background-color var(--ease),border-color var(--ease),color var(--ease)}
+.btn-format-finder:hover{color:var(--format-finder-fg);background-color:var(--format-finder-bg-hover);border-color:var(--format-finder-border-hover)}
 .card-link--format{display:inline-block;margin-top:0.65rem;font-weight:600;color:var(--color-text)}
 .card-link--format:hover{color:var(--color-primary)}
 .home-service-lead .card-link--format{margin-top:0.5rem;margin-left:1.5rem}
