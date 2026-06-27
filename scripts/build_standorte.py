@@ -27,7 +27,7 @@ from standorte_data import (
     STANDORTE_META,
 )
 from wrap_pages import META, build_page, nav_prefix
-from seo import page_href
+from seo import page_href, wizard_href
 
 HOME_STANDORTE_MARKER = "<!-- HOME_STANDORTE -->"
 EINSATZGEBIETE_MAP_MARKER = "<!-- EINSATZGEBIETE_MAP -->"
@@ -307,14 +307,16 @@ def mod_services(_city, lang, t, _asset, _slug):
 
 
 @_module("cta")
-def mod_cta(_city, lang, t, _asset, _slug):
+def mod_cta(_city, lang, t, _asset, slug):
+    city_name = _city["name_de"] if lang == "de" else _city["name_en"]
+    wizard_link = wizard_href(_asset, leistung="coaching", stadt=city_name)
     return f"""    <section class="page-section page-section--cta standort-cta">
       <div class="container">
         <article class="card card--lead">
           <h2>{t["cta_title"]}</h2>
           <p>{t["cta_text"]}</p>
           <div class="hero-actions">
-            <a href="{page_href("kontakt.html", _asset)}" class="btn btn-primary">{t["cta_btn"]}</a>
+            <a href="{wizard_link}" class="btn btn-primary">{t["cta_btn"]}</a>
             <a href="tel:+4954114496" class="btn btn-secondary">{"Anrufen" if lang == "de" else "Call"}</a>
           </div>
         </article>

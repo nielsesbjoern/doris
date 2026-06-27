@@ -217,8 +217,8 @@
       /* sessionStorage unavailable — still navigate */
     }
 
-    window.DorisNavReturn?.saveForTarget(`${contactPath}#kontakt-anfrage`);
-    window.location.href = `${contactPath}#kontakt-anfrage`;
+    window.DorisNavReturn?.saveForTarget(`${contactPath}?leistung=coaching#kontakt-anfrage`);
+    window.location.href = `${contactPath}?leistung=coaching#kontakt-anfrage`;
   }
 
   function togglePick(formatId, checked) {

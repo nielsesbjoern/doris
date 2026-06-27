@@ -166,7 +166,7 @@
           <!-- /HOME_HERO_LEAD -->
           <!-- HOME_HERO_ACTIONS -->
           <div class="hero-actions">
-            <a href="#kontakt-anfrage" class="btn btn-primary">Anfrage stellen</a>
+            <a href="?leistung=coaching#kontakt-anfrage" class="btn btn-primary">Anfrage stellen</a>
             <a href="coaching-formate" class="btn btn-format-finder">Format-Finder</a>
             <a href="leistungen" class="btn-text">Leistungen ansehen</a>
           </div>
@@ -225,7 +225,28 @@
           <strong>Lindt &amp; Sprüngli</strong> — sowie Kliniken, Verbänden und Mittelstandsunternehmen
           im gesamten DACH-Raum. <a href="referenzen" class="home-references-link">Alle Referenzen</a>
         </p>
-        <!-- HOME_STANDORTE -->
+                <details class="home-standorte">
+          <summary>Beratung in Ihrer Region</summary>
+          <p class="home-standorte-intro">Coaching und Prozessbegleitung für Führungskräfte — Büro in Osnabrück, Mandate im Nordwesten und im gesamten DACH-Raum.</p>
+          <p class="home-standorte-group-label">Nordwesten</p>
+          <ul class="home-standorte-list">
+            <li><a href="standorte/osnabrueck">Osnabrück — Hauptsitz</a></li>
+            <li><a href="standorte/oldenburg">Oldenburg — Gesundheit &amp; Soziales</a></li>
+            <li><a href="standorte/hannover">Hannover — große Organisationen</a></li>
+            <li><a href="standorte/bremen">Bremen — Wandel &amp; Verantwortung</a></li>
+            <li><a href="standorte/muenster">Münster — Verwaltung &amp; Institutionen</a></li>
+          </ul>
+          <p class="home-standorte-group-label">Weitere Städte</p>
+          <ul class="home-standorte-list">
+            <li><a href="standorte/hamburg">Hamburg — Metropole &amp; Kommunikation</a></li>
+            <li><a href="standorte/berlin">Berlin — Verbände &amp; Transformation</a></li>
+            <li><a href="standorte/frankfurt">Frankfurt — Entscheidungsdruck &amp; Verantwortung</a></li>
+            <li><a href="standorte/muenchen">München — Leistung &amp; internationale Teams</a></li>
+            <li><a href="standorte/duesseldorf">Düsseldorf — Wirtschaft &amp; Führungsdynamik</a></li>
+            <li><a href="standorte/zuerich">Zürich — Internationaler Führungskontext</a></li>
+          </ul>
+          <p class="home-standorte-more"><a href="einsatzgebiete" class="card-link">Alle Einsatzgebiete auf der Karte</a></p>
+        </details>
 </div>
     </section>
 
@@ -257,7 +278,7 @@
 
     <section class="section page-section section-contact-wizard" id="kontakt-anfrage">
       <div class="container section-contact-wizard__inner">
-        <div class="contact-wizard" id="contact-wizard">
+        <div class="contact-wizard" id="contact-wizard" data-formspree-endpoint="">
           <div class="contact-wizard__progress" aria-hidden="true">
             <div class="contact-wizard__progress-track">
               <span class="contact-wizard__progress-fill"></span>
@@ -364,6 +385,10 @@
                 <input class="contact-wizard__input" type="text" id="wizard-position" data-wizard-input="position" autocomplete="organization-title" required>
               </div>
               <div class="contact-wizard__field">
+                <label class="contact-wizard__label" for="wizard-email">E-Mail <span class="contact-wizard__optional">(für direkte Übermittlung)</span></label>
+                <input class="contact-wizard__input" type="email" id="wizard-email" data-wizard-input="email" autocomplete="email" inputmode="email">
+              </div>
+              <div class="contact-wizard__field">
                 <label class="contact-wizard__label" for="wizard-telefon">Telefon <span class="contact-wizard__optional">(optional)</span></label>
                 <input class="contact-wizard__input" type="tel" id="wizard-telefon" data-wizard-input="telefon" autocomplete="tel">
               </div>
@@ -378,12 +403,21 @@
             </div>
           </div>
 
-          <div class="contact-wizard__panel" data-wizard-step="6" data-step-title="Vorschau &amp; E-Mail öffnen" hidden>
-            <p class="contact-wizard__step-hint">So sieht Ihre Anfrage in der E-Mail aus.</p>
+          <div class="contact-wizard__panel" data-wizard-step="6" data-step-title="Vorschau &amp; absenden" hidden>
+            <p class="contact-wizard__step-hint">So sieht Ihre Anfrage aus — wählen Sie, wie Sie sie senden möchten.</p>
             <div class="contact-wizard__preview-toolbar">
-              <button type="button" class="btn btn-secondary contact-wizard__copy" data-wizard-copy hidden>Text kopieren</button>
+              <button type="button" class="btn btn-secondary contact-wizard__copy" data-wizard-copy>Text kopieren</button>
             </div>
-            <pre class="contact-wizard__preview" data-wizard-preview aria-label="Vorschau der E-Mail"></pre>
+            <pre class="contact-wizard__preview" data-wizard-preview aria-label="Vorschau der Anfrage"></pre>
+
+            <aside class="contact-wizard__fallback" data-wizard-fallback>
+              <h3 class="contact-wizard__fallback-title">E-Mail-Programm öffnet sich nicht?</h3>
+              <p class="contact-wizard__fallback-text">
+                Kopieren Sie den Text oben und senden Sie ihn an
+                <a href="mailto:dg@doris-gunsch.eu">dg@doris-gunsch.eu</a>
+                — oder nutzen Sie die direkte Übermittlung, sofern verfügbar.
+              </p>
+            </aside>
           </div>
 
           <p class="contact-wizard__status" data-wizard-status hidden aria-live="polite"></p>
@@ -397,6 +431,8 @@
             <p class="contact-wizard__mail-hint" data-wizard-mail-hint>Es öffnet sich Ihr E-Mail-Programm mit dem Text oben. Bitte prüfen Sie die Nachricht und senden Sie sie ab.</p>
             <div class="contact-wizard__mail-actions">
               <button type="button" class="btn btn-primary" data-wizard-mail>E-Mail-Anfrage öffnen</button>
+              <button type="button" class="btn btn-secondary contact-wizard__copy contact-wizard__copy--inline" data-wizard-copy-inline>Text kopieren</button>
+              <button type="button" class="btn btn-primary contact-wizard__formspree" data-wizard-formspree hidden>Direkt senden</button>
               <button type="button" class="contact-wizard__mail-fallback" data-wizard-mail-fallback hidden aria-label="E-Mail-Programm öffnen">
                 <svg class="contact-wizard__mail-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                   <rect x="2" y="4" width="20" height="16" rx="2"></rect>
@@ -407,7 +443,8 @@
           </div>
 
           <p class="contact-wizard__privacy">
-            Keine Serverübertragung — Versand nur über Ihr E-Mail-Programm.
+            Standard: Versand über Ihr E-Mail-Programm — keine Serverübertragung durch uns.
+            Optional kann eine direkte Übermittlung über Formspree aktiviert sein (siehe Datenschutz).
           </p>
         </div>
       </div>
@@ -476,6 +513,7 @@
 
   <script src="js/nav-return.js?v=26" defer></script>
   <script src="js/site.js?v=26" defer></script>
+  <script src="js/contact-config.js?v=26" defer></script>
   <script src="js/kontakt-wizard.js?v=26" defer></script>
 </body>
 </html>

@@ -20,6 +20,8 @@ from seo import (  # noqa: E402
     og_image_meta,
     page_href,
     page_link_prefix,
+    wizard_href,
+    wizard_href_for_page,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -140,6 +142,13 @@ def test_en_top_level_main_has_no_parent_links() -> None:
             raise AssertionError(f"{path.name}: parent-relative link in <main>: {href}")
 
 
+def test_wizard_href() -> None:
+    assert wizard_href("", leistung="coaching", same_page=True) == "?leistung=coaching#kontakt-anfrage"
+    assert wizard_href("../", leistung="team", stadt="Berlin") == "../kontakt?leistung=team&stadt=Berlin#kontakt-anfrage"
+    assert wizard_href_for_page("coaching.html", "") == "kontakt?leistung=coaching#kontakt-anfrage"
+    assert wizard_href_for_page("person.html", "") == "kontakt#kontakt-anfrage"
+
+
 def main() -> None:
     test_clean_path()
     test_absolute_url()
@@ -149,6 +158,7 @@ def main() -> None:
     test_clean_internal_hrefs()
     test_og_image_meta()
     test_knows_about_localized()
+    test_wizard_href()
     test_en_top_level_main_has_no_parent_links()
     test_en_main_links_stay_in_language_tree()
     print("OK: seo helpers and EN link checks")

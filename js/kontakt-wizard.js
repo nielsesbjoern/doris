@@ -9,6 +9,10 @@
   const AUTO_ADVANCE_MS = 220;
   const FORMAT_INQUIRY_KEY = 'doris-format-inquiry';
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const formspreeEndpoint =
+    root.dataset.formspreeEndpoint ||
+    window.DorisContactConfig?.formspreeEndpoint ||
+    '';
 
   const steps = root.querySelectorAll('[data-wizard-step]');
   const progressFill = root.querySelector('.contact-wizard__progress-fill');
@@ -19,6 +23,8 @@
   const btnMail = root.querySelector('[data-wizard-mail]');
   const btnMailFallback = root.querySelector('[data-wizard-mail-fallback]');
   const btnCopy = root.querySelector('[data-wizard-copy]');
+  const btnCopyInline = root.querySelector('[data-wizard-copy-inline]');
+  const btnFormspree = root.querySelector('[data-wizard-formspree]');
   const btnSubmit = root.querySelector('[data-wizard-submit]');
   const previewEl = root.querySelector('[data-wizard-preview]');
   const statusEl = root.querySelector('[data-wizard-status]');
@@ -45,6 +51,11 @@
         copy: 'Copy text',
         copied: 'Copied',
         copyFailed: 'Copy failed — please select the text above manually.',
+        emailRequired: 'Please enter your email address for direct submit.',
+        formspreeSending: 'Sending…',
+        formspreeSuccess: 'Thank you — your enquiry was sent. We will reply soon.',
+        formspreeError: 'Sending failed. Please copy the text and email dg@doris-gunsch.eu directly.',
+        formspreeDirect: 'Send directly',
         formatBannerTitle: 'Your format selection from the format finder',
         formatBannerCompare: 'You are comparing two formats — we will clarify together which fits best.',
         labelFormatInterest: 'Interest in',
@@ -66,6 +77,11 @@
         copy: 'Text kopieren',
         copied: 'Kopiert',
         copyFailed: 'Kopieren fehlgeschlagen — bitte markieren Sie den Text oben manuell.',
+        emailRequired: 'Bitte geben Sie Ihre E-Mail-Adresse für die direkte Übermittlung an.',
+        formspreeSending: 'Wird gesendet…',
+        formspreeSuccess: 'Vielen Dank — Ihre Anfrage wurde gesendet. Wir melden uns in Kürze.',
+        formspreeError: 'Senden fehlgeschlagen. Bitte Text kopieren und an dg@doris-gunsch.eu senden.',
+        formspreeDirect: 'Direkt senden',
         formatBannerTitle: 'Ihre Formatauswahl aus dem Format-Finder',
         formatBannerCompare: 'Sie vergleichen zwei Formate — gemeinsam klären wir, welches passt.',
         labelFormatInterest: 'Interesse an',
@@ -117,6 +133,7 @@
       name: inputValue('name'),
       firma: inputValue('firma'),
       position: inputValue('position'),
+      email: inputValue('email'),
       telefon: inputValue('telefon'),
       freitext: inputValue('freitext'),
       formatInquiry,
@@ -446,6 +463,12 @@
     if (btnNext) btnNext.hidden = !(showManualNext || step === 4 || step === 5);
     if (btnSubmit) btnSubmit.hidden = step !== totalSteps;
     if (btnCopy) btnCopy.hidden = step !== totalSteps;
+    if (btnCopyInline) btnCopyInline.hidden = step !== totalSteps;
+    if (btnFormspree) {
+      btnFormspree.hidden = step !== totalSteps || !formspreeEndpoint;
+      btnFormspree.textContent = i18n.formspreeDirect;
+      btnFormspree.disabled = false;
+    }
 
     if (step !== totalSteps) {
       setManualMailMode(false);
@@ -563,6 +586,117 @@
     clearFormatInquiryStorage();
   }
 
+  async function submitFormspree() {
+    if (!formspreeEndpoint) return;
+
+    const error = validateStep(4);
+    if (error) {
+      setStatus(error, true);
+      showStep(4);
+      return;
+    }
+
+    const data = collectData();
+    if (!data.email) {
+      setStatus(i18n.emailRequired, true);
+      showStep(4);
+      root.querySelector('[data-wizard-input="email"]')?.focus();
+      return;
+    }
+
+    if (btnFormspree) {
+      btnFormspree.disabled = true;
+      btnFormspree.textContent = i18n.formspreeSending;
+    }
+    setStatus('');
+
+    try {
+      const response = await fetch(formspreeEndpoint, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          company: data.firma,
+          position: data.position,
+          phone: data.telefon,
+          message: buildEmailBody(data),
+          _subject: buildSubject(data),
+          _replyto: data.email,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('formspree failed');
+      }
+
+      setStatus(i18n.formspreeSuccess, false);
+      clearFormatInquiryStorage();
+    } catch {
+      setStatus(i18n.formspreeError, true);
+      if (btnFormspree) {
+        btnFormspree.disabled = false;
+        btnFormspree.textContent = i18n.formspreeDirect;
+      }
+    }
+  }
+
+  function deepLinkParams() {
+    return new URLSearchParams(window.location.search);
+  }
+
+  function hasDeepLinkParams() {
+    const params = deepLinkParams();
+    return params.has('leistung') || params.has('anlass') || params.has('stadt');
+  }
+
+  function applyDeepLink() {
+    const params = deepLinkParams();
+    const leistung = params.get('leistung');
+    const anlass = params.get('anlass');
+    const stadt = params.get('stadt');
+
+    if (leistung) {
+      const chip = root.querySelector(
+        `.contact-wizard__chip[data-field="leistung"][data-value="${CSS.escape(leistung)}"]`
+      );
+      if (chip) activateChip(chip);
+    }
+
+    filterAnlassOptions();
+
+    if (anlass) {
+      const chip = root.querySelector(
+        `.contact-wizard__chip[data-field="anlass"][data-value="${CSS.escape(anlass)}"]`
+      );
+      if (chip && !chip.hidden) activateChip(chip);
+    }
+
+    if (stadt && cityInput) {
+      cityInput.value = stadt;
+      const onsite = root.querySelector(
+        '.contact-wizard__chip[data-field="durchfuehrung"][data-value="vor-ort"]'
+      );
+      if (onsite) activateChip(onsite);
+      updateCityVisibility();
+    }
+
+    if (leistung && (anlass || stadt)) {
+      showStep(3);
+    } else if (leistung) {
+      showStep(2);
+    } else {
+      showStep(1);
+    }
+
+    window.setTimeout(() => {
+      document.getElementById('kontakt-anfrage')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  }
+
   root.querySelectorAll('.contact-wizard__chip').forEach((chip) => {
     chip.addEventListener('click', () => activateChip(chip));
   });
@@ -572,6 +706,8 @@
   btnMail?.addEventListener('click', openMailto);
   btnMailFallback?.addEventListener('click', openMailFallback);
   btnCopy?.addEventListener('click', handleCopyClick);
+  btnCopyInline?.addEventListener('click', handleCopyClick);
+  btnFormspree?.addEventListener('click', submitFormspree);
 
   root.querySelectorAll('[data-wizard-input]').forEach((input) => {
     input.addEventListener('input', () => {
@@ -665,6 +801,8 @@
 
   if (loadFormatInquiry()) {
     applyFormatInquiry();
+  } else if (hasDeepLinkParams()) {
+    applyDeepLink();
   } else {
     showStep(1);
   }

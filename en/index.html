@@ -166,7 +166,7 @@
           <!-- /HOME_HERO_LEAD -->
           <!-- HOME_HERO_ACTIONS -->
           <div class="hero-actions">
-            <a href="#kontakt-anfrage" class="btn btn-primary">Submit enquiry</a>
+            <a href="?leistung=coaching#kontakt-anfrage" class="btn btn-primary">Submit enquiry</a>
             <a href="coaching-formate" class="btn btn-format-finder">Format finder</a>
             <a href="leistungen" class="btn-text">View services</a>
           </div>
@@ -225,7 +225,28 @@
           <strong>Lindt &amp; Sprüngli</strong> — as well as hospitals, associations and mid-sized
           companies across the DACH region. <a href="referenzen" class="home-references-link">All references</a>
         </p>
-        <!-- HOME_STANDORTE -->
+                <details class="home-standorte">
+          <summary>Consulting in your region</summary>
+          <p class="home-standorte-intro">Coaching and process facilitation for leaders — based in Osnabrück, with mandates across north-west Germany and the DACH region.</p>
+          <p class="home-standorte-group-label">North-west Germany</p>
+          <ul class="home-standorte-list">
+            <li><a href="standorte/osnabrueck">Osnabrück — headquarters</a></li>
+            <li><a href="standorte/oldenburg">Oldenburg — healthcare &amp; social sector</a></li>
+            <li><a href="standorte/hannover">Hannover — larger organisations</a></li>
+            <li><a href="standorte/bremen">Bremen — change &amp; responsibility</a></li>
+            <li><a href="standorte/muenster">Münster — administration &amp; institutions</a></li>
+          </ul>
+          <p class="home-standorte-group-label">Further cities</p>
+          <ul class="home-standorte-list">
+            <li><a href="standorte/hamburg">Hamburg — metropolis &amp; communication</a></li>
+            <li><a href="standorte/berlin">Berlin — associations &amp; transformation</a></li>
+            <li><a href="standorte/frankfurt">Frankfurt — decision pressure &amp; responsibility</a></li>
+            <li><a href="standorte/muenchen">Munich — performance &amp; international teams</a></li>
+            <li><a href="standorte/duesseldorf">Düsseldorf — business &amp; leadership dynamics</a></li>
+            <li><a href="standorte/zuerich">Zurich — International leadership context</a></li>
+          </ul>
+          <p class="home-standorte-more"><a href="einsatzgebiete" class="card-link">All service areas on the map</a></p>
+        </details>
 </div>
     </section>
 
@@ -257,7 +278,7 @@
 
     <section class="section page-section section-contact-wizard" id="kontakt-anfrage">
       <div class="container section-contact-wizard__inner">
-        <div class="contact-wizard" id="contact-wizard">
+        <div class="contact-wizard" id="contact-wizard" data-formspree-endpoint="">
           <div class="contact-wizard__progress" aria-hidden="true">
             <div class="contact-wizard__progress-track">
               <span class="contact-wizard__progress-fill"></span>
@@ -364,6 +385,10 @@
                 <input class="contact-wizard__input" type="text" id="wizard-position" data-wizard-input="position" autocomplete="organization-title" required>
               </div>
               <div class="contact-wizard__field">
+                <label class="contact-wizard__label" for="wizard-email">Email <span class="contact-wizard__optional">(for direct submit)</span></label>
+                <input class="contact-wizard__input" type="email" id="wizard-email" data-wizard-input="email" autocomplete="email" inputmode="email">
+              </div>
+              <div class="contact-wizard__field">
                 <label class="contact-wizard__label" for="wizard-telefon">Phone <span class="contact-wizard__optional">(optional)</span></label>
                 <input class="contact-wizard__input" type="tel" id="wizard-telefon" data-wizard-input="telefon" autocomplete="tel">
               </div>
@@ -378,12 +403,21 @@
             </div>
           </div>
 
-          <div class="contact-wizard__panel" data-wizard-step="6" data-step-title="Preview &amp; open email" hidden>
-            <p class="contact-wizard__step-hint">This is how your enquiry will appear in the email.</p>
+          <div class="contact-wizard__panel" data-wizard-step="6" data-step-title="Preview &amp; send" hidden>
+            <p class="contact-wizard__step-hint">This is how your enquiry looks — choose how you would like to send it.</p>
             <div class="contact-wizard__preview-toolbar">
-              <button type="button" class="btn btn-secondary contact-wizard__copy" data-wizard-copy hidden>Copy text</button>
+              <button type="button" class="btn btn-secondary contact-wizard__copy" data-wizard-copy>Copy text</button>
             </div>
-            <pre class="contact-wizard__preview" data-wizard-preview aria-label="Email preview"></pre>
+            <pre class="contact-wizard__preview" data-wizard-preview aria-label="Enquiry preview"></pre>
+
+            <aside class="contact-wizard__fallback" data-wizard-fallback>
+              <h3 class="contact-wizard__fallback-title">Email app not opening?</h3>
+              <p class="contact-wizard__fallback-text">
+                Copy the text above and send it to
+                <a href="mailto:dg@doris-gunsch.eu">dg@doris-gunsch.eu</a>
+                — or use direct submit when available.
+              </p>
+            </aside>
           </div>
 
           <p class="contact-wizard__status" data-wizard-status hidden aria-live="polite"></p>
@@ -397,6 +431,8 @@
             <p class="contact-wizard__mail-hint" data-wizard-mail-hint>Your email app opens with the text above. Please review the message and send it.</p>
             <div class="contact-wizard__mail-actions">
               <button type="button" class="btn btn-primary" data-wizard-mail>Open email enquiry</button>
+              <button type="button" class="btn btn-secondary contact-wizard__copy contact-wizard__copy--inline" data-wizard-copy-inline>Copy text</button>
+              <button type="button" class="btn btn-primary contact-wizard__formspree" data-wizard-formspree hidden>Send directly</button>
               <button type="button" class="contact-wizard__mail-fallback" data-wizard-mail-fallback hidden aria-label="Open email app">
                 <svg class="contact-wizard__mail-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                   <rect x="2" y="4" width="20" height="16" rx="2"></rect>
@@ -407,7 +443,8 @@
           </div>
 
           <p class="contact-wizard__privacy">
-            No server transfer — sent only via your email app.
+            Default: send via your email app — no server transfer by us.
+            Optional direct submit via Formspree may be enabled (see privacy policy).
           </p>
         </div>
       </div>
@@ -476,6 +513,7 @@
 
   <script src="../js/nav-return.js?v=26" defer></script>
   <script src="../js/site.js?v=26" defer></script>
+  <script src="../js/contact-config.js?v=26" defer></script>
   <script src="../js/kontakt-wizard.js?v=26" defer></script>
 </body>
 </html>

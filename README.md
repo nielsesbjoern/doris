@@ -63,7 +63,7 @@ python3 scripts/build.py
 
 ## Kontaktformular
 
-Die Kontaktanfrage läuft über einen clientseitigen Wizard und öffnet `mailto:` — es gibt keinen Server-Empfang. Das ist für eine Beraterseite vertretbar; Nachteile: kein Backup bei fehlgeschlagenem mailto, keine Benachrichtigung ohne dass der Nutzer sendet. Optional später: Formspree, Netlify Forms oder ein minimales API-Backend.
+Der Kontakt-Wizard erstellt einen Anfragetext im Browser. Standard: `mailto:` (kein Server-Empfang). Fallback: Text kopieren und an dg@doris-gunsch.eu senden. Optional: direkte Übermittlung über Formspree — Endpoint in `scripts/contact_config.py` (`FORMSPREE_ENDPOINT`) setzen, dann `python3 scripts/build.py` ausführen.
 
 ## Deployment
 

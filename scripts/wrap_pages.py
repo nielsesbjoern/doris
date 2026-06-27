@@ -20,7 +20,10 @@ from seo import (  # noqa: E402
     page_href,
     performance_head,
     structured_data,
+    wizard_href,
+    wizard_href_for_page,
 )
+from contact_config import FORMSPREE_ENDPOINT  # noqa: E402
 from standorte_data import STANDORTE_META  # noqa: E402
 from psi_bridge_data import TEXT as PSI_TEXT  # noqa: E402
 
@@ -515,19 +518,31 @@ def page_back(lang: str, filename: str, _asset: str) -> str:
 """
 
 
+def inject_wizard_cta_links(content: str, filename: str, link_prefix: str) -> str:
+    """Prefill wizard deep-links on in-page service CTAs (not header/shell)."""
+    href = wizard_href_for_page(filename, link_prefix)
+    default = wizard_href(link_prefix)
+    if href == default:
+        return content
+    needle = 'href="kontakt" class="btn btn-primary">'
+    if needle not in content:
+        return content
+    return content.replace(needle, f'href="{href}" class="btn btn-primary">', 1)
+
+
 def next_step_block(lang: str, filename: str, _asset: str = "") -> str:
     step = NEXT_STEP.get(filename, {}).get(lang)
     if not step:
         return ""
 
     L = LABELS[lang]
-    nav = nav_prefix(filename)
+    href = wizard_href_for_page(filename, nav_prefix(filename))
     return f"""      <aside class="container page-next-step">
         <div class="card card--lead page-next-step__card">
           <p class="eyebrow">{L["next_step"]}</p>
           <p class="page-next-step__title">{step["title"]}</p>
           <p class="page-next-step__text">{step["text"]}</p>
-          <a href="{page_href("kontakt.html", nav)}" class="btn btn-primary">{L["contact"]}</a>
+          <a href="{href}" class="btn btn-primary">{L["contact"]}</a>
         </div>
       </aside>
 """
@@ -549,6 +564,8 @@ CONTACT_WIZARD_HEADER = re.compile(
 def contact_wizard_partial(lang: str, *, include_header: bool = True) -> str:
     path = ROOT / "partials" / f"contact-wizard.{lang}.html"
     partial = path.read_text(encoding="utf-8").strip()
+    endpoint = html.escape(FORMSPREE_ENDPOINT, quote=True)
+    partial = partial.replace('data-formspree-endpoint=""', f'data-formspree-endpoint="{endpoint}"')
     if not include_header:
         partial = CONTACT_WIZARD_HEADER.sub("", partial, count=1)
     return partial
@@ -725,7 +742,10 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
     elif filename == "coaching-formate.html":
         extra_scripts = f'\n  <script src="{asset}js/coaching-formats.js?v={ASSET_VERSION}" defer></script>'
     elif filename in ("kontakt.html", "index.html"):
-        extra_scripts = f'\n  <script src="{asset}js/kontakt-wizard.js?v={ASSET_VERSION}" defer></script>'
+        extra_scripts = (
+            f'\n  <script src="{asset}js/contact-config.js?v={ASSET_VERSION}" defer></script>'
+            f'\n  <script src="{asset}js/kontakt-wizard.js?v={ASSET_VERSION}" defer></script>'
+        )
 
     logo_label = L["logo"]
     logo_priority = "high" if filename in ("index.html", "404.html") else "auto"
@@ -816,6 +836,7 @@ def main():
             content = clean_internal_hrefs(
                 strip_wrapped_artifacts(extract_main(sync_contact_wizard(raw, "de")))
             )
+            content = inject_wizard_cta_links(content, filename, nav_prefix(filename))
             content = inject_services_subnav(content, "de", filename)
             build_page("de", filename, content, de_src)
 
@@ -836,6 +857,7 @@ def main():
             content = clean_internal_hrefs(
                 strip_wrapped_artifacts(extract_main(sync_contact_wizard(raw, "en")))
             )
+            content = inject_wizard_cta_links(content, filename, nav_prefix(filename))
             if filename in ("impressum.html", "datenschutz.html") and "legal-page" not in content:
                 content = f'    <div class="container legal-page">\n{content}\n    </div>'
             content = inject_services_subnav(content, "en", filename)

@@ -112,10 +112,34 @@ def test_homepage_has_contact_wizard() -> None:
             raise AssertionError(f"{rel}: contact wizard should be embedded on homepage")
         if "home-contact-cta" in html:
             raise AssertionError(f"{rel}: homepage should not use contact CTA teaser card")
-        if 'href="#kontakt-anfrage"' not in html:
+        if 'href="#kontakt-anfrage"' not in html and "?leistung=coaching#kontakt-anfrage" not in html:
             raise AssertionError(f"{rel}: hero should link to on-page contact wizard")
+        if "contact-config.js" not in html:
+            raise AssertionError(f"{rel}: missing contact-config.js")
         if "kontakt-wizard.js" not in html:
             raise AssertionError(f"{rel}: missing kontakt-wizard.js script")
+        if "contact-wizard__fallback" not in html:
+            raise AssertionError(f"{rel}: missing contact wizard fallback panel")
+
+
+def test_service_pages_have_wizard_deep_links() -> None:
+    cases = {
+        "coaching.html": "leistung=coaching",
+        "trainings.html": "leistung=trainings",
+        "team.html": "leistung=team",
+        "diagnostik.html": "leistung=diagnostik",
+    }
+    for filename, param in cases.items():
+        for rel in (filename, f"en/{filename}"):
+            html = (ROOT / rel).read_text(encoding="utf-8")
+            if param not in html or "kontakt-anfrage" not in html:
+                raise AssertionError(f"{rel}: missing wizard deep-link with {param}")
+
+
+def test_standort_cta_has_city_deep_link() -> None:
+    html = (ROOT / "standorte" / "berlin.html").read_text(encoding="utf-8")
+    if "leistung=coaching" not in html or "stadt=Berlin" not in html:
+        raise AssertionError("standorte/berlin.html: CTA should prefill city in wizard")
 
 
 def test_homepage_format_finder_links() -> None:
@@ -170,6 +194,8 @@ def main() -> None:
     test_no_legacy_format_compare_css()
     test_site_js_deferred()
     test_homepage_has_contact_wizard()
+    test_service_pages_have_wizard_deep_links()
+    test_standort_cta_has_city_deep_link()
     test_homepage_format_finder_links()
     test_standort_pages_have_mini_case_disclaimer()
     test_standort_pages_have_references()

@@ -16,6 +16,7 @@ ASSET_STEPS = frozenset({
 })
 
 STEPS = (
+    "build_contact_config.py",
     "build_fonts.py",
     "build_images.py",
     "build_favicons.py",

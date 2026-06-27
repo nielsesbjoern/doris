@@ -7,6 +7,7 @@ import json
 import re
 from pathlib import Path
 from typing import Optional
+from urllib.parse import quote
 
 SITE_URL = "https://www.doris-gunsch.eu"
 BUSINESS_ID = f"{SITE_URL}/#business"
@@ -101,6 +102,45 @@ def page_href(filename: str, prefix: str = "") -> str:
     if not path:
         return prefix if prefix else "./"
     return f"{prefix}{path}"
+
+
+WIZARD_LEISTUNG: dict[str, str] = {
+    "coaching.html": "coaching",
+    "coaching-formate.html": "coaching",
+    "trainings.html": "trainings",
+    "team.html": "team",
+    "diagnostik.html": "diagnostik",
+}
+
+
+def wizard_href(
+    asset: str = "",
+    *,
+    leistung: Optional[str] = None,
+    anlass: Optional[str] = None,
+    stadt: Optional[str] = None,
+    same_page: bool = False,
+) -> str:
+    """Link to contact wizard with optional prefill query parameters."""
+    params: list[str] = []
+    if leistung:
+        params.append(f"leistung={quote(leistung, safe='')}")
+    if anlass:
+        params.append(f"anlass={quote(anlass, safe='')}")
+    if stadt:
+        params.append(f"stadt={quote(stadt, safe='')}")
+    query = f"?{'&'.join(params)}" if params else ""
+    anchor = "#kontakt-anfrage"
+    if same_page:
+        return f"{query}{anchor}" if query else anchor
+    return f"{page_href('kontakt.html', asset)}{query}{anchor}"
+
+
+def wizard_href_for_page(filename: str, asset: str = "") -> str:
+    """Wizard link with leistung prefill when the page maps to a service area."""
+    base = filename.split("/")[-1]
+    leistung = WIZARD_LEISTUNG.get(base)
+    return wizard_href(asset, leistung=leistung)
 
 
 def clean_internal_hrefs(content: str) -> str:

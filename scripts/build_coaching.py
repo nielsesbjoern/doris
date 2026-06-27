@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from coaching_formats_data import FORMATS, TEXT  # noqa: E402
-from seo import page_href, page_link_prefix  # noqa: E402
+from seo import page_href, wizard_href, page_link_prefix  # noqa: E402
 from wrap_pages import build_page, extract_main, strip_wrapped_artifacts  # noqa: E402
 
 COMPARE_START = "<!-- FORMAT_COMPARE -->"
@@ -167,7 +167,7 @@ def render_home_hero_actions(lang: str, link_prefix: str) -> str:
     t = TEXT[lang]
     fmt_href = page_href("coaching-formate.html", link_prefix)
     leist_href = page_href("leistungen.html", link_prefix)
-    contact_href = "#kontakt-anfrage" if link_prefix == "" else page_href("kontakt.html", link_prefix) + "#kontakt-anfrage"
+    contact_href = wizard_href(link_prefix, leistung="coaching", same_page=link_prefix == "")
     contact_label = "Anfrage stellen" if lang == "de" else "Submit enquiry"
     services_label = "Leistungen ansehen" if lang == "de" else "View services"
     return f"""          <div class="hero-actions">
