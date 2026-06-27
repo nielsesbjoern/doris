@@ -23,18 +23,6 @@
       "permanent": true
     }
   ],
-  "rewrites": [
-    {
-      "source": "/en/:path*",
-      "missing": [{ "type": "filesystem" }],
-      "destination": "/en/404.html"
-    },
-    {
-      "source": "/:path*",
-      "missing": [{ "type": "filesystem" }],
-      "destination": "/404.html"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
