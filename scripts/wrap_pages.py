@@ -359,7 +359,7 @@ def strip_wrapped_artifacts(content: str) -> str:
     patterns = [
         r'^\s*<nav class="breadcrumbs-wrap[^>]*>.*?</nav>\s*',
         r'^\s*<div class="container page-back">\s*.*?\s*</div>\s*',
-        r'^\s*<div class="container sub-nav-wrap">\s*.*?\s*</div>\s*',
+        r'^\s*<div class="(?:container sub-nav-wrap|sub-nav-wrap)">\s*(?:<div class="container">\s*)?.*?(?:</div>\s*)?</div>\s*',
         r'^\s*<!-- SERVICES_SUB_NAV -->\s*',
     ]
     for pattern in patterns:
@@ -462,10 +462,12 @@ def render_services_subnav(lang: str, active: str, filename: str) -> str:
         links.append(f'        <a href="{page_href(href_file, nav)}"{cls}>{label}</a>')
     aria = "Leistungsbereiche" if lang == "de" else "Service areas"
     return f"""{SERVICES_SUB_NAV_MARKER}
-<div class="container sub-nav-wrap">
+<div class="sub-nav-wrap">
+      <div class="container">
       <nav class="sub-nav" aria-label="{aria}">
 {chr(10).join(links)}
       </nav>
+      </div>
     </div>"""
 
 
@@ -475,7 +477,7 @@ def strip_service_subnav(content: str) -> str:
     while prev != content:
         prev = content
         content = re.sub(
-            r'\s*<div class="container sub-nav-wrap">\s*.*?\s*</div>\s*',
+            r'\s*<div class="(?:container sub-nav-wrap|sub-nav-wrap)">\s*(?:<div class="container">\s*)?.*?(?:</div>\s*)?</div>\s*',
             "\n",
             content,
             count=1,
