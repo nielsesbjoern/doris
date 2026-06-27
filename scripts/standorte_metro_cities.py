@@ -5,7 +5,7 @@ METRO_CITIES = {
         "name_de": "Hamburg",
         "name_en": "Hamburg",
         "module_order": [
-            "hero", "intro", "mandates", "references", "formats", "faq", "services", "cta",
+            "hero", "intro", "mandates", "mini_case", "references", "formats", "faq", "services", "cta",
         ],
         "de": {
             "seo_title": "Coaching Hamburg – Kommunikation & Prozessbegleitung | Doris Gunsch",
@@ -29,6 +29,14 @@ METRO_CITIES = {
                 "Belastete Kommunikation in Leitungsteams mit hoher Taktung",
                 "Vorbereitung anspruchsvoller Verhandlungs- und Strategiegespräche",
             ],
+            "mini_case_title": "Typisches Anliegen in Hamburg",
+            "mini_case": (
+                "Ein Bereichsleiter in einem wachsenden Dienstleistungsunternehmen spürt, "
+                "dass Schnittstellenkonflikte und hohe Taktung die Zusammenarbeit im "
+                "Leitungskreis belasten. Im Coaching werden Erwartungen, Rollen und "
+                "Kommunikationswege präzisiert — mit Blick auf tragfähige Entscheidungen "
+                "unter Zeitdruck."
+            ),
             "references_title": "Referenzen mit Hamburg-Bezug",
             "references_intro": "Ausgewählte Mandate und Kooperationen in Hamburg:",
             "references": [
@@ -90,6 +98,13 @@ METRO_CITIES = {
                 "Strained communication in fast-paced leadership teams",
                 "Preparing demanding negotiation and strategy conversations",
             ],
+            "mini_case_title": "A typical concern in Hamburg",
+            "mini_case": (
+                "A department head in a growing services company feels that interface conflicts "
+                "and high pace are straining collaboration in the leadership circle. Coaching "
+                "clarifies expectations, roles and communication paths — with a focus on viable "
+                "decisions under time pressure."
+            ),
             "references_title": "References linked to Hamburg",
             "references_intro": "Selected mandates and collaborations in Hamburg:",
             "references": [
@@ -135,7 +150,7 @@ METRO_CITIES = {
         "name_de": "Berlin",
         "name_en": "Berlin",
         "module_order": [
-            "hero", "intro", "sectors", "mandates", "faq", "references", "services", "cta",
+            "hero", "intro", "sectors", "mandates", "mini_case", "faq", "references", "services", "cta",
         ],
         "de": {
             "seo_title": "Führungsbegleitung Berlin – Transformation & Konflikte | Doris Gunsch",
@@ -166,6 +181,13 @@ METRO_CITIES = {
                 "Führungswechsel in Verbänden und gemeinnützigen Strukturen",
                 "Moderation bei unterschiedlichen Interessenlagen im Leitungsteam",
             ],
+            "mini_case_title": "Typisches Anliegen in Berlin",
+            "mini_case": (
+                "Eine Geschäftsführung in einem Verband steht vor einer strategischen Neuausrichtung — "
+                "Gremien, Fachbereiche und externe Erwartungen ziehen in unterschiedliche Richtungen. "
+                "In der Begleitung werden Interessen transparent gemacht, Rollen geschärft und "
+                "ein gemeinsamer Entwicklungspfad erarbeitet, der politische und fachliche Logik verbindet."
+            ),
             "faq_title": "Häufige Fragen — Berlin",
             "faq": [
                 (
@@ -225,6 +247,13 @@ METRO_CITIES = {
                 "Leadership transitions in associations and non-profit structures",
                 "Facilitation with differing interests in leadership teams",
             ],
+            "mini_case_title": "A typical concern in Berlin",
+            "mini_case": (
+                "The managing board of an association faces strategic realignment — boards, "
+                "departments and external expectations pull in different directions. Facilitation "
+                "makes interests transparent, sharpens roles and develops a shared path that "
+                "connects political and professional logic."
+            ),
             "faq_title": "Frequently asked questions — Berlin",
             "faq": [
                 (

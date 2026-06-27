@@ -7,6 +7,9 @@
   const NL = '\r\n';
   const MAX_MAILTO_LENGTH = 1800;
   const AUTO_ADVANCE_MS = 220;
+  const AUTO_ADVANCE_KEY = 'dg-wizard-auto-advance';
+  const FORMAT_INQUIRY_KEY = 'doris-format-inquiry';
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   const steps = root.querySelectorAll('[data-wizard-step]');
   const progressFill = root.querySelector('.contact-wizard__progress-fill');
@@ -23,10 +26,12 @@
   const mailHintEl = root.querySelector('[data-wizard-mail-hint]');
   const cityField = root.querySelector('[data-wizard-city-field]');
   const cityInput = root.querySelector('[data-wizard-city]');
+  const autoAdvanceToggle = root.querySelector('[data-wizard-auto-advance]');
 
   let currentStep = 1;
   let advanceTimer = null;
   let copyResetTimer = null;
+  let formatInquiry = null;
   const totalSteps = steps.length;
 
   const i18n = isEn
@@ -42,6 +47,14 @@
         copy: 'Copy text',
         copied: 'Copied',
         copyFailed: 'Copy failed — please select the text above manually.',
+        formatBannerTitle: 'Your format selection from the format finder',
+        formatBannerCompare: 'You are comparing two formats — we will clarify together which fits best.',
+        labelFormatInterest: 'Interest in',
+        labelFormatCompare: 'Comparison between',
+        labelFormatPerspective: 'View in format finder',
+        labelFormatDuration: 'Duration / setting',
+        labelFormatOccasion: 'Typical occasion',
+        sectionFormatFinder: 'FORMAT FINDER',
       }
     : {
         step: (n) => `Schritt ${n} von ${totalSteps}`,
@@ -55,6 +68,14 @@
         copy: 'Text kopieren',
         copied: 'Kopiert',
         copyFailed: 'Kopieren fehlgeschlagen — bitte markieren Sie den Text oben manuell.',
+        formatBannerTitle: 'Ihre Formatauswahl aus dem Format-Finder',
+        formatBannerCompare: 'Sie vergleichen zwei Formate — gemeinsam klären wir, welches passt.',
+        labelFormatInterest: 'Interesse an',
+        labelFormatCompare: 'Vergleich zwischen',
+        labelFormatPerspective: 'Perspektive im Format-Finder',
+        labelFormatDuration: 'Dauer / Setting',
+        labelFormatOccasion: 'Typischer Anlass',
+        sectionFormatFinder: 'FORMAT-FINDER',
       };
 
   function selectedChip(field) {
@@ -100,7 +121,37 @@
       position: inputValue('position'),
       telefon: inputValue('telefon'),
       freitext: inputValue('freitext'),
+      formatInquiry,
     };
+  }
+
+  function formatInquiryLines(inquiry) {
+    if (!inquiry?.formats?.length) return '';
+
+    let lines = fieldLine(i18n.labelFormatPerspective, inquiry.groupLabel || '');
+
+    if (inquiry.compare && inquiry.formats.length > 1) {
+      lines += fieldLine(
+        i18n.labelFormatCompare,
+        inquiry.formats.map((f) => f.title).join(' / ')
+      );
+    } else {
+      lines += fieldLine(i18n.labelFormatInterest, inquiry.formats[0].title);
+    }
+
+    inquiry.formats.forEach((fmt) => {
+      if (inquiry.compare) {
+        lines += `${NL}  ${fmt.title}${NL}`;
+      }
+      if (fmt.duration) {
+        lines += fieldLine(i18n.labelFormatDuration, fmt.duration);
+      }
+      if (fmt.occasion) {
+        lines += fieldLine(i18n.labelFormatOccasion, fmt.occasion);
+      }
+    });
+
+    return lines;
   }
 
   function fieldLine(label, value) {
@@ -119,11 +170,16 @@
   }
 
   function buildEmailBody(data) {
+    const formatBlock = data.formatInquiry
+      ? sectionBlock(i18n.sectionFormatFinder, formatInquiryLines(data.formatInquiry))
+      : '';
+
     if (isEn) {
       let body =
         `Dear Ms Gunsch,${NL}${NL}` +
         `Via your website doris-gunsch.eu I would like to submit a confidential enquiry ` +
         `and look forward to hearing from you.` +
+        formatBlock +
         sectionBlock(
           'ENQUIRY — OVERVIEW',
           fieldLine('Service area', data.leistung) +
@@ -160,6 +216,7 @@
       `Sehr geehrte Frau Gunsch,${NL}${NL}` +
       `über Ihre Website doris-gunsch.eu stelle ich eine vertrauliche Anfrage ` +
       `und freue mich auf Ihre Rückmeldung.` +
+      formatBlock +
       sectionBlock(
         'ANFRAGE — ÜBERBLICK',
         fieldLine('Leistungsbereich', data.leistung) +
@@ -194,7 +251,15 @@
 
   function buildSubject(data) {
     const who = data.firma || data.name;
-    return `${i18n.subjectPrefix}: ${data.leistung} — ${who}`;
+    const formatPart =
+      data.formatInquiry?.formats?.length === 1
+        ? data.formatInquiry.formats[0].title
+        : data.formatInquiry?.formats?.length > 1
+          ? isEn
+            ? 'Coaching formats'
+            : 'Coaching-Formate'
+          : data.leistung;
+    return `${i18n.subjectPrefix}: ${formatPart} — ${who}`;
   }
 
   function buildMailtoLink(data, includeBody = true) {
@@ -316,6 +381,7 @@
       return chipValue('leistung') ? null : i18n.selectOption;
     }
     if (step === 2) {
+      if (formatInquiry) return null;
       return chipValue('anlass') ? null : i18n.selectOption;
     }
     if (step === 3) {
@@ -393,7 +459,26 @@
     root.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
+  function isAutoAdvanceEnabled() {
+    try {
+      const saved = localStorage.getItem(AUTO_ADVANCE_KEY);
+      if (saved === '0' || saved === 'false') return false;
+      if (saved === '1' || saved === 'true') return true;
+    } catch {
+      /* localStorage unavailable */
+    }
+    return !prefersReducedMotion.matches;
+  }
+
+  function syncAutoAdvanceToggle() {
+    if (autoAdvanceToggle) {
+      autoAdvanceToggle.checked = isAutoAdvanceEnabled();
+    }
+  }
+
   function scheduleAutoAdvance() {
+    if (!isAutoAdvanceEnabled()) return;
+
     clearTimeout(advanceTimer);
     advanceTimer = setTimeout(() => {
       if (validateStep(currentStep) === null) {
@@ -486,6 +571,17 @@
   btnMailFallback?.addEventListener('click', openMailFallback);
   btnCopy?.addEventListener('click', handleCopyClick);
 
+  autoAdvanceToggle?.addEventListener('change', () => {
+    try {
+      localStorage.setItem(AUTO_ADVANCE_KEY, autoAdvanceToggle.checked ? '1' : '0');
+    } catch {
+      /* ignore */
+    }
+    if (!autoAdvanceToggle.checked) {
+      clearTimeout(advanceTimer);
+    }
+  });
+
   root.querySelectorAll('[data-wizard-input]').forEach((input) => {
     input.addEventListener('input', () => {
       if (currentStep === totalSteps) {
@@ -498,7 +594,94 @@
     });
   });
 
+  function showFormatInquiryBanner() {
+    if (!formatInquiry?.formats?.length) return;
+
+    const header = root.querySelector('.contact-wizard__header');
+    if (!header || root.querySelector('.contact-wizard__format-banner')) return;
+
+    const banner = document.createElement('div');
+    banner.className = 'contact-wizard__format-banner';
+    banner.setAttribute('role', 'status');
+
+    const title = document.createElement('p');
+    title.className = 'contact-wizard__format-banner-title';
+    title.textContent = i18n.formatBannerTitle;
+
+    const list = document.createElement('ul');
+    list.className = 'contact-wizard__format-banner-list';
+    formatInquiry.formats.forEach((fmt) => {
+      const li = document.createElement('li');
+      li.textContent = fmt.title;
+      list.appendChild(li);
+    });
+
+    banner.append(title, list);
+
+    if (formatInquiry.compare) {
+      const note = document.createElement('p');
+      note.className = 'contact-wizard__format-banner-note';
+      note.textContent = i18n.formatBannerCompare;
+      banner.appendChild(note);
+    }
+
+    header.insertAdjacentElement('afterend', banner);
+  }
+
+  function loadFormatInquiry() {
+    let raw;
+    try {
+      raw = sessionStorage.getItem(FORMAT_INQUIRY_KEY);
+    } catch {
+      return false;
+    }
+    if (!raw) return false;
+
+    try {
+      const parsed = JSON.parse(raw);
+      if (parsed?.source !== 'format-finder' || !Array.isArray(parsed.formats) || !parsed.formats.length) {
+        return false;
+      }
+      formatInquiry = parsed;
+    } catch {
+      return false;
+    }
+
+    try {
+      sessionStorage.removeItem(FORMAT_INQUIRY_KEY);
+    } catch {
+      /* ignore */
+    }
+
+    return true;
+  }
+
+  function applyFormatInquiry() {
+    if (!formatInquiry?.formats?.length) return;
+
+    clearTimeout(advanceTimer);
+
+    const coachingChip = root.querySelector(
+      '.contact-wizard__chip[data-field="leistung"][data-value="coaching"]'
+    );
+    if (coachingChip) {
+      activateChip(coachingChip);
+    }
+
+    showFormatInquiryBanner();
+    showStep(3);
+    window.setTimeout(() => {
+      document.getElementById('kontakt-anfrage')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  }
+
+  syncAutoAdvanceToggle();
   filterAnlassOptions();
   updateCityVisibility();
-  showStep(1);
+
+  if (loadFormatInquiry()) {
+    applyFormatInquiry();
+  } else {
+    showStep(1);
+  }
 })();

@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="../js/theme-init.js?v=10"></script>
+  <script src="../js/theme-init.js?v=22"></script>
   <title>Executive Coaching – Personal &amp; Business</title>
   <meta name="description" content="Personal and business coaching for leaders: gain clarity, resolve conflicts, navigate change — confidential and goal-oriented.">
   <link rel="preload" href="../public/fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../public/fonts/cormorant-garamond-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../css/styles.css?v=10" as="style">
-  <link rel="stylesheet" href="../css/fonts.css?v=10">
-  <link rel="stylesheet" href="../css/styles.css?v=10">
+  <link rel="preload" href="../css/styles.css?v=22" as="style">
+  <link rel="stylesheet" href="../css/fonts.css?v=22">
+  <link rel="stylesheet" href="../css/styles.css?v=22">
   <link rel="icon" href="../public/favicon.ico?v=3" sizes="any">
   <link rel="icon" type="image/png" sizes="48x48" href="../public/favicon-48.png?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="../public/favicon-32.png?v=3">
@@ -26,17 +26,17 @@
   <meta property="og:description" content="Personal and business coaching for leaders: gain clarity, resolve conflicts, navigate change — confidential and goal-oriented.">
   <meta property="og:url" content="https://www.doris-gunsch.eu/en/coaching">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://www.doris-gunsch.eu/public/doris-web.jpg">
+  <meta property="og:image" content="https://www.doris-gunsch.eu/public/doris-logo-web.png">
   <meta property="og:image:width" content="800">
-  <meta property="og:image:height" content="682">
-  <meta property="og:image:alt" content="Doris Gunsch">
+  <meta property="og:image:height" content="446">
+  <meta property="og:image:alt" content="Doris Gunsch — Psychological Management Consulting">
   <meta property="og:locale" content="en_GB">
   <meta property="og:locale:alternate" content="de_DE">
   <meta property="og:site_name" content="Doris Gunsch">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Executive Coaching – Personal &amp; Business">
   <meta name="twitter:description" content="Personal and business coaching for leaders: gain clarity, resolve conflicts, navigate change — confidential and goal-oriented.">
-  <meta name="twitter:image" content="https://www.doris-gunsch.eu/public/doris-web.jpg">
+  <meta name="twitter:image" content="https://www.doris-gunsch.eu/public/doris-logo-web.png">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -120,13 +120,13 @@
       <nav class="sub-nav" aria-label="Service areas">
         <a href="leistungen">Overview</a>
         <a href="coaching" class="is-active">Coaching</a>
-        <a href="trainings">Training &amp; Seminars</a>
-        <a href="team">Team &amp; Process</a>
+        <a href="trainings">Training & Seminars</a>
+        <a href="team">Team & Process</a>
         <a href="diagnostik">Diagnostics</a>
+        <a href="coaching-formate" class="sub-nav__highlight">Format finder</a>
       </nav>
     </div>
-
-    <section class="section page-section">
+<section class="section page-section">
       <div class="container">
 <article class="leistung-detail" id="coaching">
           <header class="leistung-detail-header">
@@ -158,8 +158,8 @@
               </li>
             </ul>
             <p class="coaching-foundation__links">
-              <a href="../diagnostik" class="card-link">Diagnostics & profiling</a>
-              <a href="../person" class="card-link">Profile & qualifications</a>
+              <a href="diagnostik" class="card-link">Diagnostics & profiling</a>
+              <a href="person" class="card-link">Profile & qualifications</a>
             </p>
           </section>
           <!-- /PSI_COACHING_FOUNDATION -->
@@ -190,7 +190,7 @@
               Leaders rarely have the opportunity to attend regular appointments.
               I address this with intensive settings and complementary measures such as smart coaching
               or coaching on the job.
-              <a href="#formate-vergleich" class="format-compare__jump">Compare formats</a>
+              <a href="coaching-formate" class="format-guide__jump">Formats in detail</a>
             </p>
             <div class="detail-grid">
               <div class="detail-item">
@@ -241,321 +241,14 @@
             </div>
           </div>
 
-          <!-- FORMAT_COMPARE -->
-          <div class="detail-block format-compare" id="formate-vergleich">
-            <h3 class="detail-subtitle">Compare formats</h3>
-            <p class="detail-intro">
-              Which format fits your situation? This overview maps occasions and delivery modes — including honest guidance on when a format is less suitable.
-            </p>
-
-            <div class="format-compare__groups" role="tablist" aria-label="Compare formats">
-              <button type="button" class="format-compare__group is-active" role="tab" data-group="anlass" aria-selected="true" id="format-tab-anlass" aria-controls="format-panel">
-                Occasions & topics
-              </button>
-              <button type="button" class="format-compare__group" role="tab" data-group="durchfuehrung" aria-selected="false" id="format-tab-durchfuehrung" aria-controls="format-panel">
-                Delivery
-              </button>
-            </div>
-
-            <div class="format-compare__toolbar">
-              <div class="format-compare__filter" data-chip-group="anlass" role="group" aria-label="Filter format">
-          <button type="button" class="format-compare__chip is-active" data-format="all" data-group="anlass" aria-pressed="true">
-            Show all
-          </button>
-          <button type="button" class="format-compare__chip" data-format="situativ" data-group="anlass" aria-pressed="false">
-            Situational Coaching
-          </button>
-          <button type="button" class="format-compare__chip" data-format="onboarding" data-group="anlass" aria-pressed="false">
-            Onboarding Coaching
-          </button>
-          <button type="button" class="format-compare__chip" data-format="positionierung" data-group="anlass" aria-pressed="false">
-            Positioning Coaching
-          </button>
-          <button type="button" class="format-compare__chip" data-format="aufgaben" data-group="anlass" aria-pressed="false">
-            Task-Focused Coaching
-          </button>
-          <button type="button" class="format-compare__chip" data-format="persoenlichkeit" data-group="anlass" aria-pressed="false">
-            Personality Coaching
-          </button>
-          <button type="button" class="format-compare__chip" data-format="therapeutisch" data-group="anlass" aria-pressed="false">
-            Therapeutic Coaching
-          </button>
-              </div>
-              <div class="format-compare__filter" data-chip-group="durchfuehrung" role="group" aria-label="Filter format" hidden>
-          <button type="button" class="format-compare__chip is-active" data-format="all" data-group="durchfuehrung" aria-pressed="true">
-            Show all
-          </button>
-          <button type="button" class="format-compare__chip" data-format="intensiv" data-group="durchfuehrung" aria-pressed="false">
-            Intensive Settings
-          </button>
-          <button type="button" class="format-compare__chip" data-format="smart" data-group="durchfuehrung" aria-pressed="false">
-            Smart Coaching
-          </button>
-          <button type="button" class="format-compare__chip" data-format="cotj" data-group="durchfuehrung" aria-pressed="false">
-            Coaching on the Job
-          </button>
-              </div>
-              <p class="format-compare__status" id="format-compare-status" aria-live="polite" aria-atomic="true"></p>
-            </div>
-
-            <div class="format-compare__list" id="format-panel" role="tabpanel" aria-labelledby="format-tab-anlass">
-            <article class="format-compare__card" id="format-situativ" data-format="situativ" data-group="anlass">
-              <header class="format-compare__card-head">
-                <span class="format-compare__badge">Occasion</span>
-                <p class="detail-item__title">Situational Coaching</p>
-              </header>
-              <dl class="format-compare__meta">
-              <div class="format-compare__row">
-                <dt>Duration / setting</dt>
-                <dd>1–3 sessions of 2–3 hours</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Typical occasion</dt>
-                <dd>A concrete leadership situation, important conversation or decision</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Outcome</dt>
-                <dd>Clarity, options for action, conversation preparation</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Well suited for</dt>
-                <dd>Leaders with an immediate need for clarification</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Less suited for</dt>
-                <dd>Long-term development topics without time pressure</dd>
-              </div>
-              </dl>
-            </article>
-            <article class="format-compare__card" id="format-onboarding" data-format="onboarding" data-group="anlass">
-              <header class="format-compare__card-head">
-                <span class="format-compare__badge">Occasion</span>
-                <p class="detail-item__title">Onboarding Coaching</p>
-              </header>
-              <dl class="format-compare__meta">
-              <div class="format-compare__row">
-                <dt>Duration / setting</dt>
-                <dd>3–6 sessions over several weeks</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Typical occasion</dt>
-                <dd>Taking on a new company, division or leadership role</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Outcome</dt>
-                <dd>Structured start, role clarity, avoiding early missteps</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Well suited for</dt>
-                <dd>New managing directors, division heads, leaders after a change of role</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Less suited for</dt>
-                <dd>Established leaders without a change of role</dd>
-              </div>
-              </dl>
-            </article>
-            <article class="format-compare__card" id="format-positionierung" data-format="positionierung" data-group="anlass">
-              <header class="format-compare__card-head">
-                <span class="format-compare__badge">Occasion</span>
-                <p class="detail-item__title">Positioning Coaching</p>
-              </header>
-              <dl class="format-compare__meta">
-              <div class="format-compare__row">
-                <dt>Duration / setting</dt>
-                <dd>2–4 sessions</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Typical occasion</dt>
-                <dd>Unclear role in the organisation, changes in organisational structure</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Outcome</dt>
-                <dd>Structural overview, clear positioning within the organisation</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Well suited for</dt>
-                <dd>Leaders after reorganisation or with role uncertainty</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Less suited for</dt>
-                <dd>Purely technical tasks without an organisational dimension</dd>
-              </div>
-              </dl>
-            </article>
-            <article class="format-compare__card" id="format-aufgaben" data-format="aufgaben" data-group="anlass">
-              <header class="format-compare__card-head">
-                <span class="format-compare__badge">Occasion</span>
-                <p class="detail-item__title">Task-Focused Coaching</p>
-              </header>
-              <dl class="format-compare__meta">
-              <div class="format-compare__row">
-                <dt>Duration / setting</dt>
-                <dd>2–5 sessions, with training elements on request</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Typical occasion</dt>
-                <dd>A specific leadership task (feedback, delegation, difficult conversation)</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Outcome</dt>
-                <dd>Practical tools and implementation for the specific task</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Well suited for</dt>
-                <dd>Leaders with a clearly defined task</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Less suited for</dt>
-                <dd>Fundamental questions of orientation or identity</dd>
-              </div>
-              </dl>
-            </article>
-            <article class="format-compare__card" id="format-persoenlichkeit" data-format="persoenlichkeit" data-group="anlass">
-              <header class="format-compare__card-head">
-                <span class="format-compare__badge">Occasion</span>
-                <p class="detail-item__title">Personality Coaching</p>
-              </header>
-              <dl class="format-compare__meta">
-              <div class="format-compare__row">
-                <dt>Duration / setting</dt>
-                <dd>4–8 sessions over several months</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Typical occasion</dt>
-                <dd>Self-development, reflection on your impact, potential analysis</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Outcome</dt>
-                <dd>Deeper self-awareness, new objectives, sustainable development</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Well suited for</dt>
-                <dd>Leaders with scope for long-term personal development</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Less suited for</dt>
-                <dd>Acute crises or decisions due imminently</dd>
-              </div>
-              </dl>
-            </article>
-            <article class="format-compare__card" id="format-therapeutisch" data-format="therapeutisch" data-group="anlass">
-              <header class="format-compare__card-head">
-                <span class="format-compare__badge">Occasion</span>
-                <p class="detail-item__title">Therapeutic Coaching</p>
-              </header>
-              <dl class="format-compare__meta">
-              <div class="format-compare__row">
-                <dt>Duration / setting</dt>
-                <dd>Individual, often longer-term</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Typical occasion</dt>
-                <dd>Motivation difficulties, suspected burnout, loss of energy, inner conflicts</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Outcome</dt>
-                <dd>Root-cause clarification, stabilisation, distinction from purely professional topics</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Well suited for</dt>
-                <dd>Situations at the boundary of coaching and therapy — covered by my licence</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Less suited for</dt>
-                <dd>Pure business or strategy questions without personal strain</dd>
-              </div>
-              </dl>
-            </article>
-            <article class="format-compare__card" id="format-intensiv" data-format="intensiv" data-group="durchfuehrung">
-              <header class="format-compare__card-head">
-                <span class="format-compare__badge">Delivery</span>
-                <p class="detail-item__title">Intensive Settings</p>
-              </header>
-              <dl class="format-compare__meta">
-              <div class="format-compare__row">
-                <dt>Duration / setting</dt>
-                <dd>1–2 intensive sessions of 3–4 hours</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Typical occasion</dt>
-                <dd>Little time, high need for clarity — a full calendar</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Outcome</dt>
-                <dd>Compressed work on a core question with lasting effect</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Well suited for</dt>
-                <dd>Leaders who rarely have scope for regular appointments</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Less suited for</dt>
-                <dd>Topics that require continuity and longer-term support</dd>
-              </div>
-              </dl>
-            </article>
-            <article class="format-compare__card" id="format-smart" data-format="smart" data-group="durchfuehrung">
-              <header class="format-compare__card-head">
-                <span class="format-compare__badge">Delivery</span>
-                <p class="detail-item__title">Smart Coaching</p>
-              </header>
-              <dl class="format-compare__meta">
-              <div class="format-compare__row">
-                <dt>Duration / setting</dt>
-                <dd>Short impulses (30–45 min.) by phone or video</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Typical occasion</dt>
-                <dd>Between sessions, before important situations, quick reflection</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Outcome</dt>
-                <dd>Orientation and clarity without a large time commitment</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Well suited for</dt>
-                <dd>Leaders with little time between main sessions</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Less suited for</dt>
-                <dd>In-depth clarification of complex situations</dd>
-              </div>
-              </dl>
-            </article>
-            <article class="format-compare__card" id="format-cotj" data-format="cotj" data-group="durchfuehrung">
-              <header class="format-compare__card-head">
-                <span class="format-compare__badge">Delivery</span>
-                <p class="detail-item__title">Coaching on the Job</p>
-              </header>
-              <dl class="format-compare__meta">
-              <div class="format-compare__row">
-                <dt>Duration / setting</dt>
-                <dd>Support in the working day, sessions on site at your organisation</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Typical occasion</dt>
-                <dd>Implementation in direct leadership contact, observation and reflection in practice</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Outcome</dt>
-                <dd>Direct transfer into practice, feedback on external impact</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Well suited for</dt>
-                <dd>Leaders who want to learn directly in the situation</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Less suited for</dt>
-                <dd>Topics that require confidential retreat and calm</dd>
-              </div>
-              </dl>
-            </article>
-            </div>
-
-            <p class="format-compare__note">Together we clarify which format fits your situation — this comparison is for orientation, not self-diagnosis.</p>
-          </div>
-          <!-- /FORMAT_COMPARE -->
+          <!-- FORMAT_TEASER -->
+          <aside class="format-teaser card card--lead" aria-label="Which coaching format fits?">
+            <p class="format-teaser__kicker">Interactive guide</p>
+            <h3 class="format-teaser__title">Which coaching format fits?</h3>
+            <p class="format-teaser__text">Compare formats by occasion or delivery — select up to two options and see the differences side by side.</p>
+            <a href="coaching-formate" class="btn btn-primary">Open format finder</a>
+          </aside>
+          <!-- /FORMAT_TEASER -->
 
           <div class="detail-block">
             <h3 class="detail-subtitle">Business Coaching and Consulting</h3>
@@ -674,7 +367,7 @@
   </aside>
 </div>
 
-  <script src="../js/site.js?v=10"></script>
-  <script src="../js/coaching-formats.js?v=10" defer></script>
+  <script src="../js/nav-return.js?v=22" defer></script>
+  <script src="../js/site.js?v=22" defer></script>
 </body>
 </html>

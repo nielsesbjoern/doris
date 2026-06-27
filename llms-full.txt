@@ -37,6 +37,10 @@ Coaching und Beratung in Osnabrück, im DACH-Raum und hybrid — ausgewählte Ei
 URL: https://www.doris-gunsch.eu/coaching
 Personal- und Business-Coaching für Führungskräfte: Klarheit gewinnen, Konflikte lösen, Veränderungen gestalten — vertraulich und zielorientiert.
 
+### Format-Finder – Welches Coaching passt? | Doris Gunsch
+URL: https://www.doris-gunsch.eu/coaching-formate
+Coaching-Formate interaktiv vergleichen: nach Anlass oder Durchführung — bis zu zwei Formate nebeneinander. Orientierung für Führungskräfte.
+
 ### Trainings & Seminare für Führungskräfte – Doris Gunsch
 URL: https://www.doris-gunsch.eu/trainings
 Praxisnahe Trainings und Seminare zu Führung, Kommunikation und Teamentwicklung — maßgeschneidert für Ihr Unternehmen.
@@ -92,6 +96,10 @@ Coaching and consulting in Osnabrück, across the DACH region and hybrid — sel
 ### Executive Coaching – Personal & Business
 URL: https://www.doris-gunsch.eu/en/coaching
 Personal and business coaching for leaders: gain clarity, resolve conflicts, navigate change — confidential and goal-oriented.
+
+### Format Finder – Which Coaching Fits? | Doris Gunsch
+URL: https://www.doris-gunsch.eu/en/coaching-formate
+Compare coaching formats interactively: by occasion or delivery — up to two formats side by side. Orientation for leaders.
 
 ### Leadership Training & Seminars – Doris Gunsch
 URL: https://www.doris-gunsch.eu/en/trainings
@@ -268,6 +276,40 @@ FAQ:
   A: Yes — from clarifying between two parties to supporting entire leadership teams.
   F: Is online coaching possible?
   A: Yes — many leaders combine in-person sessions in Bremen with online appointments for brief check-ins.
+
+### Münster (DE)
+URL: https://www.doris-gunsch.eu/standorte/muenster
+Titel: Coaching für Führungskräfte in Münster | Doris Gunsch
+Beschreibung: Coaching und Prozessbegleitung in Münster: Führung in Verwaltung, Bildung und institutionellen Kontexten. Psychologische Beratung aus Osnabrück — gut erreichbar.
+Lead: Führungsbegleitung dort, wo fachliche Exzellenz auf institutionelle Komplexität trifft.
+Einführung: In Münster begleite ich Führungskräfte in Organisationen, in denen fachliche Exzellenz und institutionelle Komplexität eng zusammenkommen — in Verwaltung, Bildung, kirchlichen und sozialen Trägern sowie in wissenschaftsnahen Einrichtungen. Von Osnabrück aus ist Münster in etwa einer Stunde erreichbar; viele Formate kombinieren Vor-Ort-Termine mit Online-Phasen.
+
+FAQ:
+  F: Betreuen Sie Mandate direkt in Münster?
+  A: Ja — Coachings, Workshops und Prozessbegleitungen führe ich regelmäßig in Münster und im Münsterland durch, ergänzt durch Termine in Osnabrück oder online.
+  F: Was unterscheidet Münster von anderen Standorten?
+  A: Hier stehen oft institutionelle Logiken, Ehrenamt/Fachlichkeit und mehrstufige Entscheidungswege im Vordergrund — das prägt meine Begleitung.
+  F: Für welche Führungsebenen?
+  A: Obere und mittlere Führung, Bereichsleitungen, Projektleitungen und Geschäftsführungen in mittelgroßen Organisationen.
+  F: Wie starten wir die Zusammenarbeit?
+  A: In einem vertraulichen Gespräch klären wir Anlass, Rahmen und ob Coaching, Training oder Prozessbegleitung passt.
+
+### Münster (EN)
+URL: https://www.doris-gunsch.eu/en/standorte/muenster
+Titel: Executive Coaching in Münster | Doris Gunsch
+Beschreibung: Coaching and process facilitation in Münster: leadership in administration, education and institutional contexts. Psychological consulting from Osnabrück — easily reachable.
+Lead: Leadership support where professional excellence meets institutional complexity.
+Einführung: In Münster I support leaders in organisations where professional excellence and institutional complexity closely intersect — in administration, education, church and social-sector bodies and science-related institutions. Münster is about an hour from Osnabrück; many formats combine on-site sessions with online phases.
+
+FAQ:
+  F: Do you take on mandates directly in Münster?
+  A: Yes — I regularly deliver coaching, workshops and process facilitation in Münster and the Münsterland, supplemented by sessions in Osnabrück or online.
+  F: What makes Münster different from other locations?
+  A: Institutional logics, volunteer/professional dynamics and multi-level decision paths are often central — that shapes my approach.
+  F: Which leadership levels?
+  A: Senior and middle management, department heads, project leads and managing directors in medium-sized organisations.
+  F: How do we start working together?
+  A: In a confidential conversation we clarify your situation, framework and whether coaching, training or facilitation fits.
 
 ### Hamburg (DE)
 URL: https://www.doris-gunsch.eu/standorte/hamburg
@@ -472,38 +514,4 @@ FAQ:
   A: No — my office is in Osnabrück. Support in Zurich takes place at your premises, in neutral rooms or hybrid.
   F: Which leadership levels?
   A: Managing directors, department heads and project leads in medium and larger organisations.
-
-### Münster (DE)
-URL: https://www.doris-gunsch.eu/standorte/muenster
-Titel: Coaching für Führungskräfte in Münster | Doris Gunsch
-Beschreibung: Coaching und Prozessbegleitung in Münster: Führung in Verwaltung, Bildung und institutionellen Kontexten. Psychologische Beratung aus Osnabrück — gut erreichbar.
-Lead: Führungsbegleitung dort, wo fachliche Exzellenz auf institutionelle Komplexität trifft.
-Einführung: In Münster begleite ich Führungskräfte in Organisationen, in denen fachliche Exzellenz und institutionelle Komplexität eng zusammenkommen — in Verwaltung, Bildung, kirchlichen und sozialen Trägern sowie in wissenschaftsnahen Einrichtungen. Von Osnabrück aus ist Münster in etwa einer Stunde erreichbar; viele Formate kombinieren Vor-Ort-Termine mit Online-Phasen.
-
-FAQ:
-  F: Betreuen Sie Mandate direkt in Münster?
-  A: Ja — Coachings, Workshops und Prozessbegleitungen führe ich regelmäßig in Münster und im Münsterland durch, ergänzt durch Termine in Osnabrück oder online.
-  F: Was unterscheidet Münster von anderen Standorten?
-  A: Hier stehen oft institutionelle Logiken, Ehrenamt/Fachlichkeit und mehrstufige Entscheidungswege im Vordergrund — das prägt meine Begleitung.
-  F: Für welche Führungsebenen?
-  A: Obere und mittlere Führung, Bereichsleitungen, Projektleitungen und Geschäftsführungen in mittelgroßen Organisationen.
-  F: Wie starten wir die Zusammenarbeit?
-  A: In einem vertraulichen Gespräch klären wir Anlass, Rahmen und ob Coaching, Training oder Prozessbegleitung passt.
-
-### Münster (EN)
-URL: https://www.doris-gunsch.eu/en/standorte/muenster
-Titel: Executive Coaching in Münster | Doris Gunsch
-Beschreibung: Coaching and process facilitation in Münster: leadership in administration, education and institutional contexts. Psychological consulting from Osnabrück — easily reachable.
-Lead: Leadership support where professional excellence meets institutional complexity.
-Einführung: In Münster I support leaders in organisations where professional excellence and institutional complexity closely intersect — in administration, education, church and social-sector bodies and science-related institutions. Münster is about an hour from Osnabrück; many formats combine on-site sessions with online phases.
-
-FAQ:
-  F: Do you take on mandates directly in Münster?
-  A: Yes — I regularly deliver coaching, workshops and process facilitation in Münster and the Münsterland, supplemented by sessions in Osnabrück or online.
-  F: What makes Münster different from other locations?
-  A: Institutional logics, volunteer/professional dynamics and multi-level decision paths are often central — that shapes my approach.
-  F: Which leadership levels?
-  A: Senior and middle management, department heads, project leads and managing directors in medium-sized organisations.
-  F: How do we start working together?
-  A: In a confidential conversation we clarify your situation, framework and whether coaching, training or facilitation fits.
 

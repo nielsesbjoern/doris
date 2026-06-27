@@ -18,8 +18,10 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run SEO helper tests
-        run: python3 scripts/test_seo.py
+      - name: Run tests
+        run: |
+          python3 scripts/test_seo.py
+          python3 scripts/test_site.py
 
       - name: Run full build
         run: python3 scripts/build.py

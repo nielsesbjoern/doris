@@ -16,11 +16,57 @@ LLMS_FULL_URL = f"{SITE_URL}/llms-full.txt"
 OG_IMAGE = f"{SITE_URL}/public/doris-web.jpg"
 OG_IMAGE_WIDTH = 800
 OG_IMAGE_HEIGHT = 682
-TWITTER_SITE = ""  # e.g. "@handle" — set when a verified X/Twitter account exists
+OG_IMAGE_BRAND = f"{SITE_URL}/public/doris-logo-web.png"
+OG_IMAGE_BRAND_WIDTH = 800
+OG_IMAGE_BRAND_HEIGHT = 446
+TWITTER_SITE = ""  # Set to "@handle" when a verified X/Twitter account exists
+
+SERVICE_OG_PAGES = frozenset({
+    "leistungen.html",
+    "coaching.html",
+    "coaching-formate.html",
+    "trainings.html",
+    "team.html",
+    "diagnostik.html",
+    "einsatzgebiete.html",
+    "referenzen.html",
+})
+
+KNOWS_ABOUT = {
+    "de": [
+        "Executive Coaching",
+        "Führungskräfteentwicklung",
+        "Organisationspsychologie",
+        "Teamentwicklung",
+        "Change Management",
+    ],
+    "en": [
+        "Executive coaching",
+        "Leadership development",
+        "Organizational psychology",
+        "Team development",
+        "Change management",
+    ],
+}
+
+PERSON_KNOWS_ABOUT = {
+    "de": [
+        "Psychologie",
+        "Executive Coaching",
+        "Führung",
+        "Organisationsentwicklung",
+    ],
+    "en": [
+        "Psychology",
+        "Executive coaching",
+        "Leadership",
+        "Organizational development",
+    ],
+}
 ORG_NAME_DE = "Doris Gunsch – Psychologische Managementberatung"
 ORG_NAME_EN = "Doris Gunsch – Psychological Management Consulting"
 FAVICON_VERSION = 3
-ASSET_VERSION = 10
+ASSET_VERSION = 22
 
 # Newtonstraße 3, 49088 Osnabrück
 GEO_LATITUDE = 52.2726
@@ -37,6 +83,16 @@ def clean_path(filename: str) -> str:
     if filename.endswith(".html"):
         return filename[:-5]
     return filename
+
+
+def page_link_prefix(filename: str) -> str:
+    """Relative prefix for same-language internal page links."""
+    return "../" * filename.count("/")
+
+
+def content_asset_prefix(lang: str, filename: str) -> str:
+    """Relative prefix for css/js/public assets from a generated page file."""
+    return "../" * (filename.count("/") + (1 if lang == "en" else 0))
 
 
 def page_href(filename: str, prefix: str = "") -> str:
@@ -173,12 +229,49 @@ def profile_image(asset: str, alt: str, *, lazy: bool = True) -> str:
             </picture>"""
 
 
-def open_graph(filename: str, lang: str, title: str, description: str) -> str:
+def og_image_meta(
+    filename: str,
+    lang: str,
+    *,
+    city: Optional[str] = None,
+) -> tuple[str, int, int, str]:
+    """Return OG/Twitter image URL, dimensions and alt text for a page."""
+    if filename in SERVICE_OG_PAGES:
+        return (
+            OG_IMAGE_BRAND,
+            OG_IMAGE_BRAND_WIDTH,
+            OG_IMAGE_BRAND_HEIGHT,
+            "Doris Gunsch — Psychologische Managementberatung"
+            if lang == "de"
+            else "Doris Gunsch — Psychological Management Consulting",
+        )
+    if city:
+        return (
+            OG_IMAGE,
+            OG_IMAGE_WIDTH,
+            OG_IMAGE_HEIGHT,
+            f"Doris Gunsch — Coaching in {city}"
+            if lang == "de"
+            else f"Doris Gunsch — Coaching in {city}",
+        )
+    return OG_IMAGE, OG_IMAGE_WIDTH, OG_IMAGE_HEIGHT, "Doris Gunsch"
+
+
+def open_graph(
+    filename: str,
+    lang: str,
+    title: str,
+    description: str,
+    *,
+    city: Optional[str] = None,
+) -> str:
     url = absolute_url(filename, lang)
     locale = "de_DE" if lang == "de" else "en_GB"
     alt_locale = "en_GB" if lang == "de" else "de_DE"
     t = html.escape(title, quote=True)
     d = html.escape(description, quote=True)
+    image, image_w, image_h, image_alt = og_image_meta(filename, lang, city=city)
+    image_alt_esc = html.escape(image_alt, quote=True)
     twitter_site = (
         f'  <meta name="twitter:site" content="{html.escape(TWITTER_SITE, quote=True)}">\n'
         if TWITTER_SITE
@@ -188,17 +281,17 @@ def open_graph(filename: str, lang: str, title: str, description: str) -> str:
   <meta property="og:description" content="{d}">
   <meta property="og:url" content="{url}">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="{OG_IMAGE}">
-  <meta property="og:image:width" content="{OG_IMAGE_WIDTH}">
-  <meta property="og:image:height" content="{OG_IMAGE_HEIGHT}">
-  <meta property="og:image:alt" content="Doris Gunsch">
+  <meta property="og:image" content="{image}">
+  <meta property="og:image:width" content="{image_w}">
+  <meta property="og:image:height" content="{image_h}">
+  <meta property="og:image:alt" content="{image_alt_esc}">
   <meta property="og:locale" content="{locale}">
   <meta property="og:locale:alternate" content="{alt_locale}">
   <meta property="og:site_name" content="Doris Gunsch">
   <meta name="twitter:card" content="summary_large_image">
 {twitter_site}  <meta name="twitter:title" content="{t}">
   <meta name="twitter:description" content="{d}">
-  <meta name="twitter:image" content="{OG_IMAGE}">"""
+  <meta name="twitter:image" content="{image}">"""
 
 
 def _json_ld(data: dict) -> str:
@@ -229,13 +322,7 @@ def _business_entity(lang: str) -> dict:
             "longitude": GEO_LONGITUDE,
         },
         "areaServed": ["Germany", "Austria", "Switzerland"],
-        "knowsAbout": [
-            "Executive coaching",
-            "Leadership development",
-            "Organizational psychology",
-            "Team development",
-            "Change management",
-        ],
+        "knowsAbout": KNOWS_ABOUT[lang],
     }
 
 
@@ -287,12 +374,7 @@ def person_schema(lang: str) -> str:
         "email": "dg@doris-gunsch.eu",
         "telephone": "+49-541-14496",
         "worksFor": {"@id": BUSINESS_ID},
-        "knowsAbout": [
-            "Psychology",
-            "Executive coaching",
-            "Leadership",
-            "Organizational development",
-        ],
+        "knowsAbout": PERSON_KNOWS_ABOUT[lang],
         "alumniOf": {
             "@type": "CollegeOrUniversity",
             "name": "Universität Osnabrück",

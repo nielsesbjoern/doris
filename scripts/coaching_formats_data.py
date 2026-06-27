@@ -172,16 +172,34 @@ FORMATS: list[Format] = [
 
 TEXT = {
     "de": {
-        "title": "Formate im Vergleich",
+        "title": "Welches Format passt?",
         "intro": (
-            "Welches Format passt zu Ihrer Situation? Die Übersicht ordnet Anlässe "
-            "und Durchführungsformen ein — inklusive ehrlicher Abgrenzung."
+            "Coaching-Formate lassen sich auf zwei Arten betrachten: nach dem <strong>Anlass</strong> "
+            "(worum es geht) oder nach der <strong>Durchführung</strong> (wie wir zusammenarbeiten). "
+            "Beides ergänzt sich — wählen Sie zuerst die Perspektive, die Ihnen Orientierung gibt."
         ),
-        "jump": "Formate vergleichen",
-        "group_anlass": "Anlässe & Themen",
-        "group_durchfuehrung": "Durchführung",
-        "filter_label": "Format filtern",
-        "filter_all": "Alle anzeigen",
+        "jump": "Formate im Detail",
+        "group_anlass": "Nach Anlass",
+        "group_anlass_desc": "Worum geht es? — z. B. Führungswechsel, Konflikt, Entwicklung",
+        "group_durchfuehrung": "Nach Durchführung",
+        "group_durchfuehrung_desc": "Wie arbeiten wir? — z. B. Intensiv-Termine, Smart-Coaching, vor Ort",
+        "compare_hint": "Optional: Markieren Sie bis zu zwei Formate — die Tabelle „Direkter Vergleich“ erscheint darüber.",
+        "compare_pick": "Vergleichen",
+        "compare_col": "Vergleich",
+        "col_format": "Format",
+        "col_duration": "Dauer",
+        "col_occasion": "Typischer Anlass",
+        "col_details": "Details",
+        "details_show": "Details",
+        "details_hide": "Schließen",
+        "compare_panel_title": "Direkter Vergleich",
+        "compare_clear": "Auswahl zurücksetzen",
+        "inquiry_one": "Anfrage zu diesem Format",
+        "inquiry_two": "Anfrage zu diesen Formaten",
+        "inquiry_hint_one": "Sie haben {a} ausgewählt.",
+        "inquiry_hint_two": "Sie vergleichen {a} und {b}.",
+        "compare_need_two": "Wählen Sie ein zweites Format zum Vergleich.",
+        "compare_max_two": "Maximal zwei Formate gleichzeitig — bitte eines abwählen.",
         "badge_anlass": "Anlass",
         "badge_durchfuehrung": "Durchführung",
         "label_duration": "Dauer / Setting",
@@ -191,20 +209,71 @@ TEXT = {
         "label_less_suitable": "Weniger geeignet für",
         "note": (
             "Gemeinsam klären wir, welches Format zur Situation passt — "
-            "der Vergleich dient der Orientierung, nicht der Selbstdiagnose."
+            "die Übersicht dient der Orientierung, nicht der Selbstdiagnose."
         ),
+        "nav_label": "Format-Finder",
+        "page_eyebrow": "Coaching",
+        "page_h1": "Welches Format passt?",
+        "page_lead": (
+            "Coaching-Formate nach Anlass oder Durchführung vergleichen — "
+            "bis zu zwei Formate direkt nebeneinander. Zur Orientierung, nicht zur Selbstdiagnose."
+        ),
+        "page_cta_text": "Sie haben ein Format im Blick oder möchten gemeinsam abstimmen?",
+        "page_cta_btn": "Anfrage stellen",
+        "teaser_kicker": "Interaktiver Guide",
+        "teaser_title": "Welches Coaching-Format passt?",
+        "teaser_text": (
+            "Formate nach Anlass oder Durchführung vergleichen — "
+            "markieren Sie bis zu zwei Optionen und sehen Sie die Unterschiede direkt nebeneinander."
+        ),
+        "teaser_btn": "Format-Finder öffnen",
+        "home_kicker": "Interaktiv",
+        "home_title": "Welches Coaching-Format passt zu Ihrer Situation?",
+        "home_text": (
+            "Der Format-Finder ordnet Anlässe und Durchführungsformen ein — "
+            "zum Vergleichen, Einordnen und als Einstieg in die passende Begleitung."
+        ),
+        "home_btn": "Format-Finder starten",
+        "hero_btn": "Format-Finder",
+        "hero_hint": "Nicht sicher, welches Format passt?",
+        "hero_hint_link": "Starten Sie mit dem Format-Finder.",
+        "home_coaching_link": "Mehr zum Coaching",
+        "home_coaching_card_link": "Welches Format passt? → Format-Finder",
+        "home_chips": [
+            ("situativ", "Situatives Coaching"),
+            ("onboarding", "Onboarding-Coaching"),
+            ("smart", "Smart-Coaching"),
+        ],
     },
     "en": {
-        "title": "Compare formats",
+        "title": "Which format fits?",
         "intro": (
-            "Which format fits your situation? This overview maps occasions "
-            "and delivery modes — including honest guidance on when a format is less suitable."
+            "Coaching formats can be viewed in two ways: by <strong>occasion</strong> "
+            "(what it is about) or by <strong>delivery</strong> (how we work together). "
+            "Both complement each other — start with the perspective that gives you orientation."
         ),
-        "jump": "Compare formats",
-        "group_anlass": "Occasions & topics",
-        "group_durchfuehrung": "Delivery",
-        "filter_label": "Filter format",
-        "filter_all": "Show all",
+        "jump": "Formats in detail",
+        "group_anlass": "By occasion",
+        "group_anlass_desc": "What is it about? — e.g. leadership transition, conflict, development",
+        "group_durchfuehrung": "By delivery",
+        "group_durchfuehrung_desc": "How do we work? — e.g. intensive sessions, smart coaching, on site",
+        "compare_hint": "Optional: select up to two formats — the side-by-side table appears above.",
+        "compare_pick": "Compare",
+        "compare_col": "Compare",
+        "col_format": "Format",
+        "col_duration": "Duration",
+        "col_occasion": "Typical occasion",
+        "col_details": "Details",
+        "details_show": "Details",
+        "details_hide": "Close",
+        "compare_panel_title": "Side-by-side comparison",
+        "compare_clear": "Clear selection",
+        "inquiry_one": "Enquire about this format",
+        "inquiry_two": "Enquire about these formats",
+        "inquiry_hint_one": "You selected {a}.",
+        "inquiry_hint_two": "You are comparing {a} and {b}.",
+        "compare_need_two": "Select a second format to compare.",
+        "compare_max_two": "At most two formats at once — please deselect one.",
         "badge_anlass": "Occasion",
         "badge_durchfuehrung": "Delivery",
         "label_duration": "Duration / setting",
@@ -214,7 +283,40 @@ TEXT = {
         "label_less_suitable": "Less suited for",
         "note": (
             "Together we clarify which format fits your situation — "
-            "this comparison is for orientation, not self-diagnosis."
+            "this overview is for orientation, not self-diagnosis."
         ),
+        "nav_label": "Format finder",
+        "page_eyebrow": "Coaching",
+        "page_h1": "Which format fits?",
+        "page_lead": (
+            "Compare coaching formats by occasion or delivery — "
+            "select up to two formats for a side-by-side view. For orientation, not self-diagnosis."
+        ),
+        "page_cta_text": "Have a format in mind or want to align together?",
+        "page_cta_btn": "Get in touch",
+        "teaser_kicker": "Interactive guide",
+        "teaser_title": "Which coaching format fits?",
+        "teaser_text": (
+            "Compare formats by occasion or delivery — "
+            "select up to two options and see the differences side by side."
+        ),
+        "teaser_btn": "Open format finder",
+        "home_kicker": "Interactive",
+        "home_title": "Which coaching format fits your situation?",
+        "home_text": (
+            "The format finder maps occasions and delivery models — "
+            "to compare, orient yourself and find a suitable starting point."
+        ),
+        "home_btn": "Start format finder",
+        "hero_btn": "Format finder",
+        "hero_hint": "Not sure which format fits?",
+        "hero_hint_link": "Start with the format finder.",
+        "home_coaching_link": "More on coaching",
+        "home_coaching_card_link": "Which format fits? → Format finder",
+        "home_chips": [
+            ("situativ", "Situational coaching"),
+            ("onboarding", "Onboarding coaching"),
+            ("smart", "Smart coaching"),
+        ],
     },
 }

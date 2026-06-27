@@ -45,6 +45,11 @@
     <text class="map-label" x="145.66" y="150.4" text-anchor="end">Oldenburg</text>
     <circle class="map-city-hit" cx="155.66" cy="158.4" r="12"/>
     </a>
+    <a class="map-city map-city--link" data-slug="muenster" href="standorte/muenster" role="listitem" aria-label="Münster — Verwaltung, Bildung und institutionelle Kontexte">
+    <circle class="map-dot" cx="136.08" cy="220.05" r="3.5"/>
+    <text class="map-label" x="146.08" y="224.05" text-anchor="start">Münster</text>
+    <circle class="map-city-hit" cx="136.08" cy="220.05" r="12"/>
+    </a>
     <a class="map-city map-city--link" data-slug="duesseldorf" href="standorte/duesseldorf" role="listitem" aria-label="Düsseldorf">
     <circle class="map-dot" cx="107.71" cy="258.25" r="3.5"/>
     <text class="map-label" x="117.71" y="258.25" text-anchor="start">Düsseldorf</text>

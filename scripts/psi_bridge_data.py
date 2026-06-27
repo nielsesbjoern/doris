@@ -36,6 +36,28 @@ TEXT = {
         ],
         "coaching_link_diagnostik": "Diagnostik & Profiling",
         "coaching_link_person": "Profil & Qualifikation",
+        "trainings_title": "Wissenschaftlich fundiert — praxisnah trainiert",
+        "trainings_lead": (
+            "Trainings und Seminare bauen auf psychologischem Verständnis von Motivation, "
+            "Kommunikation und Führungsverhalten auf — nicht auf Standardfolien. "
+            "Inhalte werden an Ihre Branche, Zielgruppe und strategischen Ziele angepasst."
+        ),
+        "trainings_trust": (
+            "Diplom-Psychologin (PPT) · über 20 Jahre Erfahrung in Führungskräfteentwicklung · "
+            "Lehrtätigkeit Universität Osnabrück"
+        ),
+        "trainings_link": "Diagnostik & PSI-Theorie",
+        "team_title": "Prozessbegleitung mit psychologischer Tiefe",
+        "team_lead": (
+            "Teamentwicklung und Konfliktklärung brauchen mehr als Moderationsmethoden — "
+            "es geht um Rollen, Dynamiken und Entwicklungslogiken unter Druck. "
+            "Wo sinnvoll, ergänze ich durch validierte Team- oder Persönlichkeitsdiagnostik."
+        ),
+        "team_trust": (
+            "Erfahrung mit Klinikverbünden, Verbänden und Führungsteams im DACH-Raum · "
+            "PSI-Forschungsteam Universität Osnabrück"
+        ),
+        "team_link": "Diagnostik für Teams",
         "diag_lead": (
             "Sie möchten verstehen, wo Energie verloren geht, warum bestimmte Situationen "
             "besonders fordern — oder welche Entwicklungsschritte für Ihre Führungsrolle "
@@ -118,6 +140,28 @@ TEXT = {
         ],
         "coaching_link_diagnostik": "Diagnostics & profiling",
         "coaching_link_person": "Profile & qualifications",
+        "trainings_title": "Scientifically grounded — applied in training",
+        "trainings_lead": (
+            "Training and seminars build on psychological understanding of motivation, "
+            "communication and leadership behaviour — not standard slide decks. "
+            "Content is tailored to your sector, target group and strategic goals."
+        ),
+        "trainings_trust": (
+            "Graduate Psychologist (PPT) · more than 20 years in leadership development · "
+            "lecturer at the University of Osnabrück"
+        ),
+        "trainings_link": "Diagnostics & PSI theory",
+        "team_title": "Process facilitation with psychological depth",
+        "team_lead": (
+            "Team development and conflict resolution need more than facilitation methods — "
+            "roles, dynamics and development logic under pressure matter. "
+            "Where helpful, I add validated team or personality diagnostics."
+        ),
+        "team_trust": (
+            "Experience with hospital networks, associations and leadership teams across the DACH region · "
+            "PSI research team, University of Osnabrück"
+        ),
+        "team_link": "Diagnostics for teams",
         "diag_lead": (
             "You want to understand where energy is lost, why certain situations are especially "
             "demanding — or which development steps truly support your leadership role? "

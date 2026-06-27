@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="../js/theme-init.js?v=10"></script>
+  <script src="../js/theme-init.js?v=22"></script>
   <title>Privacy Policy – Doris Gunsch</title>
   <meta name="description" content="Privacy policy for doris-gunsch.eu — information on the processing of personal data.">
   <link rel="preload" href="../public/fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../public/fonts/cormorant-garamond-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../css/styles.css?v=10" as="style">
-  <link rel="stylesheet" href="../css/fonts.css?v=10">
-  <link rel="stylesheet" href="../css/styles.css?v=10">
+  <link rel="preload" href="../css/styles.css?v=22" as="style">
+  <link rel="stylesheet" href="../css/fonts.css?v=22">
+  <link rel="stylesheet" href="../css/styles.css?v=22">
   <link rel="icon" href="../public/favicon.ico?v=3" sizes="any">
   <link rel="icon" type="image/png" sizes="48x48" href="../public/favicon-48.png?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="../public/favicon-32.png?v=3">
@@ -179,13 +179,22 @@
       <h2>Cookies and local storage</h2>
       <p>
         We do not use cookies and do not use analytics or tracking tools.
-        To store your display and language preferences, however, the website uses your browser&apos;s
-        local storage (<code>localStorage</code>) with the keys
-        <code>dg-theme</code> (light/dark mode) and <code>dg-lang</code> (language selection).
-        This data remains on your device, is not transmitted to us, and serves solely to make
-        the website easier to use. The legal basis is Art. 6(1)(f) GDPR (legitimate interest in
-        a user-friendly presentation). You can delete local storage at any time via your browser settings.
+        For ease of use, the website stores data locally in your browser only.
+        This data remains on your device, is not transmitted to us, and serves solely to operate
+        the website. The legal basis is Art. 6(1)(f) GDPR (legitimate interest in a user-friendly
+        presentation). You can delete stored data at any time via your browser settings.
       </p>
+      <p class="legal-label">Local storage (localStorage)</p>
+      <ul class="legal-list">
+        <li><code>dg-theme</code> — your choice of light or dark mode</li>
+        <li><code>dg-lang</code> — last selected language (set when you switch language in the menu; no automatic redirect)</li>
+        <li><code>dg-wizard-auto-advance</code> — your preference for automatic step advance in the contact wizard</li>
+      </ul>
+      <p class="legal-label">Session storage (sessionStorage)</p>
+      <ul class="legal-list">
+        <li><code>doris-format-inquiry</code> — temporary transfer of your format selection from the format finder to the contact enquiry (deleted after reading)</li>
+        <li><code>doris-return-nav</code> and <code>doris-entry-nav-*</code> — remembering the previous page for back navigation within a browser session</li>
+      </ul>
 
       <h2>Contact</h2>
       <p>
@@ -379,6 +388,7 @@
   </aside>
 </div>
 
-  <script src="../js/site.js?v=10"></script>
+  <script src="../js/nav-return.js?v=22" defer></script>
+  <script src="../js/site.js?v=22" defer></script>
 </body>
 </html>

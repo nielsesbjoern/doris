@@ -21,7 +21,9 @@ from standorte_data import (
     REACH_COPY,
     REACH_DESCRIPTIONS,
     REACH_FEATURED_SLUGS,
+    RELATED_SLUGS,
     SERVICE_LINKS,
+    STANDORT_UI,
     STANDORTE_META,
 )
 from wrap_pages import META, build_page, nav_prefix
@@ -34,6 +36,22 @@ EINSATZGEBIETE_PLACES_MARKER = "<!-- EINSATZGEBIETE_PLACES -->"
 
 def _list_items(items: list[str]) -> str:
     return "\n".join(f"              <li>{item}</li>" for item in items)
+
+
+def _ref_items(items: list) -> str:
+    blocks = []
+    for item in items:
+        if isinstance(item, tuple):
+            name, context = item
+            blocks.append(
+                f"""              <li class="standort-ref-item">
+                <span class="standort-ref-name">{name}</span>
+                <span class="standort-ref-context">{context}</span>
+              </li>"""
+            )
+        else:
+            blocks.append(f"              <li>{item}</li>")
+    return "\n".join(blocks)
 
 
 def _formats(items: list[tuple[str, str]]) -> str:
@@ -89,7 +107,7 @@ def _module(name):
 
 
 @_module("hero")
-def mod_hero(_city, lang, t, _asset):
+def mod_hero(_city, lang, t, _asset, _slug):
     return f"""    <section class="page-section page-section--hero standort-hero">
       <div class="container">
         <p class="eyebrow">{t["hero_kicker"]}</p>
@@ -100,7 +118,7 @@ def mod_hero(_city, lang, t, _asset):
 
 
 @_module("intro")
-def mod_intro(_city, lang, t, _asset):
+def mod_intro(_city, lang, t, _asset, _slug):
     return f"""    <section class="page-section page-section--compact standort-block">
       <div class="container">
         <div class="standort-prose">
@@ -112,7 +130,7 @@ def mod_intro(_city, lang, t, _asset):
 
 
 @_module("collaboration")
-def mod_collaboration(_city, lang, t, _asset):
+def mod_collaboration(_city, lang, t, _asset, _slug):
     return f"""    <section class="page-section page-section--compact standort-block standort-block--alt">
       <div class="container">
         <div class="standort-prose">
@@ -124,7 +142,7 @@ def mod_collaboration(_city, lang, t, _asset):
 
 
 @_module("mandates")
-def mod_mandates(_city, lang, t, _asset):
+def mod_mandates(_city, lang, t, _asset, _slug):
     return f"""    <section class="page-section page-section--compact standort-block">
       <div class="container">
         <h2>{t["mandates_title"]}</h2>
@@ -136,7 +154,7 @@ def mod_mandates(_city, lang, t, _asset):
 
 
 @_module("sectors")
-def mod_sectors(_city, lang, t, _asset):
+def mod_sectors(_city, lang, t, _asset, _slug):
     return f"""    <section class="page-section page-section--compact standort-block standort-block--alt">
       <div class="container">
         <h2>{t["sectors_title"]}</h2>
@@ -148,13 +166,13 @@ def mod_sectors(_city, lang, t, _asset):
 
 
 @_module("references")
-def mod_references(_city, lang, t, _asset):
+def mod_references(_city, lang, t, _asset, _slug):
     return f"""    <section class="page-section page-section--compact standort-block">
       <div class="container">
         <h2>{t["references_title"]}</h2>
         <p class="standort-muted">{t["references_intro"]}</p>
         <ul class="standort-refs">
-{_list_items(t["references"])}
+{_ref_items(t["references"])}
         </ul>
         <p class="standort-note"><a href="{page_href("referenzen.html", _asset)}" class="card-link">{"Alle Referenzen" if lang == "de" else "All references"}</a></p>
       </div>
@@ -162,7 +180,7 @@ def mod_references(_city, lang, t, _asset):
 
 
 @_module("formats")
-def mod_formats(_city, lang, t, _asset):
+def mod_formats(_city, lang, t, _asset, _slug):
     return f"""    <section class="page-section page-section--compact standort-block standort-block--alt">
       <div class="container">
         <h2>{t["formats_title"]}</h2>
@@ -174,17 +192,73 @@ def mod_formats(_city, lang, t, _asset):
 
 
 @_module("mini_case")
-def mod_mini_case(_city, lang, t, _asset):
-    return f"""    <section class="page-section page-section--compact standort-block">
+def mod_mini_case(_city, lang, t, _asset, _slug):
+    ui = STANDORT_UI[lang]
+    title = ui["mini_case_title"]
+    disclaimer = ui["mini_case_disclaimer"]
+    return f"""    <section class="page-section page-section--compact standort-block standort-block--alt">
       <div class="container">
-        <h2>{t["mini_case_title"]}</h2>
+        <h2>{title}</h2>
+        <p class="standort-case__disclaimer">{disclaimer}</p>
         <blockquote class="standort-case">{t["mini_case"]}</blockquote>
       </div>
     </section>"""
 
 
+@_module("logistics")
+def mod_logistics(_city, lang, t, _asset, _slug):
+    ui = STANDORT_UI[lang]
+    return f"""    <section class="page-section page-section--compact standort-block">
+      <div class="container">
+        <div class="standort-prose">
+          <h2>{ui["logistics_title"]}</h2>
+          <p>{t["logistics"]}</p>
+        </div>
+      </div>
+    </section>"""
+
+
+@_module("format_teaser")
+def mod_format_teaser(_city, lang, t, asset, _slug):
+    ui = STANDORT_UI[lang]
+    return f"""    <section class="page-section page-section--compact standort-block standort-block--alt">
+      <div class="container">
+        <article class="card card--lead standort-format-teaser">
+          <p class="eyebrow">{ui["format_teaser_kicker"]}</p>
+          <h2>{ui["format_teaser_title"]}</h2>
+          <p>{ui["format_teaser_text"]}</p>
+          <p class="hero-actions">
+            <a href="{page_href("coaching-formate.html", asset)}" class="btn btn-secondary">{ui["format_teaser_btn"]}</a>
+          </p>
+        </article>
+      </div>
+    </section>"""
+
+
+@_module("related")
+def mod_related(_city, lang, t, asset, slug):
+    ui = STANDORT_UI[lang]
+    slugs = RELATED_SLUGS.get(slug, [])
+    if not slugs:
+        return ""
+    links = "\n".join(
+        f'              <li><a href="{page_href(f"standorte/{s}.html", asset)}" class="card-link">'
+        f'{html.escape(CITIES[s][lang]["home_label"])}</a></li>'
+        for s in slugs
+        if s in CITIES
+    )
+    return f"""    <section class="page-section page-section--compact standort-block">
+      <div class="container">
+        <h2>{ui["related_title"]}</h2>
+        <ul class="standort-related-list">
+{links}
+        </ul>
+      </div>
+    </section>"""
+
+
 @_module("quote")
-def mod_quote(_city, lang, t, _asset):
+def mod_quote(_city, lang, t, _asset, _slug):
     return f"""    <section class="page-section page-section--compact standort-block standort-block--alt">
       <div class="container">
         <blockquote class="standort-quote">{t["quote"]}</blockquote>
@@ -193,7 +267,7 @@ def mod_quote(_city, lang, t, _asset):
 
 
 @_module("nearby")
-def mod_nearby(_city, lang, t, _asset):
+def mod_nearby(_city, lang, t, _asset, _slug):
     return f"""    <section class="page-section page-section--compact standort-block">
       <div class="container">
         <div class="standort-prose">
@@ -205,7 +279,7 @@ def mod_nearby(_city, lang, t, _asset):
 
 
 @_module("faq")
-def mod_faq(_city, lang, t, _asset):
+def mod_faq(_city, lang, t, _asset, _slug):
     return f"""    <section class="page-section page-section--compact standort-block">
       <div class="container">
         <h2>{t["faq_title"]}</h2>
@@ -217,7 +291,7 @@ def mod_faq(_city, lang, t, _asset):
 
 
 @_module("services")
-def mod_services(_city, lang, t, _asset):
+def mod_services(_city, lang, t, _asset, _slug):
     audience = ""
     if t.get("audience_title") and t.get("audience"):
         audience = f"""        <p class="standort-subhead">{t["audience_title"]}</p>
@@ -233,7 +307,7 @@ def mod_services(_city, lang, t, _asset):
 
 
 @_module("cta")
-def mod_cta(_city, lang, t, _asset):
+def mod_cta(_city, lang, t, _asset, _slug):
     return f"""    <section class="page-section page-section--cta standort-cta">
       <div class="container">
         <article class="card card--lead">
@@ -255,7 +329,9 @@ def build_main(slug: str, lang: str) -> str:
     parts = []
     for module_name in city["module_order"]:
         renderer = MODULE_RENDERERS[module_name]
-        parts.append(renderer(city, lang, t, nav))
+        block = renderer(city, lang, t, nav, slug)
+        if block:
+            parts.append(block)
     return f"""<!-- Standort {city["name_de"]} -->
 {chr(10).join(parts)}
 """
@@ -469,7 +545,7 @@ def main():
     # EN standorte live under en/standorte/ — same depth as en/einsatzgebiete.html
     patch_einsatzgebiete_places(ROOT / "en" / "einsatzgebiete.html", "en")
     patch_home_standorte(ROOT / "index.html", "de")
-    patch_home_standorte(ROOT / "en" / "index.html", "en", asset="../")
+    patch_home_standorte(ROOT / "en" / "index.html", "en")
     print("Built", len(CITY_SLUGS), "standorte pages (DE + EN), einsatzgebiete and home standorte")
 
 

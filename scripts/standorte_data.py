@@ -3,14 +3,64 @@
 from standorte_metro_cities import METRO_CITIES
 from standorte_zurich import ZUERICH
 
-REGION_SLUGS = ["osnabrueck", "oldenburg", "hannover", "bremen"]
+REGION_SLUGS = ["osnabrueck", "oldenburg", "hannover", "bremen", "muenster"]
 METRO_SLUGS = ["hamburg", "berlin", "frankfurt", "muenchen", "duesseldorf", "zuerich"]
-# Subpage without map marker or homepage list entry
-ORPHAN_SLUGS = ["muenster"]
+ORPHAN_SLUGS: list[str] = []
 CITY_SLUGS = REGION_SLUGS + METRO_SLUGS + ORPHAN_SLUGS
+
+STANDORT_UI = {
+    "de": {
+        "mini_case_title": "Beispielszenario zur Veranschaulichung",
+        "mini_case_disclaimer": (
+            "Das folgende Beispiel ist anonymisiert und frei erfunden — es dient "
+            "ausschließlich der Veranschaulichung typischer Anliegen und beschreibt "
+            "kein konkretes Mandat."
+        ),
+        "logistics_title": "Erreichbarkeit & Termine vor Ort",
+        "related_title": "Weitere Einsatzorte in der Nähe",
+        "format_teaser_kicker": "Coaching-Formate",
+        "format_teaser_title": "Welches Format passt zu Ihrem Anliegen?",
+        "format_teaser_text": (
+            "Einzelcoaching, Intensiv-Termine oder Prozessbegleitung — "
+            "im Format-Finder vergleichen Sie Formate nach Anlass und Durchführung."
+        ),
+        "format_teaser_btn": "Zum Format-Finder",
+    },
+    "en": {
+        "mini_case_title": "Illustrative example scenario",
+        "mini_case_disclaimer": (
+            "The following example is anonymised and fictional — it is for "
+            "illustration only and does not describe a specific mandate."
+        ),
+        "logistics_title": "Travel & on-site sessions",
+        "related_title": "Further locations nearby",
+        "format_teaser_kicker": "Coaching formats",
+        "format_teaser_title": "Which format fits your situation?",
+        "format_teaser_text": (
+            "Individual coaching, intensive sessions or process facilitation — "
+            "compare formats by occasion and delivery in the format finder."
+        ),
+        "format_teaser_btn": "Open format finder",
+    },
+}
+
+RELATED_SLUGS: dict[str, list[str]] = {
+    "osnabrueck": ["muenster", "oldenburg", "bremen", "hannover"],
+    "muenster": ["osnabrueck", "oldenburg", "hannover"],
+    "oldenburg": ["osnabrueck", "bremen", "hannover"],
+    "hannover": ["bremen", "hamburg", "osnabrueck"],
+    "bremen": ["hamburg", "hannover", "osnabrueck"],
+    "hamburg": ["bremen", "hannover", "berlin"],
+    "berlin": ["hamburg", "hannover", "frankfurt"],
+    "frankfurt": ["duesseldorf", "muenchen", "berlin"],
+    "muenchen": ["frankfurt", "duesseldorf", "zuerich"],
+    "duesseldorf": ["frankfurt", "muenchen", "hannover"],
+    "zuerich": ["muenchen", "frankfurt", "hamburg"],
+}
 
 REACH_FEATURED_SLUGS = [
     "osnabrueck",
+    "muenster",
     "hamburg",
     "berlin",
     "frankfurt",
@@ -20,14 +70,14 @@ REACH_FEATURED_SLUGS = [
 
 HOME_GROUPS = {
     "de": [
-        ("Nordwesten", ["osnabrueck", "oldenburg", "hannover", "bremen"]),
+        ("Nordwesten", ["osnabrueck", "oldenburg", "hannover", "bremen", "muenster"]),
         (
             "Weitere Städte",
             ["hamburg", "berlin", "frankfurt", "muenchen", "duesseldorf", "zuerich"],
         ),
     ],
     "en": [
-        ("North-west Germany", ["osnabrueck", "oldenburg", "hannover", "bremen"]),
+        ("North-west Germany", ["osnabrueck", "oldenburg", "hannover", "bremen", "muenster"]),
         (
             "Further cities",
             ["hamburg", "berlin", "frankfurt", "muenchen", "duesseldorf", "zuerich"],
@@ -52,7 +102,7 @@ EINSATZGEBIETE_COPY = {
         "h1": "Von Osnabrück aus im gesamten DACH-Raum im Einsatz",
         "lead": "Beratung, Coaching und Trainings für Führungskräfte und Organisationen in Deutschland, Österreich und der Schweiz.",
         "body": "Vor Ort in Osnabrück, in vielen Regionen des DACH-Raums beim Kunden und in zahlreichen Formaten auch hybrid.",
-        "note": "Ausgewählte Einsatzorte in Hamburg, Berlin, Hannover, Frankfurt, München, Zürich und weiteren Regionen.",
+        "note": "Ausgewählte Einsatzorte in Hamburg, Berlin, Hannover, Frankfurt, München, Münster, Zürich und weiteren Regionen.",
         "places_aria": "Ausgewählte Einsatzorte",
     },
     "en": {
@@ -60,7 +110,7 @@ EINSATZGEBIETE_COPY = {
         "h1": "From Osnabrück, working across the DACH region",
         "lead": "Consulting, coaching and training for leaders and organisations in Germany, Austria and Switzerland.",
         "body": "On site in Osnabrück, at client locations across the DACH region, and in many formats also hybrid.",
-        "note": "Selected locations in Hamburg, Berlin, Hanover, Frankfurt, Munich, Zurich and other regions.",
+        "note": "Selected locations in Hamburg, Berlin, Hanover, Frankfurt, Munich, Münster, Zurich and other regions.",
         "places_aria": "Selected locations",
     },
 }
@@ -180,6 +230,20 @@ MAP_CITIES = [
         "label_side": -1,
         "label_dx": -10,
         "label_dy": -8,
+        "hit_r": 12,
+    },
+    {
+        "slug": "muenster",
+        "name_de": "Münster",
+        "name_en": "Münster",
+        "lon": 7.6261,
+        "lat": 51.9607,
+        "home": False,
+        "ring": False,
+        "link": True,
+        "label_side": 1,
+        "label_dx": 10,
+        "label_dy": 4,
         "hit_r": 12,
     },
     {
@@ -416,6 +480,7 @@ CITIES = {
             "intro",
             "sectors",
             "mandates",
+            "mini_case",
             "faq",
             "references",
             "formats",
@@ -451,6 +516,14 @@ CITIES = {
                 "Veränderungsbegleitung bei Struktur- oder Strategiewechsel",
                 "Belastete Kommunikation in lang gewachsenen Organisationen",
             ],
+            "mini_case_title": "Typisches Anliegen",
+            "mini_case": (
+                "Eine Bereichsleitung in einer diakonischen Einrichtung im Münsterland "
+                "steht zwischen Fachbereich, Trägergremien und politischen Erwartungen — "
+                "und spürt, dass Entscheidungen zunehmend blockiert werden. Im Coaching "
+                "werden Rollen, Kommunikationswege und tragfähige nächste Schritte "
+                "strukturiert, ohne die fachliche Autonomie der Teams zu verlieren."
+            ),
             "faq_title": "Häufige Fragen — Münster",
             "faq": [
                 (
@@ -519,6 +592,14 @@ CITIES = {
                 "Change facilitation during structural or strategic shifts",
                 "Strained communication in long-established organisations",
             ],
+            "mini_case_title": "A typical concern",
+            "mini_case": (
+                "A department head in a diaconal organisation in the Münsterland is caught "
+                "between professional departments, governing bodies and political expectations — "
+                "and finds decisions increasingly blocked. In coaching, roles, communication "
+                "channels and workable next steps are structured without losing teams' "
+                "professional autonomy."
+            ),
             "faq_title": "Frequently asked questions — Münster",
             "faq": [
                 (
@@ -1013,6 +1094,10 @@ CITIES = {
 
 CITIES.update(METRO_CITIES)
 CITIES["zuerich"] = ZUERICH
+
+from patch_standorte_content import apply_all_patches  # noqa: E402
+
+apply_all_patches()
 
 SERVICE_LINKS = {
     "de": [

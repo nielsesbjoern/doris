@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from psi_bridge_data import TEXT  # noqa: E402
-from seo import page_href  # noqa: E402
+from seo import page_href, page_link_prefix  # noqa: E402
 from wrap_pages import build_page, extract_main  # noqa: E402
 
 MARKERS = {
@@ -21,6 +21,8 @@ MARKERS = {
     "home_person": ("<!-- HOME_PERSON_TEXT -->", "<!-- /HOME_PERSON_TEXT -->"),
     "leistungen": ("<!-- PSI_LEISTUNGEN_BRIDGE -->", "<!-- /PSI_LEISTUNGEN_BRIDGE -->"),
     "coaching": ("<!-- PSI_COACHING_FOUNDATION -->", "<!-- /PSI_COACHING_FOUNDATION -->"),
+    "trainings": ("<!-- PSI_TRAININGS_BRIDGE -->", "<!-- /PSI_TRAININGS_BRIDGE -->"),
+    "team": ("<!-- PSI_TEAM_BRIDGE -->", "<!-- /PSI_TEAM_BRIDGE -->"),
     "diag_top": ("<!-- PSI_DIAGNOSTIK_TOP -->", "<!-- /PSI_DIAGNOSTIK_TOP -->"),
     "diag_depth": ("<!-- PSI_DIAGNOSTIK_DEPTH -->", "<!-- /PSI_DIAGNOSTIK_DEPTH -->"),
 }
@@ -37,11 +39,11 @@ def inject_block(main: str, key: str, block: str, *, required: bool = True) -> s
     return pattern.sub(replacement, main, count=1)
 
 
-def render_home_bridge(lang: str, asset: str = "") -> str:
+def render_home_bridge(lang: str, link_prefix: str = "") -> str:
     t = TEXT[lang]
     return f"""        <p class="home-science-note">
           <strong>{html.escape(t["home_title"])}.</strong> {t["home_lead"]}
-          <a href="{page_href("diagnostik.html", asset)}" class="card-link">{t["home_link_diagnostik"]}</a>
+          <a href="{page_href("diagnostik.html", link_prefix)}" class="card-link">{t["home_link_diagnostik"]}</a>
         </p>"""
 
 
@@ -77,19 +79,31 @@ def render_home_person(lang: str) -> str:
             </p>"""
 
 
-def render_leistungen_bridge(lang: str, asset: str = "") -> str:
+def render_leistungen_bridge(lang: str, link_prefix: str = "") -> str:
     t = TEXT[lang]
     return f"""        <aside class="science-bridge science-bridge--compact" aria-label="{html.escape(t["leistungen_title"])}">
           <h2 class="science-bridge__title">{t["leistungen_title"]}</h2>
           <p class="science-bridge__lead">{t["leistungen_lead"]}</p>
           <p class="science-bridge__trust">{t["leistungen_trust"]}</p>
           <p class="science-bridge__links">
-            <a href="{page_href("diagnostik.html", asset)}" class="card-link">{t["leistungen_link"]}</a>
+            <a href="{page_href("diagnostik.html", link_prefix)}" class="card-link">{t["leistungen_link"]}</a>
           </p>
         </aside>"""
 
 
-def render_coaching_foundation(lang: str, asset: str = "") -> str:
+def render_service_bridge(lang: str, link_prefix: str, *, title_key: str, lead_key: str, trust_key: str, link_key: str) -> str:
+    t = TEXT[lang]
+    return f"""          <aside class="science-bridge science-bridge--compact" aria-label="{html.escape(t[title_key])}">
+            <h2 class="science-bridge__title">{t[title_key]}</h2>
+            <p class="science-bridge__lead">{t[lead_key]}</p>
+            <p class="science-bridge__trust">{t[trust_key]}</p>
+            <p class="science-bridge__links">
+              <a href="{page_href("diagnostik.html", link_prefix)}" class="card-link">{t[link_key]}</a>
+            </p>
+          </aside>"""
+
+
+def render_coaching_foundation(lang: str, link_prefix: str = "") -> str:
     t = TEXT[lang]
     items = "\n".join(
         f"""              <li class="coaching-foundation__item">
@@ -104,8 +118,8 @@ def render_coaching_foundation(lang: str, asset: str = "") -> str:
 {items}
             </ul>
             <p class="coaching-foundation__links">
-              <a href="{page_href("diagnostik.html", asset)}" class="card-link">{t["coaching_link_diagnostik"]}</a>
-              <a href="{page_href("person.html", asset)}" class="card-link">{t["coaching_link_person"]}</a>
+              <a href="{page_href("diagnostik.html", link_prefix)}" class="card-link">{t["coaching_link_diagnostik"]}</a>
+              <a href="{page_href("person.html", link_prefix)}" class="card-link">{t["coaching_link_person"]}</a>
             </p>
           </section>"""
 
@@ -179,47 +193,75 @@ def patch_profile_alt(main: str, lang: str) -> str:
 def patch_main(
     main: str,
     lang: str,
-    asset: str = "",
+    filename: str,
     *,
     home: bool = False,
     leistungen: bool = False,
     coaching: bool = False,
+    trainings: bool = False,
+    team: bool = False,
     diagnostik: bool = False,
 ) -> str:
+    link_prefix = page_link_prefix(filename)
     if home:
         main = inject_block(main, "home_hero", render_home_hero(lang))
         main = inject_block(main, "home_services", render_home_services_head(lang))
-        main = inject_block(main, "home", render_home_bridge(lang, asset))
+        main = inject_block(main, "home", render_home_bridge(lang, link_prefix))
         main = inject_block(main, "home_person", render_home_person(lang))
         main = patch_profile_alt(main, lang)
     if leistungen:
-        main = inject_block(main, "leistungen", render_leistungen_bridge(lang, asset))
+        main = inject_block(main, "leistungen", render_leistungen_bridge(lang, link_prefix))
     if coaching:
-        main = inject_block(main, "coaching", render_coaching_foundation(lang, asset))
+        main = inject_block(main, "coaching", render_coaching_foundation(lang, link_prefix))
+    if trainings:
+        main = inject_block(
+            main,
+            "trainings",
+            render_service_bridge(
+                lang,
+                link_prefix,
+                title_key="trainings_title",
+                lead_key="trainings_lead",
+                trust_key="trainings_trust",
+                link_key="trainings_link",
+            ),
+        )
+    if team:
+        main = inject_block(
+            main,
+            "team",
+            render_service_bridge(
+                lang,
+                link_prefix,
+                title_key="team_title",
+                lead_key="team_lead",
+                trust_key="team_trust",
+                link_key="team_link",
+            ),
+        )
     if diagnostik:
-        main = inject_block(main, "diag_top", render_diagnostik_top(lang, asset))
+        main = inject_block(main, "diag_top", render_diagnostik_top(lang, link_prefix))
         main = wrap_diagnostik_depth(main, lang)
     return main
 
 
-def process_page(path: Path, lang: str, filename: str, asset: str = "", **flags: bool) -> None:
+def process_page(path: Path, lang: str, filename: str, **flags: bool) -> None:
     raw = path.read_text(encoding="utf-8")
     main = extract_main(raw)
     if not main:
         raise SystemExit(f"Could not extract <main> from {path}")
-    main = patch_main(main, lang, asset, **flags)
+    main = patch_main(main, lang, filename, **flags)
     build_page(lang, filename, main, path)
 
 
 def main() -> None:
     process_page(ROOT / "index.html", "de", "index.html", home=True)
-    process_page(ROOT / "en" / "index.html", "en", "index.html", asset="../", home=True)
+    process_page(ROOT / "en" / "index.html", "en", "index.html", home=True)
     process_page(ROOT / "leistungen.html", "de", "leistungen.html", leistungen=True)
     process_page(
         ROOT / "en" / "leistungen.html",
         "en",
         "leistungen.html",
-        asset="../",
         leistungen=True,
     )
     process_page(
@@ -232,8 +274,31 @@ def main() -> None:
         ROOT / "en" / "coaching.html",
         "en",
         "coaching.html",
-        asset="../",
         coaching=True,
+    )
+    process_page(
+        ROOT / "trainings.html",
+        "de",
+        "trainings.html",
+        trainings=True,
+    )
+    process_page(
+        ROOT / "en" / "trainings.html",
+        "en",
+        "trainings.html",
+        trainings=True,
+    )
+    process_page(
+        ROOT / "team.html",
+        "de",
+        "team.html",
+        team=True,
+    )
+    process_page(
+        ROOT / "en" / "team.html",
+        "en",
+        "team.html",
+        team=True,
     )
     process_page(
         ROOT / "diagnostik.html",
@@ -245,10 +310,9 @@ def main() -> None:
         ROOT / "en" / "diagnostik.html",
         "en",
         "diagnostik.html",
-        asset="../",
         diagnostik=True,
     )
-    print("Built PSI bridge modules (DE + EN) on index, leistungen, coaching, diagnostik")
+    print("Built PSI bridge modules (DE + EN) on index, leistungen, coaching, trainings, team, diagnostik")
 
 
 if __name__ == "__main__":

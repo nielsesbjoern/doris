@@ -1,46 +1,39 @@
 #!/usr/bin/env python3
-"""Minify committed CSS and JS assets for production deploys."""
+"""Minify CSS from source files for production deploys."""
 from __future__ import annotations
 
-import re
 from pathlib import Path
+
+from css_utils import minify_css
 
 ROOT = Path(__file__).resolve().parent.parent
 
-CSS_FILES = (
-    ROOT / "css" / "fonts.css",
-    ROOT / "css" / "styles.css",
+CSS_SOURCES = (
+    (ROOT / "css" / "fonts.css", ROOT / "css" / "fonts.css"),
+    (ROOT / "css" / "styles.source.css", ROOT / "css" / "styles.css"),
 )
 
 
-def minify_css(text: str) -> str:
-    text = re.sub(r"/\*.*?\*/", "", text, flags=re.DOTALL)
-    text = re.sub(r"\s+", " ", text)
-    text = re.sub(r"\s*([{}:;,>+~])\s*", r"\1", text)
-    text = text.replace(";}", "}")
-    return text.strip()
-
-
-def minify_js(text: str) -> str:
-    text = re.sub(r"/\*.*?\*/", "", text, flags=re.DOTALL)
-    text = re.sub(r"(^|[^:])//.*?$", r"\1", text, flags=re.MULTILINE)
-    text = re.sub(r"\s+", " ", text)
-    text = re.sub(r"\s*([{}();,:=+\-*/<>!&|?\[\]])\s*", r"\1", text)
-    return text.strip()
-
-
-def minify_file(path: Path, *, kind: str) -> None:
-    original = path.read_text(encoding="utf-8")
-    minified = minify_css(original) if kind == "css" else minify_js(original)
-    if minified != original:
-        path.write_text(minified + "\n", encoding="utf-8")
-        print(f"Minified {path.relative_to(ROOT)} ({len(original)} → {len(minified)} bytes)")
+def minify_file(source: Path, target: Path) -> None:
+    original = source.read_text(encoding="utf-8")
+    minified = minify_css(original)
+    if target.exists():
+        current = target.read_text(encoding="utf-8").strip()
+        if current == minified:
+            return
+    target.write_text(minified + "\n", encoding="utf-8")
+    print(
+        f"Minified {source.relative_to(ROOT)} → {target.relative_to(ROOT)} "
+        f"({len(original)} → {len(minified)} bytes)"
+    )
 
 
 def main() -> None:
-    for css_path in CSS_FILES:
-        minify_file(css_path, kind="css")
-    print("CSS minification complete (JS skipped — regex-safe)")
+    for source, target in CSS_SOURCES:
+        if not source.exists():
+            raise SystemExit(f"Missing CSS source: {source.relative_to(ROOT)}")
+        minify_file(source, target)
+    print("CSS minification complete")
 
 
 if __name__ == "__main__":

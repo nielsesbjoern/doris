@@ -10,7 +10,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from referenzen_data import (  # noqa: E402
     FEATURED,
-    FEATURED_SECTORS,
     SECTOR_SLUGS,
     SECTORS_DE,
     SECTORS_EN,
@@ -67,12 +66,30 @@ def render_filter_chips(sectors, slugs, t):
     return "\n".join(chips)
 
 
+def render_featured_item(item: dict, lang: str, tag_label: str) -> str:
+    context = item["context_de"] if lang == "de" else item["context_en"]
+    name_html = html.escape(item["name"])
+    if item.get("tag"):
+        name_html = (
+            f'<span class="referenzen-featured-name">{name_html}</span> '
+            f'<span class="ref-tag ref-tag--stacked">{html.escape(tag_label)}</span>'
+        )
+    search_name = item["name"]
+    key = html.escape(search_key(search_name), quote=True)
+    return (
+        f'          <li class="referenzen-featured-item" data-sector="{item["sector"]}" '
+        f'data-name="{key}">\n'
+        f'            <p class="referenzen-featured-name">{name_html}</p>\n'
+        f'            <p class="referenzen-featured-context">{html.escape(context)}</p>\n'
+        f"          </li>"
+    )
+
+
 def build_main(lang):
     t = TEXT[lang]
     sectors = SECTORS_EN if lang == "en" else SECTORS_DE
     featured_items = "\n".join(
-        f'          <li class="referenzen-featured-item" data-sector="{sector}" data-name="{html.escape(search_key(item.format(tag=t["tag"])), quote=True)}">{item.format(tag=t["tag"])}</li>'
-        for item, sector in zip(FEATURED, FEATURED_SECTORS)
+        render_featured_item(item, lang, t["tag"]) for item in FEATURED
     )
     return f"""<!-- {t["comment"]} -->
     <section class="section page-section" id="referenzen">

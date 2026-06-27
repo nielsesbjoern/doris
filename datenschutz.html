@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="js/theme-init.js?v=10"></script>
+  <script src="js/theme-init.js?v=22"></script>
   <title>Datenschutz – Doris Gunsch</title>
   <meta name="description" content="Datenschutzerklärung der Website doris-gunsch.eu — Informationen zur Verarbeitung personenbezogener Daten.">
   <link rel="preload" href="public/fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="public/fonts/cormorant-garamond-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="css/styles.css?v=10" as="style">
-  <link rel="stylesheet" href="css/fonts.css?v=10">
-  <link rel="stylesheet" href="css/styles.css?v=10">
+  <link rel="preload" href="css/styles.css?v=22" as="style">
+  <link rel="stylesheet" href="css/fonts.css?v=22">
+  <link rel="stylesheet" href="css/styles.css?v=22">
   <link rel="icon" href="public/favicon.ico?v=3" sizes="any">
   <link rel="icon" type="image/png" sizes="48x48" href="public/favicon-48.png?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32.png?v=3">
@@ -180,14 +180,23 @@
       <h2>Cookies und lokale Speicherung</h2>
       <p>
         Wir setzen keine Cookies ein und verwenden keine Analyse- oder Tracking-Tools.
-        Zur Speicherung Ihrer Anzeige- und Spracheinstellungen nutzt die Website jedoch
-        den lokalen Speicher Ihres Browsers (<code>localStorage</code>) mit den Schlüsseln
-        <code>dg-theme</code> (Hell-/Dunkelmodus) und <code>dg-lang</code> (Sprachwahl).
-        Diese Daten verbleiben auf Ihrem Endgerät, werden nicht an uns übermittelt und dienen
-        ausschließlich der komfortablen Nutzung der Website. Rechtsgrundlage ist Art. 6 Abs. 1
-        lit. f DSGVO (berechtigtes Interesse an einer nutzerfreundlichen Darstellung).
-        Sie können den lokalen Speicher jederzeit über die Einstellungen Ihres Browsers löschen.
+        Zur komfortablen Nutzung speichert die Website jedoch Daten ausschließlich lokal
+        in Ihrem Browser. Diese Daten verbleiben auf Ihrem Endgerät, werden nicht an uns
+        übermittelt und dienen ausschließlich der Bedienung der Website. Rechtsgrundlage ist
+        Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer nutzerfreundlichen Darstellung).
+        Sie können gespeicherte Daten jederzeit über die Einstellungen Ihres Browsers löschen.
       </p>
+      <p class="legal-label">Lokaler Speicher (localStorage)</p>
+      <ul class="legal-list">
+        <li><code>dg-theme</code> — Ihre Wahl für Hell- oder Dunkelmodus</li>
+        <li><code>dg-lang</code> — zuletzt gewählte Sprache (wird gesetzt, wenn Sie im Sprachmenü wechseln; es erfolgt keine automatische Umleitung)</li>
+        <li><code>dg-wizard-auto-advance</code> — Ihre Einstellung für den automatischen Schrittwechsel im Kontakt-Wizard</li>
+      </ul>
+      <p class="legal-label">Sitzungsspeicher (sessionStorage)</p>
+      <ul class="legal-list">
+        <li><code>doris-format-inquiry</code> — kurzzeitige Übernahme Ihrer Formatauswahl vom Format-Finder zur Kontaktanfrage (wird nach dem Auslesen gelöscht)</li>
+        <li><code>doris-return-nav</code> und <code>doris-entry-nav-*</code> — Merken der vorherigen Seite für die Zurück-Navigation innerhalb einer Browsersitzung</li>
+      </ul>
 
       <h2>Kontaktaufnahme</h2>
       <p>
@@ -385,6 +394,7 @@
   </aside>
 </div>
 
-  <script src="js/site.js?v=10"></script>
+  <script src="js/nav-return.js?v=22" defer></script>
+  <script src="js/site.js?v=22" defer></script>
 </body>
 </html>

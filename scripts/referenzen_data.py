@@ -1,15 +1,25 @@
 # Featured references (max 3) — shown separately at top, excluded from sector lists.
 
 FEATURED = [
-    "Telekom AG",
-    '<span class="referenzen-featured-name">BARMER</span> <span class="ref-tag ref-tag--stacked">{tag}</span>',
-    "Lindt &amp; Sprüngli GmbH, Aachen",
-]
-
-FEATURED_SECTORS = [
-    "it-telekom-energie",
-    "gesundheit-soziales",
-    "konsumgueter-handel",
+    {
+        "name": "Telekom AG",
+        "sector": "it-telekom-energie",
+        "context_de": "Langjährige Begleitung in Führungskräfteentwicklung, Prozessmoderation und Teamentwicklung.",
+        "context_en": "Long-standing support in leadership development, process facilitation and team development.",
+    },
+    {
+        "name": "BARMER",
+        "sector": "gesundheit-soziales",
+        "tag": True,
+        "context_de": "Workshops und Prozessbegleitung für Führungskräfte in einem komplexen Gesundheitskontext.",
+        "context_en": "Workshops and process facilitation for leaders in a complex healthcare context.",
+    },
+    {
+        "name": "Lindt &amp; Sprüngli GmbH, Aachen",
+        "sector": "konsumgueter-handel",
+        "context_de": "Coaching und Trainings für Führungskräfte in einem internationalen Marken- und Produktionsumfeld.",
+        "context_en": "Coaching and training for leaders in an international brand and production environment.",
+    },
 ]
 
 SECTOR_SLUGS = [

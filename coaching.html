@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="js/theme-init.js?v=10"></script>
+  <script src="js/theme-init.js?v=22"></script>
   <title>Coaching für Führungskräfte – Personal &amp; Business</title>
   <meta name="description" content="Personal- und Business-Coaching für Führungskräfte: Klarheit gewinnen, Konflikte lösen, Veränderungen gestalten — vertraulich und zielorientiert.">
   <link rel="preload" href="public/fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="public/fonts/cormorant-garamond-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="css/styles.css?v=10" as="style">
-  <link rel="stylesheet" href="css/fonts.css?v=10">
-  <link rel="stylesheet" href="css/styles.css?v=10">
+  <link rel="preload" href="css/styles.css?v=22" as="style">
+  <link rel="stylesheet" href="css/fonts.css?v=22">
+  <link rel="stylesheet" href="css/styles.css?v=22">
   <link rel="icon" href="public/favicon.ico?v=3" sizes="any">
   <link rel="icon" type="image/png" sizes="48x48" href="public/favicon-48.png?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32.png?v=3">
@@ -26,17 +26,17 @@
   <meta property="og:description" content="Personal- und Business-Coaching für Führungskräfte: Klarheit gewinnen, Konflikte lösen, Veränderungen gestalten — vertraulich und zielorientiert.">
   <meta property="og:url" content="https://www.doris-gunsch.eu/coaching">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://www.doris-gunsch.eu/public/doris-web.jpg">
+  <meta property="og:image" content="https://www.doris-gunsch.eu/public/doris-logo-web.png">
   <meta property="og:image:width" content="800">
-  <meta property="og:image:height" content="682">
-  <meta property="og:image:alt" content="Doris Gunsch">
+  <meta property="og:image:height" content="446">
+  <meta property="og:image:alt" content="Doris Gunsch — Psychologische Managementberatung">
   <meta property="og:locale" content="de_DE">
   <meta property="og:locale:alternate" content="en_GB">
   <meta property="og:site_name" content="Doris Gunsch">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Coaching für Führungskräfte – Personal &amp; Business">
   <meta name="twitter:description" content="Personal- und Business-Coaching für Führungskräfte: Klarheit gewinnen, Konflikte lösen, Veränderungen gestalten — vertraulich und zielorientiert.">
-  <meta name="twitter:image" content="https://www.doris-gunsch.eu/public/doris-web.jpg">
+  <meta name="twitter:image" content="https://www.doris-gunsch.eu/public/doris-logo-web.png">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -120,13 +120,13 @@
       <nav class="sub-nav" aria-label="Leistungsbereiche">
         <a href="leistungen">Übersicht</a>
         <a href="coaching" class="is-active">Coaching</a>
-        <a href="trainings">Trainings &amp; Seminare</a>
-        <a href="team">Team &amp; Prozess</a>
+        <a href="trainings">Trainings & Seminare</a>
+        <a href="team">Team & Prozess</a>
         <a href="diagnostik">Diagnostik</a>
+        <a href="coaching-formate" class="sub-nav__highlight">Format-Finder</a>
       </nav>
     </div>
-
-    <section class="section page-section">
+<section class="section page-section">
       <div class="container">
 <article class="leistung-detail" id="coaching">
           <header class="leistung-detail-header">
@@ -190,7 +190,7 @@
               Führungskräfte haben selten die Möglichkeit, regelmäßige Termine wahrzunehmen.
               Darauf bin ich mit intensiven Settings und begleitenden Maßnahmen wie Smart-Coaching
               oder Coaching-on-the-job eingestellt.
-              <a href="#formate-vergleich" class="format-compare__jump">Formate vergleichen</a>
+              <a href="coaching-formate" class="format-guide__jump">Formate im Detail</a>
             </p>
             <div class="detail-grid">
               <div class="detail-item">
@@ -241,321 +241,14 @@
             </div>
           </div>
 
-          <!-- FORMAT_COMPARE -->
-          <div class="detail-block format-compare" id="formate-vergleich">
-            <h3 class="detail-subtitle">Formate im Vergleich</h3>
-            <p class="detail-intro">
-              Welches Format passt zu Ihrer Situation? Die Übersicht ordnet Anlässe und Durchführungsformen ein — inklusive ehrlicher Abgrenzung.
-            </p>
-
-            <div class="format-compare__groups" role="tablist" aria-label="Formate im Vergleich">
-              <button type="button" class="format-compare__group is-active" role="tab" data-group="anlass" aria-selected="true" id="format-tab-anlass" aria-controls="format-panel">
-                Anlässe & Themen
-              </button>
-              <button type="button" class="format-compare__group" role="tab" data-group="durchfuehrung" aria-selected="false" id="format-tab-durchfuehrung" aria-controls="format-panel">
-                Durchführung
-              </button>
-            </div>
-
-            <div class="format-compare__toolbar">
-              <div class="format-compare__filter" data-chip-group="anlass" role="group" aria-label="Format filtern">
-          <button type="button" class="format-compare__chip is-active" data-format="all" data-group="anlass" aria-pressed="true">
-            Alle anzeigen
-          </button>
-          <button type="button" class="format-compare__chip" data-format="situativ" data-group="anlass" aria-pressed="false">
-            Situatives Coaching
-          </button>
-          <button type="button" class="format-compare__chip" data-format="onboarding" data-group="anlass" aria-pressed="false">
-            Onboarding-Coaching
-          </button>
-          <button type="button" class="format-compare__chip" data-format="positionierung" data-group="anlass" aria-pressed="false">
-            Positionierungs-Coaching
-          </button>
-          <button type="button" class="format-compare__chip" data-format="aufgaben" data-group="anlass" aria-pressed="false">
-            Aufgabenbezogenes Coaching
-          </button>
-          <button type="button" class="format-compare__chip" data-format="persoenlichkeit" data-group="anlass" aria-pressed="false">
-            Persönlichkeitscoaching
-          </button>
-          <button type="button" class="format-compare__chip" data-format="therapeutisch" data-group="anlass" aria-pressed="false">
-            Therapeutisches Coaching
-          </button>
-              </div>
-              <div class="format-compare__filter" data-chip-group="durchfuehrung" role="group" aria-label="Format filtern" hidden>
-          <button type="button" class="format-compare__chip is-active" data-format="all" data-group="durchfuehrung" aria-pressed="true">
-            Alle anzeigen
-          </button>
-          <button type="button" class="format-compare__chip" data-format="intensiv" data-group="durchfuehrung" aria-pressed="false">
-            Intensiv-Settings
-          </button>
-          <button type="button" class="format-compare__chip" data-format="smart" data-group="durchfuehrung" aria-pressed="false">
-            Smart-Coaching
-          </button>
-          <button type="button" class="format-compare__chip" data-format="cotj" data-group="durchfuehrung" aria-pressed="false">
-            Coaching-on-the-job
-          </button>
-              </div>
-              <p class="format-compare__status" id="format-compare-status" aria-live="polite" aria-atomic="true"></p>
-            </div>
-
-            <div class="format-compare__list" id="format-panel" role="tabpanel" aria-labelledby="format-tab-anlass">
-            <article class="format-compare__card" id="format-situativ" data-format="situativ" data-group="anlass">
-              <header class="format-compare__card-head">
-                <span class="format-compare__badge">Anlass</span>
-                <p class="detail-item__title">Situatives Coaching</p>
-              </header>
-              <dl class="format-compare__meta">
-              <div class="format-compare__row">
-                <dt>Dauer / Setting</dt>
-                <dd>1–3 Termine à 2–3 Stunden</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Typischer Anlass</dt>
-                <dd>Konkrete Führungssituation, wichtiges Gespräch oder Entscheidung</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Ergebnis</dt>
-                <dd>Klarheit, Handlungsoptionen, Gesprächsvorbereitung</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Gut geeignet für</dt>
-                <dd>Führungskräfte mit akutem Klärungsbedarf</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Weniger geeignet für</dt>
-                <dd>Langfristige Entwicklungsthemen ohne zeitlichen Druck</dd>
-              </div>
-              </dl>
-            </article>
-            <article class="format-compare__card" id="format-onboarding" data-format="onboarding" data-group="anlass">
-              <header class="format-compare__card-head">
-                <span class="format-compare__badge">Anlass</span>
-                <p class="detail-item__title">Onboarding-Coaching</p>
-              </header>
-              <dl class="format-compare__meta">
-              <div class="format-compare__row">
-                <dt>Dauer / Setting</dt>
-                <dd>3–6 Termine über mehrere Wochen</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Typischer Anlass</dt>
-                <dd>Übernahme eines neuen Unternehmens, Bereichs oder einer Führungsrolle</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Ergebnis</dt>
-                <dd>Systematischer Einstieg, Rollenklärung, Vermeidung früher Fehltritte</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Gut geeignet für</dt>
-                <dd>Neue Geschäftsführer, Bereichsleiter, Führungskräfte nach Wechsel</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Weniger geeignet für</dt>
-                <dd>Etablierte Führungskräfte ohne Rollenwechsel</dd>
-              </div>
-              </dl>
-            </article>
-            <article class="format-compare__card" id="format-positionierung" data-format="positionierung" data-group="anlass">
-              <header class="format-compare__card-head">
-                <span class="format-compare__badge">Anlass</span>
-                <p class="detail-item__title">Positionierungs-Coaching</p>
-              </header>
-              <dl class="format-compare__meta">
-              <div class="format-compare__row">
-                <dt>Dauer / Setting</dt>
-                <dd>2–4 Termine</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Typischer Anlass</dt>
-                <dd>Unklare Rolle im Unternehmen, Veränderungen in der Organisationsstruktur</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Ergebnis</dt>
-                <dd>Struktureller Überblick, klare Positionierung im Gefüge</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Gut geeignet für</dt>
-                <dd>Führungskräfte nach Reorganisation oder bei Rollenunsicherheit</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Weniger geeignet für</dt>
-                <dd>Rein fachliche Aufgaben ohne organisationale Dimension</dd>
-              </div>
-              </dl>
-            </article>
-            <article class="format-compare__card" id="format-aufgaben" data-format="aufgaben" data-group="anlass">
-              <header class="format-compare__card-head">
-                <span class="format-compare__badge">Anlass</span>
-                <p class="detail-item__title">Aufgabenbezogenes Coaching</p>
-              </header>
-              <dl class="format-compare__meta">
-              <div class="format-compare__row">
-                <dt>Dauer / Setting</dt>
-                <dd>2–5 Termine, ggf. mit Trainingselementen</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Typischer Anlass</dt>
-                <dd>Konkrete Führungsaufgabe (Feedback, Delegation, schwieriges Gespräch)</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Ergebnis</dt>
-                <dd>Praxisnahe Werkzeuge und Umsetzung für die konkrete Aufgabe</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Gut geeignet für</dt>
-                <dd>Führungskräfte mit klar umrissener Aufgabenstellung</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Weniger geeignet für</dt>
-                <dd>Grundsätzliche Orientierungs- oder Identitätsfragen</dd>
-              </div>
-              </dl>
-            </article>
-            <article class="format-compare__card" id="format-persoenlichkeit" data-format="persoenlichkeit" data-group="anlass">
-              <header class="format-compare__card-head">
-                <span class="format-compare__badge">Anlass</span>
-                <p class="detail-item__title">Persönlichkeitscoaching</p>
-              </header>
-              <dl class="format-compare__meta">
-              <div class="format-compare__row">
-                <dt>Dauer / Setting</dt>
-                <dd>4–8 Termine über mehrere Monate</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Typischer Anlass</dt>
-                <dd>Selbstentwicklung, Reflexion der eigenen Wirkung, Potenzialanalyse</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Ergebnis</dt>
-                <dd>Vertiefte Selbsterkenntnis, neue Zielsetzungen, nachhaltige Entwicklung</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Gut geeignet für</dt>
-                <dd>Führungskräfte mit Raum für langfristige persönliche Entwicklung</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Weniger geeignet für</dt>
-                <dd>Akute Krisen oder unmittelbar anstehende Entscheidungen</dd>
-              </div>
-              </dl>
-            </article>
-            <article class="format-compare__card" id="format-therapeutisch" data-format="therapeutisch" data-group="anlass">
-              <header class="format-compare__card-head">
-                <span class="format-compare__badge">Anlass</span>
-                <p class="detail-item__title">Therapeutisches Coaching</p>
-              </header>
-              <dl class="format-compare__meta">
-              <div class="format-compare__row">
-                <dt>Dauer / Setting</dt>
-                <dd>Individuell, oft längerfristig</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Typischer Anlass</dt>
-                <dd>Motivationsschwierigkeiten, Burnout-Verdacht, Energieverlust, innere Konflikte</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Ergebnis</dt>
-                <dd>Ursachenklärung, Stabilisierung, Abgrenzung von rein fachlichen Themen</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Gut geeignet für</dt>
-                <dd>Situationen an der Grenze von Coaching und Therapie — mit Approbation abgedeckt</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Weniger geeignet für</dt>
-                <dd>Reine Business- oder Strategiefragen ohne persönliche Belastung</dd>
-              </div>
-              </dl>
-            </article>
-            <article class="format-compare__card" id="format-intensiv" data-format="intensiv" data-group="durchfuehrung">
-              <header class="format-compare__card-head">
-                <span class="format-compare__badge">Durchführung</span>
-                <p class="detail-item__title">Intensiv-Settings</p>
-              </header>
-              <dl class="format-compare__meta">
-              <div class="format-compare__row">
-                <dt>Dauer / Setting</dt>
-                <dd>1–2 intensive Termine à 3–4 Stunden</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Typischer Anlass</dt>
-                <dd>Wenig Zeit, hoher Klärungsbedarf — voller Kalender</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Ergebnis</dt>
-                <dd>Komprimierte Arbeit an einer Kernfrage mit nachhaltiger Wirkung</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Gut geeignet für</dt>
-                <dd>Führungskräfte, die selten regelmäßige Termine wahrnehmen können</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Weniger geeignet für</dt>
-                <dd>Themen, die Kontinuität und längere Begleitung erfordern</dd>
-              </div>
-              </dl>
-            </article>
-            <article class="format-compare__card" id="format-smart" data-format="smart" data-group="durchfuehrung">
-              <header class="format-compare__card-head">
-                <span class="format-compare__badge">Durchführung</span>
-                <p class="detail-item__title">Smart-Coaching</p>
-              </header>
-              <dl class="format-compare__meta">
-              <div class="format-compare__row">
-                <dt>Dauer / Setting</dt>
-                <dd>Kurze Impulse (30–45 Min.) per Telefon oder Video</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Typischer Anlass</dt>
-                <dd>Zwischen den Terminen, vor wichtigen Situationen, schnelle Reflexion</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Ergebnis</dt>
-                <dd>Orientierung und Klarheit ohne großen Zeitaufwand</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Gut geeignet für</dt>
-                <dd>Führungskräfte mit wenig Zeit zwischen den Hauptterminen</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Weniger geeignet für</dt>
-                <dd>Tiefgehende Klärung komplexer Situationen</dd>
-              </div>
-              </dl>
-            </article>
-            <article class="format-compare__card" id="format-cotj" data-format="cotj" data-group="durchfuehrung">
-              <header class="format-compare__card-head">
-                <span class="format-compare__badge">Durchführung</span>
-                <p class="detail-item__title">Coaching-on-the-job</p>
-              </header>
-              <dl class="format-compare__meta">
-              <div class="format-compare__row">
-                <dt>Dauer / Setting</dt>
-                <dd>Begleitung im Arbeitsalltag, Termine vor Ort beim Kunden</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Typischer Anlass</dt>
-                <dd>Umsetzung im direkten Führungskontakt, Beobachtung und Reflexion im Einsatz</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Ergebnis</dt>
-                <dd>Direkter Transfer in die Praxis, Feedback zur Außenwirkung</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Gut geeignet für</dt>
-                <dd>Führungskräfte, die Lernen direkt in der Situation wollen</dd>
-              </div>
-              <div class="format-compare__row">
-                <dt>Weniger geeignet für</dt>
-                <dd>Themen, die vertraulichen Rückzug und Ruhe erfordern</dd>
-              </div>
-              </dl>
-            </article>
-            </div>
-
-            <p class="format-compare__note">Gemeinsam klären wir, welches Format zur Situation passt — der Vergleich dient der Orientierung, nicht der Selbstdiagnose.</p>
-          </div>
-          <!-- /FORMAT_COMPARE -->
+          <!-- FORMAT_TEASER -->
+          <aside class="format-teaser card card--lead" aria-label="Welches Coaching-Format passt?">
+            <p class="format-teaser__kicker">Interaktiver Guide</p>
+            <h3 class="format-teaser__title">Welches Coaching-Format passt?</h3>
+            <p class="format-teaser__text">Formate nach Anlass oder Durchführung vergleichen — markieren Sie bis zu zwei Optionen und sehen Sie die Unterschiede direkt nebeneinander.</p>
+            <a href="coaching-formate" class="btn btn-primary">Format-Finder öffnen</a>
+          </aside>
+          <!-- /FORMAT_TEASER -->
 
           <div class="detail-block">
             <h3 class="detail-subtitle">Business Coaching und Beratung</h3>
@@ -674,7 +367,7 @@
   </aside>
 </div>
 
-  <script src="js/site.js?v=10"></script>
-  <script src="js/coaching-formats.js?v=10" defer></script>
+  <script src="js/nav-return.js?v=22" defer></script>
+  <script src="js/site.js?v=22" defer></script>
 </body>
 </html>

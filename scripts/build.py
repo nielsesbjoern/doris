@@ -35,8 +35,6 @@ def build_steps() -> tuple[str, ...]:
     if os.environ.get("VERCEL"):
         # Fonts, images and favicons are committed; Vercel has no Pillow by default.
         steps = tuple(step for step in STEPS if step not in ASSET_STEPS)
-    if not os.environ.get("MINIFY_ASSETS", "1" if os.environ.get("VERCEL") else ""):
-        steps = tuple(step for step in steps if step != "build_minify.py")
     return steps
 
 

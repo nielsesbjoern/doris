@@ -19,11 +19,21 @@ python3 scripts/build_referenzen.py
 python3 scripts/build_standorte.py
 python3 scripts/build_sitemap.py
 python3 scripts/build_llms.py
+python3 scripts/build_minify.py   # styles.source.css → styles.css
 ```
 
-Auf Vercel werden Font-, Bild- und Favicon-Schritte übersprungen (Assets sind committed; kein Pillow im Deploy).
+Auf Vercel werden Font-, Bild- und Favicon-Schritte übersprungen (Assets sind committed; kein Pillow im Deploy). CSS wird aus `css/styles.source.css` minifiziert.
 
 Abhängigkeiten für lokale Asset-Generierung: `pip install -r requirements.txt`
+
+### Tests & Build-Check
+
+```bash
+python3 scripts/test_seo.py
+python3 scripts/test_site.py
+./scripts/check_build.sh          # Tests + Build + git diff (wie CI)
+./scripts/install_git_hooks.sh    # Pre-commit-Hook optional installieren
+```
 
 ## Inhalte bearbeiten
 
@@ -33,6 +43,7 @@ Abhängigkeiten für lokale Asset-Generierung: `pip install -r requirements.txt`
 | Navigation, SEO-Head, Shell | `scripts/wrap_pages.py` + `scripts/seo.py` |
 | Standort-Seiten (Städte) | `scripts/standorte_data.py` → `build_standorte.py` |
 | Referenzen | `scripts/referenzen_data.py` → `build_referenzen.py` |
+| **Styles** | **`css/styles.source.css`** (nicht `styles.css` — wird beim Build minifiziert) |
 
 Nach Änderungen am Inhalt oder an den Generatoren:
 
@@ -45,9 +56,14 @@ python3 scripts/build.py
 ## Struktur
 
 - `index.html`, `en/` — Seiten (DE + EN)
-- `scripts/` — Generatoren für Shell, Standorte, Referenzen, Sitemap, LLM-Texte
-- `css/`, `js/` — Styles und Skripte
+- `scripts/` — Generatoren für Shell, Standorte, Referenzen, Sitemap, LLM-Texte, Tests
+- `css/styles.source.css` — bearbeitbare Styles; `css/styles.css` — minifiziertes Build-Artefakt
+- `js/` — Skripte (`site.js` lädt mit `defer` am Seitenende)
 - `public/` — Bilder, Fonts, Favicon
+
+## Kontaktformular
+
+Die Kontaktanfrage läuft über einen clientseitigen Wizard und öffnet `mailto:` — es gibt keinen Server-Empfang. Das ist für eine Beraterseite vertretbar; Nachteile: kein Backup bei fehlgeschlagenem mailto, keine Benachrichtigung ohne dass der Nutzer sendet. Optional später: Formspree, Netlify Forms oder ein minimales API-Backend.
 
 ## Deployment
 

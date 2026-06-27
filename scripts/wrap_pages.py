@@ -61,6 +61,15 @@ META = {
         "desc_de": "Personal- und Business-Coaching für Führungskräfte: Klarheit gewinnen, Konflikte lösen, Veränderungen gestalten — vertraulich und zielorientiert.",
         "desc_en": "Personal and business coaching for leaders: gain clarity, resolve conflicts, navigate change — confidential and goal-oriented.",
     },
+    "coaching-formate.html": {
+        "page": "leistungen",
+        "active": "formate",
+        "schema": "webpage",
+        "title_de": "Format-Finder – Welches Coaching passt? | Doris Gunsch",
+        "title_en": "Format Finder – Which Coaching Fits? | Doris Gunsch",
+        "desc_de": "Coaching-Formate interaktiv vergleichen: nach Anlass oder Durchführung — bis zu zwei Formate nebeneinander. Orientierung für Führungskräfte.",
+        "desc_en": "Compare coaching formats interactively: by occasion or delivery — up to two formats side by side. Orientation for leaders.",
+    },
     "trainings.html": {
         "page": "leistungen",
         "active": "trainings",
@@ -161,13 +170,24 @@ META.update(STANDORTE_META)
 
 SIDEBAR_KEYS = ["home", "leistungen", "coaching", "trainings", "team", "diagnostik", "person", "einsatzgebiete", "referenzen", "links"]
 
-SERVICE_SUB_PAGES = ("coaching", "trainings", "team", "diagnostik")
+SERVICE_SUB_PAGES = ("coaching", "formate", "trainings", "team", "diagnostik")
+SIDEBAR_SERVICE_SUB_PAGES = ("coaching", "trainings", "team", "diagnostik")
+
+SERVICE_PAGES_WITH_SUBNAV = frozenset({
+    "leistungen.html",
+    "coaching.html",
+    "coaching-formate.html",
+    "trainings.html",
+    "team.html",
+    "diagnostik.html",
+})
 
 SIDEBAR_LABEL_KEYS = {
     "home": "home",
     "einsatzgebiete": "einsatzgebiete",
     "leistungen": "services",
     "coaching": "coaching",
+    "formate": "formate",
     "trainings": "trainings",
     "team": "team",
     "diagnostik": "diagnostik",
@@ -183,6 +203,7 @@ LABELS = {
         "einsatzgebiete": "Einsatzgebiete",
         "services": "Leistungen",
         "coaching": "Coaching",
+        "formate": "Format-Finder",
         "trainings": "Trainings & Seminare",
         "team": "Team & Prozess",
         "diagnostik": "Diagnostik",
@@ -211,6 +232,7 @@ LABELS = {
         "einsatzgebiete": "Service areas",
         "services": "Services",
         "coaching": "Coaching",
+        "formate": "Format finder",
         "trainings": "Training & Seminars",
         "team": "Team & Process",
         "diagnostik": "Diagnostics",
@@ -235,12 +257,23 @@ LABELS = {
     },
 }
 
-SERVICE_DETAIL_PAGES = {"coaching.html", "trainings.html", "team.html", "diagnostik.html"}
+SERVICE_DETAIL_PAGES = {
+    "coaching.html",
+    "coaching-formate.html",
+    "trainings.html",
+    "team.html",
+    "diagnostik.html",
+}
 
 PAGE_TRAILS = {
     "einsatzgebiete.html": [("home", "index.html"), ("einsatzgebiete", None)],
     "leistungen.html": [("home", "index.html"), ("services", None)],
     "coaching.html": [("home", "index.html"), ("services", "leistungen.html"), ("coaching", None)],
+    "coaching-formate.html": [
+        ("home", "index.html"),
+        ("services", "leistungen.html"),
+        ("formate", None),
+    ],
     "trainings.html": [("home", "index.html"), ("services", "leistungen.html"), ("trainings", None)],
     "team.html": [("home", "index.html"), ("services", "leistungen.html"), ("team", None)],
     "diagnostik.html": [("home", "index.html"), ("services", "leistungen.html"), ("diagnostik", None)],
@@ -253,6 +286,16 @@ PAGE_TRAILS = {
 }
 
 NEXT_STEP = {
+    "coaching-formate.html": {
+        "de": {
+            "title": "Format abstimmen",
+            "text": "Sie haben ein Format im Blick oder möchten gemeinsam klären, was passt? Schreiben Sie mir — wir finden den passenden Rahmen.",
+        },
+        "en": {
+            "title": "Align on a format",
+            "text": "Have a format in mind or want to clarify together what fits? Get in touch — we will find a suitable approach.",
+        },
+    },
     "coaching.html": {
         "de": {
             "title": "Coaching-Gespräch vereinbaren",
@@ -313,6 +356,8 @@ def strip_wrapped_artifacts(content: str) -> str:
     patterns = [
         r'^\s*<nav class="breadcrumbs-wrap[^>]*>.*?</nav>\s*',
         r'^\s*<div class="container page-back">\s*.*?\s*</div>\s*',
+        r'^\s*<div class="container sub-nav-wrap">\s*.*?\s*</div>\s*',
+        r'^\s*<!-- SERVICES_SUB_NAV -->\s*',
     ]
     for pattern in patterns:
         prev = None
@@ -388,6 +433,67 @@ def breadcrumbs(lang: str, filename: str, asset: str, meta: Optional[dict] = Non
 """
 
 
+SERVICES_SUB_NAV_MARKER = "<!-- SERVICES_SUB_NAV -->"
+
+
+def render_services_subnav(lang: str, active: str, filename: str) -> str:
+    L = LABELS[lang]
+    nav = nav_prefix(filename)
+    items = (
+        ("leistungen", "leistungen.html", "leistungen", False),
+        ("coaching", "coaching.html", "coaching", False),
+        ("trainings", "trainings.html", "trainings", False),
+        ("team", "team.html", "team", False),
+        ("diagnostik", "diagnostik.html", "diagnostik", False),
+        ("formate", "coaching-formate.html", "formate", True),
+    )
+    links = []
+    for key, href_file, active_key, featured in items:
+        classes: list[str] = []
+        if active == active_key:
+            classes.append("is-active")
+        if featured:
+            classes.append("sub-nav__highlight")
+        cls = f' class="{" ".join(classes)}"' if classes else ""
+        label = L["services_overview"] if key == "leistungen" else L[SIDEBAR_LABEL_KEYS[key]]
+        links.append(f'        <a href="{page_href(href_file, nav)}"{cls}>{label}</a>')
+    aria = "Leistungsbereiche" if lang == "de" else "Service areas"
+    return f"""{SERVICES_SUB_NAV_MARKER}
+<div class="container sub-nav-wrap">
+      <nav class="sub-nav" aria-label="{aria}">
+{chr(10).join(links)}
+      </nav>
+    </div>"""
+
+
+def strip_service_subnav(content: str) -> str:
+    """Remove generated sub-nav blocks before re-injecting."""
+    prev = None
+    while prev != content:
+        prev = content
+        content = re.sub(
+            r'\s*<div class="container sub-nav-wrap">\s*.*?\s*</div>\s*',
+            "\n",
+            content,
+            count=1,
+            flags=re.DOTALL,
+        )
+    content = re.sub(r'\s*<!-- SERVICES_SUB_NAV -->\s*', "\n", content)
+    return content
+
+
+def inject_services_subnav(content: str, lang: str, filename: str) -> str:
+    if filename not in SERVICE_PAGES_WITH_SUBNAV:
+        return content
+    content = strip_service_subnav(content)
+    block = render_services_subnav(lang, META[filename]["active"], filename).strip()
+    page_back = re.search(r'(<div class="container page-back">\s*.*?\s*</div>)', content, re.DOTALL)
+    if page_back:
+        insert_at = page_back.end()
+        return content[:insert_at] + "\n" + block + content[insert_at:]
+    return block + "\n" + content
+
+
 def page_back(lang: str, filename: str, _asset: str) -> str:
     L = LABELS[lang]
     nav = nav_prefix(filename)
@@ -436,8 +542,24 @@ def contact_wizard_partial(lang: str) -> str:
     return path.read_text(encoding="utf-8").strip()
 
 
+HOME_CONTACT_CTA_MARKER = "<!-- HOME_CONTACT_CTA -->"
+
+
+def home_contact_cta_partial(lang: str) -> str:
+    path = ROOT / "partials" / f"home-contact-cta.{lang}.html"
+    return path.read_text(encoding="utf-8").strip()
+
+
+def sync_home_contact_cta(html: str, lang: str) -> str:
+    if HOME_CONTACT_CTA_MARKER not in html:
+        return html
+    return html.replace(HOME_CONTACT_CTA_MARKER, home_contact_cta_partial(lang))
+
+
 def sync_contact_wizard(html: str, lang: str) -> str:
     partial = contact_wizard_partial(lang)
+    if HOME_CONTACT_CTA_MARKER in html:
+        return sync_home_contact_cta(html, lang)
     if CONTACT_WIZARD_MARKER in html:
         return html.replace(CONTACT_WIZARD_MARKER, partial)
     if 'id="kontakt-anfrage"' in html:
@@ -474,6 +596,7 @@ def sidebar(lang, active, prefix="", legal_page=None):
         "einsatzgebiete": page_href("einsatzgebiete.html", p),
         "leistungen": page_href("leistungen.html", p),
         "coaching": page_href("coaching.html", p),
+        "formate": page_href("coaching-formate.html", p),
         "trainings": page_href("trainings.html", p),
         "team": page_href("team.html", p),
         "diagnostik": page_href("diagnostik.html", p),
@@ -492,7 +615,7 @@ def sidebar(lang, active, prefix="", legal_page=None):
     open_attr = " open" if services_open else ""
     leistungen_active = active_class("leistungen", active)
     sub_links = "\n".join(
-        a(k, L[SIDEBAR_LABEL_KEYS[k]], " sidebar-link--sub") for k in SERVICE_SUB_PAGES
+        a(k, L[SIDEBAR_LABEL_KEYS[k]], " sidebar-link--sub") for k in SIDEBAR_SERVICE_SUB_PAGES
     )
     imp_cls = ' class="is-active"' if legal_page == "impressum" else ""
     ds_cls = ' class="is-active"' if legal_page == "datenschutz" else ""
@@ -567,7 +690,7 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
     description = html.escape(raw_desc, quote=True)
     seo_head = f"""{canonical_hreflang(filename, lang, include_hreflang=not meta.get("no_hreflang"))}
 {llms_head_link()}
-{open_graph(filename, lang, raw_title, raw_desc)}
+{open_graph(filename, lang, raw_title, raw_desc, city=city)}
 {structured_data(filename, lang, raw_title, raw_desc, meta.get("schema", "webpage"), city=city)}"""
     robots_meta = '  <meta name="robots" content="noindex, follow">\n' if meta.get("noindex") else ""
     page_nav = ""
@@ -579,9 +702,9 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
     extra_scripts = ""
     if filename == "referenzen.html":
         extra_scripts = f'\n  <script src="{asset}js/referenzen.js?v={ASSET_VERSION}" defer></script>'
-    elif filename == "coaching.html":
+    elif filename == "coaching-formate.html":
         extra_scripts = f'\n  <script src="{asset}js/coaching-formats.js?v={ASSET_VERSION}" defer></script>'
-    elif filename in ("kontakt.html", "index.html"):
+    elif filename in ("kontakt.html",):
         extra_scripts = f'\n  <script src="{asset}js/kontakt-wizard.js?v={ASSET_VERSION}" defer></script>'
 
     logo_label = L["logo"]
@@ -654,7 +777,8 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
 {sidebar(lang, active, nav, meta.get("legal_page"))}
 </div>
 
-  <script src="{asset}js/site.js?v={ASSET_VERSION}"></script>{extra_scripts}
+  <script src="{asset}js/nav-return.js?v={ASSET_VERSION}" defer></script>
+  <script src="{asset}js/site.js?v={ASSET_VERSION}" defer></script>{extra_scripts}
 </body>
 </html>
 '''
@@ -672,9 +796,18 @@ def main():
             content = clean_internal_hrefs(
                 strip_wrapped_artifacts(extract_main(sync_contact_wizard(raw, "de")))
             )
+            content = inject_services_subnav(content, "de", filename)
             build_page("de", filename, content, de_src)
 
         if filename == "404.html":
+            en_404_main = """      <section class="page-section page-section--hero">
+        <div class="container">
+          <h1>Page not found</h1>
+          <p class="lead">The requested page does not exist or has been moved.</p>
+          <p><a href="./" class="btn btn-primary">Back to home</a></p>
+        </div>
+      </section>"""
+            build_page("en", "404.html", en_404_main, en_dir / "404.html")
             continue
 
         en_fragment = en_dir / filename
@@ -685,6 +818,7 @@ def main():
             )
             if filename in ("impressum.html", "datenschutz.html") and "legal-page" not in content:
                 content = f'    <div class="container legal-page">\n{content}\n    </div>'
+            content = inject_services_subnav(content, "en", filename)
             build_page("en", filename, content, en_fragment)
 
     page_count = sum(

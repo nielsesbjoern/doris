@@ -3,82 +3,256 @@
   if (!root) return;
 
   const isEn = document.documentElement.lang === 'en';
-  const groupTabs = root.querySelectorAll('.format-compare__group');
-  const chipGroups = root.querySelectorAll('.format-compare__filter[data-chip-group]');
-  const cards = root.querySelectorAll('.format-compare__card');
-  const statusEl = document.getElementById('format-compare-status');
+  const STORAGE_KEY = 'doris-format-inquiry';
+  const contactPath = isEn ? '/en/kontakt' : '/kontakt';
+
+  const modeTabs = root.querySelectorAll('.format-guide__mode');
+  const formatPanel = document.getElementById('format-panel');
+  const items = root.querySelectorAll('.format-guide__item');
+  const statusEl = document.getElementById('format-guide-status');
+  const inquiryPanel = document.getElementById('format-guide-inquiry');
+  const inquiryTextEl = document.getElementById('format-guide-inquiry-text');
+  const inquiryBtn = document.getElementById('format-guide-inquiry-btn');
+  const comparePanel = document.getElementById('format-guide-compare');
+  const compareTable = comparePanel?.querySelector('.format-guide__table--compare');
+  const clearBtn = document.getElementById('format-guide-clear');
+
+  const i18n = isEn
+    ? {
+        maxTwo: 'At most two formats at once — please deselect one.',
+        showing: 'Comparing: {a} and {b}',
+        oneSelected: 'Selected: {a} — choose one more format.',
+        detailsShow: 'Details',
+        detailsHide: 'Close',
+        inquiryOne: 'Enquire about this format',
+        inquiryTwo: 'Enquire about these formats',
+        inquiryHintOne: 'You selected {a}.',
+        inquiryHintTwo: 'You are comparing {a} and {b}.',
+        groupAnlass: 'By occasion',
+        groupDurchfuehrung: 'By delivery',
+      }
+    : {
+        maxTwo: 'Maximal zwei Formate gleichzeitig — bitte eines abwählen.',
+        showing: 'Vergleich: {a} und {b}',
+        oneSelected: 'Ausgewählt: {a} — wählen Sie ein weiteres Format.',
+        detailsShow: 'Details',
+        detailsHide: 'Schließen',
+        inquiryOne: 'Anfrage zu diesem Format',
+        inquiryTwo: 'Anfrage zu diesen Formaten',
+        inquiryHintOne: 'Sie haben {a} ausgewählt.',
+        inquiryHintTwo: 'Sie vergleichen {a} und {b}.',
+        groupAnlass: 'Nach Anlass',
+        groupDurchfuehrung: 'Nach Durchführung',
+      };
 
   let activeGroup = 'anlass';
-  let activeFormat = 'all';
+  const selected = new Set();
 
-  function chipsForGroup(group) {
-    return root.querySelectorAll(`.format-compare__chip[data-group="${group}"]`);
+  function itemTitle(item) {
+    return item.querySelector('.format-guide__name')?.textContent.trim() ?? '';
+  }
+
+  function itemTeaser(item) {
+    return item.querySelector('.format-guide__teaser')?.textContent.trim() ?? '';
+  }
+
+  function itemRows(item) {
+    const rows = new Map();
+    item.querySelectorAll('.format-guide__row').forEach((row) => {
+      const label = row.dataset.rowKey || row.querySelector('dt')?.textContent.trim();
+      const value = row.querySelector('dd')?.textContent.trim();
+      if (label) rows.set(label, value ?? '');
+    });
+    return rows;
+  }
+
+  function groupLabel(group) {
+    return group === 'durchfuehrung' ? i18n.groupDurchfuehrung : i18n.groupAnlass;
   }
 
   function setGroupState(group) {
     activeGroup = group;
-    activeFormat = 'all';
+    selected.clear();
 
-    groupTabs.forEach((tab) => {
+    modeTabs.forEach((tab) => {
       const active = tab.dataset.group === group;
       tab.classList.toggle('is-active', active);
       tab.setAttribute('aria-selected', active ? 'true' : 'false');
+      tab.tabIndex = active ? 0 : -1;
     });
 
-    chipGroups.forEach((chipGroup) => {
-      const visible = chipGroup.dataset.chipGroup === group;
-      chipGroup.hidden = !visible;
+    const activeTab = root.querySelector('.format-guide__mode.is-active');
+    if (formatPanel && activeTab?.id) {
+      formatPanel.setAttribute('aria-labelledby', activeTab.id);
+    }
+
+    items.forEach((item) => {
+      const inGroup = item.dataset.group === group;
+      item.hidden = !inGroup;
+      item.open = false;
+      item.classList.remove('is-picked', 'is-highlighted');
+      const input = item.querySelector('.format-guide__pick-input');
+      if (input) input.checked = false;
     });
 
-    chipsForGroup(group).forEach((chip) => {
-      const isAll = chip.dataset.format === 'all';
-      chip.classList.toggle('is-active', isAll);
-      chip.setAttribute('aria-pressed', isAll ? 'true' : 'false');
-    });
-
-    applyFilters();
+    updateComparePanel();
+    updateStatus();
+    updateInquiryPanel();
   }
 
-  function setChipState(format) {
-    activeFormat = format;
-    chipsForGroup(activeGroup).forEach((chip) => {
-      const active = chip.dataset.format === format;
-      chip.classList.toggle('is-active', active);
-      chip.setAttribute('aria-pressed', active ? 'true' : 'false');
-    });
-    applyFilters();
+  function pickedItems() {
+    return Array.from(selected)
+      .map((id) => root.querySelector(`#format-${id}`))
+      .filter(Boolean);
   }
 
-  function formatTitle(id) {
-    const chip = root.querySelector(
-      `.format-compare__chip[data-format="${id}"][data-group="${activeGroup}"]`
-    );
-    return chip?.textContent.trim() ?? id;
-  }
+  function updateComparePanel() {
+    const picked = pickedItems();
 
-  function applyFilters() {
-    let visibleCount = 0;
-
-    cards.forEach((card) => {
-      const inGroup = card.dataset.group === activeGroup;
-      const formatMatch = activeFormat === 'all' || card.dataset.format === activeFormat;
-      const visible = inGroup && formatMatch;
-      card.classList.toggle('is-filtered-out', !visible);
-      card.classList.toggle('is-highlighted', activeFormat !== 'all' && card.dataset.format === activeFormat);
-      if (visible) visibleCount += 1;
+    items.forEach((item) => {
+      item.classList.toggle('is-picked', selected.has(item.dataset.format));
     });
 
+    if (!comparePanel || !compareTable) return;
+
+    if (picked.length < 2) {
+      comparePanel.hidden = true;
+      return;
+    }
+
+    comparePanel.hidden = false;
+    const [a, b] = picked;
+    const rowsA = itemRows(a);
+    const rowsB = itemRows(b);
+
+    const headCells = compareTable.querySelectorAll('thead .format-guide__compare-slot');
+    if (headCells[0]) headCells[0].textContent = itemTitle(a);
+    if (headCells[1]) headCells[1].textContent = itemTitle(b);
+
+    compareTable.querySelectorAll('tbody tr').forEach((tr) => {
+      const label = tr.dataset.rowLabel;
+      const cells = tr.querySelectorAll('.format-guide__compare-slot');
+      if (cells[0]) cells[0].textContent = rowsA.get(label) ?? '—';
+      if (cells[1]) cells[1].textContent = rowsB.get(label) ?? '—';
+    });
+
+    comparePanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function updateInquiryPanel() {
+    if (!inquiryPanel || !inquiryBtn) return;
+
+    const picked = pickedItems();
+    if (picked.length === 0) {
+      inquiryPanel.hidden = true;
+      return;
+    }
+
+    inquiryPanel.hidden = false;
+    const titles = picked.map(itemTitle);
+
+    if (inquiryTextEl) {
+      if (picked.length === 1) {
+        inquiryTextEl.textContent = i18n.inquiryHintOne.replace('{a}', titles[0]);
+      } else {
+        inquiryTextEl.textContent = i18n.inquiryHintTwo
+          .replace('{a}', titles[0])
+          .replace('{b}', titles[1]);
+      }
+    }
+
+    inquiryBtn.textContent = picked.length === 1 ? i18n.inquiryOne : i18n.inquiryTwo;
+  }
+
+  function updateStatus() {
     if (!statusEl) return;
+    const picked = pickedItems();
 
-    if (activeFormat === 'all') {
+    if (picked.length === 0) {
       statusEl.textContent = '';
       return;
     }
 
-    const template = isEn
-      ? 'Showing: {format}'
-      : 'Angezeigt: {format}';
-    statusEl.textContent = template.replace('{format}', formatTitle(activeFormat));
+    if (picked.length === 1) {
+      statusEl.textContent = i18n.oneSelected.replace('{a}', itemTitle(picked[0]));
+      return;
+    }
+
+    statusEl.textContent = i18n.showing
+      .replace('{a}', itemTitle(picked[0]))
+      .replace('{b}', itemTitle(picked[1]));
+  }
+
+  function buildInquiryPayload() {
+    const picked = pickedItems();
+    return {
+      source: 'format-finder',
+      group: activeGroup,
+      groupLabel: groupLabel(activeGroup),
+      compare: picked.length > 1,
+      formats: picked.map((item) => {
+        const rows = itemRows(item);
+        const durationKey = isEn ? 'Duration / setting' : 'Dauer / Setting';
+        const occasionKey = isEn ? 'Typical occasion' : 'Typischer Anlass';
+        return {
+          id: item.dataset.format,
+          title: itemTitle(item),
+          duration: rows.get(durationKey) || itemTeaser(item),
+          occasion: rows.get(occasionKey) || '',
+        };
+      }),
+    };
+  }
+
+  function goToContactInquiry() {
+    const picked = pickedItems();
+    if (picked.length === 0) return;
+
+    try {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(buildInquiryPayload()));
+    } catch {
+      /* sessionStorage unavailable — still navigate */
+    }
+
+    window.DorisNavReturn?.saveForTarget(`${contactPath}#kontakt-anfrage`);
+    window.location.href = `${contactPath}#kontakt-anfrage`;
+  }
+
+  function togglePick(formatId, checked) {
+    if (checked) {
+      if (selected.size >= 2) {
+        statusEl.textContent = i18n.maxTwo;
+        const input = root.querySelector(
+          `.format-guide__pick-input[value="${formatId}"]`
+        );
+        if (input) input.checked = false;
+        return;
+      }
+      selected.add(formatId);
+    } else {
+      selected.delete(formatId);
+    }
+
+    updateComparePanel();
+    updateStatus();
+    updateInquiryPanel();
+  }
+
+  function clearSelection() {
+    selected.clear();
+    root.querySelectorAll('.format-guide__pick-input').forEach((input) => {
+      input.checked = false;
+    });
+    updateComparePanel();
+    updateStatus();
+    updateInquiryPanel();
+  }
+
+  function updateToggleLabel(item) {
+    const toggle = item.querySelector('.format-guide__toggle');
+    if (toggle) {
+      toggle.textContent = item.open ? i18n.detailsHide : i18n.detailsShow;
+    }
   }
 
   function readHash() {
@@ -86,34 +260,74 @@
     if (!hash.startsWith('format-')) return;
 
     const id = hash.slice('format-'.length);
-    const card = document.getElementById(`format-${id}`);
-    if (!card) return;
+    const item = document.getElementById(`format-${id}`);
+    if (!item) return;
 
-    const group = card.dataset.group;
+    const group = item.dataset.group;
     if (group) setGroupState(group);
-    setChipState(id);
-    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    item.open = true;
+    updateToggleLabel(item);
+    item.classList.add('is-highlighted');
+    item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.setTimeout(() => item.classList.remove('is-highlighted'), 2000);
   }
 
-  groupTabs.forEach((tab) => {
+  function activateTab(tab) {
+    const group = tab.dataset.group;
+    if (group && group !== activeGroup) {
+      setGroupState(group);
+    }
+    tab.focus();
+  }
+
+  modeTabs.forEach((tab) => {
     tab.addEventListener('click', () => {
-      const group = tab.dataset.group;
-      if (group && group !== activeGroup) {
-        setGroupState(group);
+      activateTab(tab);
+    });
+
+    tab.addEventListener('keydown', (e) => {
+      const tabs = Array.from(modeTabs);
+      const index = tabs.indexOf(tab);
+      if (index < 0) return;
+
+      let next = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        next = tabs[(index + 1) % tabs.length];
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        next = tabs[(index - 1 + tabs.length) % tabs.length];
+      } else if (e.key === 'Home') {
+        next = tabs[0];
+      } else if (e.key === 'End') {
+        next = tabs[tabs.length - 1];
+      }
+
+      if (next) {
+        e.preventDefault();
+        activateTab(next);
       }
     });
   });
 
-  root.querySelectorAll('.format-compare__chip').forEach((chip) => {
-    chip.addEventListener('click', () => {
-      const format = chip.dataset.format || 'all';
-      const group = chip.dataset.group;
-      if (group && group !== activeGroup) {
-        setGroupState(group);
-      }
-      setChipState(format);
+  root.querySelectorAll('[data-format-pick]').forEach((pick) => {
+    pick.addEventListener('click', (e) => {
+      e.stopPropagation();
     });
   });
+
+  root.querySelectorAll('.format-guide__pick-input').forEach((input) => {
+    input.addEventListener('change', () => {
+      togglePick(input.value, input.checked);
+    });
+  });
+
+  items.forEach((item) => {
+    item.addEventListener('toggle', () => {
+      updateToggleLabel(item);
+    });
+  });
+
+  clearBtn?.addEventListener('click', clearSelection);
+  inquiryBtn?.addEventListener('click', goToContactInquiry);
 
   window.addEventListener('hashchange', readHash);
 
