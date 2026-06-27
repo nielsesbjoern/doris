@@ -156,6 +156,12 @@
     return `· ${label}: ${value}${NL}`;
   }
 
+  function optionalFieldLine(label, value) {
+    const trimmed = (value || '').trim();
+    if (!trimmed) return '';
+    return fieldLine(label, trimmed);
+  }
+
   function sectionBlock(title, lines) {
     return `${NL}${title}${NL}${NL}${lines}`;
   }
@@ -181,7 +187,7 @@
         sectionBlock(
           'ENQUIRY — OVERVIEW',
           fieldLine('Service area', data.leistung) +
-            fieldLine('Context', data.anlass) +
+            optionalFieldLine('Context', data.anlass) +
             fieldLine('Target group', data.zielgruppe) +
             fieldLine('Participants', data.teilnehmer) +
             fieldLine('Format', data.durchfuehrung) +
@@ -218,7 +224,7 @@
       sectionBlock(
         'ANFRAGE — ÜBERBLICK',
         fieldLine('Leistungsbereich', data.leistung) +
-          fieldLine('Anlass', data.anlass) +
+          optionalFieldLine('Anlass', data.anlass) +
           fieldLine('Zielgruppe', data.zielgruppe) +
           fieldLine('Teilnehmerzahl', data.teilnehmer) +
           fieldLine('Durchführung', data.durchfuehrung) +
@@ -280,6 +286,14 @@
     document.body.appendChild(anchor);
     anchor.click();
     document.body.removeChild(anchor);
+  }
+
+  function clearFormatInquiryStorage() {
+    try {
+      sessionStorage.removeItem(FORMAT_INQUIRY_KEY);
+    } catch {
+      /* ignore */
+    }
   }
 
   function setManualMailMode(manual) {
@@ -428,7 +442,8 @@
     }
 
     if (btnBack) btnBack.hidden = step === 1;
-    if (btnNext) btnNext.hidden = step !== 4 && step !== 5;
+    const showManualNext = !isAutoAdvanceEnabled() && step >= 1 && step <= 3;
+    if (btnNext) btnNext.hidden = !(showManualNext || step === 4 || step === 5);
     if (btnSubmit) btnSubmit.hidden = step !== totalSteps;
     if (btnCopy) btnCopy.hidden = step !== totalSteps;
 
@@ -538,12 +553,14 @@
 
     setStatus('');
     openMailtoLink(link);
+    clearFormatInquiryStorage();
   }
 
   function openMailFallback() {
     const data = collectData();
     setStatus('');
     openMailtoLink(buildMailtoLink(data, false));
+    clearFormatInquiryStorage();
   }
 
   root.querySelectorAll('.contact-wizard__chip').forEach((chip) => {
@@ -619,12 +636,6 @@
       formatInquiry = parsed;
     } catch {
       return false;
-    }
-
-    try {
-      sessionStorage.removeItem(FORMAT_INQUIRY_KEY);
-    } catch {
-      /* ignore */
     }
 
     return true;

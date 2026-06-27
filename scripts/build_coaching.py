@@ -18,12 +18,8 @@ COMPARE_START = "<!-- FORMAT_COMPARE -->"
 COMPARE_END = "<!-- /FORMAT_COMPARE -->"
 TEASER_START = "<!-- FORMAT_TEASER -->"
 TEASER_END = "<!-- /FORMAT_TEASER -->"
-HOME_HIGHLIGHT_START = "<!-- HOME_FORMAT_HIGHLIGHT -->"
-HOME_HIGHLIGHT_END = "<!-- /HOME_FORMAT_HIGHLIGHT -->"
 HOME_HERO_ACTIONS_START = "<!-- HOME_HERO_ACTIONS -->"
 HOME_HERO_ACTIONS_END = "<!-- /HOME_HERO_ACTIONS -->"
-HOME_HERO_HINT_START = "<!-- HOME_HERO_HINT -->"
-HOME_HERO_HINT_END = "<!-- /HOME_HERO_HINT -->"
 HOME_COACHING_CARD_START = "<!-- HOME_COACHING_CARD_FOOTER -->"
 HOME_COACHING_CARD_END = "<!-- /HOME_COACHING_CARD_FOOTER -->"
 
@@ -117,11 +113,6 @@ def render_compare(lang: str) -> str:
             <p class="format-guide__hint">{t["compare_hint"]}</p>
             <p class="format-guide__status" id="format-guide-status" aria-live="polite" aria-atomic="true"></p>
 
-            <div class="format-guide__inquiry" id="format-guide-inquiry" hidden>
-              <p class="format-guide__inquiry-text" id="format-guide-inquiry-text"></p>
-              <button type="button" class="btn btn-primary format-guide__inquiry-btn" id="format-guide-inquiry-btn">{t["inquiry_one"]}</button>
-            </div>
-
             <div class="format-guide__compare" id="format-guide-compare" hidden>
               <div class="format-guide__compare-head">
                 <h3 class="format-guide__compare-title">{t["compare_panel_title"]}</h3>
@@ -137,6 +128,11 @@ def render_compare(lang: str) -> str:
 {tbody_rows}                  </tbody>
                 </table>
               </div>
+            </div>
+
+            <div class="format-guide__inquiry" id="format-guide-inquiry" hidden>
+              <p class="format-guide__inquiry-text" id="format-guide-inquiry-text"></p>
+              <button type="button" class="btn btn-primary format-guide__inquiry-btn" id="format-guide-inquiry-btn">{t["inquiry_one"]}</button>
             </div>
 
             <div class="format-guide__overview" id="format-panel" role="tabpanel" aria-labelledby="format-tab-anlass">
@@ -167,25 +163,6 @@ def render_teaser(lang: str, link_prefix: str) -> str:
           </aside>"""
 
 
-def render_home_highlight(lang: str, link_prefix: str) -> str:
-    t = TEXT[lang]
-    href = page_href("coaching-formate.html", link_prefix)
-    return f"""    <section class="section page-section home-format-highlight" aria-labelledby="home-format-highlight-title">
-      <div class="container">
-        <div class="home-format-highlight__inner">
-          <div class="home-format-highlight__copy">
-            <p class="home-format-highlight__kicker">{t["home_kicker"]}</p>
-            <h2 id="home-format-highlight-title" class="home-format-highlight__title">{t["home_title"]}</h2>
-          </div>
-          <div class="home-format-highlight__actions">
-            <a href="{href}" class="btn btn-format-finder btn-lg">{t["home_btn"]}</a>
-            <a href="{page_href("coaching.html", link_prefix)}" class="btn-text">{t["home_coaching_link"]}</a>
-          </div>
-        </div>
-      </div>
-    </section>"""
-
-
 def render_home_hero_actions(lang: str, link_prefix: str) -> str:
     t = TEXT[lang]
     fmt_href = page_href("coaching-formate.html", link_prefix)
@@ -198,12 +175,6 @@ def render_home_hero_actions(lang: str, link_prefix: str) -> str:
             <a href="{fmt_href}" class="btn btn-format-finder">{t["hero_btn"]}</a>
             <a href="{leist_href}" class="btn-text">{services_label}</a>
           </div>"""
-
-
-def render_home_hero_hint(lang: str, link_prefix: str) -> str:
-    t = TEXT[lang]
-    href = page_href("coaching-formate.html", link_prefix)
-    return f"""          <p class="hero-format-hint">{t["hero_hint"]} <a href="{href}" class="hero-format-hint__link">{t["hero_hint_link"]}</a></p>"""
 
 
 def render_home_coaching_card_footer(lang: str, link_prefix: str) -> str:
@@ -257,20 +228,6 @@ def patch_main(path: Path, lang: str, filename: str) -> str:
             HOME_COACHING_CARD_END,
             render_home_coaching_card_footer(lang, link_prefix),
         )
-        main = re.sub(
-            re.escape(HOME_HERO_HINT_START) + r".*?" + re.escape(HOME_HERO_HINT_END) + r"\s*",
-            "",
-            main,
-            count=1,
-            flags=re.DOTALL,
-        )
-        main = re.sub(
-            re.escape(HOME_HIGHLIGHT_START) + r".*?" + re.escape(HOME_HIGHLIGHT_END) + r"\s*",
-            "",
-            main,
-            count=1,
-            flags=re.DOTALL,
-        )
     else:
         raise SystemExit(f"Unexpected file for build_coaching: {path}")
     return main
@@ -290,7 +247,7 @@ def main() -> None:
             raise SystemExit(f"Missing {path}")
         main = patch_main(path, lang, filename)
         build_page(lang, filename, main, path)
-    print("Built coaching format finder page, teasers and home highlight (DE + EN)")
+    print("Built coaching format finder page, teasers and home CTAs (DE + EN)")
 
 
 if __name__ == "__main__":

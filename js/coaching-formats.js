@@ -5,6 +5,7 @@
   const isEn = document.documentElement.lang === 'en';
   const STORAGE_KEY = 'doris-format-inquiry';
   const contactPath = isEn ? '/en/kontakt' : '/kontakt';
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   const modeTabs = root.querySelectorAll('.format-guide__mode');
   const formatPanel = document.getElementById('format-panel');
@@ -135,8 +136,6 @@
       if (cells[0]) cells[0].textContent = rowsA.get(label) ?? '—';
       if (cells[1]) cells[1].textContent = rowsB.get(label) ?? '—';
     });
-
-    comparePanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   function updateInquiryPanel() {
@@ -162,6 +161,10 @@
     }
 
     inquiryBtn.textContent = picked.length === 1 ? i18n.inquiryOne : i18n.inquiryTwo;
+
+    if (!prefersReducedMotion.matches) {
+      inquiryPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   }
 
   function updateStatus() {

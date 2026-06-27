@@ -497,7 +497,10 @@ def inject_services_subnav(content: str, lang: str, filename: str) -> str:
 def page_back(lang: str, filename: str, _asset: str) -> str:
     L = LABELS[lang]
     nav = nav_prefix(filename)
-    if filename in SERVICE_DETAIL_PAGES:
+    if filename == "coaching-formate.html":
+        href = home_href(filename)
+        label = L["back_home"]
+    elif filename in SERVICE_DETAIL_PAGES:
         href = page_href("leistungen.html", nav)
         label = L["back_services"]
     elif is_standort_page(filename):

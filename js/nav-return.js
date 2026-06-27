@@ -162,9 +162,14 @@
 
     if (ENTRY_FLOW_PAGES.has(currentKey)) {
       const entry = readEntry(currentKey);
-      if (entry) {
-        applyBackContext(back, entry);
-      }
+      applyBackContext(
+        back,
+        entry || {
+          href: isEn ? '/en' : '/',
+          labelDe: PAGE_LABELS[''].de,
+          labelEn: PAGE_LABELS[''].en,
+        },
+      );
     }
   }
 

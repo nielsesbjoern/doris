@@ -87,7 +87,7 @@ ZUERICH = {
         "audience": "Führungskräfte in internationalen, wirtschaftsnahen und institutionell geprägten Organisationen.",
         "cta_title": "Coaching und Prozessbegleitung in Zürich",
         "cta_text": "Sie führen in Zürich und suchen eine erfahrene, vertrauliche Begleitung? Ich freue mich auf Ihre Nachricht.",
-        "cta_btn": "Vertrauliches Erstgespräch",
+        "cta_btn": "Vertraulich anfragen",
     },
     "en": {
         "seo_title": "Coaching Zurich — Leadership Support in Switzerland | Doris Gunsch",
@@ -162,6 +162,6 @@ ZUERICH = {
         "audience": "Leaders in international, business-oriented and institutionally shaped organisations.",
         "cta_title": "Coaching and facilitation in Zurich",
         "cta_text": "Leading in Zurich and looking for experienced, confidential support? I look forward to hearing from you.",
-        "cta_btn": "Confidential initial meeting",
+        "cta_btn": "Get in touch confidentially",
     },
 }

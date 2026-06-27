@@ -227,23 +227,8 @@ TEXT = {
             "markieren Sie bis zu zwei Optionen und sehen Sie die Unterschiede direkt nebeneinander."
         ),
         "teaser_btn": "Format-Finder öffnen",
-        "home_kicker": "Interaktiv",
-        "home_title": "Welches Coaching-Format passt zu Ihrer Situation?",
-        "home_text": (
-            "Der Format-Finder ordnet Anlässe und Durchführungsformen ein — "
-            "zum Vergleichen, Einordnen und als Einstieg in die passende Begleitung."
-        ),
-        "home_btn": "Format-Finder starten",
         "hero_btn": "Format-Finder",
-        "hero_hint": "Nicht sicher, welches Format passt?",
-        "hero_hint_link": "Starten Sie mit dem Format-Finder.",
-        "home_coaching_link": "Mehr zum Coaching",
         "home_coaching_card_link": "Welches Format passt? → Format-Finder",
-        "home_chips": [
-            ("situativ", "Situatives Coaching"),
-            ("onboarding", "Onboarding-Coaching"),
-            ("smart", "Smart-Coaching"),
-        ],
     },
     "en": {
         "title": "Which format fits?",
@@ -301,22 +286,7 @@ TEXT = {
             "select up to two options and see the differences side by side."
         ),
         "teaser_btn": "Open format finder",
-        "home_kicker": "Interactive",
-        "home_title": "Which coaching format fits your situation?",
-        "home_text": (
-            "The format finder maps occasions and delivery models — "
-            "to compare, orient yourself and find a suitable starting point."
-        ),
-        "home_btn": "Start format finder",
         "hero_btn": "Format finder",
-        "hero_hint": "Not sure which format fits?",
-        "hero_hint_link": "Start with the format finder.",
-        "home_coaching_link": "More on coaching",
         "home_coaching_card_link": "Which format fits? → Format finder",
-        "home_chips": [
-            ("situativ", "Situational coaching"),
-            ("onboarding", "Onboarding coaching"),
-            ("smart", "Smart coaching"),
-        ],
     },
 }
