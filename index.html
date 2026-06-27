@@ -166,7 +166,7 @@
           <!-- /HOME_HERO_LEAD -->
           <!-- HOME_HERO_ACTIONS -->
           <div class="hero-actions">
-            <a href="kontakt#kontakt-anfrage" class="btn btn-primary">Kontakt aufnehmen</a>
+            <a href="#kontakt-anfrage" class="btn btn-primary">Anfrage stellen</a>
             <a href="coaching-formate" class="btn btn-format-finder">Format-Finder</a>
             <a href="leistungen" class="btn-text">Leistungen ansehen</a>
           </div>
@@ -225,28 +225,7 @@
           <strong>Lindt &amp; Sprüngli</strong> — sowie Kliniken, Verbänden und Mittelstandsunternehmen
           im gesamten DACH-Raum. <a href="referenzen" class="home-references-link">Alle Referenzen</a>
         </p>
-                <details class="home-standorte">
-          <summary>Beratung in Ihrer Region</summary>
-          <p class="home-standorte-intro">Coaching und Prozessbegleitung für Führungskräfte — Büro in Osnabrück, Mandate im Nordwesten und im gesamten DACH-Raum.</p>
-          <p class="home-standorte-group-label">Nordwesten</p>
-          <ul class="home-standorte-list">
-            <li><a href="standorte/osnabrueck">Osnabrück — Hauptsitz</a></li>
-            <li><a href="standorte/oldenburg">Oldenburg — Gesundheit &amp; Soziales</a></li>
-            <li><a href="standorte/hannover">Hannover — große Organisationen</a></li>
-            <li><a href="standorte/bremen">Bremen — Wandel &amp; Verantwortung</a></li>
-            <li><a href="standorte/muenster">Münster — Verwaltung &amp; Institutionen</a></li>
-          </ul>
-          <p class="home-standorte-group-label">Weitere Städte</p>
-          <ul class="home-standorte-list">
-            <li><a href="standorte/hamburg">Hamburg — Metropole &amp; Kommunikation</a></li>
-            <li><a href="standorte/berlin">Berlin — Verbände &amp; Transformation</a></li>
-            <li><a href="standorte/frankfurt">Frankfurt — Entscheidungsdruck &amp; Verantwortung</a></li>
-            <li><a href="standorte/muenchen">München — Leistung &amp; internationale Teams</a></li>
-            <li><a href="standorte/duesseldorf">Düsseldorf — Wirtschaft &amp; Führungsdynamik</a></li>
-            <li><a href="standorte/zuerich">Zürich — Internationaler Führungskontext</a></li>
-          </ul>
-          <p class="home-standorte-more"><a href="einsatzgebiete" class="card-link">Alle Einsatzgebiete auf der Karte</a></p>
-        </details>
+        <!-- HOME_STANDORTE -->
 </div>
     </section>
 
@@ -276,19 +255,160 @@
       </div>
     </section>
 
-    <section class="section page-section section-contact-cta" id="kontakt-anfrage">
-      <div class="container">
-        <div class="card card--lead home-contact-cta">
-          <p class="eyebrow">Anfrage stellen</p>
-          <h2 class="home-contact-cta__title">In wenigen Schritten zur E-Mail-Anfrage</h2>
-          <p class="home-contact-cta__text">
-            Auf der Kontaktseite führt Sie ein kurzer Wizard durch die wichtigsten Fragen —
-            am Ende entsteht ein strukturierter Anfragetext für Ihr E-Mail-Programm.
-            Keine Serverübertragung, volle Kontrolle beim Versand.
-          </p>
-          <div class="hero-actions home-contact-cta__actions">
-            <a href="kontakt#kontakt-anfrage" class="btn btn-primary">Zum Kontakt-Wizard</a>
+    <section class="section page-section section-contact-wizard" id="kontakt-anfrage">
+      <div class="container section-contact-wizard__inner">
+        <div class="contact-wizard" id="contact-wizard">
+          <div class="contact-wizard__progress" aria-hidden="true">
+            <div class="contact-wizard__progress-track">
+              <span class="contact-wizard__progress-fill"></span>
+            </div>
+            <p class="contact-wizard__progress-label"></p>
           </div>
+
+          <h3 id="wizard-step-title" class="contact-wizard__step-title" aria-live="polite">Leistungsbereich</h3>
+
+          <div class="contact-wizard__panel is-active" data-wizard-step="1" data-step-title="Leistungsbereich">
+            <p class="contact-wizard__step-hint">Wobei kann ich Sie unterstützen?</p>
+            <div class="contact-wizard__chips" role="group" aria-label="Leistungsbereich">
+              <button type="button" class="contact-wizard__chip" data-field="leistung" data-value="coaching" aria-pressed="false">Coaching</button>
+              <button type="button" class="contact-wizard__chip" data-field="leistung" data-value="trainings" aria-pressed="false">Training &amp; Seminar</button>
+              <button type="button" class="contact-wizard__chip" data-field="leistung" data-value="team" aria-pressed="false">Team &amp; Prozessbegleitung</button>
+              <button type="button" class="contact-wizard__chip" data-field="leistung" data-value="diagnostik" aria-pressed="false">Diagnostik</button>
+              <button type="button" class="contact-wizard__chip" data-field="leistung" data-value="unklar" aria-pressed="false">Noch unklar — Orientierung</button>
+            </div>
+          </div>
+
+          <div class="contact-wizard__panel" data-wizard-step="2" data-step-title="Anlass" hidden>
+            <p class="contact-wizard__step-hint">Was ist der Hintergrund Ihrer Anfrage?</p>
+            <div class="contact-wizard__chips" role="group" aria-label="Anlass">
+              <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="coaching" data-value="fuehrungswechsel" aria-pressed="false">Führungswechsel / Onboarding</button>
+              <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="coaching" data-value="konflikt" aria-pressed="false">Konflikt / schwierige Situation</button>
+              <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="coaching" data-value="veraenderung" aria-pressed="false">Veränderungsprozess</button>
+              <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="coaching" data-value="entwicklung" aria-pressed="false">Persönlichkeitsentwicklung</button>
+              <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="trainings" data-value="keynote" aria-pressed="false">Keynote / Vortrag</button>
+              <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="trainings" data-value="workshop" aria-pressed="false">Workshop</button>
+              <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="trainings" data-value="seminar" aria-pressed="false">Mehrtägiges Seminar</button>
+              <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="trainings" data-value="inhouse" aria-pressed="false">Inhouse-Training</button>
+              <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="team" data-value="teamentwicklung" aria-pressed="false">Teamentwicklung</button>
+              <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="team" data-value="konfliktklaerung" aria-pressed="false">Konfliktklärung</button>
+              <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="team" data-value="moderation" aria-pressed="false">Moderation / Facilitation</button>
+              <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="diagnostik" data-value="fuehrungsdiagnostik" aria-pressed="false">Führungsdiagnostik</button>
+              <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="diagnostik" data-value="teambewertung" aria-pressed="false">Teambewertung</button>
+              <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="diagnostik" data-value="profiling" aria-pressed="false">Persönlichkeitsprofiling</button>
+              <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="unklar" data-value="erstgespraech" aria-pressed="false">Orientierung / Weg finden</button>
+              <button type="button" class="contact-wizard__chip" data-field="anlass" data-leistung="all" data-value="sonstiges" aria-pressed="false">Sonstiges</button>
+            </div>
+          </div>
+
+          <div class="contact-wizard__panel" data-wizard-step="3" data-step-title="Rahmendaten" hidden>
+            <p class="contact-wizard__step-hint">Ein paar Eckdaten zu Ihrem Vorhaben.</p>
+
+            <div class="contact-wizard__group">
+              <p class="contact-wizard__group-label">Zielgruppe</p>
+              <div class="contact-wizard__chips" role="group" aria-label="Zielgruppe">
+                <button type="button" class="contact-wizard__chip" data-field="zielgruppe" data-value="fuehrung" aria-pressed="false">Führungskräfte</button>
+                <button type="button" class="contact-wizard__chip" data-field="zielgruppe" data-value="hr" aria-pressed="false">HR / Personalentwicklung</button>
+                <button type="button" class="contact-wizard__chip" data-field="zielgruppe" data-value="team" aria-pressed="false">Team / Abteilung</button>
+                <button type="button" class="contact-wizard__chip" data-field="zielgruppe" data-value="gemischt" aria-pressed="false">Gemischt</button>
+              </div>
+            </div>
+
+            <div class="contact-wizard__group">
+              <p class="contact-wizard__group-label">Teilnehmerzahl</p>
+              <div class="contact-wizard__chips" role="group" aria-label="Teilnehmerzahl">
+                <button type="button" class="contact-wizard__chip" data-field="teilnehmer" data-value="1" aria-pressed="false">1 Person</button>
+                <button type="button" class="contact-wizard__chip" data-field="teilnehmer" data-value="2-10" aria-pressed="false">2–10 Personen</button>
+                <button type="button" class="contact-wizard__chip" data-field="teilnehmer" data-value="11-30" aria-pressed="false">11–30 Personen</button>
+                <button type="button" class="contact-wizard__chip" data-field="teilnehmer" data-value="30plus" aria-pressed="false">30+ Personen</button>
+              </div>
+            </div>
+
+            <div class="contact-wizard__group">
+              <p class="contact-wizard__group-label">Durchführung</p>
+              <div class="contact-wizard__chips" role="group" aria-label="Durchführung">
+                <button type="button" class="contact-wizard__chip" data-field="durchfuehrung" data-value="vor-ort" aria-pressed="false">Vor Ort</button>
+                <button type="button" class="contact-wizard__chip" data-field="durchfuehrung" data-value="online" aria-pressed="false">Online</button>
+                <button type="button" class="contact-wizard__chip" data-field="durchfuehrung" data-value="hybrid" aria-pressed="false">Hybrid</button>
+              </div>
+              <div class="contact-wizard__field" data-wizard-city-field hidden>
+                <label class="contact-wizard__label" for="wizard-stadt">Stadt / Region</label>
+                <input class="contact-wizard__input" type="text" id="wizard-stadt" data-wizard-input="stadt" autocomplete="address-level2" placeholder="z. B. München">
+              </div>
+            </div>
+
+            <div class="contact-wizard__group">
+              <p class="contact-wizard__group-label">Zeithorizont</p>
+              <div class="contact-wizard__chips" role="group" aria-label="Zeithorizont">
+                <button type="button" class="contact-wizard__chip" data-field="zeithorizont" data-value="kurzfristig" aria-pressed="false">Kurzfristig</button>
+                <button type="button" class="contact-wizard__chip" data-field="zeithorizont" data-value="1-3-monate" aria-pressed="false">1–3 Monate</button>
+                <button type="button" class="contact-wizard__chip" data-field="zeithorizont" data-value="6-12-monate" aria-pressed="false">6–12 Monate</button>
+                <button type="button" class="contact-wizard__chip" data-field="zeithorizont" data-value="1-2-jahre" aria-pressed="false">1–2 Jahre</button>
+                <button type="button" class="contact-wizard__chip" data-field="zeithorizont" data-value="flexibel" aria-pressed="false">Flexibel</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-wizard__panel" data-wizard-step="4" data-step-title="Ihre Angaben" hidden>
+            <p class="contact-wizard__step-hint">Damit Anrede und Signatur in der E-Mail vollständig sind.</p>
+            <div class="contact-wizard__fields">
+              <div class="contact-wizard__field">
+                <label class="contact-wizard__label" for="wizard-name">Name <span aria-hidden="true">*</span></label>
+                <input class="contact-wizard__input" type="text" id="wizard-name" data-wizard-input="name" autocomplete="name" required>
+              </div>
+              <div class="contact-wizard__field">
+                <label class="contact-wizard__label" for="wizard-firma">Organisation <span aria-hidden="true">*</span></label>
+                <input class="contact-wizard__input" type="text" id="wizard-firma" data-wizard-input="firma" autocomplete="organization" required>
+              </div>
+              <div class="contact-wizard__field">
+                <label class="contact-wizard__label" for="wizard-position">Position <span aria-hidden="true">*</span></label>
+                <input class="contact-wizard__input" type="text" id="wizard-position" data-wizard-input="position" autocomplete="organization-title" required>
+              </div>
+              <div class="contact-wizard__field">
+                <label class="contact-wizard__label" for="wizard-telefon">Telefon <span class="contact-wizard__optional">(optional)</span></label>
+                <input class="contact-wizard__input" type="tel" id="wizard-telefon" data-wizard-input="telefon" autocomplete="tel">
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-wizard__panel" data-wizard-step="5" data-step-title="Ergänzung" hidden>
+            <p class="contact-wizard__step-hint">Optional — was soll ich noch wissen?</p>
+            <div class="contact-wizard__field">
+              <label class="contact-wizard__label" for="wizard-freitext">Ihr Anliegen in eigenen Worten</label>
+              <textarea class="contact-wizard__textarea" id="wizard-freitext" data-wizard-input="freitext" rows="5" placeholder="Kurzer Kontext zu Ihrer Situation …"></textarea>
+            </div>
+          </div>
+
+          <div class="contact-wizard__panel" data-wizard-step="6" data-step-title="Vorschau &amp; E-Mail öffnen" hidden>
+            <p class="contact-wizard__step-hint">So sieht Ihre Anfrage in der E-Mail aus.</p>
+            <div class="contact-wizard__preview-toolbar">
+              <button type="button" class="btn btn-secondary contact-wizard__copy" data-wizard-copy hidden>Text kopieren</button>
+            </div>
+            <pre class="contact-wizard__preview" data-wizard-preview aria-label="Vorschau der E-Mail"></pre>
+          </div>
+
+          <p class="contact-wizard__status" data-wizard-status hidden aria-live="polite"></p>
+
+          <div class="contact-wizard__nav">
+            <button type="button" class="btn btn-secondary" data-wizard-back hidden>Zurück</button>
+            <button type="button" class="btn btn-primary" data-wizard-next hidden>Weiter</button>
+          </div>
+
+          <div class="contact-wizard__submit" data-wizard-submit hidden>
+            <p class="contact-wizard__mail-hint" data-wizard-mail-hint>Es öffnet sich Ihr E-Mail-Programm mit dem Text oben. Bitte prüfen Sie die Nachricht und senden Sie sie ab.</p>
+            <div class="contact-wizard__mail-actions">
+              <button type="button" class="btn btn-primary" data-wizard-mail>E-Mail-Anfrage öffnen</button>
+              <button type="button" class="contact-wizard__mail-fallback" data-wizard-mail-fallback hidden aria-label="E-Mail-Programm öffnen">
+                <svg class="contact-wizard__mail-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                  <path d="M2 7l10 7 10-7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <p class="contact-wizard__privacy">
+            Keine Serverübertragung — Versand nur über Ihr E-Mail-Programm.
+          </p>
         </div>
       </div>
     </section>
@@ -356,5 +476,6 @@
 
   <script src="js/nav-return.js?v=26" defer></script>
   <script src="js/site.js?v=26" defer></script>
+  <script src="js/kontakt-wizard.js?v=26" defer></script>
 </body>
 </html>

@@ -540,29 +540,46 @@ CONTACT_WIZARD_SECTION = re.compile(
 )
 
 
-def contact_wizard_partial(lang: str) -> str:
+CONTACT_WIZARD_HEADER = re.compile(
+    r'<header class="contact-wizard__header">.*?</header>\s*',
+    re.DOTALL,
+)
+
+
+def contact_wizard_partial(lang: str, *, include_header: bool = True) -> str:
     path = ROOT / "partials" / f"contact-wizard.{lang}.html"
-    return path.read_text(encoding="utf-8").strip()
+    partial = path.read_text(encoding="utf-8").strip()
+    if not include_header:
+        partial = CONTACT_WIZARD_HEADER.sub("", partial, count=1)
+    return partial
 
 
 HOME_CONTACT_CTA_MARKER = "<!-- HOME_CONTACT_CTA -->"
 
 
-def home_contact_cta_partial(lang: str) -> str:
-    path = ROOT / "partials" / f"home-contact-cta.{lang}.html"
-    return path.read_text(encoding="utf-8").strip()
+def home_wizard_phone_partial(lang: str) -> str:
+    if lang == "de":
+        return """    <div class="container home-wizard-phone">
+      <p class="home-wizard-phone__label">Lieber telefonisch?</p>
+      <a href="tel:+4954114496" class="btn btn-secondary">Anrufen</a>
+    </div>"""
+    return """    <div class="container home-wizard-phone">
+      <p class="home-wizard-phone__label">Prefer to call?</p>
+      <a href="tel:+4954114496" class="btn btn-secondary">Call</a>
+    </div>"""
 
 
-def sync_home_contact_cta(html: str, lang: str) -> str:
+def sync_home_contact_wizard(html: str, lang: str) -> str:
     if HOME_CONTACT_CTA_MARKER not in html:
         return html
-    return html.replace(HOME_CONTACT_CTA_MARKER, home_contact_cta_partial(lang))
+    block = contact_wizard_partial(lang) + "\n\n" + home_wizard_phone_partial(lang)
+    return html.replace(HOME_CONTACT_CTA_MARKER, block)
 
 
 def sync_contact_wizard(html: str, lang: str) -> str:
-    partial = contact_wizard_partial(lang)
     if HOME_CONTACT_CTA_MARKER in html:
-        return sync_home_contact_cta(html, lang)
+        return sync_home_contact_wizard(html, lang)
+    partial = contact_wizard_partial(lang, include_header=False)
     if CONTACT_WIZARD_MARKER in html:
         return html.replace(CONTACT_WIZARD_MARKER, partial)
     if 'id="kontakt-anfrage"' in html:
@@ -707,7 +724,7 @@ def build_page(lang: str, filename: str, main_content: str, out_path: Path):
         extra_scripts = f'\n  <script src="{asset}js/referenzen.js?v={ASSET_VERSION}" defer></script>'
     elif filename == "coaching-formate.html":
         extra_scripts = f'\n  <script src="{asset}js/coaching-formats.js?v={ASSET_VERSION}" defer></script>'
-    elif filename in ("kontakt.html",):
+    elif filename in ("kontakt.html", "index.html"):
         extra_scripts = f'\n  <script src="{asset}js/kontakt-wizard.js?v={ASSET_VERSION}" defer></script>'
 
     logo_label = L["logo"]

@@ -167,8 +167,8 @@ def render_home_hero_actions(lang: str, link_prefix: str) -> str:
     t = TEXT[lang]
     fmt_href = page_href("coaching-formate.html", link_prefix)
     leist_href = page_href("leistungen.html", link_prefix)
-    contact_href = page_href("kontakt.html", link_prefix) + "#kontakt-anfrage"
-    contact_label = "Kontakt aufnehmen" if lang == "de" else "Get in touch"
+    contact_href = "#kontakt-anfrage" if link_prefix == "" else page_href("kontakt.html", link_prefix) + "#kontakt-anfrage"
+    contact_label = "Anfrage stellen" if lang == "de" else "Submit enquiry"
     services_label = "Leistungen ansehen" if lang == "de" else "View services"
     return f"""          <div class="hero-actions">
             <a href="{contact_href}" class="btn btn-primary">{contact_label}</a>

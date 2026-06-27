@@ -105,15 +105,17 @@ def test_site_js_deferred() -> None:
                 raise AssertionError(f"{rel}: site.js should load with defer")
 
 
-def test_homepage_uses_contact_cta_not_wizard() -> None:
+def test_homepage_has_contact_wizard() -> None:
     for rel in ("index.html", "en/index.html"):
         html = (ROOT / rel).read_text(encoding="utf-8")
-        if 'id="contact-wizard"' in html:
-            raise AssertionError(f"{rel}: full contact wizard should not be on homepage")
-        if "home-contact-cta" not in html:
-            raise AssertionError(f"{rel}: missing home contact CTA")
-        if 'href="kontakt#kontakt-anfrage"' not in html:
-            raise AssertionError(f"{rel}: missing link to contact wizard")
+        if 'id="contact-wizard"' not in html:
+            raise AssertionError(f"{rel}: contact wizard should be embedded on homepage")
+        if "home-contact-cta" in html:
+            raise AssertionError(f"{rel}: homepage should not use contact CTA teaser card")
+        if 'href="#kontakt-anfrage"' not in html:
+            raise AssertionError(f"{rel}: hero should link to on-page contact wizard")
+        if "kontakt-wizard.js" not in html:
+            raise AssertionError(f"{rel}: missing kontakt-wizard.js script")
 
 
 def test_homepage_format_finder_links() -> None:
@@ -167,7 +169,7 @@ def main() -> None:
     test_psi_bridge_injector()
     test_no_legacy_format_compare_css()
     test_site_js_deferred()
-    test_homepage_uses_contact_cta_not_wizard()
+    test_homepage_has_contact_wizard()
     test_homepage_format_finder_links()
     test_standort_pages_have_mini_case_disclaimer()
     test_standort_pages_have_references()
