@@ -121,7 +121,11 @@
       return;
     }
 
+    const wasHidden = comparePanel.hidden;
     comparePanel.hidden = false;
+    if (wasHidden && !prefersReducedMotion.matches) {
+      comparePanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
     const [a, b] = picked;
     const rowsA = itemRows(a);
     const rowsB = itemRows(b);
@@ -181,9 +185,7 @@
       return;
     }
 
-    statusEl.textContent = i18n.showing
-      .replace('{a}', itemTitle(picked[0]))
-      .replace('{b}', itemTitle(picked[1]));
+    statusEl.textContent = '';
   }
 
   function buildInquiryPayload() {

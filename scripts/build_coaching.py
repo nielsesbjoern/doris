@@ -84,8 +84,12 @@ def render_compare(lang: str) -> str:
         t["label_suitable"],
         t["label_less_suitable"],
     ]
-    thead_cells = "".join(
-        '\n                <th scope="col" class="format-guide__compare-slot"></th>' for _ in range(2)
+    thead_cells = (
+        '                <th scope="col" class="format-guide__compare-corner" aria-hidden="true"></th>\n'
+        + "".join(
+            '\n                <th scope="col" class="format-guide__compare-slot format-guide__compare-col"></th>'
+            for _ in range(2)
+        )
     )
     tbody_rows = "".join(
         f'                    <tr data-row-label="{html.escape(label)}"><th scope="row">{label}</th>'
@@ -116,7 +120,7 @@ def render_compare(lang: str) -> str:
             <div class="format-guide__compare" id="format-guide-compare" hidden>
               <div class="format-guide__compare-head">
                 <h3 class="format-guide__compare-title">{t["compare_panel_title"]}</h3>
-                <button type="button" class="format-guide__compare-clear" id="format-guide-clear">{t["compare_clear"]}</button>
+                <button type="button" class="btn btn-secondary format-guide__compare-clear" id="format-guide-clear">{t["compare_clear"]}</button>
               </div>
               <div class="format-guide__compare-scroll">
                 <table class="format-guide__table format-guide__table--compare">
